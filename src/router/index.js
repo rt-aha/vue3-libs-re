@@ -1,25 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import pages from '~pages';
+import components from '@/router/pages/components';
+import hooks from '@/router/pages/hooks';
+import widgets from '@/router/pages/widgets';
 
 // console.log('routes..', pages);
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '',
-      name: '',
-      component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
-      meta: {
-        title: 'layout',
-        siteMap: {
-          title: 'layout',
-          show: false,
-        },
-      },
-      children: pages,
-    },
-  ],
+  routes: [...components, ...widgets, ...hooks],
 });
 
 router.beforeEach((to, from, next) => {

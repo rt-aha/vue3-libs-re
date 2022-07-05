@@ -20,7 +20,7 @@
 
     <div class="sub-list-wrap">
       <ul class="sub-list">
-        <li class="sub-list__item" v-for="sl of subListConfig[activedType]" :key="sl.label">
+        <li class="sub-list__item" v-for="sl of subListConfig[activedType]" :key="sl.label" @click="toPage(sl.name)">
           <div class="sub-list__item__box">
             <p class="sub-list__item__box__text">{{ sl.label }}</p>
           </div>
@@ -31,17 +31,23 @@
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
+import { children as components } from '@/router/pages/components';
+import { children as hooks } from '@/router/pages/hooks';
+import { children as widgets } from '@/router/pages/widgets';
+import { toCamel } from '@/utils/toCamel';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'LySidebar',
   setup() {
+    const router = useRouter();
     const activedType = ref('Components');
     const mainListConfig = [
       {
         label: 'Components',
       },
       {
-        label: 'Widget',
+        label: 'Widgets',
       },
       {
         label: 'Hooks',
@@ -49,37 +55,35 @@ export default defineComponent({
     ];
 
     const subListConfig = {
-      Components: [
-        {
-          label: 'Form',
-        },
-        {
-          label: 'AsyncDialog',
-        },
-        {
-          label: 'Message',
-        },
-      ],
-      Widget: [
-        {
-          label: 'ManagePage',
-        },
-        {
-          label: 'Clock',
-        },
-      ],
-      Hooks: [
-        {
-          label: 'deviceType',
-        },
-        {
-          label: 'useRequest',
-        },
-      ],
+      Components: components.map((item) => {
+        return {
+          label: toCamel(item.name),
+          name: item.name,
+        };
+      }),
+      Widgets: widgets.map((item) => {
+        return {
+          label: toCamel(item.name),
+          name: item.name,
+        };
+      }),
+      Hooks: hooks.map((item) => {
+        return {
+          label: toCamel(item.name),
+          name: item.name,
+        };
+      }),
     };
 
     const handleMainListItem = (label) => {
       activedType.value = label;
+    };
+
+    const toPage = (name) => {
+      console.log('name', name);
+      router.push({
+        name,
+      });
     };
 
     return {
@@ -87,6 +91,7 @@ export default defineComponent({
       subListConfig,
       activedType,
       handleMainListItem,
+      toPage,
     };
   },
 });
