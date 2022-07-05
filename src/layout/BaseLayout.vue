@@ -5,24 +5,25 @@
     </div>
 
     <div class="ly-base-layout__body">
-      <router-view />
-    </div>
-
-    <div class="ly-base-layout__footer">
-      <ly-footer />
+      <div class="ly-base-layout__body__sidebar">
+        <ly-sidebar />
+      </div>
+      <div class="ly-base-layout__body__container">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { defineComponent } from 'vue';
 import LyHeader from '@/layout/LyHeader.vue';
-import LyFooter from '@/layout/LyFooter.vue';
+import LySidebar from '@/layout/LySidebar.vue';
 import { useRoute } from 'vue-router';
 
 export default defineComponent({
   components: {
     LyHeader,
-    LyFooter,
+    LySidebar,
   },
   setup() {
     const route = useRoute();
@@ -51,7 +52,21 @@ export default defineComponent({
 
   &__body {
     width: 100%;
+    height: 100%;
     flex: 1;
+    @include flex(flex-start, flex-start);
+
+    &__sidebar {
+      flex: none;
+      width: 220px;
+      height: 100%;
+    }
+
+    &__container {
+      flex: 1;
+      height: 100%;
+      @include padding(15px);
+    }
   }
 
   &__footer {

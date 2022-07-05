@@ -9,16 +9,24 @@ const kebabize = (str) => {
 };
 
 const formatRoutes = (route) => {
+  console.log(route);
   const name = kebabize(route.name);
+  const withDynamic = /\[.*\]/.test(route.component);
 
   const routeConfig = {
     ...route,
     name,
-    path: `/${kebabize(route.name)}`,
+    path: withDynamic ? route.name.toLowerCase() : `/${kebabize(route.name)}`,
   };
 
   if (route.name === 'Home') {
     routeConfig.path = '';
+  }
+
+  if (/\[.*\]/.test(route.component)) {
+    const removeConnetSign = route.name.replace('-', '');
+    // console.log('removeConnetSign', removeConnetSign);
+    routeConfig.name = kebabize(removeConnetSign);
   }
 
   return routeConfig;
