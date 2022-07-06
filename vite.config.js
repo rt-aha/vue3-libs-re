@@ -1,20 +1,10 @@
 import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import Pages from 'vite-plugin-pages';
-import formatRoutes from './src/router/formatRoutes.js';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    Pages({
-      dirs: 'src/views',
-      extendRoute(route, parent) {
-        return formatRoutes(route, parent);
-      },
-    }),
-  ],
+  plugins: [vue()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

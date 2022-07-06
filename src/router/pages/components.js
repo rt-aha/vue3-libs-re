@@ -1,3 +1,5 @@
+import addMeta from '@/router/addMeta';
+
 const children = [
   {
     path: 'collapse-transition',
@@ -7,7 +9,7 @@ const children = [
   {
     path: 'dialog',
     name: 'dialog',
-    component: () => import(/* webpackChunkName: "Dialog" */ '@/views/components/Dialog.js'),
+    component: () => import(/* webpackChunkName: "Dialog" */ '@/views/components/Dialog.vue'),
   },
 ];
 
@@ -16,7 +18,7 @@ const routes = [
     path: '/components',
     name: 'components',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
-    children,
+    children: addMeta(children, 'category', 'components'),
   },
 ];
 

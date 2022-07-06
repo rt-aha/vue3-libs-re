@@ -7,7 +7,17 @@ import widgets from '@/router/pages/widgets';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...components, ...widgets, ...hooks],
+  routes: [
+    {
+      path: '',
+      name: 'home',
+      component: () => import(/* webpackChunkName: "Home" */ '@/views/Home.vue'),
+    },
+
+    ...components,
+    ...widgets,
+    ...hooks,
+  ],
 });
 
 router.beforeEach((to, from, next) => {

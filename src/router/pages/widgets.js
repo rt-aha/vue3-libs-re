@@ -1,17 +1,19 @@
+import addMeta from '@/router/addMeta';
+
 const children = [
   {
     path: 'manage-page',
     name: 'manage-page',
-    component: () => import(/* webpackChunkName: "ManagePage" */ '@/views/components/ManagePage.js'),
+    component: () => import(/* webpackChunkName: "ManagePage" */ '@/views/widgets/ManagePage.vue'),
   },
 ];
 
 const routes = [
   {
-    path: '/components',
-    name: 'components',
+    path: '/widgets',
+    name: 'widgets',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
-    children,
+    children: addMeta(children, 'category', 'widgets'),
   },
 ];
 

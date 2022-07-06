@@ -1,12 +1,16 @@
 const toCamel = (name) => {
-  // 驗證格式對不對
-  const regExp = /[^A-Za-z-]/;
-  const isValidate = regExp.test(name);
-  if (isValidate) {
-    throw new Error('格式錯誤');
-  }
+  const splitNameList = name.split('-');
 
-  return name.replace(/-\w/g, (matchValue) => matchValue.slice(1).toUpperCase());
+  const upperCamel = [];
+
+  splitNameList.forEach((str) => {
+    const upperStr = str[0].toUpperCase() + str.slice(1);
+    upperCamel.push(upperStr);
+  });
+
+  const reuslt = upperCamel.join('');
+
+  return reuslt;
 };
 
 export { toCamel };

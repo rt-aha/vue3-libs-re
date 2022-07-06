@@ -19,7 +19,7 @@ export default (requestApi) => {
 
   return {
     res,
-    isLoading,
     req,
+    isLoading,
   };
 };

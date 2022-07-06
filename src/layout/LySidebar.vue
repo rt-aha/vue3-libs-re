@@ -12,7 +12,7 @@
           @click="handleMainListItem(ml.label)"
         >
           <div class="main-list__item__box">
-            <p class="main-list__item__box__text">{{ ml.label }}</p>
+            <p class="main-list__item__box__text">{{ capitalize(ml.label) }}</p>
           </div>
         </li>
       </ul>
@@ -20,7 +20,15 @@
 
     <div class="sub-list-wrap">
       <ul class="sub-list">
-        <li class="sub-list__item" v-for="sl of subListConfig[activedType]" :key="sl.label" @click="toPage(sl.name)">
+        <li
+          class="sub-list__item"
+          :class="{
+            'sub-list__item--actived': sl.name === route.name,
+          }"
+          v-for="sl of subListConfig[activedType]"
+          :key="sl.label"
+          @click="toPage(sl.name)"
+        >
           <div class="sub-list__item__box">
             <p class="sub-list__item__box__text">{{ sl.label }}</p>
           </div>
@@ -36,38 +44,41 @@ import { children as hooks } from '@/router/pages/hooks';
 import { children as widgets } from '@/router/pages/widgets';
 import { toCamel } from '@/utils/toCamel';
 import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
+import capitalize from '@/utils/capitalize';
 
 export default defineComponent({
   name: 'LySidebar',
   setup() {
+    const route = useRoute();
     const router = useRouter();
-    const activedType = ref('Components');
+    const activedType = ref('components');
     const mainListConfig = [
       {
-        label: 'Components',
+        label: 'components',
       },
       {
-        label: 'Widgets',
+        label: 'widgets',
       },
       {
-        label: 'Hooks',
+        label: 'hooks',
       },
     ];
 
     const subListConfig = {
-      Components: components.map((item) => {
+      components: components.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
         };
       }),
-      Widgets: widgets.map((item) => {
+      widgets: widgets.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
         };
       }),
-      Hooks: hooks.map((item) => {
+      hooks: hooks.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
@@ -86,12 +97,24 @@ export default defineComponent({
       });
     };
 
+    const setActivedMenu = () => {
+      const categories = mainListConfig.map((item) => item.label);
+
+      if (categories.includes(route.meta.category)) {
+        activedType.value = route.meta.category;
+      }
+    };
+
+    setActivedMenu();
+
     return {
       mainListConfig,
       subListConfig,
       activedType,
       handleMainListItem,
       toPage,
+      route,
+      capitalize,
     };
   },
 });
@@ -138,11 +161,43 @@ export default defineComponent({
   @include flex(flex-start, flex-start, column);
 
   &__item {
+    &--actived {
+      .sub-list__item__box__text {
+        &::before {
+          content: '';
+          width: 100%;
+          height: 1px;
+          @include position(bl, -4px, 0);
+          background-color: $c-main;
+          opacity: 1;
+        }
+      }
+    }
+
     &__box {
       @include padding(10px 5px);
 
       &__text {
         @include font-style($c-black, 14, 400, 1.5px);
+        cursor: pointer;
+        position: relative;
+
+        &:before {
+          content: '';
+          width: 0%;
+          height: 1px;
+          @include position(bl, -4px, 0);
+          background-color: $c-main;
+          opacity: 0;
+          transition: 0.4s;
+        }
+
+        &:hover {
+          &::before {
+            width: 100%;
+            opacity: 1;
+          }
+        }
       }
     }
   }
