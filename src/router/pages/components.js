@@ -7,9 +7,79 @@ const children = [
     component: () => import(/* webpackChunkName: "CollapseTransition" */ '@/views/components/CollapseTransition.vue'),
   },
   {
-    path: 'dialog',
-    name: 'dialog',
-    component: () => import(/* webpackChunkName: "Dialog" */ '@/views/components/Dialog.vue'),
+    path: 'async-dialog',
+    name: 'async-dialog',
+    component: () => import(/* webpackChunkName: "AsyncDialog" */ '@/views/components/AsyncDialog.vue'),
+  },
+  {
+    path: 'paragraph',
+    name: 'paragraph',
+    component: () => import(/* webpackChunkName: "Paragraph" */ '@/views/components/Paragraph.vue'),
+  },
+  {
+    path: 'simple-table',
+    name: 'simple-table',
+    component: () => import(/* webpackChunkName: "SimpleTable" */ '@/views/components/SimpleTable.vue'),
+  },
+  {
+    path: 're-button',
+    name: 're-button',
+    component: () => import(/* webpackChunkName: "ReButton" */ '@/views/components/ReButton.vue'),
+  },
+  {
+    path: 're-input',
+    name: 're-input',
+    component: () => import(/* webpackChunkName: "ReInput" */ '@/views/components/ReInput.vue'),
+  },
+  {
+    path: 're-textarea',
+    name: 're-textarea',
+    component: () => import(/* webpackChunkName: "ReTextarea" */ '@/views/components/ReTextarea.vue'),
+  },
+  {
+    path: 're-select',
+    name: 're-select',
+    component: () => import(/* webpackChunkName: "ReSelect" */ '@/views/components/ReSelect.vue'),
+  },
+  {
+    path: 're-radio',
+    name: 're-radio',
+    component: () => import(/* webpackChunkName: "ReRadio" */ '@/views/components/ReRadio.vue'),
+  },
+  {
+    path: 're-checkbox',
+    name: 're-checkbox',
+    component: () => import(/* webpackChunkName: "ReCheckbox" */ '@/views/components/ReCheckbox.vue'),
+  },
+  {
+    path: 're-switch',
+    name: 're-switch',
+    component: () => import(/* webpackChunkName: "ReSwitch" */ '@/views/components/ReSwitch.vue'),
+  },
+  {
+    path: 're-date-picker',
+    name: 're-date-picker',
+    component: () => import(/* webpackChunkName: "ReDatePicker" */ '@/views/components/ReDatePicker.vue'),
+  },
+  {
+    path: 're-date-time-picker',
+    name: 're-date-time-picker',
+    component: () => import(/* webpackChunkName: "ReDateTimePicker" */ '@/views/components/ReDateTimePicker.vue'),
+  },
+  {
+    path: 're-date-range-picker',
+    name: 're-date-range-picker',
+    component: () => import(/* webpackChunkName: "ReDateRangePicker" */ '@/views/components/ReDateRangePicker.vue'),
+  },
+  {
+    path: 're-input-timer',
+    name: 're-input-timer',
+    component: () => import(/* webpackChunkName: "ReInputTimer" */ '@/views/components/ReInputTimer.vue'),
+  },
+  {
+    path: 're-email-auto-complete',
+    name: 're-email-auto-complete',
+    component: () => import(/* webpackChunkName: "ReEmailAutoComplete" */ '@/views/components/ReEmailAutoComplete.vue'),
   },
 ];
 

@@ -58,14 +58,15 @@ export default defineComponent({
 
     &__sidebar {
       flex: none;
-      width: 220px;
+      // width: 220px;
+      display: inline-block;
       height: 100%;
     }
 
     &__container {
       flex: 1;
       height: 100%;
-      @include padding(15px);
+      @include padding(25px);
     }
   }
 

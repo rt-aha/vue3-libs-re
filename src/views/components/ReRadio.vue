@@ -1,13 +1,16 @@
 <template>
-  <div class="c-">AsyncDialog</div>
+  <div class="v-re-radio">
+    ReRadio 施工中 ...
+  </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'ReAsyncDialog',
+  name: 'ViewReRadio',
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

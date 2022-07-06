@@ -1,13 +1,16 @@
 <template>
-  <div class="v-dialog">Dialog 施工中 ...</div>
+  <div class="v-re-input">
+    ReInput 施工中 ...
+  </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'ViewDialog',
+  name: 'ViewReInput',
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

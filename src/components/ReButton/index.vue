@@ -1,0 +1,42 @@
+<template>
+  <button class="c-button" @click="onClick">
+    <span class="c-button__content">
+      <slot />
+    </span>
+  </button>
+</template>
+
+<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'ReReButton',
+  emit: ['emit'],
+  setup(props, { emit }) {
+
+    const onClick = () => {
+      emit('onClick')
+    }
+
+    return {
+      onClick
+    }
+  }
+});
+</script>
+
+<style lang="scss" scoped>
+.c-button {
+  width: auto;
+  @include padding(8px 12px);
+  border: 0;
+  outline: 0;
+
+  text-align: center;
+
+  &__content {
+    @include flex();
+
+  }
+}
+</style>
