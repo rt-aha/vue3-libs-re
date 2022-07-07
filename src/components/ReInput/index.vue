@@ -1,17 +1,12 @@
 <template>
   <div class="re-input">
-    <input
-      class="re-input__field"
-      type="text"
-      ref="inputField"
-      @input="handleInput"
-    />
+    <input class="re-input__field" type="text" ref="inputField" @input="handleInput" />
   </div>
 </template>
 
 <script>
-  import { defineComponent, ref, onMounted } from 'vue';
-  
+import { defineComponent, ref, onMounted, getCurrentInstance } from 'vue';
+
 export default defineComponent({
   name: 'ReReInput',
   props: {
@@ -21,10 +16,12 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
+    const validFn = getCurrentInstance().parent.ctx.validateFields;
     const inputField = ref(null);
 
     const handleInput = () => {
-      emit('update:modelValue', inputField.value.value)
+      emit('update:modelValue', inputField.value.value);
+      validFn()
     }
 
     const setInitInputVieldValue = () => {
@@ -48,9 +45,9 @@ export default defineComponent({
   background-color: #eee;
   display: inline-block;
   height: 36px;
-    border-bottom: 1px solid $c-main;
-    @include padding(5px 10px);
-    
+  border-bottom: 1px solid $c-main;
+  @include padding(5px 10px);
+
 
   &__field {
     background-color: transparent;

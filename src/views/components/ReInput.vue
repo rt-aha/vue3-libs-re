@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref  } from 'vue';
 import ReInput from '@/components/ReInput/index.vue'
 
 export default defineComponent({
@@ -16,6 +16,7 @@ export default defineComponent({
   },
   setup() {
     const value1 = ref('');
+    
 
     return {
 value1

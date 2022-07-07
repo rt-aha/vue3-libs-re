@@ -92,7 +92,6 @@ export default defineComponent({
     };
 
     const toPage = (name) => {
-      console.log('name', name);
       router.push({
         name,
       });
@@ -100,7 +99,6 @@ export default defineComponent({
 
     const setActivedMenu = () => {
       const categories = mainListConfig.map((item) => item.label);
-      console.log('categories',categories, route.meta.category)
 
       if (categories.includes(route.meta.category)) {
         activedType.value = route.meta.category;
