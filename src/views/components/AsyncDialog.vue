@@ -94,13 +94,12 @@ import { defineComponent } from 'vue';
 import useAsyncDialog from '@/hooks/useAsyncDialog';
 import TestComp from '@/components/AsyncDialog/TestComp.vue';
 import ReButton from '@/components/ReButton/index.vue';
-import ContentLayout from '@/components/Global/ContentLayout.vue';
+
 
 export default defineComponent({
   name: 'ViewAsyncDialog',
   components: {
     ReButton,
-    ContentLayout
   },
   setup() {
     const { asyncDialog } = useAsyncDialog();

@@ -71,13 +71,9 @@
 import { defineComponent } from 'vue';
 import useRequest from '@/hooks/useRequest';
 import { mockJsonPlaceholder } from '@/api/mockJsonPlaceholder.js';
-import ContentLayout from '@/components/Global/ContentLayout.vue';
 
 export default defineComponent({
   name: 'UseRequest',
-  components: {
-    ContentLayout
-  },
   setup() {
     const { req } = useRequest(mockJsonPlaceholder);
     const handleReq = async () => {

@@ -18,7 +18,7 @@ const routes = [
     path: '/hooks',
     name: 'hooks',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
-    children: addMeta(children, 'category', 'hook'),
+    children: addMeta(children, 'category', 'hooks'),
   },
 ];
 
