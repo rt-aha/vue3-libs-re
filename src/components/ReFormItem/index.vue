@@ -25,20 +25,25 @@ export default defineComponent({
     const formValue = inject('formValue');
     const formRules = inject('formRules');
 
-    const validate = () => {
+    const validate = (event) => {
       for (let rule of formRules[props.formKey]) {
-        const valid = rule.validator(formValue()[props.formKey])
-        if (!valid) {
-          return rule.message;
+        const triggerEvents = rule.trigger || [];
+
+        if (triggerEvents.includes(event)) {
+          const valid = rule.validator(formValue()[props.formKey])
+          if (!valid) {
+            return rule.message;
+          }
         }
       }
 
       return null;
     }
 
-    const validateFields = () => {
-      if (props.formKey in formRules) {
-        const errorMessage = validate();
+    const validateFields = (event) => {
+      if (formRules[props.formKey]) {
+
+        const errorMessage = validate(event);
         if (errorMessage) {
           formErrorMessage.value = errorMessage;
         }

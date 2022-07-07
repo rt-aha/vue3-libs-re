@@ -34,12 +34,14 @@ export default defineComponent({
     const formRules = {
       input: [
         {
+          trigger: ['blur'],
           message: '長度>=2',
           validator: (val) => {
             return val.length > 2
           }
         },
         {
+          trigger: ['input', 'blur'],
           message: '長度>=4',
           validator: (val) => {
             return val.length > 4

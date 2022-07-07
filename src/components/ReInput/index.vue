@@ -1,6 +1,9 @@
 <template>
   <div class="re-input">
-    <input class="re-input__field" type="text" ref="inputField" @input="handleInput" />
+    <input class="re-input__field" type="text" ref="inputField"
+    @input="(e) => updateValue(e, 'input')"
+    @change="(e) => updateValue(e, 'change')"
+    @blur="(e) => updateValue(e, 'blur')" />
   </div>
 </template>
 
@@ -18,23 +21,43 @@ export default defineComponent({
   setup(props, { emit }) {
     const validFn = getCurrentInstance().parent.ctx.validateFields;
     const inputField = ref(null);
+    // const formRules = inject('formRules', {});
 
-    const handleInput = () => {
-      emit('update:modelValue', inputField.value.value);
-      validFn()
+    const updateValue = (e, event) => {
+      emit('update:modelValue', e.target.value);
+      console.log('event',event)
+      validFn(event)
     }
 
-    const setInitInputVieldValue = () => {
+    // const handleInput = () => {
+    //   updateValue();
+    // }
+
+    // const handleChange = () => {
+    //   updateValue();
+    //   validFn('change')
+    // }
+    // const handleBlur = () => {
+    //   updateValue();
+    //   validFn('blur')
+    // }
+
+
+    const setInitInputFieldValue = () => {
       inputField.value.value = props.modelValue
     }
 
     onMounted(() => {
-      setInitInputVieldValue();
+      setInitInputFieldValue();
     })
 
     return {
       inputField,
-      handleInput
+      updateValue,
+      // handleInput,
+      // handleChange,
+      // handleBlur,
+
     }
   }
 });
