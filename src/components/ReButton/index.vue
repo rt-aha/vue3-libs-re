@@ -31,8 +31,8 @@ export default defineComponent({
   @include padding(8px 12px);
   border: 0;
   outline: 0;
-
   text-align: center;
+  cursor: pointer;
 
   &__content {
     @include flex();

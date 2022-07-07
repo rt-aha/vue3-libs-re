@@ -2135,10 +2135,10 @@ mute-stream@0.0.8:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-naive-ui@^2.30.5:
-  version "2.30.5"
-  resolved "https://registry.yarnpkg.com/naive-ui/-/naive-ui-2.30.5.tgz#bd96cb40c398339f843b4e256c504a749377f15d"
-  integrity sha512-fexk97L4BgJAjKcyP1ycLvYtnG/3wfjW0g7cSscXh6CQYKmiVsTA1CAlHecMmGyYaYsMjaPWtobzSMlUsSit6g==
+naive-ui@^2.31.0:
+  version "2.31.0"
+  resolved "https://registry.yarnpkg.com/naive-ui/-/naive-ui-2.31.0.tgz#39e17d2e639bae418b0a1cc0edf9c92fff89026b"
+  integrity sha512-70PHh1wDo6GP87MquQE4hHxMaISX6y/SWwmAzS86XfK+1gBCpQPcANHrmxsjPncRxk6Zq9CDeW6tzAqw6qUtfA==
   dependencies:
     "@css-render/plugin-bem" "^0.15.10"
     "@css-render/vue3-ssr" "^0.15.10"
@@ -2156,7 +2156,7 @@ naive-ui@^2.30.5:
     treemate "^0.3.11"
     vdirs "^0.1.8"
     vooks "^0.2.12"
-    vueuc "^0.4.44"
+    vueuc "^0.4.47"
 
 nanoid@^3.3.4:
   version "3.3.4"
@@ -3091,10 +3091,10 @@ vue@^3.2.36:
     "@vue/server-renderer" "3.2.36"
     "@vue/shared" "3.2.36"
 
-vueuc@^0.4.44:
-  version "0.4.44"
-  resolved "https://registry.yarnpkg.com/vueuc/-/vueuc-0.4.44.tgz#2fc69c90f06f0cca03d47855bf65ecf3a283e4ef"
-  integrity sha512-2sLWo1Ow3DRKTDvGVlaWlf0KL+LOqeO6zlvb6nUxWxqj4VjUpg7sMtH+xtvBK+oOXH4goGt1RyLMaBVgPFpqHw==
+vueuc@^0.4.47:
+  version "0.4.47"
+  resolved "https://registry.yarnpkg.com/vueuc/-/vueuc-0.4.47.tgz#b6395f09a3b8a70a0d5a75040152f61af00f8e7b"
+  integrity sha512-lBxGeTWLFp0O36SlcAeBrh29dxE/GboOH/0eUJhocUuE9DRrzUcVmwGau7v7ZWsxjivjJC3Qup7l9sCyA3it+g==
   dependencies:
     "@css-render/vue3-ssr" "^0.15.10"
     "@juggle/resize-observer" "^3.3.1"

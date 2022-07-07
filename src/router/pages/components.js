@@ -57,9 +57,9 @@ const children = [
     component: () => import(/* webpackChunkName: "ReSwitch" */ '@/views/components/ReSwitch.vue'),
   },
   {
-    path: 're-date-picker',
-    name: 're-date-picker',
-    component: () => import(/* webpackChunkName: "ReDatePicker" */ '@/views/components/ReDatePicker.vue'),
+    path: 're-time-picker',
+    name: 're-time-picker',
+    component: () => import(/* webpackChunkName: "ReTimePicker" */ '@/views/components/ReTimePicker.vue'),
   },
   {
     path: 're-date-time-picker',

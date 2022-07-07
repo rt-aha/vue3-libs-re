@@ -1,14 +1,14 @@
 <template>
-  <div class="c-">
-    ReInput
+  <div class="v-re-form">
+    ReForm 施工中 ...
   </div>
 </template>
 
 <script>
-  import { defineComponent } from 'vue';
-  
+import { defineComponent } from 'vue';
+
 export default defineComponent({
-  name: 'ReReInput',
+  name: 'ViewReForm',
 });
 </script>
 
