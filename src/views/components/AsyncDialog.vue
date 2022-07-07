@@ -1,38 +1,173 @@
 <template>
-  <div class="v-async-dialog">AsyncDialog 施工中 ...
-    <button @click="toggleModal">trigger</button>
+  <div class="v-async-dialog">
+    <ContentLayout>
+      <template v-slot:first>
+        <re-button @click="toggleDialog1">trigger, normal</re-button>
+        <re-button @click="toggleDialog2">trigger, insert comp</re-button>
+      </template>
+      <template v-slot:second>
+        <pre v-highlightjs>
+          <code class="javascript">
+  import { defineComponent } from 'vue';
+  import useAsyncDialog from '@/hooks/useAsyncDialog';
+  import TestComp from '@/components/AsyncDialog/TestComp.vue';
+  import ReButton from '@/components/ReButton/index.vue';
 
-    
+  export default defineComponent({
+    name: 'ViewAsyncDialog',
+    components: {
+      ReButton,
+    },
+    setup() {
+      const { asyncDialog } = useAsyncDialog();
+      const toggleDialog1 = () => {
+        asyncDialog({
+          content: '刪除成功',
+          btns: [
+            {
+              label: '確認',
+              cb: () => {
+                console.log('success')
+              },
+
+            },
+            {
+              label: '取消',
+              cb: () => {
+                console.log('cancel')
+              }
+            },
+            {
+              label: '測試',
+              cb: () => {
+                console.log('test')
+              }
+            }
+          ]
+        });
+      }
+
+      const toggleDialog2 = () => {
+        asyncDialog({
+          render: TestComp,
+          renderType: 'render',
+          btns: [
+            {
+              label: '確認',
+              cb: () => {
+                console.log('success')
+              },
+
+            },
+            {
+              label: '取消',
+              cb: () => {
+                console.log('cancel')
+              }
+            },
+            {
+              label: '測試',
+              cb: () => {
+                console.log('test')
+              }
+            }
+          ]
+        });
+      }
+
+
+      return {
+        toggleDialog1,
+        toggleDialog2
+      }
+    }
+  });
+          </code>
+        </pre>
+      </template>
+    </ContentLayout>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-// import AsyncDialog from '@/components/AsyncDialog/index.vue'
-
 import useAsyncDialog from '@/hooks/useAsyncDialog';
+import TestComp from '@/components/AsyncDialog/TestComp.vue';
+import ReButton from '@/components/ReButton/index.vue';
+import ContentLayout from '@/components/Global/ContentLayout.vue';
 
 export default defineComponent({
   name: 'ViewAsyncDialog',
   components: {
-    // AsyncDialog
+    ReButton,
+    ContentLayout
   },
   setup() {
     const { asyncDialog } = useAsyncDialog();
-
-    const toggleModal = () => {
+    const toggleDialog1 = () => {
       asyncDialog({
-        desc: '刪除成功',
+        content: '刪除成功',
+        btns: [
+          {
+            label: '確認',
+            cb: () => {
+              console.log('success')
+            },
+
+          },
+          {
+            label: '取消',
+            cb: () => {
+              console.log('cancel')
+            }
+          },
+          {
+            label: '測試',
+            cb: () => {
+              console.log('test')
+            }
+          }
+        ]
+      });
+    }
+
+    const toggleDialog2 = () => {
+      asyncDialog({
+        render: TestComp,
+        renderType: 'render',
+        btns: [
+          {
+            label: '確認',
+            cb: () => {
+              console.log('success')
+            },
+
+          },
+          {
+            label: '取消',
+            cb: () => {
+              console.log('cancel')
+            }
+          },
+          {
+            label: '測試',
+            cb: () => {
+              console.log('test')
+            }
+          }
+        ]
       });
     }
 
 
     return {
-      toggleModal
-
+      toggleDialog1,
+      toggleDialog2
     }
   }
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="re-dialog" v-show="visible" @click.self="closeDialog">
+    <div class="re-dialog" v-show="visible" @click.self="close">
       <div
         class="re-dialog__box"
         :class="[
@@ -11,11 +11,12 @@
         ]"
       >
         <div class="re-dialog__box__body">
-          <slot>body content</slot>
-
-          <div class="btn-wrap">
-            <re-button @click="handleConfirm">{{ confirmBtnText }}</re-button>
-            <!-- <pr-button @click="handleCancel">{{ cancelBtnText }}</pr-button> -->
+          <component :is="render" v-bind="$props" @close="close"/>
+          
+          <div class="btn-wrap" v-if="btns && btns.length && renderType === 'normal'">
+            <div class="btn-wrap__btn" v-for="btn of btns" :key="btn.label">
+              <re-button @click="() => handleBtn(btn.cb)" >{{btn.label}}</re-button>
+            </div>
           </div>
         </div>
       </div>
@@ -25,7 +26,6 @@
 
 <script>
 import { defineComponent, watch, getCurrentInstance } from 'vue';
-
 import ReButton from '@/components/ReButton/index.vue'
 
 export default defineComponent({
@@ -38,78 +38,53 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    footerPosition: {
-      type: String,
-      default: 'left',
-    },
-    template: {
-      default: () => {},
+    render: {
+      default: null,
     },
     data: {
       dafeult: () => ({}),
     },
-    appendToBody: {
-      type: Boolean,
-      default: false,
+    btns: {
+      type: Array,
+      default: () => []
     },
-    confirmFn: {
-      default: null,
-    },
-    cancelFn: {
-      defualt: null,
-    },
-    confirmBtnText: {
+    desc: {
       type: String,
-      default: '確定',
+      default: '',
     },
-    cancelBtnText: {
+    renderType: {
       type: String,
-      default: '取消',
-    },
-    callback: {
-      type: Function,
-      default: () => {},
-    },
+      default: '',
+    }
   },
   emits: ['beforeClose', 'update:visible'],
   setup(props, { emit }) {
     const internalInstance = getCurrentInstance();
 
-    const closeDialog = (status) => {
-      if (props.callback) {
-        props.callback();
-      }
-
+    const close = (status) => {
       emit('update:visible', status);
     };
 
-    watch(props.visible, (val) => {
+    const handleBtn = (cb) => {
+      if(cb) {
+        cb();
+      }
+      close(false);
+    };
+
+
+    watch(() => props.visible, (val) => {
       if (val) {
         document.body.classList.add('freeze-body');
-        if (props.appendToBody) {
-          document.body.appendChild(internalInstance);
-        }
+        document.body.appendChild(internalInstance);
       } else {
         document.body.classList.remove('freeze-body');
       }
     });
 
-    const handleConfirm = () => {
-      closeDialog(true);
-    };
-
-    const handleCancel = () => {
-      if (props.cancelFn) {
-        props.cancelFn();
-      }
-
-      closeDialog(false);
-    };
-
     return {
-      closeDialog,
-      handleConfirm,
-      handleCancel,
+      close,
+      handleBtn,
     };
   },
 });
@@ -149,6 +124,12 @@ export default defineComponent({
 .btn-wrap {
   margin-top: 30px;
   @include flex(center);
+
+  &__btn {
+    &+& {
+      margin-left: 10px;
+    }
+  }
 }
 
 @keyframes slideTopIn {

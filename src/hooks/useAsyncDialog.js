@@ -4,7 +4,7 @@ import AsyncDialog from '@/components/AsyncDialog/index.vue';
 
 
 export default () => {
-  const asyncDialog = ({ desc = '', callback, render, extraFunc }) => new Promise((resolve) => {
+  const asyncDialog = ({ content = '',  render,  btns, renderType = 'normal' }) => new Promise((resolve) => {
     const app = createApp({
       setup() {
         const visible = ref(true);
@@ -17,14 +17,17 @@ export default () => {
           {
             visible: visible.value,
             'onUpdate:visible': closeSubDialog,
-            callback,
+            btns,
+            renderType,
+            render: h(
+              renderType === 'render' ? render: 'div',
+              {
+                close: closeSubDialog,
+              },
+              content
+              
+            ),
           },
-          h('div', {
-            desc,
-            render,
-            extraFunc,
-            close: closeSubDialog,
-          }),
         );
       },
     });

@@ -10,7 +10,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'ReReButton',
+  name: 'ReButton',
   emit: ['emit'],
   setup(props, { emit }) {
 
