@@ -1,6 +1,8 @@
 <template>
-  <div class="c-">
-    ReRadio
+  <div class="re-radio">
+    <div>
+      
+    </div>
   </div>
 </template>
 
@@ -9,6 +11,7 @@
   
 export default defineComponent({
   name: 'ReReRadio',
+
 });
 </script>
 

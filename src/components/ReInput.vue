@@ -25,7 +25,7 @@ export default defineComponent({
 
     const updateValue = (e, event) => {
       emit('update:modelValue', e.target.value);
-      console.log('event',event)
+      // console.log('event',event)
       validFn(event)
     }
 

@@ -1,14 +1,15 @@
 <template>
   <div class="re-select">
-    <div class="select" >
+    <div class="select" @click.stop="toggleExpand">
       <p class="select__field">{{ innerValue }}</p>
       <img class="select__drop-icon" :class="{
         'select__drop-icon--active': isExpand
       }" src="@/assets/icon/icon-down.svg" />
     </div>
     <!-- @click="toggleExpand" -->
+    <div class="select-options-wrap">
     <ReCollapseTransition :show="isExpand">
-      <div class="select-options" v-click-away="toggleExpand">
+      <div class="select-options" v-click-away="closeSelect">
         <ul class="select-option-list">
           <li class="select-option-list__item" v-for="opt of optionConfig" :key="opt.value" @click="() => handleOption(opt)">
             <p class="select-option-list__item__label">
@@ -18,6 +19,7 @@
         </ul>
       </div>
     </ReCollapseTransition>
+    </div>
   </div>
 </template>
 <script>
@@ -50,6 +52,14 @@ export default defineComponent({
       isExpand.value = !isExpand.value
     }
 
+    const openSelect = () => {
+      isExpand.value = true
+    }
+
+    const closeSelect = () => {
+      isExpand.value = false
+    }
+
     const handleOption = (opt) => {
       emit('update:modelValue', opt.value)
       isExpand.value = false;
@@ -60,7 +70,7 @@ export default defineComponent({
         return item.value === props.modelValue
       })
 
-      return valueObj.label
+      return valueObj?.label || ''
 
     })
 
@@ -72,7 +82,9 @@ export default defineComponent({
       innerValue,
       toggleExpand,
       isExpand,
-      handleOption
+      handleOption,
+      openSelect,
+      closeSelect,
     }
   }
 });
@@ -82,6 +94,7 @@ export default defineComponent({
   width: 200px;
   cursor: pointer;
   box-shadow: 0 0 10px 3px $c-shadow;
+  position: relative;
 }
 
 .select {
@@ -90,8 +103,8 @@ export default defineComponent({
   height: 36px;
   border-bottom: 1px solid $c-main;
   @include padding(0px 10px);
-  width: 200px;
   @include flex();
+  width: 200px;
   position: relative;
 
   &__field {
@@ -113,8 +126,13 @@ export default defineComponent({
   }
 }
 
+.select-options-wrap {
+  @include position(tl, 100%, 0);
+  background-color: $c-white;
+  width: 100%;
+}
+
 .select-option-list {
-  
 
   &__item {
     @include padding(0px 10px);

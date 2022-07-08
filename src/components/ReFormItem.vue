@@ -1,6 +1,6 @@
 <template>
   <div class="re-form-item">
-    <p class="re-form-item__label">輸入框</p>
+    <p class="re-form-item__label">{{label}}</p>
     <slot />
     <ReFormMessage :errorMessage="formErrorMessage" />
   </div>
@@ -18,7 +18,11 @@ export default defineComponent({
     formKey: {
       type: String,
       default: ''
-    }
+    },
+    label: {
+      type: String,
+      default: ''
+    },
   },
   setup(props) {
     const formErrorMessage = ref('')

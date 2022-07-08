@@ -33,7 +33,7 @@ export default defineComponent({
     })
 
     watch(() => props.show, (newVal) => {
-      console.log('newVal',newVal)
+      
       if (newVal) {
         show()
       } else {
@@ -55,5 +55,6 @@ export default defineComponent({
 .v-collapse-transition {
   overflow: hidden;
   transition: .4s;
+  box-shadow: 0 0 10px 3px $c-shadow;
 }
 </style>
