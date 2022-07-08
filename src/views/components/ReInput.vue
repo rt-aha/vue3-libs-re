@@ -1,13 +1,12 @@
 <template>
   <div class="v-re-input">
-    
-    <ReInput v-model="value1"/>
+    <ReInput v-model="value1" />
   </div>
 </template>
 
 <script>
-import { defineComponent, ref  } from 'vue';
-import ReInput from '@/components/ReInput/index.vue'
+import { defineComponent, ref } from 'vue';
+import ReInput from '@/components/ReInput.vue'
 
 export default defineComponent({
   name: 'ViewReInput',
@@ -16,10 +15,10 @@ export default defineComponent({
   },
   setup() {
     const value1 = ref('');
-    
+
 
     return {
-value1
+      value1
     }
   }
 });

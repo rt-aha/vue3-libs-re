@@ -70,13 +70,16 @@ export default defineComponent({
   height: 36px;
   border-bottom: 1px solid $c-main;
   @include padding(5px 10px);
+  width: 200px;
+  @include flex();
+  box-shadow: 0 0 10px 3px $c-shadow;
 
 
   &__field {
+    @include font-style($c-black, 14, 400, 1px 14px);
     background-color: transparent;
     border: 0px;
     outline: 0px;
-    height: 100%;
   }
 }
 </style>

@@ -10,8 +10,8 @@
           <code class="javascript">
   import { defineComponent } from 'vue';
   import useAsyncDialog from '@/hooks/useAsyncDialog';
-  import TestComp from '@/components/AsyncDialog/TestComp.vue';
-  import ReButton from '@/components/ReButton/index.vue';
+  import TestComp from '@/testComponents/AsyncDialog/TestComp.vue';
+  import ReButton from '@/components/ReButton.vue';
 
   export default defineComponent({
     name: 'ViewAsyncDialog',
@@ -92,8 +92,8 @@
 <script>
 import { defineComponent } from 'vue';
 import useAsyncDialog from '@/hooks/useAsyncDialog';
-import TestComp from '@/components/AsyncDialog/TestComp.vue';
-import ReButton from '@/components/ReButton/index.vue';
+import TestComp from '@/testComponents/AsyncDialog/TestComp.vue';
+import ReButton from '@/components/ReButton.vue';
 
 
 export default defineComponent({

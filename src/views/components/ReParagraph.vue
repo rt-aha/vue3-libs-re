@@ -7,7 +7,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import Paragraph from '@/components/Paragraph/index.vue';
+import Paragraph from '@/components/ReParagraph.vue';
 
 export default defineComponent({
   name: 'ViewParagraph',

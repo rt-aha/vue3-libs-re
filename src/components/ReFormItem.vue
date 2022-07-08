@@ -7,7 +7,7 @@
 </template>
 <script>
 import { defineComponent, inject, ref } from 'vue';
-import ReFormMessage from '@/components/ReFormMessage/index.vue'
+import ReFormMessage from '@/components/ReFormMessage.vue'
 
 export default defineComponent({
   name: 'ReFormItem',

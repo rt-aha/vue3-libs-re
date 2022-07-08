@@ -7,7 +7,13 @@ import '@/styles/utils/_rwd.scss';
 import VueHighlightJS from 'vue3-highlightjs';
 import '@/styles/libs/atom-one-dark.scss'
 import ContentLayout from '@/components/Global/ContentLayout.vue';
+import VueClickAway from 'vue3-click-away';
 
 const app = createApp(App);
 app.component('ContentLayout', ContentLayout);
-app.use(createPinia()).use(router).use(VueHighlightJS).mount('#app');
+app
+  .use(createPinia())
+  .use(router)
+  .use(VueHighlightJS)
+  .use(VueClickAway)
+  .mount('#app');

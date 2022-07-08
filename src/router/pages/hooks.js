@@ -12,7 +12,6 @@ const children = [
     component: () => import(/* webpackChunkName: "UseAsyncDialog" */ '@/views/hooks/UseAsyncDialog.vue'),
   },
 ];
-
 const routes = [
   {
     path: '/hooks',

@@ -14,9 +14,9 @@
 
 <script>
 import { defineComponent,ref } from 'vue';
-import ReForm from '@/components/ReForm/index.vue'
-import ReFormItem from '@/components/ReFormItem/index.vue'
-import ReInput from '@/components/ReInput/index.vue'
+import ReForm from '@/components/ReForm.vue'
+import ReFormItem from '@/components/ReFormItem.vue'
+import ReInput from '@/components/ReInput.vue'
 
 export default defineComponent({
   name: 'ViewReForm',

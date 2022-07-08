@@ -26,7 +26,7 @@
 
 <script>
 import { defineComponent, watch, getCurrentInstance } from 'vue';
-import ReButton from '@/components/ReButton/index.vue'
+import ReButton from '@/components/ReButton.vue'
 
 export default defineComponent({
   name: 'AsyncDialog',

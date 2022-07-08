@@ -11,7 +11,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import ReButton from '@/components/ReButton/index.vue'
+import ReButton from '@/components/ReButton.vue'
 
 export default defineComponent({
   name: 'ViewReButton',

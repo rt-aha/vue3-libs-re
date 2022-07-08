@@ -1,6 +1,6 @@
 import { ref, createApp, h } from 'vue';
 
-import AsyncDialog from '@/components/AsyncDialog/index.vue';
+import AsyncDialog from '@/components/ReAsyncDialog.vue';
 
 
 export default () => {
