@@ -14,12 +14,12 @@ const children = [
   {
     path: 'paragraph',
     name: 'paragraph',
-    component: () => import(/* webpackChunkName: "Paragraph" */ '@/views/components/Paragraph.vue'),
+    component: () => import(/* webpackChunkName: "Paragraph" */ '@/views/components/ReParagraph.vue'),
   },
   {
     path: 'simple-table',
     name: 'simple-table',
-    component: () => import(/* webpackChunkName: "SimpleTable" */ '@/views/components/SimpleTable.vue'),
+    component: () => import(/* webpackChunkName: "SimpleTable" */ '@/views/components/ReSimpleTable.vue'),
   },
   {
     path: 're-button',

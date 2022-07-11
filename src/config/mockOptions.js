@@ -40,32 +40,36 @@ export const selectOptions = [
   // },
 ];
 
-// const fruitData = [
-//   {
-//     id: 111,
-//     name: '蘋果',
-//     price: '$50',
-//     desc: '富士山來的喔',
-//   },
-//   {
-//     id: 222,
-//     name: '香蕉',
-//     price: '$30',
-//     desc: '香又甜',
-//   },
-//   {
-//     id: 333,
-//     name: '鳳梨',
-//     price: '$30',
-//     desc: '微熱山丘指定',
-//   },
-//   {
-//     id: 444,
-//     name: '檸檬',
-//     price: '$30',
-//     desc: '酸酸甜甜愛不釋手',
-//   },
-// ];
+export const fruitDataOptions = [
+  {
+    id: 111,
+    label: '蘋果',
+    price: '$50',
+    desc: '富士山來的喔',
+    value: 'apple',
+  },
+  {
+    id: 222,
+    label: '香蕉',
+    price: '$30',
+    desc: '香又甜',
+    value: 'banana',
+  },
+  {
+    id: 333,
+    label: '鳳梨',
+    price: '$30',
+    desc: '微熱山丘指定',
+    value: 'pineapple',
+  },
+  {
+    id: 444,
+    label: '檸檬',
+    price: '$30',
+    desc: '酸酸甜甜愛不釋手',
+    value: 'lemon',
+  },
+];
 
 // export const fruitOption = fruitData.map((item) => ({
 //   render: () => FruitOption,

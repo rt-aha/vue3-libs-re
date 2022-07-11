@@ -18,8 +18,4 @@ export default defineConfig({
       },
     },
   },
-
-  // optimizeDeps: {
-  //   include: ['swiper/vue'],
-  // },
 });

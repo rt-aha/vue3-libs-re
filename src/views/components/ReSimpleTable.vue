@@ -9,7 +9,7 @@
 <script>
 import { defineComponent, h } from 'vue';
 import SimpleTable from '@/components/SimpleTable/index.vue';
-import Paragraph from '@/components/Paragraph/index.vue';
+import Paragraph from '@/components/ReParagraph.vue';
 import { v4 as uuid } from 'uuid';
 
 export default defineComponent({

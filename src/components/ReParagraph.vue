@@ -1,7 +1,7 @@
 <template>
   <div class="c-paragraph">
     <div class="c-paragraph__section" v-for="(t, idx) of wording" :key="`${t.text}${idx}`" :style="t.style">
-      <div  :style="t.style ? t.style : null" v-if="t.render">
+      <div :style="t.style ? t.style : null" v-if="t.render">
         <component :is="t.render" />
       </div>
       <div class="text-loop" :style="t.style ? t.style : null" v-else>
@@ -21,7 +21,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Paragraph',
+  name: 'ReParagraph',
   props: {
     wording: {
       type: Array,
@@ -30,7 +30,7 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss" scoped> 
+<style lang="scss" scoped>
 .c-paragraph {
   width: 100%;
   .text {
@@ -40,12 +40,11 @@ export default defineComponent({
   }
 
   &__section {
-    &+& {
+    & + & {
       margin-top: 30px;
-    } 
+    }
   }
 }
-
 
 .text-loop {
   text-align: justify;
@@ -60,7 +59,6 @@ export default defineComponent({
     display: block;
     text-align: justify;
     text-align-last: left;
-
 
     & + & {
       margin-top: 0;

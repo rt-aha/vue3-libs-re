@@ -1,9 +1,13 @@
 <template>
   <div class="re-input">
-    <input class="re-input__field" type="text" ref="inputField"
-    @input="(e) => updateValue(e, 'input')"
-    @change="(e) => updateValue(e, 'change')"
-    @blur="(e) => updateValue(e, 'blur')" />
+    <input
+      class="re-input__field"
+      type="text"
+      ref="inputField"
+      @input="(e) => updateValue(e, 'input')"
+      @change="(e) => updateValue(e, 'change')"
+      @blur="(e) => updateValue(e, 'blur')"
+    />
   </div>
 </template>
 
@@ -11,12 +15,12 @@
 import { defineComponent, ref, onMounted, getCurrentInstance } from 'vue';
 
 export default defineComponent({
-  name: 'ReReInput',
+  name: 'ReInput',
   props: {
     modelValue: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   setup(props, { emit }) {
     const validFn = getCurrentInstance().parent.ctx.validateFields;
@@ -26,8 +30,8 @@ export default defineComponent({
     const updateValue = (e, event) => {
       emit('update:modelValue', e.target.value);
       // console.log('event',event)
-      validFn(event)
-    }
+      validFn(event);
+    };
 
     // const handleInput = () => {
     //   updateValue();
@@ -42,14 +46,13 @@ export default defineComponent({
     //   validFn('blur')
     // }
 
-
     const setInitInputFieldValue = () => {
-      inputField.value.value = props.modelValue
-    }
+      inputField.value.value = props.modelValue;
+    };
 
     onMounted(() => {
       setInitInputFieldValue();
-    })
+    });
 
     return {
       inputField,
@@ -57,9 +60,8 @@ export default defineComponent({
       // handleInput,
       // handleChange,
       // handleBlur,
-
-    }
-  }
+    };
+  },
 });
 </script>
 
@@ -73,7 +75,6 @@ export default defineComponent({
   width: 200px;
   @include flex();
   box-shadow: 0 0 10px 3px $c-shadow;
-
 
   &__field {
     @include font-style($c-black, 14, 400, 1px 14px);

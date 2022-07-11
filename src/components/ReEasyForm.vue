@@ -2,18 +2,19 @@
   <div class="re-easy-form">
     <ReForm :formValue="innerForm" :formRules="formRules">
       <ReFormItem :formKey="f.formKey" :label="f.label" v-for="f of formConfig" :key="f.formKey">
-        <component :is="`Re${f.compName}`" v-model="innerForm[f.formKey]" v-bind="f"/>
+        <component :is="`Re${f.compName}`" v-model="innerForm[f.formKey]" v-bind="f" />
         <!-- <component :is="`Re${f.compName}`" v-model="f.value" v-bind="f"/> -->
       </ReFormItem>
     </ReForm>
   </div>
 </template>
 <script>
-import { defineComponent, ref,watch } from 'vue';
-import ReForm from '@/components/ReForm.vue'
-import ReFormItem from '@/components/ReFormItem.vue'
-import ReInput from '@/components/ReInput.vue'
-import ReSelect from '@/components/ReSelect/index.vue'
+import { defineComponent, ref, watch } from 'vue';
+import ReForm from '@/components/ReForm.vue';
+import ReFormItem from '@/components/ReFormItem.vue';
+import ReInput from '@/components/ReInput.vue';
+import ReSelect from '@/components/ReSelect/index.vue';
+import ReRadio from '@/components/ReRadio.vue';
 
 export default defineComponent({
   name: 'ReEasyForm',
@@ -22,36 +23,38 @@ export default defineComponent({
     ReFormItem,
     ReInput,
     ReSelect,
+    ReRadio,
   },
   props: {
     formValue: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     formConfig: {
       type: Object,
-      deafult: () => ({})
+      deafult: () => ({}),
     },
     formRules: {
       type: Object,
-      deafult: () => ({})
-    }
+      deafult: () => ({}),
+    },
   },
   emit: ['update:formValue'],
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const innerForm = ref(props.formValue);
 
-    watch(innerForm, () => {
-      emit('update:formValue', innerForm.value);
-    }, {deep: true})
-
+    watch(
+      innerForm,
+      () => {
+        emit('update:formValue', innerForm.value);
+      },
+      { deep: true },
+    );
 
     return {
-      innerForm
-    }
-  }
+      innerForm,
+    };
+  },
 });
 </script>
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

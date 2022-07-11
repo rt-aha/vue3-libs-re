@@ -2,23 +2,32 @@
   <div class="re-select">
     <div class="select" @click.stop="toggleExpand">
       <p class="select__field">{{ innerValue }}</p>
-      <img class="select__drop-icon" :class="{
-        'select__drop-icon--active': isExpand
-      }" src="@/assets/icon/icon-down.svg" />
+      <img
+        class="select__drop-icon"
+        :class="{
+          'select__drop-icon--active': isExpand,
+        }"
+        src="@/assets/icon/icon-down.svg"
+      />
     </div>
     <!-- @click="toggleExpand" -->
     <div class="select-options-wrap">
-    <ReCollapseTransition :show="isExpand">
-      <div class="select-options" v-click-away="closeSelect">
-        <ul class="select-option-list">
-          <li class="select-option-list__item" v-for="opt of optionConfig" :key="opt.value" @click="() => handleOption(opt)">
-            <p class="select-option-list__item__label">
-              {{ opt.label }}
-            </p>
-          </li>
-        </ul>
-      </div>
-    </ReCollapseTransition>
+      <ReCollapseTransition :show="isExpand">
+        <div class="select-options" v-click-away="closeSelect">
+          <ul class="select-option-list">
+            <li
+              class="select-option-list__item"
+              v-for="opt of optionConfig"
+              :key="opt.value"
+              @click="() => handleOption(opt)"
+            >
+              <p class="select-option-list__item__label">
+                {{ opt.label }}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </ReCollapseTransition>
     </div>
   </div>
 </template>
@@ -29,54 +38,57 @@ import ReCollapseTransition from '@/components/ReCollapseTransition.vue';
 export default defineComponent({
   name: 'ReSelect',
   components: {
-    ReCollapseTransition
+    ReCollapseTransition,
   },
   props: {
     modelValue: {
-      default: ''
+      default: '',
     },
     optionConfig: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   emits: ['update:modelValue'],
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     const isExpand = ref(false);
 
     const setInitValue = () => {
       innerValue.value = props.modelValue;
-    }
+    };
 
     const toggleExpand = () => {
-      isExpand.value = !isExpand.value
-    }
+      isExpand.value = !isExpand.value;
+    };
 
     const openSelect = () => {
-      isExpand.value = true
-    }
+      isExpand.value = true;
+    };
 
     const closeSelect = () => {
-      isExpand.value = false
-    }
+      isExpand.value = false;
+    };
 
     const handleOption = (opt) => {
-      emit('update:modelValue', opt.value)
+      emit('update:modelValue', opt.value);
       isExpand.value = false;
-    }
+    };
 
     const innerValue = computed(() => {
-      const valueObj = props.optionConfig.find(item => {
-        return item.value === props.modelValue
-      })
+      const valueObj = props.optionConfig.find((item) => {
+        return item.value === props.modelValue;
+      });
 
-      return valueObj?.label || ''
+      return valueObj?.label || '';
+    });
 
-    })
-
-    watch(() => props.modelValue, () => {
-      setInitValue()
-    }, { immediate: true })
+    watch(
+      () => props.modelValue,
+      () => {
+        setInitValue();
+      },
+      { immediate: true },
+    );
 
     return {
       innerValue,
@@ -85,8 +97,8 @@ export default defineComponent({
       handleOption,
       openSelect,
       closeSelect,
-    }
-  }
+    };
+  },
 });
 </script>
 <style lang="scss" scoped>
@@ -118,7 +130,7 @@ export default defineComponent({
     width: 15px;
     @include position(tr, 50%, 10px);
     transform: translateY(-50%) rotate(0deg);
-    transition: .4s;
+    transition: 0.4s;
 
     &--active {
       transform: translateY(-50%) rotate(180deg);
@@ -133,7 +145,6 @@ export default defineComponent({
 }
 
 .select-option-list {
-
   &__item {
     @include padding(0px 10px);
     @include flex();
@@ -146,8 +157,6 @@ export default defineComponent({
 
     &__label {
       @include font-style($c-black, 14, 400, 1px, 14px);
-
-
     }
   }
 }

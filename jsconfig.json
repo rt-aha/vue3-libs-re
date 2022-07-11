@@ -15,5 +15,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.vue", "src/api/getTagGroupList.gql"]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.vue"]
 }
