@@ -3,36 +3,22 @@
     <!-- ReForm 施工中 ... -->
     <ContentLayout>
       <template v-slot:first>
-        <ReForm :formValue="formValue" :formRules="formRules">
-          <ReFormItem formKey="input" label="輸入框1">
-            <ReInput v-model="formValue.input" />
-          </ReFormItem>
-          <ReFormItem formKey="input2" label="輸入框2">
-            <ReInput v-model="formValue.input2" />
-          </ReFormItem>
-          <ReFormItem formKey="select1" label="下拉選單">
-            <ReSelect v-model="formValue.select1" :optionConfig="selectOptions" />
-          </ReFormItem>
-          <ReFormItem formKey="radio1" label="單選">
-            <ReRadio v-model="formValue.radio1" :optionConfig="fruitDataOptions" />
-          </ReFormItem>
-        </ReForm>
-      </template>
-      <template v-slot:second>
-        <ReEasyForm v-model:formValue="formValue2" :formConfig="formValue2Config" :formRules="formRules" />
+        <ReEasyForm
+          v-model:formValue="formValue2"
+          :formConfig="formValue2Config"
+          :formRules="formRules"
+          ref="formRef"
+        />
         <ReButton @click="getValue">getValue</ReButton>
       </template>
+      <template v-slot:second> </template>
     </ContentLayout>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
-import ReForm from '@/components/ReForm.vue';
-import ReFormItem from '@/components/ReFormItem.vue';
-import ReInput from '@/components/ReInput.vue';
-import ReSelect from '@/components/ReSelect/index.vue';
-import ReRadio from '@/components/ReRadio.vue';
+
 import ReButton from '@/components/ReButton.vue';
 import { selectOptions, fruitDataOptions } from '@/config/mockOptions.js';
 import ReEasyForm from '@/components/ReEasyForm.vue';
@@ -40,15 +26,11 @@ import ReEasyForm from '@/components/ReEasyForm.vue';
 export default defineComponent({
   name: 'ViewReForm',
   components: {
-    ReForm,
-    ReFormItem,
-    ReInput,
-    ReSelect,
-    ReRadio,
     ReButton,
     ReEasyForm,
   },
   setup() {
+    const formRef = ref(null);
     const formValue = ref({
       input: '',
       input2: '',
@@ -130,6 +112,9 @@ export default defineComponent({
     };
 
     const getValue = () => {
+      const validResult = formRef.value.validateAll();
+
+      console.log('validResult', validResult);
       console.log('formValue2', formValue2.value);
     };
 
@@ -145,6 +130,7 @@ export default defineComponent({
       formValue2Config,
       getValue,
       fruitDataOptions,
+      formRef,
     };
   },
 });

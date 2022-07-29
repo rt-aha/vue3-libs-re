@@ -1,9 +1,15 @@
 <template>
   <div class="re-easy-form">
     <ReForm :formValue="innerForm" :formRules="formRules">
-      <ReFormItem :formKey="f.formKey" :label="f.label" v-for="f of formConfig" :key="f.formKey">
+      <ReFormItem
+        :formKey="f.formKey"
+        :label="f.label"
+        :hint="f.hint"
+        v-for="f of formConfig"
+        :key="f.formKey"
+        ref="formItemRef"
+      >
         <component :is="`Re${f.compName}`" v-model="innerForm[f.formKey]" v-bind="f" />
-        <!-- <component :is="`Re${f.compName}`" v-model="f.value" v-bind="f"/> -->
       </ReFormItem>
     </ReForm>
   </div>
@@ -42,6 +48,7 @@ export default defineComponent({
   emit: ['update:formValue'],
   setup(props, { emit }) {
     const innerForm = ref(props.formValue);
+    const formItemRef = ref(null);
 
     watch(
       innerForm,
@@ -51,8 +58,22 @@ export default defineComponent({
       { deep: true },
     );
 
+    const validateAll = () => {
+      let resultList = [];
+
+      formItemRef.value.forEach((refEle) => {
+        const result = refEle.validateFields('enforceValidate');
+
+        resultList.push(result);
+      });
+
+      return !resultList.some((val) => val === false);
+    };
+
     return {
       innerForm,
+      formItemRef,
+      validateAll,
     };
   },
 });

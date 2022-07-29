@@ -103,7 +103,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .re-select {
-  width: 200px;
+  // width: 200px;
   cursor: pointer;
   box-shadow: 0 0 10px 3px $c-shadow;
   position: relative;
@@ -116,7 +116,7 @@ export default defineComponent({
   border-bottom: 1px solid $c-main;
   @include padding(0px 10px);
   @include flex();
-  width: 200px;
+  // width: 200px;
   position: relative;
 
   &__field {
@@ -142,9 +142,12 @@ export default defineComponent({
   @include position(tl, 100%, 0);
   background-color: $c-white;
   width: 100%;
+  z-index: 100;
 }
 
 .select-option-list {
+  background-color: $c-white;
+
   &__item {
     @include padding(0px 10px);
     @include flex();

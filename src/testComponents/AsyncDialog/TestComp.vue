@@ -3,26 +3,25 @@
     c-test-comp
 
     <div class="btn-wrap" v-if="btns && btns.length">
-            <div class="btn-wrap__btn" v-for="btn of btns" :key="btn.label">
-              <re-button @click="handleConfirm(btn.cb)" >{{btn.label}}</re-button>
-            </div>
-          </div>
+      <div class="btn-wrap__btn" v-for="btn of btns" :key="btn.label">
+        <re-button @click="handleConfirm(btn.cb)">{{ btn.label }}</re-button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import { defineComponent } from 'vue';
-import ReButton from '@/components/ReButton.vue'
+import ReButton from '@/components/ReButton.vue';
 
 export default defineComponent({
   name: 'TestComp',
   components: {
-    ReButton
+    ReButton,
   },
   props: {
-    
     btns: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     desc: {
       type: String,
@@ -30,35 +29,32 @@ export default defineComponent({
     },
     close: {
       type: Function,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
-  setup(_, {emit}) {
+  setup(_, { emit }) {
     const handleConfirm = (cb) => {
-      if(cb) {
+      if (cb) {
         cb();
       }
       emit('close', false);
     };
 
     return {
-      handleConfirm
-
-    }
-  }
+      handleConfirm,
+    };
+  },
 });
 </script>
 <style lang="scss" scoped>
-
 .btn-wrap {
   margin-top: 30px;
   @include flex(center);
 
   &__btn {
-    &+& {
+    & + & {
       margin-left: 10px;
     }
   }
 }
-
 </style>

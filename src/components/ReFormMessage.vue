@@ -1,25 +1,28 @@
 <template>
   <p class="re-form-message">
-    {{errorMessage}}
+    <span class="re-form-message__text" v-if="errorMessage">
+      {{ errorMessage }}
+    </span>
   </p>
 </template>
 
 <script>
-  import { defineComponent } from 'vue';
-  
+import { defineComponent } from 'vue';
+
 export default defineComponent({
   name: 'ReReFormMessage',
   props: {
     errorMessage: {
-      type: String,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .re-form-message {
-  @include font-style($c-error, 12, 400, 1px);
+  &__text {
+    @include font-style($c-error, 12, 400, 1px);
+  }
 }
 </style>
