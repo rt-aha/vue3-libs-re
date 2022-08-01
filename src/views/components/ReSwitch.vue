@@ -1,16 +1,26 @@
 <template>
   <div class="v-re-switch">
-    ReSwitch 施工中 ...
+    <ReSwitch v-model="value1" />
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+import ReSwitch from '@/components/ReSwitch.vue';
 
 export default defineComponent({
   name: 'ViewReSwitch',
+  components: {
+    ReSwitch,
+  },
+  setup() {
+    const value1 = ref(true);
+
+    return {
+      value1,
+    };
+  },
 });
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

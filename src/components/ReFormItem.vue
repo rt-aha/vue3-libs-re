@@ -1,7 +1,7 @@
 <template>
   <div class="re-form-item">
     <p class="re-form-item__label">
-      <span class="re-form-item__label__text">{{ label }}：</span>
+      <span class="re-form-item__label__text">{{ label }}</span>
       <span class="re-form-item__label__hint">{{ hint }}</span>
     </p>
     <slot />

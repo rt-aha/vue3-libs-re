@@ -44,11 +44,12 @@ export default defineComponent({
       select: 1,
       radio1: 'apple',
       checkbox1: ['apple', 'banana'],
+      switch: false,
     });
 
     setTimeout(() => {
-      formValue2.value.input = '111';
-      formValue2.value.radio1 = 'banana';
+      // formValue2.value.input = '111';
+      // formValue2.value.radio1 = 'banana';
     }, 1500);
 
     const formValue2Config = [
@@ -85,6 +86,12 @@ export default defineComponent({
         value: formValue2.value.checkbox1,
         optionConfig: fruitDataOptions,
       },
+      {
+        compName: 'Switch',
+        formKey: 'switch',
+        label: '是否',
+        value: formValue2.value.switch,
+      },
     ];
 
     const formRules = {
@@ -115,6 +122,24 @@ export default defineComponent({
           message: '長度>=5',
           validator: (val) => {
             return val.length > 5;
+          },
+        },
+      ],
+      checkbox1: [
+        {
+          trigger: ['change'],
+          message: '長度>3',
+          validator: (val) => {
+            return val.length > 3;
+          },
+        },
+      ],
+      switch: [
+        {
+          trigger: ['change'],
+          message: '必須為啟用',
+          validator: (val) => {
+            return val;
           },
         },
       ],
