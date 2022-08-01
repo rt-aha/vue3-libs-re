@@ -21,6 +21,7 @@ import ReFormItem from '@/components/ReFormItem.vue';
 import ReInput from '@/components/ReInput.vue';
 import ReSelect from '@/components/ReSelect/index.vue';
 import ReRadio from '@/components/ReRadio.vue';
+import ReCheckbox from '@/components/ReCheckbox.vue';
 
 export default defineComponent({
   name: 'ReEasyForm',
@@ -30,6 +31,7 @@ export default defineComponent({
     ReInput,
     ReSelect,
     ReRadio,
+    ReCheckbox,
   },
   props: {
     formValue: {

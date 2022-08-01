@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, getCurrentInstance } from 'vue';
 import { v4 as uuid } from 'uuid';
 
 export default defineComponent({
@@ -47,8 +47,11 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
+    const validFn = getCurrentInstance().parent.ctx.validateFields;
+
     const handleChange = (val) => {
       emit('update:modelValue', val);
+      validFn('change');
     };
 
     return {
@@ -69,7 +72,7 @@ export default defineComponent({
 
         &::before {
           content: '';
-          @include circle(8px);
+          @include circle(10px);
           @include position(center);
           transform: translate(-50%, -50%);
           display: inline-block;
@@ -85,9 +88,10 @@ export default defineComponent({
     &__label {
       display: inline-block;
       @include flex();
+      cursor: pointer;
 
       &__selected {
-        @include circle(12px);
+        @include circle(16px);
         border: 1px solid $c-grey;
       }
 

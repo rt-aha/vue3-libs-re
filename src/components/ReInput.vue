@@ -7,6 +7,7 @@
       @input="(e) => updateValue(e, 'input')"
       @change="(e) => updateValue(e, 'change')"
       @blur="(e) => updateValue(e, 'blur')"
+      :value="modelValue"
     />
   </div>
 </template>
@@ -81,6 +82,7 @@ export default defineComponent({
     background-color: transparent;
     border: 0px;
     outline: 0px;
+    width: 100%;
   }
 }
 </style>

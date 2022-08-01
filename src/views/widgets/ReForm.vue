@@ -39,13 +39,15 @@ export default defineComponent({
     });
 
     const formValue2 = ref({
-      input: '',
+      input: '222',
       input2: '',
       select: 1,
       radio1: 'apple',
+      checkbox1: ['apple', 'banana'],
     });
 
     setTimeout(() => {
+      formValue2.value.input = '111';
       formValue2.value.radio1 = 'banana';
     }, 1500);
 
@@ -74,6 +76,13 @@ export default defineComponent({
         formKey: 'radio1',
         label: '單選',
         value: formValue2.value.radio1,
+        optionConfig: fruitDataOptions,
+      },
+      {
+        compName: 'Checkbox',
+        formKey: 'checkbox1',
+        label: '多選',
+        value: formValue2.value.checkbox1,
         optionConfig: fruitDataOptions,
       },
     ];
