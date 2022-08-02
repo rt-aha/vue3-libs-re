@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import useValidate from '@/hooks/useValidate';
+
 export default {
   name: 'ReSelectOption',
 

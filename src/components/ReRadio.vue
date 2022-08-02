@@ -31,8 +31,9 @@
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance } from 'vue';
+import { defineComponent } from 'vue';
 import { v4 as uuid } from 'uuid';
+import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
   name: 'ReRadio',
@@ -47,7 +48,7 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const validFn = getCurrentInstance().parent.ctx.validateFields;
+    const { validFn } = useValidate();
 
     const handleChange = (val) => {
       emit('update:modelValue', val);

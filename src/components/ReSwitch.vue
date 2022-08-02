@@ -23,8 +23,9 @@
 </template>
 
 <script>
-import { defineComponent, computed, getCurrentInstance } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { v4 as uuid } from 'uuid';
+import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
   name: 'ReReSwitch',
@@ -46,7 +47,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const validFn = getCurrentInstance().parent.ctx.validateFields;
+    const { validFn } = useValidate();
     const handleChange = (e) => {
       if (props.disabled) return;
       emit('update:modelValue', e.target.value === 't' ? false : true);

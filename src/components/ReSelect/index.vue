@@ -34,6 +34,7 @@
 <script>
 import { defineComponent, ref, watch, computed } from 'vue';
 import ReCollapseTransition from '@/components/ReCollapseTransition.vue';
+import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
   name: 'ReSelect',
@@ -51,6 +52,7 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
+    const { validFn } = useValidate();
     const isExpand = ref(false);
 
     const setInitValue = () => {
@@ -71,6 +73,7 @@ export default defineComponent({
 
     const handleOption = (opt) => {
       emit('update:modelValue', opt.value);
+      validFn('change');
       isExpand.value = false;
     };
 

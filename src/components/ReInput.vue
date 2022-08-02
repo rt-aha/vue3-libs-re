@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted, getCurrentInstance } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
+import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
   name: 'ReInput',
@@ -24,7 +25,8 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const validFn = getCurrentInstance().parent.ctx.validateFields;
+    const { validFn } = useValidate();
+    // const validFn = getCurrentInstance().parent.ctx.validateFields;
     const inputField = ref(null);
     // const formRules = inject('formRules', {});
 
