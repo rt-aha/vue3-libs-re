@@ -21,11 +21,12 @@
 </template>
 
 <script>
-import { debounce } from 'lodash';
+import { defineComponent, ref, reactive, nextTick, getCurrentInstance } from 'vue';
+import { debounce } from 'lodash-es';
 import dayjs from 'dayjs';
 import { h, m, s } from './timeListConfig';
 
-export default {
+export default defineComponent({
   name: 'ReTimeList',
   props: {
     value: {
@@ -33,37 +34,48 @@ export default {
       default: new Date(),
     },
   },
-  data() {
-    return {
-      isInit: false,
-      timeList: {
-        h,
-        m,
-        s,
+  emits: ['updateTime'],
+  setup(props, { emit }) {
+    const instance = getCurrentInstance();
+
+    const tlh = ref(null);
+    const tlm = ref(null);
+    const tls = ref(null);
+    const isInit = ref(false);
+    const timeList = reactive({
+      h,
+      m,
+      s,
+    });
+
+    const timeValue = ref({
+      h: '00',
+      m: '00',
+      s: '00',
+      time() {
+        return `${this.h}:${this.m}:${this.s}`;
       },
-      timeValue: {
-        h: '00',
-        m: '00',
-        s: '00',
-        time() {
-          return `${this.h}:${this.m}:${this.s}`;
-        },
-      },
-    };
-  },
-  methods: {
-    validTimeFormat(time) {
+    });
+
+    const validTimeFormat = (time) => {
       const timeRegExp = /^\d{2}:\d{2}:\d{2}$/;
       const isValidTimeFormat = timeRegExp.test(time);
 
       return isValidTimeFormat;
-    },
+    };
+
+    const setScrollBarPosition = () => {
+      tlh.value.scrollTop = Number(timeValue.value.h) * 30;
+      tlm.value.scrollTop = Number(timeValue.value.m) * 30;
+      tls.value.scrollTop = Number(timeValue.value.s) * 30;
+    };
+
     // 外層呼叫
-    splitTime() {
-      const t = dayjs(this.value).format('HH:mm:ss');
+    const splitTime = () => {
+      const t = dayjs(props.value).format('HH:mm:ss');
 
       const hms = t.split(':');
-      this.timeValue = {
+      timeValue.value = {
         h: hms[0],
         m: hms[1],
         s: hms[2],
@@ -72,39 +84,12 @@ export default {
         },
       };
 
-      this.$nextTick(() => {
-        this.setScrollBarPosition();
+      nextTick(() => {
+        setScrollBarPosition();
       });
-    },
-    setScrollBarPosition() {
-      this.$refs.tlh.scrollTop = Number(this.timeValue.h) * 30;
-      this.$refs.tlm.scrollTop = Number(this.timeValue.m) * 30;
-      this.$refs.tls.scrollTop = Number(this.timeValue.s) * 30;
-    },
-    // eslint-disable-next-line
-    setPositionDebounce: debounce(function (calcType) {
-      this.calcHourScrollBarPosition(calcType);
-    }, 100),
-    calcHourScrollBarPosition(calcType) {
-      const scrollBarPostion = this.$refs[calcType].scrollTop;
+    };
 
-      if (scrollBarPostion / 30 !== 0) {
-        const remainder = scrollBarPostion % 30;
-        let offsetBase = Math.floor(scrollBarPostion / 30);
-        if (remainder > 15) {
-          offsetBase += 1;
-        }
-
-        const targetPostion = offsetBase * 30;
-        this.$refs[calcType].scrollTop = targetPostion;
-
-        this.calcTimeValue(calcType, targetPostion);
-        return;
-      }
-
-      this.calcTimeValue(calcType, scrollBarPostion);
-    },
-    calcTimeValue(calcType, targetPosition) {
+    const calcTimeValue = (calcType, targetPosition) => {
       const changeType = calcType.substr(2, 1);
       let updateTimeValue = targetPosition / 30;
       if (updateTimeValue < 10) {
@@ -113,23 +98,61 @@ export default {
         updateTimeValue = String(updateTimeValue);
       }
 
-      this.timeValue[changeType] = updateTimeValue;
-      const fullTimeFormat = this.timeValue.time();
+      timeValue.value[changeType] = updateTimeValue;
+      const fullTimeFormat = timeValue.value.time();
 
-      const isValidTimeFormat = this.validTimeFormat(fullTimeFormat);
+      const isValidTimeFormat = validTimeFormat(fullTimeFormat);
 
       const today = dayjs().format('YYYY-MM-DD');
       const ymd = today.split('-');
       const hms = fullTimeFormat.split(':');
-
       const time = new Date(ymd[0], ymd[1], ymd[2], hms[0], hms[1], hms[2]);
 
       if (isValidTimeFormat) {
-        this.$emit('input', time);
+        emit('updateTime', time);
       }
-    },
+    };
+
+    const calcHourScrollBarPosition = (calcType) => {
+      const scrollBarPosition = instance.ctx.$refs[calcType].scrollTop;
+
+      if (scrollBarPosition / 30 !== 0) {
+        const remainder = scrollBarPosition % 30;
+        let offsetBase = Math.floor(scrollBarPosition / 30);
+        if (remainder > 15) {
+          offsetBase += 1;
+        }
+
+        const targetPostion = offsetBase * 30;
+        instance.ctx.$refs[calcType].scrollTop = targetPostion;
+
+        calcTimeValue(calcType, targetPostion);
+        return;
+      }
+
+      calcTimeValue(calcType, scrollBarPosition);
+    };
+
+    const setPositionDebounce = debounce(function (calcType) {
+      calcHourScrollBarPosition(calcType);
+    }, 100);
+
+    return {
+      isInit,
+      timeList,
+      timeValue,
+      validTimeFormat,
+      splitTime,
+      setScrollBarPosition,
+      calcHourScrollBarPosition,
+      calcTimeValue,
+      tlh,
+      tlm,
+      tls,
+      setPositionDebounce,
+    };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

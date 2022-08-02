@@ -1,11 +1,11 @@
 <template>
   <div class="v-re-time-picker">
-    <ReTimePicker />
+    <ReTimePicker v-model="time" />
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import ReTimePicker from '@/components/ReTimePicker/index.vue';
 
 export default defineComponent({
@@ -13,7 +13,13 @@ export default defineComponent({
   components: {
     ReTimePicker,
   },
-  setup() {},
+  setup() {
+    const time = ref(new Date());
+
+    return {
+      time,
+    };
+  },
 });
 </script>
 

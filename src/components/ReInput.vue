@@ -24,6 +24,7 @@ export default defineComponent({
       default: '',
     },
   },
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     const { validFn } = useValidate();
     // const validFn = getCurrentInstance().parent.ctx.validateFields;
