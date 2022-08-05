@@ -55,6 +55,7 @@ export default defineComponent({
     height: 100%;
     flex: 1;
     @include flex(flex-start, flex-start);
+    overflow: hidden;
 
     &__sidebar {
       flex: none;
@@ -66,6 +67,7 @@ export default defineComponent({
     &__container {
       flex: 1;
       height: 100%;
+      overflow: auto;
       @include padding(25px);
     }
   }
