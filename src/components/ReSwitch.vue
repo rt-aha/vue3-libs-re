@@ -93,6 +93,7 @@ export default defineComponent({
   &__field {
     @include position(center);
     z-index: -1;
+    cursor: pointer;
   }
 }
 
@@ -100,6 +101,7 @@ export default defineComponent({
   width: 100%;
   height: 20px;
   position: relative;
+  cursor: pointer;
 
   &__bar {
     width: 20px;

@@ -81,6 +81,11 @@ const children = [
     name: 're-email-auto-complete',
     component: () => import(/* webpackChunkName: "ReEmailAutoComplete" */ '@/views/components/ReEmailAutoComplete.vue'),
   },
+  {
+    path: 're-message',
+    name: 're-message',
+    component: () => import(/* webpackChunkName: "ReMessage" */ '@/views/components/ReMessage.vue'),
+  },
 ];
 
 const routes = [

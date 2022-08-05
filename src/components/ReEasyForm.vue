@@ -23,6 +23,7 @@ import ReSelect from '@/components/ReSelect/index.vue';
 import ReRadio from '@/components/ReRadio.vue';
 import ReCheckbox from '@/components/ReCheckbox.vue';
 import ReSwitch from '@/components/ReSwitch.vue';
+import ReTimePicker from '@/components/ReTimePicker/index.vue';
 
 export default defineComponent({
   name: 'ReEasyForm',
@@ -34,6 +35,7 @@ export default defineComponent({
     ReRadio,
     ReCheckbox,
     ReSwitch,
+    ReTimePicker,
   },
   props: {
     formValue: {

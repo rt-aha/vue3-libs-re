@@ -45,6 +45,7 @@ export default defineComponent({
       radio1: 'apple',
       checkbox1: ['apple', 'banana'],
       switch: false,
+      timePicker: new Date(),
     });
 
     setTimeout(() => {
@@ -91,6 +92,12 @@ export default defineComponent({
         formKey: 'switch',
         label: '是否',
         value: formValue2.value.switch,
+      },
+      {
+        compName: 'TimePicker',
+        formKey: 'timePicker',
+        label: '時間',
+        value: formValue2.value.timePicker,
       },
     ];
 
