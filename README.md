@@ -1,35 +1,63 @@
-# qiyu
+## components
 
-This template should help get you started developing with Vue 3 in Vite.
+### Easy (0/16)
+- [ ] Divider
+- [ ] Avatar
+- [ ] Button
+- [ ] Dropdown
+- [ ] Tag
+- [ ] Radio
+- [ ] Switch
+- [ ] Empty
+- [ ] Skeleton
+- [ ] Image
+- [ ] Textarea
+- [ ] Drawer
+- [ ] Tabs
+- [ ] Badge
+- [ ] Progress
+- [ ] Loading
 
-## Recommended IDE Setup
+### Medium (0/15)
+- [ ] Accordion
+- [ ] Breadcrumb
+- [ ] Checkbox
+- [ ] Tags/DynamicTags
+- [ ] InputList/DynamicInputs
+- [ ] Input
+- [ ] InputNumber
+- [ ] TreeSelect
+- [ ] Upload
+- [ ] Countdown
+- [ ] NumberAnimation
+- [ ] TimeLine
+- [ ] Tree
+- [ ] Modal
+- [ ] Steps
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Hard (0/13)
+- [ ] AutoComplete
+- [ ] DatePicker
+- [ ] TimePicker
+- [ ] Transfer
+- [ ] Select
+- [ ] MultiSelect
+- [ ] SearchSelect
+- [ ] GroupSelect
+- [ ] Slider
+- [ ] Pagination
+- [ ] Message
+- [ ] Notification
+- [ ] Tooltip(PopOver)
 
-## Customize configuration
+### Other
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+## hooks
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## widgets
+- [ ] Form/FormItem/FormMessage
+- [ ] Table
+- [ ] Navigatro
+- [ ] Menu
+- [ ] Search

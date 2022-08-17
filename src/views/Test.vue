@@ -1,11 +1,11 @@
 <template>
   <div class="v-Test">v-Test</div>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'Test',
+  name: 'TestViews',
 });
 </script>
 <style lang="scss" scoped></style>
