@@ -1,6 +1,6 @@
 ## components
 
-### Easy (0/16)
+### Easy (0/18)
 - [ ] Divider
 - [ ] Avatar
 - [ ] Button
@@ -17,6 +17,8 @@
 - [ ] Badge
 - [ ] Progress
 - [ ] Loading
+- [ ] Link
+- [ ] Row
 
 ### Medium (0/15)
 - [ ] Accordion
