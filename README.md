@@ -1,6 +1,6 @@
 ## components
 
-### Easy (0/18)
+### Easy (1/18)
 - [ ] Divider
 - [ ] Avatar
 - [ ] Button
@@ -14,7 +14,7 @@
 - [ ] Textarea
 - [ ] Drawer
 - [ ] Tabs
-- [ ] Badge
+- [x] Badge
 - [ ] Progress
 - [ ] Loading
 - [ ] Link

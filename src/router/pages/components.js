@@ -86,6 +86,14 @@ const children = [
     name: 're-message',
     component: () => import(/* webpackChunkName: "ReMessage" */ '@/views/components/ReMessage.vue'),
   },
+  {
+    path: 're-badge',
+    name: 're-badge',
+    component: () => import(/* webpackChunkName: "ReBadge" */ '@/views/components/ReBadge.vue'),
+    meta: {
+      title: 'Badge',
+    },
+  },
 ];
 
 const routes = [
