@@ -7,8 +7,8 @@ import '@/styles/utils/_rwd.scss';
 import VueHighlightJS from 'vue3-highlightjs';
 import '@/styles/libs/atom-one-dark.scss';
 import ContentLayout from '@/components/Global/ContentLayout.vue';
-import DevSection from '@/devComponents/DevSection.vue';
-import DevTitle from '@/devComponents/DevTitle.vue';
+import DevSection from '@/forDev/components/DevSection.vue';
+import DevTitle from '@/forDev/components/DevTitle.vue';
 
 import VueClickAway from 'vue3-click-away';
 

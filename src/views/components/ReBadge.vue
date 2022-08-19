@@ -1,43 +1,31 @@
 <template>
   <div class="v-badge">
     <dev-section title="基本使用">
-      <div class="row">
-        <div class="row__cell">
-          <re-badge :value="val.a">
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-        <div class="row__cell">
-          <re-badge :value="val.b">
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-        <div class="row__cell">
-          <re-badge :value="val.c">
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-      </div>
+      <re-badge :value="val.a">
+        <re-button>按鈕</re-button>
+      </re-badge>
+
+      <re-badge :value="val.b">
+        <re-button>按鈕</re-button>
+      </re-badge>
+
+      <re-badge :value="val.c">
+        <re-button>按鈕</re-button>
+      </re-badge>
     </dev-section>
 
     <dev-section title="顏色">
-      <div class="row">
-        <div class="row__cell">
-          <re-badge color="#cd853f" value="35">
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-        <div class="row__cell">
-          <re-badge color="#4caf50">
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-        <div class="row__cell">
-          <re-badge color="#cd5c5c">
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-      </div>
+      <re-badge color="#cd853f" value="35">
+        <re-button>按鈕</re-button>
+      </re-badge>
+
+      <re-badge color="#4caf50">
+        <re-button>按鈕</re-button>
+      </re-badge>
+
+      <re-badge color="#cd5c5c">
+        <re-button>按鈕</re-button>
+      </re-badge>
     </dev-section>
 
     <dev-section title="上限">
@@ -47,31 +35,21 @@
     </dev-section>
 
     <dev-section title="是否顯示0">
-      <div class="row">
-        <div class="row__cell">
-          <re-badge color="#cd5c5c" value="0">
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-        <div class="row__cell">
-          <re-badge color="#cd5c5c" value="0" :showZero="false">
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-      </div>
+      <re-badge color="#cd5c5c" value="0">
+        <re-button>按鈕</re-button>
+      </re-badge>
+
+      <re-badge color="#cd5c5c" value="0" :showZero="false">
+        <re-button>按鈕</re-button>
+      </re-badge>
     </dev-section>
 
     <dev-section title="小紅點，按鈕">
-      <div class="row">
-        <div class="row__cell">
-          <re-badge color="#cd5c5c" dot>
-            <re-button>按鈕</re-button>
-          </re-badge>
-        </div>
-        <div class="row__cell">
-          <re-badge color="#cd5c5c" dot> 通知 </re-badge>
-        </div>
-      </div>
+      <re-badge color="#cd5c5c" dot>
+        <re-button>按鈕</re-button>
+      </re-badge>
+
+      <re-badge color="#cd5c5c" dot> 通知 </re-badge>
     </dev-section>
 
     <dev-section title="左邊">
@@ -117,14 +95,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.row {
-  @include flex();
-
-  &__cell {
-    & + & {
-      margin-left: 25px;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>

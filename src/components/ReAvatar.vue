@@ -1,22 +1,26 @@
 <template>
   <div class="re-avatar">
-    <div
-      v-if="avatarType === 'src'"
-      class="re-avatar__bg-img"
-      :style="{ 'background-image': `url(${src})`, width: wh, height: wh }"
-    ></div>
+    <div class="group" v-if="isGroup">group</div>
 
-    <div v-if="avatarType === 'name'" class="re-avatar__bg-name" :style="{ width: wh, height: wh }">
-      <p class="re-avatar__bg-name__text">{{ name }}</p>
+    <div v-else>
+      <div
+        v-if="avatarType === 'src'"
+        class="re-avatar__bg-img"
+        :style="{ 'background-image': `url(${src})`, width: wh, height: wh }"
+      ></div>
+
+      <div v-if="avatarType === 'name'" class="re-avatar__bg-name" :style="{ width: wh, height: wh }">
+        <p class="re-avatar__bg-name__text">{{ firstLetter }}</p>
+      </div>
+
+      <img v-if="avatarType === 'default'" :src="defaultAvatar" :style="{ width: wh, height: wh }" />
     </div>
-
-    <!-- <img v-if="avatarType === 'default'" :src="defaultAvatar" :style="{ width: wh, height: wh }" /> -->
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-// import avatarPlacholder from '@/assets/icon/avatar.svg';
+import { defineComponent, computed } from 'vue';
+import avatarPlacholder from '@/assets/icon/avatar.svg';
 
 export default defineComponent({
   name: 'ReAvatar',
@@ -34,6 +38,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    // type: {
+    //   type: String,
+    //   default: 'src',
+    // },
     customSize: {
       type: String,
       default: '',
@@ -42,13 +50,17 @@ export default defineComponent({
       type: String,
       default: avatarPlacholder,
     },
+    avatarGroup: {
+      type: Array,
+      default: () => [],
+    },
   },
   setup(props) {
-    const firstLetter = (val) => {
-      return val.substr(0, 1);
-    };
+    const firstLetter = computed(() => {
+      return props.name.substring(0, 1);
+    });
 
-    const avatarType = () => {
+    const avatarType = computed(() => {
       if (props.src) {
         return 'src';
       }
@@ -58,8 +70,9 @@ export default defineComponent({
       }
 
       return 'default';
-    };
-    const wh = () => {
+    });
+
+    const wh = computed(() => {
       if (props.customSize) {
         return props.customSize;
       }
@@ -74,12 +87,21 @@ export default defineComponent({
         default:
           return '50px';
       }
-    };
+    });
+
+    const isGroup = computed(() => {
+      if (props.avatarGroup.length > 0) {
+        return true;
+      }
+
+      return false;
+    });
 
     return {
       firstLetter,
       avatarType,
       wh,
+      isGroup,
     };
   },
 });

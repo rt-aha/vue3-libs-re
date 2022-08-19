@@ -11,7 +11,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import DevTitle from '@/devComponents/DevTitle.vue';
+import DevTitle from '@/forDev/components/DevTitle.vue';
 
 export default defineComponent({
   name: 'DevSection',
@@ -37,6 +37,32 @@ export default defineComponent({
 
   &__content {
     margin-top: 20px;
+    @include flex();
+
+    * {
+      margin-left: 30px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.dev-section {
+  &__content {
+    margin-top: 20px;
+    @include flex();
+
+    * {
+      margin-left: 30px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
   }
 }
 </style>
