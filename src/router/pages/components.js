@@ -94,6 +94,14 @@ const children = [
       title: 'Badge',
     },
   },
+  {
+    path: 're-avatar',
+    name: 're-avatar',
+    component: () => import(/* webpackChunkName: "ReAvatar" */ '@/views/components/ReAvatar.vue'),
+    meta: {
+      title: 'Avatar',
+    },
+  },
 ];
 
 const routes = [
