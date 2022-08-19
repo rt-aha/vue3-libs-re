@@ -91,7 +91,7 @@ const children = [
     name: 're-badge',
     component: () => import(/* webpackChunkName: "ReBadge" */ '@/views/components/ReBadge.vue'),
     meta: {
-      title: 'Badge',
+      title: 'Badge 標記',
     },
   },
   {
@@ -99,7 +99,15 @@ const children = [
     name: 're-avatar',
     component: () => import(/* webpackChunkName: "ReAvatar" */ '@/views/components/ReAvatar.vue'),
     meta: {
-      title: 'Avatar',
+      title: 'Avatar 大頭',
+    },
+  },
+  {
+    path: 're-divider',
+    name: 're-divider',
+    component: () => import(/* webpackChunkName: "ReDivider" */ '@/views/components/ReDivider.vue'),
+    meta: {
+      title: 'Divider 分隔線',
     },
   },
 ];

@@ -36,7 +36,7 @@ export default defineComponent({
   @include padding(30px 0);
 
   & + & {
-    border-top: 1px solid rgba($c-lightgrey, 0.5);
+    border-top: 2px solid rgba($c-lightgrey, 0.5);
   }
 
   &__content {
@@ -71,11 +71,12 @@ export default defineComponent({
 
     &--verticle {
       * {
-        margin-left: 0px;
         /* margin-top: 10px; */
+        margin-left: 0px;
 
         &:first-child {
           margin-left: 0;
+          /* margin-top: 0; */
         }
       }
     }
