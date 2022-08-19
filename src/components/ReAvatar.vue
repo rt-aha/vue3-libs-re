@@ -182,6 +182,8 @@ export default defineComponent({
   &__item {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
   }
 
   &__bg-img {
@@ -196,7 +198,7 @@ export default defineComponent({
     position: relative;
     background-color: #ccc;
     border-radius: 50%;
-    overflow: auto;
+    overflow: hidden;
 
     &__text {
       @include position(center);
@@ -207,7 +209,7 @@ export default defineComponent({
     position: relative;
     background-color: #ccc;
     border-radius: 50%;
-    overflow: auto;
+    overflow: hidden;
 
     &__text {
       @include position(center);

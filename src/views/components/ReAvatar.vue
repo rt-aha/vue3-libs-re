@@ -20,7 +20,7 @@
     <dev-section title="自訂沒圖片時的預設圖片">
       <re-avatar size="large" :defaultAvatar="defaultAvatar" />
     </dev-section>
-    <dev-section title="用名字第一個字開頭英文">
+    <dev-section title="用名字第一個字">
       <re-avatar size="small" name="Vicky" />
     </dev-section>
   </div>
