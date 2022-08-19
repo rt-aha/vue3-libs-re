@@ -1,8 +1,9 @@
 ## components
 
-### Easy (1/18)
+### Easy (2/18)
 - [ ] Divider
-- [ ] Avatar
+- [x] Avatar
+  - [ ] 待 Image 組件做好回來改
 - [ ] Button
 - [ ] Dropdown
 - [ ] Tag
@@ -15,6 +16,7 @@
 - [ ] Drawer
 - [ ] Tabs
 - [x] Badge
+  - [ ] 新增一個可以插入文字或圖的功能
 - [ ] Progress
 - [ ] Loading
 - [ ] Link

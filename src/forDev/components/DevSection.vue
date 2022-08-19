@@ -3,7 +3,7 @@
     <dev-title>
       {{ title }}
     </dev-title>
-    <div class="dev-section__content">
+    <div class="dev-section__content" :class="{ 'dev-section__content--verticle': verticle }">
       <slot></slot>
     </div>
   </div>
@@ -23,6 +23,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    verticle: {
+      type: Boolean,
+      default: false,
+    },
   },
 });
 </script>
@@ -39,6 +43,10 @@ export default defineComponent({
     margin-top: 20px;
     @include flex();
 
+    &--verticle {
+      @include flex(flex-start, flex-start, column);
+    }
+
     * {
       margin-left: 30px;
 
@@ -53,14 +61,22 @@ export default defineComponent({
 <style lang="scss">
 .dev-section {
   &__content {
-    margin-top: 20px;
-    @include flex();
-
-    * {
+    > * {
       margin-left: 30px;
 
       &:first-child {
         margin-left: 0;
+      }
+    }
+
+    &--verticle {
+      * {
+        margin-left: 0px;
+        /* margin-top: 10px; */
+
+        &:first-child {
+          margin-left: 0;
+        }
       }
     }
   }

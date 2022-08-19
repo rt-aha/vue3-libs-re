@@ -1,7 +1,11 @@
 <template>
   <div class="v-avatar">
-    <p>待 Image 組件做好回來改</p>
-
+    <dev-section title="頭像群" verticle>
+      <re-avatar :avatarList="avatarList" size="small" :defaultAvatar="defaultAvatar" />
+      <re-avatar :avatarList="avatarList" size="default" :defaultAvatar="defaultAvatar" />
+      <re-avatar :avatarList="avatarList" size="large" :defaultAvatar="defaultAvatar" />
+      <re-avatar :avatarList="avatarList" size="large" :defaultAvatar="defaultAvatar" customSize="80px" />
+    </dev-section>
     <dev-section title="基本使用，尺寸：小、預設、大">
       <re-avatar size="small" src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" />
       <re-avatar src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" />
@@ -16,13 +20,8 @@
     <dev-section title="自訂沒圖片時的預設圖片">
       <re-avatar size="large" :defaultAvatar="defaultAvatar" />
     </dev-section>
-
     <dev-section title="用名字第一個字開頭英文">
       <re-avatar size="small" name="Vicky" />
-    </dev-section>
-
-    <dev-section title="頭像群">
-      <re-avatar :avatarGroup="avatarGroup" size="large" :defaultAvatar="defaultAvatar" />
     </dev-section>
   </div>
 </template>
@@ -38,24 +37,24 @@ export default defineComponent({
     ReAvatar,
   },
   setup() {
-    const avatarGroup = [
+    const avatarList = [
       {
         src: 'https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png',
         name: 'Lucy',
       },
       {
-        src: 'https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png',
-        name: 'Luke',
+        src: 'https://cdn-icons-png.flaticon.com/512/147/147142.png',
+        name: 'Luara',
       },
       {
-        src: 'https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png',
-        name: 'Luara',
+        // src: 'https://cdn-icons-png.flaticon.com/512/194/194938.png',
+        // name: 'Luke',
       },
     ];
 
     return {
       defaultAvatar,
-      avatarGroup,
+      avatarList,
     };
   },
 });
