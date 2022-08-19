@@ -1,7 +1,7 @@
 ## components
 
 ### Easy (2/18)
-- [ ] Divider
+- [x] Divider
 - [x] Avatar
   - [ ] 待 Image 組件做好回來改
 - [ ] Button
