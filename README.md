@@ -1,12 +1,13 @@
 ## components
 
-### Easy (2/18)
+### Easy (5/18)
 - [x] Divider
 - [x] Avatar
   - [ ] 應改為背景圖
 - [ ] Button
 - [ ] Dropdown
-- [ ] Tag
+- [x] Tag
+  - [ ] extra 編輯功能
 - [ ] Radio
 - [x] Switch
 - [ ] Empty
