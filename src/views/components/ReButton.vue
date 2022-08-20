@@ -2,24 +2,22 @@
   <div class="v-re-button">
     ReButton 施工中 ...
 
-    <div>
+    <dev-section title="基礎">
       <ReButton>Button</ReButton>
-    </div>
-
+    </dev-section>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import ReButton from '@/components/ReButton.vue'
+import ReButton from '@/components/ReButton.vue';
 
 export default defineComponent({
   name: 'ViewReButton',
   components: {
-    ReButton
-  }
+    ReButton,
+  },
 });
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

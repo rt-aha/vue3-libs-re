@@ -13,15 +13,14 @@ export default defineComponent({
   name: 'ReButton',
   emit: ['emit'],
   setup(props, { emit }) {
-
     const onClick = () => {
-      emit('onClick')
-    }
+      emit('onClick');
+    };
 
     return {
-      onClick
-    }
-  }
+      onClick,
+    };
+  },
 });
 </script>
 
@@ -36,7 +35,6 @@ export default defineComponent({
 
   &__content {
     @include flex();
-
   }
 }
 </style>

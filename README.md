@@ -3,12 +3,12 @@
 ### Easy (2/18)
 - [x] Divider
 - [x] Avatar
-  - [ ] 待 Image 組件做好回來改
+  - [ ] 應改為背景圖
 - [ ] Button
 - [ ] Dropdown
 - [ ] Tag
 - [ ] Radio
-- [ ] Switch
+- [x] Switch
 - [ ] Empty
 - [ ] Skeleton
 - [ ] Image

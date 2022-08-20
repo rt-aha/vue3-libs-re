@@ -55,6 +55,9 @@ const children = [
     path: 're-switch',
     name: 're-switch',
     component: () => import(/* webpackChunkName: "ReSwitch" */ '@/views/components/ReSwitch.vue'),
+    meta: {
+      title: 'Switch 開關',
+    },
   },
   {
     path: 're-time-picker',
