@@ -17,7 +17,7 @@ export default defineComponent({
 .dev-title {
   position: relative;
   @include padding(10px);
-  @include font-style(#999, 14);
+  @include font-style(#999, 14, 400, 0.5px);
 
   &::before {
     content: '';

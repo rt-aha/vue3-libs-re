@@ -22,7 +22,7 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'add',
-        path: '../../src/views/{{folder}}/{{name}}.vue',
+        path: '../../src/views/{{folder}}/Re{{name}}.vue',
         templateFile: '../view.hbs',
       },
     ],

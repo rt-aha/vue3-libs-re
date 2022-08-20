@@ -113,6 +113,14 @@ const children = [
       title: 'Divider 分隔線',
     },
   },
+  {
+    path: 're-tag',
+    name: 're-tag',
+    component: () => import(/* webpackChunkName: "ReTag" */ '@/views/components/ReTag.vue'),
+    meta: {
+      title: 'Tag 標籤',
+    },
+  },
 ];
 
 const routes = [
