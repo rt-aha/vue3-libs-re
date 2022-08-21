@@ -2,18 +2,21 @@
   <div class="re-transfer">
     <div class="transfer">
       <div class="transfer__options">
-        <p>選項 總共</p>
+        <p class="total-count">總共 {{ optionLength }} 個選項</p>
         <re-checkbox-group v-model="value1" :options="options" direction="verticle" />
       </div>
-      <div class="transfer__select"></div>
+      <div class="transfer__select">
+        <ul>
+          <li v-for="opt of selectedOptions" :key="opt.value">{{ opt.label }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import ReCheckboxGroup from '@/components/ReCheckboxGroup.vue';
-
 
 export default defineComponent({
   name: 'ReTransfer',
@@ -23,16 +26,22 @@ export default defineComponent({
   props: {
     options: {
       type: Array,
-      defualt: () => []
-    }
+      defualt: () => [],
+    },
   },
-  setup() {
+  setup(props) {
     const value1 = ref([]);
-    const optionLength = 
+    const optionLength = computed(() => props.options.length);
+    const selectedOptions = computed(() => {
+      return props.options.filter((item) => {
+        return value1.value.find((item2) => item2 === item.value);
+      });
+    });
 
     return {
       value1,
-      transferOptions,
+      optionLength,
+      selectedOptions,
     };
   },
 });
@@ -43,10 +52,11 @@ export default defineComponent({
 }
 .transfer {
   @include flex(flex-start, flex-start);
-  width: 400px;
+  width: 500px;
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
+  height: 200px;
 
   &::before {
     content: '';
@@ -57,13 +67,21 @@ export default defineComponent({
   }
 
   &__options {
-    width: 200px;
+    flex: none;
+    width: 50%;
     @include padding(10px);
+    height: 100%;
+    overflow: auto;
   }
 
   &__select {
-    width: 200px;
+    flex: none;
+    width: 50%;
     @include padding(10px);
   }
+}
+
+.total-count {
+  margin-bottom: 10px;
 }
 </style>
