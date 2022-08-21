@@ -1,13 +1,12 @@
 ## components
 
-### Easy (5/18)
+### Easy (5/17)
 - [x] Divider
 - [x] Avatar
   - [ ] 應改為背景圖
 - [ ] Button
 - [ ] Dropdown
-- [x] Tag
-  - [ ] extra 編輯功能
+
 - [x] Radio
 - [x] Switch
 - [ ] Empty
@@ -23,11 +22,12 @@
 - [ ] Link
 - [ ] Row
 
-### Medium (0/15)
+### Medium (2/15)
 - [ ] Accordion
 - [ ] Breadcrumb
-- [ ] Checkbox
-- [ ] Tags/DynamicTags
+- [x] Checkbox
+- [x] Tags/DynamicTags
+  - [ ] extra 編輯功能
 - [ ] InputList/DynamicInputs
 - [ ] Input
 - [ ] InputNumber
@@ -46,9 +46,10 @@
 - [ ] TimePicker
 - [ ] Transfer
 - [ ] Select
-- [ ] MultiSelect
-- [ ] SearchSelect
-- [ ] GroupSelect
+  - [ ] MultiSelect
+  - [ ] SearchSelect
+  - [ ] GroupSelect
+  - [ ] MultiLayerSelect
 - [ ] Slider
 - [ ] Pagination
 - [ ] Message
@@ -63,6 +64,6 @@
 ## widgets
 - [ ] Form/FormItem/FormMessage
 - [ ] Table
-- [ ] Navigatro
+- [ ] Navigation
 - [ ] Menu
 - [ ] Search
