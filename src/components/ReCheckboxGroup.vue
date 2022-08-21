@@ -1,6 +1,6 @@
 <template>
   <div class="re-checkbox-group" :class="[`re-checkbox-group--direction--${direction}`]">
-    <template v-for="(opt, idx) of optionConfig" :key="opt.value">
+    <template v-for="(opt, idx) of innerOptionConfig" :key="opt.value">
       <input
         class="re-checkbox-group__field"
         type="checkbox"
@@ -21,7 +21,7 @@
           :class="{
             'chk-list__item--disabled': opt.disabled,
           }"
-          v-for="(opt, idx) of optionConfig"
+          v-for="(opt, idx) of innerOptionConfig"
           :key="opt.value"
         >
           <label class="chk-list__item__label" :for="uuid + opt.value + idx">
@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, shallowRef } from 'vue';
 import { v4 as uuid } from 'uuid';
 import useValidate from '@/hooks/useValidate';
 import ReCheckbox from '@/components/ReCheckbox.vue';
-// import { cloneDeep } from 'lodash-es';
+import { cloneDeep } from 'lodash-es';
 
 export default defineComponent({
   name: 'ReCheckboxGroup',
@@ -76,11 +76,18 @@ export default defineComponent({
       type: String,
       default: 'horizontal',
     },
+    limit: {
+      type: [String, Number, undefined],
+      default: undefined,
+    },
   },
   emits: ['update:modelValue', 'onChange'],
   setup(props, { emit }) {
     const isAll = ref(false);
     const { validFn } = useValidate();
+    const innerOptionConfig = shallowRef([]);
+    // 紀錄初始即為 disabled 狀態的選項，避免移除選時變為可選
+    const recordOriginDisabledItems = shallowRef([]);
 
     const handleChange = (e, opt) => {
       if (opt.disabled) return;
@@ -96,10 +103,39 @@ export default defineComponent({
 
       // 有全選選項時
       if (props.checkAll) {
-        if (newValue.length === props.optionConfig.length) {
+        if (newValue.length === innerOptionConfig.value.length) {
           isAll.value = true;
         } else {
           isAll.value = false;
+        }
+      }
+
+      if (props.limit) {
+        const limitNum = Number(props.limit);
+        const newValueLen = newValue.length;
+
+        console.log('newValueLen', newValueLen);
+        console.log('limitNum', limitNum);
+        if (newValueLen >= limitNum) {
+          innerOptionConfig.value = innerOptionConfig.value.map((item) => {
+            const isItemInNewValue = newValue.includes(item.value);
+            if (!isItemInNewValue) {
+              item.disabled = true;
+            }
+
+            return item;
+          });
+        } else {
+          innerOptionConfig.value = innerOptionConfig.value.map((item) => {
+            const isDisabledItem = recordOriginDisabledItems.value.includes(item.value);
+            if (isDisabledItem) {
+              item.disabled = true;
+            } else {
+              item.disabled = false;
+            }
+
+            return item;
+          });
         }
       }
 
@@ -115,8 +151,8 @@ export default defineComponent({
       let newValue = [];
       if (val) {
         actionType = 'all';
-        newValue = props.optionConfig.map((item) => item.value);
-        // newValue = cloneDeep(props.optionConfig);
+        newValue = innerOptionConfig.value.map((item) => item.value);
+        // newValue = cloneDeep(props.innerOptionConfig);
       } else {
         actionType = 'reset';
       }
@@ -127,11 +163,32 @@ export default defineComponent({
       validFn('change');
     };
 
+    const initChecked = () => {
+      if (props.limit && props.checkAll) {
+        console.warn(`limit 與 checkAll 不應同時存在`);
+      }
+    };
+
+    const init = () => {
+      recordOriginDisabledItems.value = props.optionConfig.reduce((list, item) => {
+        if (item.disabled) {
+          list.push(item.value);
+        }
+        return list;
+      }, []);
+      innerOptionConfig.value = cloneDeep(props.optionConfig);
+    };
+
+    initChecked();
+    init();
+
     return {
       uuid: uuid(),
       handleChange,
       isAll,
       onChange,
+      innerOptionConfig,
+      recordOriginDisabledItems,
     };
   },
 });

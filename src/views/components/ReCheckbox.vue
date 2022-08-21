@@ -85,6 +85,16 @@
         />
       </div>
     </dev-section>
+
+    <dev-section title="設定可選取上限">
+      <div>
+        <dev-desc type="String, Number">limit: 可選取數量的上限 e.g. 2 個</dev-desc>
+        <re-checkbox-group v-model="value9" :optionConfig="phoneOptions2" limit="2" />
+
+        <dev-desc type="String, Number">limit: 可選取數量的上限 e.g. 3 個，原有選項中即有 disabled 選項時</dev-desc>
+        <re-checkbox-group v-model="value10" :optionConfig="phoneOptions3" limit="3" />
+      </div>
+    </dev-section>
   </div>
 </template>
 
@@ -110,6 +120,8 @@ export default defineComponent({
     const value6 = ref(['pixel-6-black']);
     const value7 = ref(['pixel-6-black']);
     const value8 = ref(['pixel-6-black']);
+    const value9 = ref(['pixel-6-black']);
+    const value10 = ref(['pixel-6-black']);
 
     const onCheckboxChange = (updateValue) => {
       console.log('updateValue...', updateValue);
@@ -130,6 +142,8 @@ export default defineComponent({
       value6,
       value7,
       value8,
+      value9,
+      value10,
       singleOption,
       phoneOptions,
       phoneOptions2,
