@@ -54,7 +54,7 @@ export default defineComponent({
       default: 'horizontal',
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'onChange'],
   setup(props, { emit }) {
     const { validFn } = useValidate();
 
@@ -62,6 +62,7 @@ export default defineComponent({
       if (opt.disabled) return;
 
       emit('update:modelValue', opt.value);
+      emit('onChange', opt);
       validFn('change');
     };
 

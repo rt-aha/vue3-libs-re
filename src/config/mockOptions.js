@@ -40,6 +40,11 @@ export const selectOptions = [
   // },
 ];
 
+export const singleOption = {
+  label: '同意',
+  value: true,
+};
+
 export const phoneOptions = [
   {
     id: 111,

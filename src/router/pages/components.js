@@ -53,6 +53,9 @@ const children = [
     path: 're-checkbox',
     name: 're-checkbox',
     component: () => import(/* webpackChunkName: "ReCheckbox" */ '@/views/components/ReCheckbox.vue'),
+    meta: {
+      title: 'Checkbox 多選框',
+    },
   },
   {
     path: 're-switch',

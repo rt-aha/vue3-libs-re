@@ -10,21 +10,28 @@
     <dev-section title="直的排列">
       <div>
         <dev-desc type="String">direction: 'verticle' </dev-desc>
-        <ReRadio v-model="value1" :optionConfig="phoneOptions" direction="verticle" />
+        <ReRadio v-model="value2" :optionConfig="phoneOptions" direction="verticle" />
+      </div>
+    </dev-section>
+
+    <dev-section title="radio被點擊時">
+      <div>
+        <dev-desc api="event">onChange 事件：點擊時觸發</dev-desc>
+        <ReRadio v-model="value3" :optionConfig="phoneOptions" @onChange="onChange" direction="verticle" />
       </div>
     </dev-section>
 
     <dev-section title="自定義內容">
       <div>
         <dev-desc api="props" type="Array">optionConfig: e.g. [{...props, render: renderFunction}]</dev-desc>
-        <ReRadio v-model="value1" :optionConfig="phoneOptions2" />
+        <ReRadio v-model="value4" :optionConfig="phoneOptions2" />
       </div>
     </dev-section>
 
     <dev-section title="禁用">
       <div>
         <dev-desc api="props" type="Array">optionConfig: e.g. [{...props, disabled: true}]</dev-desc>
-        <ReRadio v-model="value1" :optionConfig="phoneOptions3" />
+        <ReRadio v-model="value5" :optionConfig="phoneOptions3" />
       </div>
     </dev-section>
   </div>
@@ -41,13 +48,26 @@ export default defineComponent({
     ReRadio,
   },
   setup() {
-    const value1 = ref('apple');
+    const value1 = ref('');
+    const value2 = ref('');
+    const value3 = ref('');
+    const value4 = ref('');
+    const value5 = ref('');
+
+    const onChange = (opt) => {
+      console.log('change...', opt);
+    };
 
     return {
       value1,
+      value2,
+      value3,
+      value4,
+      value5,
       phoneOptions,
       phoneOptions2,
       phoneOptions3,
+      onChange,
     };
   },
 });

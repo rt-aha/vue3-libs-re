@@ -5,7 +5,7 @@
         <re-tag v-model="tagValue1" />
       </div>
     </dev-section>
-    <dev-section title="tag被點擊時 ">
+    <dev-section title="tag被點擊時">
       <div class="wrap">
         <dev-desc api="event">onClickItem 事件：點擊時觸發</dev-desc>
         <re-tag v-model="tagValue1" @onClickItem="onClickItem" />
