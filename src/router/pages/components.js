@@ -45,6 +45,9 @@ const children = [
     path: 're-radio',
     name: 're-radio',
     component: () => import(/* webpackChunkName: "ReRadio" */ '@/views/components/ReRadio.vue'),
+    meta: {
+      title: 'Radio 單選框',
+    },
   },
   {
     path: 're-checkbox',

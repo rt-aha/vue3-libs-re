@@ -20,7 +20,7 @@
 import { defineComponent, ref } from 'vue';
 
 import ReButton from '@/components/ReButton.vue';
-import { selectOptions, fruitDataOptions } from '@/config/mockOptions.js';
+import { phoneOptions, phoneOptions2 } from '@/config/mockOptions.js';
 import ReEasyForm from '@/components/ReEasyForm.vue';
 
 export default defineComponent({
@@ -71,21 +71,21 @@ export default defineComponent({
         formKey: 'select',
         label: '下拉選單',
         value: formValue2.value.select,
-        optionConfig: selectOptions,
+        optionConfig: phoneOptions,
       },
       {
         compName: 'Radio',
         formKey: 'radio1',
         label: '單選',
         value: formValue2.value.radio1,
-        optionConfig: fruitDataOptions,
+        optionConfig: phoneOptions,
       },
       {
         compName: 'Checkbox',
         formKey: 'checkbox1',
         label: '多選',
         value: formValue2.value.checkbox1,
-        optionConfig: fruitDataOptions,
+        optionConfig: phoneOptions,
       },
       {
         compName: 'Switch',
@@ -166,11 +166,11 @@ export default defineComponent({
     return {
       formValue,
       formRules,
-      selectOptions,
+      phoneOptions,
       formValue2,
       formValue2Config,
       getValue,
-      fruitDataOptions,
+      phoneOptions2,
       formRef,
     };
   },

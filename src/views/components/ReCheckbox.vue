@@ -1,13 +1,13 @@
 <template>
   <div class="v-re-checkbox">
-    <ReCheckbox v-model="value1" :optionConfig="fruitDataOptions" />
+    <ReCheckbox v-model="value1" :optionConfig="phoneOptions" />
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
 import ReCheckbox from '@/components/ReCheckbox.vue';
-import { fruitDataOptions } from '@/config/mockOptions';
+import { phoneOptions } from '@/config/mockOptions';
 
 export default defineComponent({
   name: 'ViewReCheckbox',
@@ -18,7 +18,7 @@ export default defineComponent({
     const value1 = ref(['apple']);
     return {
       value1,
-      fruitDataOptions,
+      phoneOptions,
     };
   },
 });

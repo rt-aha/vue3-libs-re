@@ -87,8 +87,4 @@ export default defineComponent({
 .wrap {
   width: 100%;
 }
-
-.desc {
-  margin-bottom: 10px;
-}
 </style>
