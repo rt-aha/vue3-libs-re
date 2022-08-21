@@ -7,7 +7,7 @@
           'radio-list__item--actived': opt.value === modelValue,
           'radio-list__item--disabled': opt.disabled,
         }"
-        v-for="(opt, idx) of optionConfig"
+        v-for="(opt, idx) of options"
         :key="opt.value"
       >
         <label class="radio-list__item__label" :for="uuid + String(idx)">
@@ -45,7 +45,7 @@ export default defineComponent({
     modelValue: {
       default: null,
     },
-    optionConfig: {
+    options: {
       type: Array,
       default: () => [],
     },

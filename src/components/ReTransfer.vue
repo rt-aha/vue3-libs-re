@@ -3,7 +3,7 @@
     <div class="transfer">
       <div class="transfer__options">
         <p>選項 總共</p>
-        <re-checkbox-group v-model="value1" :optionConfig="options" direction="verticle" />
+        <re-checkbox-group v-model="value1" :options="options" direction="verticle" />
       </div>
       <div class="transfer__select"></div>
     </div>

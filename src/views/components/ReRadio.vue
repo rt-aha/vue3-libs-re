@@ -2,36 +2,36 @@
   <div class="v-re-radio">
     <dev-section title="基本使用">
       <div>
-        <dev-desc api="props" type="Array">optionConfig: e.g. [{label: 'aaa': value: 'aaa'}]</dev-desc>
-        <ReRadio v-model="value1" :optionConfig="phoneOptions" />
+        <dev-desc api="props" type="Array">options: e.g. [{label: 'aaa': value: 'aaa'}]</dev-desc>
+        <ReRadio v-model="value1" :options="phoneOptions" />
       </div>
     </dev-section>
 
     <dev-section title="直的排列">
       <div>
         <dev-desc type="String">direction: 'verticle' </dev-desc>
-        <ReRadio v-model="value2" :optionConfig="phoneOptions" direction="verticle" />
+        <ReRadio v-model="value2" :options="phoneOptions" direction="verticle" />
       </div>
     </dev-section>
 
     <dev-section title="radio被點擊時">
       <div>
         <dev-desc api="event">onChange 事件：點擊時觸發</dev-desc>
-        <ReRadio v-model="value3" :optionConfig="phoneOptions" @onChange="onChange" direction="verticle" />
+        <ReRadio v-model="value3" :options="phoneOptions" @onChange="onChange" direction="verticle" />
       </div>
     </dev-section>
 
     <dev-section title="自定義內容">
       <div>
-        <dev-desc api="props" type="Array">optionConfig: e.g. [{...props, render: renderFunction}]</dev-desc>
-        <ReRadio v-model="value4" :optionConfig="phoneOptions2" />
+        <dev-desc api="props" type="Array">options: e.g. [{...props, render: renderFunction}]</dev-desc>
+        <ReRadio v-model="value4" :options="phoneOptions2" />
       </div>
     </dev-section>
 
     <dev-section title="禁用">
       <div>
-        <dev-desc api="props" type="Array">optionConfig: e.g. [{...props, disabled: true}]</dev-desc>
-        <ReRadio v-model="value5" :optionConfig="phoneOptions3" />
+        <dev-desc api="props" type="Array">options: e.g. [{...props, disabled: true}]</dev-desc>
+        <ReRadio v-model="value5" :options="phoneOptions3" />
       </div>
     </dev-section>
   </div>

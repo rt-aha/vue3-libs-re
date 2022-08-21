@@ -1,6 +1,6 @@
 <template>
   <div class="v-re-select">
-    <ReSelect v-model="value1" :optionConfig="phoneOptions" />
+    <ReSelect v-model="value1" :options="phoneOptions" />
   </div>
 </template>
 

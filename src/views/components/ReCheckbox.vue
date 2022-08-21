@@ -18,7 +18,7 @@
     <dev-section title="禁用">
       <div>
         <dev-desc api="props" type="Boolean">disabled: 是否禁用</dev-desc>
-        <re-checkbox v-model="value3" label="是否啟用" :optionConfig="phoneOptions3" disabled />
+        <re-checkbox v-model="value3" label="是否啟用" :options="phoneOptions3" disabled />
       </div>
     </dev-section>
 
@@ -32,35 +32,35 @@
     <dev-title size="main">re-checkbox-group 組件</dev-title>
     <dev-section title="多選項">
       <div>
-        <dev-desc api="props" type="Array">optionConfig: e.g. [{label: 'aaa': value: 'aaa'}]</dev-desc>
-        <re-checkbox-group v-model="value4" :optionConfig="phoneOptions" />
+        <dev-desc api="props" type="Array">options: e.g. [{label: 'aaa': value: 'aaa'}]</dev-desc>
+        <re-checkbox-group v-model="value4" :options="phoneOptions" />
       </div>
     </dev-section>
 
     <dev-section title="直的排列">
       <div>
         <dev-desc type="String">direction: 'verticle' </dev-desc>
-        <re-checkbox-group v-model="value5" :optionConfig="phoneOptions" direction="verticle" />
+        <re-checkbox-group v-model="value5" :options="phoneOptions" direction="verticle" />
       </div>
     </dev-section>
     <dev-section title="自定義內容">
       <div>
-        <dev-desc api="props" type="Array">optionConfig: e.g. [{...props, render: renderFunction}]</dev-desc>
-        <re-checkbox-group v-model="value6" :optionConfig="phoneOptions2" />
+        <dev-desc api="props" type="Array">options: e.g. [{...props, render: renderFunction}]</dev-desc>
+        <re-checkbox-group v-model="value6" :options="phoneOptions2" />
       </div>
     </dev-section>
 
     <dev-section title="禁用">
       <div>
-        <dev-desc api="props" type="Array">optionConfig: e.g. [{...props, disabled: true}]</dev-desc>
-        <re-checkbox-group v-model="value7" :optionConfig="phoneOptions3" />
+        <dev-desc api="props" type="Array">options: e.g. [{...props, disabled: true}]</dev-desc>
+        <re-checkbox-group v-model="value7" :options="phoneOptions3" />
       </div>
     </dev-section>
 
     <dev-section title="checkbox被點擊時">
       <div>
         <dev-desc api="event">change 事件：點擊時觸發</dev-desc>
-        <re-checkbox-group v-model="value7" :optionConfig="phoneOptions2" @onChange="onCheckboxGroupChange" />
+        <re-checkbox-group v-model="value7" :options="phoneOptions2" @onChange="onCheckboxGroupChange" />
       </div>
     </dev-section>
 
@@ -69,7 +69,7 @@
         <dev-desc type="boolean">
           checkAll: 是否顯示全選按鈕（註：亦可由外部控制 v-model 值，但由 checkAll 可觸發組件內 onChange 事件）
         </dev-desc>
-        <re-checkbox-group v-model="value8" :optionConfig="phoneOptions2" @onChange="onCheckboxGroupChange" checkAll />
+        <re-checkbox-group v-model="value8" :options="phoneOptions2" @onChange="onCheckboxGroupChange" checkAll />
       </div>
     </dev-section>
 
@@ -78,7 +78,7 @@
         <dev-desc type="String">checkAllDirection: 'verticle' </dev-desc>
         <re-checkbox-group
           v-model="value8"
-          :optionConfig="phoneOptions2"
+          :options="phoneOptions2"
           @onChange="onCheckboxGroupChange"
           checkAll
           checkAllDirection="verticle"
@@ -89,10 +89,10 @@
     <dev-section title="設定可選取上限">
       <div>
         <dev-desc type="String, Number">limit: 可選取數量的上限 e.g. 2 個</dev-desc>
-        <re-checkbox-group v-model="value9" :optionConfig="phoneOptions2" limit="2" />
+        <re-checkbox-group v-model="value9" :options="phoneOptions2" limit="2" />
 
         <dev-desc type="String, Number">limit: 可選取數量的上限 e.g. 3 個，原有選項中即有 disabled 選項時</dev-desc>
-        <re-checkbox-group v-model="value10" :optionConfig="phoneOptions3" limit="3" />
+        <re-checkbox-group v-model="value10" :options="phoneOptions3" limit="3" />
       </div>
     </dev-section>
   </div>

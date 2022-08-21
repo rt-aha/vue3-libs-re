@@ -1,6 +1,6 @@
 <template>
   <div class="re-checkbox-group" :class="[`re-checkbox-group--direction--${direction}`]">
-    <template v-for="(opt, idx) of innerOptionConfig" :key="opt.value">
+    <template v-for="(opt, idx) of innerOptions" :key="opt.value">
       <input
         class="re-checkbox-group__field"
         type="checkbox"
@@ -21,7 +21,7 @@
           :class="{
             'chk-list__item--disabled': opt.disabled,
           }"
-          v-for="(opt, idx) of innerOptionConfig"
+          v-for="(opt, idx) of innerOptions"
           :key="opt.value"
         >
           <label class="chk-list__item__label" :for="uuid + opt.value + idx">
@@ -60,7 +60,7 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-    optionConfig: {
+    options: {
       type: Array,
       default: () => [],
     },
@@ -85,7 +85,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const isAll = ref(false);
     const { validFn } = useValidate();
-    const innerOptionConfig = shallowRef([]);
+    const innerOptions = shallowRef([]);
     // 紀錄初始即為 disabled 狀態的選項，避免移除選時變為可選
     const recordOriginDisabledItems = shallowRef([]);
 
@@ -103,7 +103,7 @@ export default defineComponent({
 
       // 有全選選項時
       if (props.checkAll) {
-        if (newValue.length === innerOptionConfig.value.length) {
+        if (newValue.length === innerOptions.value.length) {
           isAll.value = true;
         } else {
           isAll.value = false;
@@ -117,7 +117,7 @@ export default defineComponent({
         console.log('newValueLen', newValueLen);
         console.log('limitNum', limitNum);
         if (newValueLen >= limitNum) {
-          innerOptionConfig.value = innerOptionConfig.value.map((item) => {
+          innerOptions.value = innerOptions.value.map((item) => {
             const isItemInNewValue = newValue.includes(item.value);
             if (!isItemInNewValue) {
               item.disabled = true;
@@ -126,7 +126,7 @@ export default defineComponent({
             return item;
           });
         } else {
-          innerOptionConfig.value = innerOptionConfig.value.map((item) => {
+          innerOptions.value = innerOptions.value.map((item) => {
             const isDisabledItem = recordOriginDisabledItems.value.includes(item.value);
             if (isDisabledItem) {
               item.disabled = true;
@@ -151,8 +151,8 @@ export default defineComponent({
       let newValue = [];
       if (val) {
         actionType = 'all';
-        newValue = innerOptionConfig.value.map((item) => item.value);
-        // newValue = cloneDeep(props.innerOptionConfig);
+        newValue = innerOptions.value.map((item) => item.value);
+        // newValue = cloneDeep(props.innerOptions);
       } else {
         actionType = 'reset';
       }
@@ -170,13 +170,13 @@ export default defineComponent({
     };
 
     const init = () => {
-      recordOriginDisabledItems.value = props.optionConfig.reduce((list, item) => {
+      recordOriginDisabledItems.value = props.options.reduce((list, item) => {
         if (item.disabled) {
           list.push(item.value);
         }
         return list;
       }, []);
-      innerOptionConfig.value = cloneDeep(props.optionConfig);
+      innerOptions.value = cloneDeep(props.options);
     };
 
     initChecked();
@@ -187,7 +187,7 @@ export default defineComponent({
       handleChange,
       isAll,
       onChange,
-      innerOptionConfig,
+      innerOptions,
       recordOriginDisabledItems,
     };
   },
