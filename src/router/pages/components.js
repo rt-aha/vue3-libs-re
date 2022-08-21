@@ -127,6 +127,14 @@ const children = [
       title: 'Tag 標籤',
     },
   },
+  {
+    path: 're-transfer',
+    name: 're-transfer',
+    component: () => import(/* webpackChunkName: "ReTransfer" */ '@/views/components/ReTransfer.vue'),
+    meta: {
+      title: 'Transfer 穿梭框',
+    },
+  },
 ];
 
 const routes = [
