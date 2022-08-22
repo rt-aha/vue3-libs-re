@@ -2,24 +2,37 @@
   <div class="re-transfer">
     <div class="transfer">
       <div class="transfer__options">
-        <p class="total-count">總共 {{ optionLength }} 個選項</p>
-        <re-checkbox-group v-model="innerValue" :options="options" direction="verticle" />
+        <div class="transfer__options__header">
+          <p class="total-count">共 {{ optionLength }} 個選項</p>
+        </div>
+        <div class="transfer__options__content">
+          <re-checkbox-group v-model="innerValue" :options="options" direction="verticle" />
+        </div>
       </div>
       <div class="transfer__select">
-        <p class="checked-count">已選 {{ checkedOptionLength }} 個選項</p>
-        <div class="checked-list-wrap">
-          <ul class="chcked-list">
-            <li class="checked-list__item" v-for="opt of checkedOptions" :key="opt.value">
-              <div class="checked-list__item__box">
-                <p class="checked-list__item__box__label">
-                  {{ opt.label }}
-                </p>
-                <div class="checked-list__item__box__delete" @click="removeOption(opt)">
-                  <img class="checked-list__item__box__delete__icon" src="@/assets/icon/close.svg" />
+        <div class="transfer__select__header">
+          <p class="checked-count">已選 {{ checkedOptionLength }} 個選項</p>
+        </div>
+        <div class="transfer__select__content">
+          <div class="checked-list-wrap">
+            <ul class="chcked-list">
+              <li
+                class="checked-list__item"
+                :class="{ 'checked-list__item--disabled': opt.disabled }"
+                v-for="opt of checkedOptions"
+                :key="opt.value"
+              >
+                <div class="checked-list__item__box">
+                  <p class="checked-list__item__box__label">
+                    {{ opt.label }}
+                  </p>
+                  <div class="checked-list__item__box__delete" @click="removeOption(opt)">
+                    <img class="checked-list__item__box__delete__icon" src="@/assets/icon/close.svg" />
+                  </div>
                 </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -58,6 +71,7 @@ export default defineComponent({
     const checkedOptionLength = computed(() => checkedOptions.value.length);
 
     const removeOption = (opt) => {
+      if (opt.disabled) return;
       const tempOpt = innerValue.value.filter((item) => item !== opt.value);
 
       // 更新組件內與外部 v-model 值
@@ -83,6 +97,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+/* * {
+  outline: 1px solid #f00;
+} */
 .re-transfer {
 }
 .transfer {
@@ -106,33 +123,65 @@ export default defineComponent({
     width: 50%;
     @include padding(10px);
     height: 100%;
-    overflow: auto;
+    @include flex(flex-start, flex-start, column);
+
+    &__header {
+      margin-bottom: 10px;
+    }
+
+    &__content {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
   }
 
   &__select {
     flex: none;
     width: 50%;
-    @include padding(10px 0);
+    @include padding(10px);
     height: 100%;
     overflow: auto;
+    @include flex(flex-start, flex-start, column);
+
+    &__header {
+      margin-bottom: 5px;
+
+      /* @include padding(10px); */
+    }
+
+    &__content {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
   }
 }
 
 .total-count {
-  margin-bottom: 10px;
-  @include padding(0 10px);
+  @include font-style($c-input-label, 14, 400, 1px, 18px);
 }
 
 .checked-count {
-  margin-bottom: 5px;
-  @include padding(0 10px);
+  @include font-style($c-input-label, 14, 400, 1px, 18px);
 }
 
 .checked-list {
   &__item {
     min-height: 20px;
-    @include padding(5px 10px);
+    @include padding(5px);
     transition: 0.2s;
+    cursor: pointer;
+    border-radius: 2px;
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+
+      .checked-list__item__box__delete {
+        cursor: not-allowed;
+      }
+    }
 
     &:hover {
       background-color: rgba($c-main, 0.5);

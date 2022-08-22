@@ -177,6 +177,7 @@ export const transferOptions = [
   {
     label: 'option5',
     value: 'option5',
+    disabled: true,
   },
   {
     label: 'option6',
@@ -185,6 +186,7 @@ export const transferOptions = [
   {
     label: 'option7',
     value: 'option7',
+    disabled: true,
   },
   {
     label: 'option8',
