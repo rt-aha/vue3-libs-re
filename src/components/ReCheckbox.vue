@@ -132,7 +132,7 @@ export default defineComponent({
         width: 16px;
         height: 16px;
         border: 1px solid $c-main;
-        border-radius: 4px;
+        border-radius: 2px;
 
         &--actived {
           position: relative;
