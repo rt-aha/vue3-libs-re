@@ -9,6 +9,7 @@
         <ly-sidebar />
       </div>
       <div class="ly-base-layout__body__container">
+        <p class="page-title">{{ $route.meta.title }}</p>
         <router-view />
       </div>
     </div>
@@ -36,6 +37,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.page-title {
+  @include font-style($c-main, 24, 500);
+}
 .ly-base-layout {
   width: 100%;
   height: 100%;

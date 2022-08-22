@@ -10,7 +10,7 @@
           <code class="javascript">
   import { defineComponent } from 'vue';
   import useAsyncDialog from '@/hooks/useAsyncDialog';
-  import TestComp from '@/testComponents/AsyncDialog/TestComp.vue';
+  import DialogContent from '@/forDev/testComponents/DialogContent.vue';
   import ReButton from '@/components/ReButton.vue';
 
   export default defineComponent({
@@ -92,9 +92,8 @@
 <script>
 import { defineComponent } from 'vue';
 import useAsyncDialog from '@/hooks/useAsyncDialog';
-import TestComp from '@/testComponents/AsyncDialog/TestComp.vue';
+import DialogContent from '@/forDev/testComponents/DialogContent.vue';
 import ReButton from '@/components/ReButton.vue';
-
 
 export default defineComponent({
   name: 'ViewAsyncDialog',
@@ -110,63 +109,58 @@ export default defineComponent({
           {
             label: '確認',
             cb: () => {
-              console.log('success')
+              console.log('success');
             },
-
           },
           {
             label: '取消',
             cb: () => {
-              console.log('cancel')
-            }
+              console.log('cancel');
+            },
           },
           {
             label: '測試',
             cb: () => {
-              console.log('test')
-            }
-          }
-        ]
+              console.log('test');
+            },
+          },
+        ],
       });
-    }
+    };
 
     const toggleDialog2 = () => {
       asyncDialog({
-        render: TestComp,
+        render: DialogContent,
         renderType: 'render',
         btns: [
           {
             label: '確認',
             cb: () => {
-              console.log('success')
+              console.log('success');
             },
-
           },
           {
             label: '取消',
             cb: () => {
-              console.log('cancel')
-            }
+              console.log('cancel');
+            },
           },
           {
             label: '測試',
             cb: () => {
-              console.log('test')
-            }
-          }
-        ]
+              console.log('test');
+            },
+          },
+        ],
       });
-    }
-
+    };
 
     return {
       toggleDialog1,
-      toggleDialog2
-    }
-  }
+      toggleDialog2,
+    };
+  },
 });
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,27 +1,34 @@
 <template>
-  <div class="re-checkbox">
-    <template v-for="(opt, idx) of optionConfig" :key="opt.value">
+  <div class="re-checkbox" :class="[`re-checkbox--direction--${direction}`]">
+    <template>
       <input
         class="re-checkbox__field"
         type="checkbox"
-        :id="uuid + opt.value + idx"
-        :value="opt.value"
-        :checked="modelValue.includes(opt.value)"
+        :id="uuid"
+        :value="modelValue"
+        :checked="modelValue"
         @change="handleChange"
       />
     </template>
 
     <ul class="chk-list">
-      <li class="chk-list__item" v-for="(opt, idx) of optionConfig" :key="opt.value">
-        <label class="chk-list__item__wrap" :for="uuid + opt.value + idx">
+      <li
+        class="chk-list__item"
+        :class="{
+          'chk-list__item--disabled': disabled,
+        }"
+      >
+        <label class="chk-list__item__label" :for="uuid">
           <div
-            class="chk-list__item__wrap__box"
+            class="chk-list__item__label__option"
             :class="{
-              'chk-list__item__wrap__box--actived': modelValue.includes(opt.value),
+              'chk-list__item__label__option--actived': modelValue,
             }"
           ></div>
-
-          <p class="chk-list__item__wrap__label">{{ opt.label }}</p>
+          <div class="chk-list__item__label__content">
+            <component :is="render" v-bind="$attrs" v-if="render" />
+            <p class="chk-list__item__label__content__label" v-else>{{ label }}</p>
+          </div>
         </label>
       </li>
     </ul>
@@ -34,30 +41,36 @@ import { v4 as uuid } from 'uuid';
 import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
-  name: 'ReReCheckbox',
+  name: 'ReCheckbox',
   props: {
     modelValue: {
-      type: Array,
-      default: () => [],
+      type: Boolean,
+      default: false,
     },
-    optionConfig: {
-      type: Array,
-      default: () => [],
+    label: {
+      type: String,
+      default: '',
+    },
+    direction: {
+      type: String,
+      default: 'horizontal',
+    },
+    render: {
+      default: null,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'onChange'],
   setup(props, { emit }) {
     const { validFn } = useValidate();
 
-    const handleChange = (e) => {
-      let newValue = [];
-      if (props.modelValue.includes(e.target.value)) {
-        newValue = props.modelValue.filter((item) => item !== e.target.value);
-      } else {
-        newValue = [...props.modelValue, e.target.value];
-      }
-
-      emit('update:modelValue', newValue);
+    const handleChange = () => {
+      if (props.disabled) return;
+      emit('update:modelValue', !props.modelValue);
+      emit('onChange', !props.modelValue);
       validFn('change');
     };
 
@@ -71,19 +84,51 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .re-checkbox {
+  width: 100%;
+
+  &--direction {
+    &--horizontal {
+      color: blue;
+      .chk-list__item {
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    }
+
+    &--vertical {
+      .chk-list__item {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
   &__field {
     display: none;
   }
 }
 .chk-list {
+  width: 100%;
+
   &__item {
+    &--disabled {
+      opacity: 0.5;
+
+      .chk-list__item__label {
+        cursor: not-allowed;
+      }
+    }
+
     & + & {
       margin-top: 10px;
     }
-    &__wrap {
-      @include flex();
+    &__label {
+      cursor: pointer;
+      @include flex(flex-start, flex-start);
 
-      &__box {
+      &__option {
+        flex: none;
         width: 16px;
         height: 16px;
         border: 1px solid $c-main;
@@ -105,10 +150,14 @@ export default defineComponent({
         }
       }
 
-      &__label {
+      &__content {
+        flex: 1;
         margin-left: 5px;
-        @include font-style($c-black, 14, 400, 1px 14px);
-        cursor: pointer;
+
+        &__label {
+          flex: 1;
+          @include font-style($c-black, 14, 400, 1px 14px);
+        }
       }
     }
   }

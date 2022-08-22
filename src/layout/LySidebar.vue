@@ -87,7 +87,6 @@ export default defineComponent({
     };
 
     const handleMainListItem = (label) => {
-      
       activedType.value = label;
     };
 
@@ -154,6 +153,7 @@ export default defineComponent({
 
 .sub-list-wrap {
   @include padding(15px 15px 15px 50px);
+  width: 250px;
 }
 
 .sub-list {

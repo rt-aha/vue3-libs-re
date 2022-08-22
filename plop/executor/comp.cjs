@@ -12,13 +12,8 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'add',
-        path: '../../src/components/{{name}}/index.js',
+        path: '../../src/components/Re{{name}}.vue',
         templateFile: '../index.hbs',
-      },
-      {
-        type: 'add',
-        path: '../../src/components/{{name}}/src/{{name}}.vue',
-        templateFile: '../component.hbs',
       },
     ],
   });

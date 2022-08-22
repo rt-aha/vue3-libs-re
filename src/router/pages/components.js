@@ -45,16 +45,25 @@ const children = [
     path: 're-radio',
     name: 're-radio',
     component: () => import(/* webpackChunkName: "ReRadio" */ '@/views/components/ReRadio.vue'),
+    meta: {
+      title: 'Radio 單選框',
+    },
   },
   {
     path: 're-checkbox',
     name: 're-checkbox',
     component: () => import(/* webpackChunkName: "ReCheckbox" */ '@/views/components/ReCheckbox.vue'),
+    meta: {
+      title: 'Checkbox 多選框',
+    },
   },
   {
     path: 're-switch',
     name: 're-switch',
     component: () => import(/* webpackChunkName: "ReSwitch" */ '@/views/components/ReSwitch.vue'),
+    meta: {
+      title: 'Switch 開關',
+    },
   },
   {
     path: 're-time-picker',
@@ -85,6 +94,46 @@ const children = [
     path: 're-message',
     name: 're-message',
     component: () => import(/* webpackChunkName: "ReMessage" */ '@/views/components/ReMessage.vue'),
+  },
+  {
+    path: 're-badge',
+    name: 're-badge',
+    component: () => import(/* webpackChunkName: "ReBadge" */ '@/views/components/ReBadge.vue'),
+    meta: {
+      title: 'Badge 標記',
+    },
+  },
+  {
+    path: 're-avatar',
+    name: 're-avatar',
+    component: () => import(/* webpackChunkName: "ReAvatar" */ '@/views/components/ReAvatar.vue'),
+    meta: {
+      title: 'Avatar 大頭',
+    },
+  },
+  {
+    path: 're-divider',
+    name: 're-divider',
+    component: () => import(/* webpackChunkName: "ReDivider" */ '@/views/components/ReDivider.vue'),
+    meta: {
+      title: 'Divider 分隔線',
+    },
+  },
+  {
+    path: 're-tag',
+    name: 're-tag',
+    component: () => import(/* webpackChunkName: "ReTag" */ '@/views/components/ReTag.vue'),
+    meta: {
+      title: 'Tag 標籤',
+    },
+  },
+  {
+    path: 're-transfer',
+    name: 're-transfer',
+    component: () => import(/* webpackChunkName: "ReTransfer" */ '@/views/components/ReTransfer.vue'),
+    meta: {
+      title: 'Transfer 穿梭框',
+    },
   },
 ];
 

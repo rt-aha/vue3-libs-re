@@ -17,7 +17,7 @@
           <ul class="select-option-list">
             <li
               class="select-option-list__item"
-              v-for="opt of optionConfig"
+              v-for="opt of options"
               :key="opt.value"
               @click="() => handleOption(opt)"
             >
@@ -45,7 +45,7 @@ export default defineComponent({
     modelValue: {
       default: '',
     },
-    optionConfig: {
+    options: {
       type: Array,
       default: () => [],
     },
@@ -78,7 +78,7 @@ export default defineComponent({
     };
 
     const innerValue = computed(() => {
-      const valueObj = props.optionConfig.find((item) => {
+      const valueObj = props.options.find((item) => {
         return item.value === props.modelValue;
       });
 

@@ -32,3 +32,12 @@ body {
 .prevent-scroll-reload {
   overscroll-behavior-y: contain;
 }
+
+
+.wrap {
+  width: 100%;
+}
+
+.text {
+  @include flex();
+}
