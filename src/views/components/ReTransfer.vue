@@ -1,11 +1,11 @@
 <template>
   <div class="v-transfer">
-    <re-transfer :options="transferOptions" />
+    <re-transfer v-model="value1" :options="transferOptions" />
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import ReTransfer from '@/components/ReTransfer.vue';
 import { transferOptions } from '@/config/mockOptions';
 
@@ -15,7 +15,10 @@ export default defineComponent({
     ReTransfer,
   },
   setup() {
+    const value1 = ref(['option1']);
+
     return {
+      value1,
       transferOptions,
     };
   },
