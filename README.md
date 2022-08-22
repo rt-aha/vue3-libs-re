@@ -1,12 +1,11 @@
 ## components
 
-### Easy (5/17)
+### Easy (5/16)
 - [x] Divider
 - [x] Avatar
   - [ ] 應改為背景圖
 - [ ] Button
 - [ ] Dropdown
-
 - [x] Radio
 - [x] Switch
 - [ ] Empty
@@ -20,7 +19,6 @@
 - [ ] Progress
 - [ ] Loading
 - [ ] Link
-- [ ] Row
 
 ### Medium (2/15)
 - [ ] Accordion

@@ -2,7 +2,7 @@
   <div class="v-transfer">
     <dev-section title="基本使用">
       <div>
-        <p>全選 與 清除 功能 待寫</p>
+        分隔線現在是硬推的，處理一下 checkbox 的 css
         <dev-desc api="props" type="Array">options: e.g. [{label: 'aaa': value: 'aaa'}]</dev-desc>
         <re-transfer v-model="value1" :options="transferOptions" />
       </div>
@@ -16,8 +16,9 @@
     <dev-section title="過濾輸入框">
       <div>
         <dev-desc api="props" type="Boolean">sourceFilter: 是否顯示來源輸入框</dev-desc>
-        <dev-desc api="props" type="Boolean">selectedFilter: 是否顯示已選擇輸入框 </dev-desc>
-        <re-transfer v-model="value3" :options="transferOptions" />
+        <re-transfer v-model="value3" :options="transferOptions" sourceFilter />
+        <dev-desc api="props" type="Boolean" mt>selectedFilter: 是否顯示已選擇輸入框 </dev-desc>
+        <re-transfer v-model="value3" :options="transferOptions" selectedFilter />
       </div>
     </dev-section>
   </div>
@@ -34,9 +35,19 @@ export default defineComponent({
     ReTransfer,
   },
   setup() {
-    const value1 = ref(['option1', 'option2', 'option3', 'option4', 'option5', 'option6', 'option7']);
+    const value1 = ref([
+      'option1',
+      'option2',
+      'option3',
+      'option4',
+      'option5',
+      'option6',
+      'option7',
+      'option8',
+      'option9',
+    ]);
     const value2 = ref([]);
-    const value3 = ref([]);
+    const value3 = ref(['option1', 'option2', 'option3', 'option4', 'option6', 'option7', 'option8', 'option9']);
 
     return {
       value1,

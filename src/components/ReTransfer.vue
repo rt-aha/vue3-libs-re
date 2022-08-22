@@ -3,6 +3,9 @@
     <div class="transfer">
       <div class="transfer__options">
         <div class="transfer__options__header">
+          <div>
+            <re-checkbox v-model="isAll" label="全選" @onChange="onChange" />
+          </div>
           <p class="total-count">共 {{ optionLength }} 個選項</p>
         </div>
         <div class="transfer__options__content">
@@ -40,13 +43,15 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, shallowRef } from 'vue';
 import ReCheckboxGroup from '@/components/ReCheckboxGroup.vue';
+import ReCheckbox from '@/components/ReCheckbox.vue';
 
 export default defineComponent({
   name: 'ReTransfer',
   components: {
     ReCheckboxGroup,
+    ReCheckbox,
   },
   props: {
     modelValue: {
@@ -60,7 +65,12 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
+    const isAll = ref(false);
     const innerValue = ref(['option1']);
+    // 紀錄初始即為 disabled 狀態的選項，避免移除選時變為可選
+    const recordOriginDisabledItems = shallowRef([]);
+    // 紀錄初始即已被選擇的選項，避免移除選時變為可選
+    const recordOriginCheckedValue = shallowRef([]);
 
     const optionLength = computed(() => props.options.length);
     const checkedOptions = computed(() => {
@@ -70,17 +80,89 @@ export default defineComponent({
     });
     const checkedOptionLength = computed(() => checkedOptions.value.length);
 
+    const updateModelValue = (val) => {
+      innerValue.value = val;
+      emit('update:modelValue', innerValue.value);
+    };
+
     const removeOption = (opt) => {
       if (opt.disabled) return;
       const tempOpt = innerValue.value.filter((item) => item !== opt.value);
 
       // 更新組件內與外部 v-model 值
-      innerValue.value = tempOpt;
-      emit('update:modelValue', innerValue.value);
+      updateModelValue(tempOpt);
+    };
+
+    const onChange = (val) => {
+      if (val) {
+        const tempOpt = props.options.reduce((list, item) => {
+          if (item.disabled) {
+            const isInclude = innerValue.value.includes(item.value);
+            if (isInclude) {
+              list.push(item.value);
+            }
+          } else {
+            list.push(item.value);
+          }
+
+          return list;
+        }, []);
+
+        updateModelValue(tempOpt);
+        return;
+      }
+
+      const temptOpt = props.options.reduce((list, item) => {
+        const isDisabledItem = recordOriginDisabledItems.value.includes(item.value);
+        const isOriginCheckedItem = recordOriginCheckedValue.value.includes(item.value);
+
+        if (isDisabledItem && isOriginCheckedItem) {
+          list.push(item.value);
+        }
+
+        return list;
+      }, []);
+
+      updateModelValue(temptOpt);
+    };
+
+    const checkIsAll = () => {
+      // 把 disabled 拔掉比較
+      const filterNonDisabledOptions = props.options.filter((item) => !item.disabled);
+      const filterNonDisabledCheckedItem = innerValue.value.reduce((list, item) => {
+        if (!recordOriginDisabledItems.value.includes(item)) {
+          list.push(item);
+        }
+
+        return list;
+      }, []);
+
+      if (filterNonDisabledOptions.length === filterNonDisabledCheckedItem.length) {
+        isAll.value = true;
+      }
     };
 
     const init = () => {
       innerValue.value = props.modelValue;
+
+      recordOriginDisabledItems.value = props.options.reduce((list, item) => {
+        if (item.disabled) {
+          list.push(item.value);
+        }
+        return list;
+      }, []);
+
+      recordOriginCheckedValue.value = props.options.reduce((list, item) => {
+        const isChecked = innerValue.value.includes(item.value);
+
+        if (isChecked) {
+          list.push(item.value);
+        }
+
+        return list;
+      }, []);
+
+      checkIsAll();
     };
 
     init();
@@ -91,6 +173,8 @@ export default defineComponent({
       checkedOptions,
       checkedOptionLength,
       removeOption,
+      isAll,
+      onChange,
     };
   },
 });
@@ -126,7 +210,10 @@ export default defineComponent({
     @include flex(flex-start, flex-start, column);
 
     &__header {
+      width: 100%;
       margin-bottom: 10px;
+      @include flex(flex-start, flex-start);
+      border-bottom: 1px solid #ccc;
     }
 
     &__content {
@@ -145,7 +232,10 @@ export default defineComponent({
     @include flex(flex-start, flex-start, column);
 
     &__header {
+      width: 100%;
       margin-bottom: 5px;
+      @include padding(0 0 12px 0);
+      border-bottom: 1px solid #ccc;
 
       /* @include padding(10px); */
     }
@@ -160,6 +250,8 @@ export default defineComponent({
 
 .total-count {
   @include font-style($c-input-label, 14, 400, 1px, 18px);
+  flex: none;
+  width: auto;
 }
 
 .checked-count {
@@ -174,6 +266,15 @@ export default defineComponent({
     cursor: pointer;
     border-radius: 2px;
 
+    &:hover {
+      background-color: rgba($c-main, 0.5);
+
+      .checked-list__item__box__delete {
+        display: block;
+      }
+    }
+
+    // 為了蓋過 hover 的優先度，放 hover 下面
     &--disabled {
       opacity: 0.5;
       cursor: not-allowed;
@@ -181,13 +282,9 @@ export default defineComponent({
       .checked-list__item__box__delete {
         cursor: not-allowed;
       }
-    }
 
-    &:hover {
-      background-color: rgba($c-main, 0.5);
-
-      .checked-list__item__box__delete {
-        display: block;
+      .checked-list__item__box .checked-list__item__box__delete {
+        display: none;
       }
     }
 

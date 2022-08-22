@@ -194,6 +194,6 @@ export const transferOptions = [
   },
   {
     label: 'option9',
-    value: 'option9sx',
+    value: 'option9',
   },
 ];

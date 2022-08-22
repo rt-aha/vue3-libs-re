@@ -1,5 +1,5 @@
 <template>
-  <p class="dev-desc">
+  <p class="dev-desc" :class="{ 'dev-desc--mt': mt }">
     <span class="dev-desc__api"> {{ api }} </span>
     <span class="dev-desc__type" v-if="type"> &lt{{ type }}&gt</span>
     <span class="dev-desc__slot"> - <slot /> </span>
@@ -25,6 +25,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    mt: {
+      type: Boolean,
+      dfeault: false,
+    },
   },
 });
 </script>
@@ -32,6 +36,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .dev-desc {
   margin-bottom: 10px;
+
+  &--mt {
+    margin-top: 20px;
+  }
 
   &__api {
     @include font-style(#555, 14, 400, 0.5px);
