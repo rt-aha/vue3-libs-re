@@ -11,11 +11,11 @@
         ]"
       >
         <div class="re-dialog__box__body">
-          <component :is="render" v-bind="$props" @close="close"/>
-          
+          <component :is="render" v-bind="$props" @close="close" />
+
           <div class="btn-wrap" v-if="btns && btns.length && renderType === 'normal'">
             <div class="btn-wrap__btn" v-for="btn of btns" :key="btn.label">
-              <re-button @click="() => handleBtn(btn.cb)" >{{btn.label}}</re-button>
+              <re-button @click="() => handleBtn(btn.cb)">{{ btn.label }}</re-button>
             </div>
           </div>
         </div>
@@ -26,12 +26,12 @@
 
 <script>
 import { defineComponent, watch, getCurrentInstance } from 'vue';
-import ReButton from '@/components/ReButton.vue'
+import ReButton from '@/components/ReButton.vue';
 
 export default defineComponent({
   name: 'AsyncDialog',
   components: {
-    ReButton
+    ReButton,
   },
   props: {
     visible: {
@@ -46,7 +46,7 @@ export default defineComponent({
     },
     btns: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     desc: {
       type: String,
@@ -55,7 +55,7 @@ export default defineComponent({
     renderType: {
       type: String,
       default: '',
-    }
+    },
   },
   emits: ['beforeClose', 'update:visible'],
   setup(props, { emit }) {
@@ -66,21 +66,23 @@ export default defineComponent({
     };
 
     const handleBtn = (cb) => {
-      if(cb) {
+      if (cb) {
         cb();
       }
       close(false);
     };
 
-
-    watch(() => props.visible, (val) => {
-      if (val) {
-        document.body.classList.add('freeze-body');
-        document.body.appendChild(internalInstance);
-      } else {
-        document.body.classList.remove('freeze-body');
-      }
-    });
+    watch(
+      () => props.visible,
+      (val) => {
+        if (val) {
+          document.body.classList.add('freeze-body');
+          document.body.appendChild(internalInstance);
+        } else {
+          document.body.classList.remove('freeze-body');
+        }
+      },
+    );
 
     return {
       close,
@@ -126,7 +128,7 @@ export default defineComponent({
   @include flex(center);
 
   &__btn {
-    &+& {
+    & + & {
       margin-left: 10px;
     }
   }
