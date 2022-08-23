@@ -20,14 +20,15 @@
 - [ ] Loading
 - [ ] Link
 
-### Medium (2/15)
+### Medium (3/15)
 - [ ] Accordion
 - [ ] Breadcrumb
 - [x] Checkbox
 - [x] Tags/DynamicTags
   - [ ] extra 編輯功能
 - [ ] InputList/DynamicInputs
-- [ ] Input
+- [x] Input
+  - [ ] 功能 - 字數限制
 - [ ] InputNumber
 - [ ] TreeSelect
 - [ ] Upload
