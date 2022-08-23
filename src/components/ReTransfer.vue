@@ -8,14 +8,21 @@
           </div>
           <p class="total-count">共 {{ optionLength }} 個選項</p>
         </div>
+        <div v-if="sourceFilter" class="filter-wrap">
+          <input class="filter-wrap__input" v-model="optFilterKeyword" @input="handleInput" />
+        </div>
         <re-divider :margin="{ top: '0px', bottom: '5px' }" />
         <div class="transfer__options__content">
-          <re-checkbox-group v-model="innerValue" :options="options" direction="verticle" />
+          <re-checkbox-group v-model="innerValue" :options="filterOptions" direction="verticle" />
         </div>
       </div>
       <div class="transfer__select">
         <div class="transfer__select__header">
           <p class="checked-count">已選 {{ checkedOptionLength }} 個選項</p>
+        </div>
+
+        <div class="filter-wrap" v-if="targetFilter">
+          <input class="filter-wrap__input" />
         </div>
         <div class="transfer__select__content">
           <div class="checked-list-wrap">
@@ -65,15 +72,25 @@ export default defineComponent({
       type: Array,
       defualt: () => [],
     },
+    sourceFilter: {
+      type: Boolean,
+      default: false,
+    },
+    targetFilter: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
+    const optFilterKeyword = ref('');
     const isAll = ref(false);
     const innerValue = ref(['option1']);
     // 紀錄初始即為 disabled 狀態的選項，避免移除選時變為可選
     const recordOriginDisabledItems = shallowRef([]);
     // 紀錄初始即已被選擇的選項，避免移除選時變為可選
     const recordOriginCheckedValue = shallowRef([]);
+    const filterOptions = ref(props.options);
 
     const optionLength = computed(() => props.options.length);
     const checkedOptions = computed(() => {
@@ -129,6 +146,19 @@ export default defineComponent({
       updateModelValue(temptOpt);
     };
 
+    const handleInput = (e) => {
+      const keyword = e.target.value;
+      console.log('keyword', keyword);
+
+      filterOptions.value = props.options.filter((item) => {
+        console.log(item.value, keyword.toLowerCase());
+        console.log('22', item.value.includes(keyword.toLowerCase()));
+        return item.value.includes(keyword.toLowerCase());
+      });
+
+      console.log('filterOptions', filterOptions.value);
+    };
+
     const checkIsAll = () => {
       // 把 disabled 拔掉比較
       const filterNonDisabledOptions = props.options.filter((item) => !item.disabled);
@@ -178,6 +208,9 @@ export default defineComponent({
       removeOption,
       isAll,
       onChange,
+      optFilterKeyword,
+      handleInput,
+      filterOptions,
     };
   },
 });
@@ -312,6 +345,20 @@ export default defineComponent({
         }
       }
     }
+  }
+}
+
+.filter-wrap {
+  margin: 5px 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  @include padding(5px);
+
+  &__input {
+    outline: 0px;
+    border: 0px;
+    width: 100%;
+    border-radius: 2px;
   }
 }
 </style>

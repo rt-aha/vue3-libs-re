@@ -1,5 +1,13 @@
 <template>
   <div class="v-transfer">
+    <dev-section title="過濾輸入框">
+      <div>
+        <dev-desc api="props" type="Boolean">sourceFilter: 是否顯示來源輸入框</dev-desc>
+        <re-transfer v-model="value3" :options="transferOptions" sourceFilter />
+        <dev-desc api="props" type="Boolean" mt>targetFilter: 是否顯示已選擇輸入框 </dev-desc>
+        <re-transfer v-model="value3" :options="transferOptions" targetFilter />
+      </div>
+    </dev-section>
     <dev-section title="基本使用">
       <div>
         分隔線現在是硬推的，處理一下 checkbox 的 css
@@ -11,14 +19,6 @@
       <div>
         <dev-desc api="props" type="Array">options: e.g. [{...props, render: renderFunction}]</dev-desc>
         <re-transfer v-model="value2" :options="phoneOptions2" />
-      </div>
-    </dev-section>
-    <dev-section title="過濾輸入框">
-      <div>
-        <dev-desc api="props" type="Boolean">sourceFilter: 是否顯示來源輸入框</dev-desc>
-        <re-transfer v-model="value3" :options="transferOptions" sourceFilter />
-        <dev-desc api="props" type="Boolean" mt>selectedFilter: 是否顯示已選擇輸入框 </dev-desc>
-        <re-transfer v-model="value3" :options="transferOptions" selectedFilter />
       </div>
     </dev-section>
   </div>

@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, shallowRef } from 'vue';
+import { defineComponent, ref, shallowRef, watch } from 'vue';
 import { v4 as uuid } from 'uuid';
 import useValidate from '@/hooks/useValidate';
 import ReCheckbox from '@/components/ReCheckbox.vue';
@@ -181,6 +181,13 @@ export default defineComponent({
 
     initChecked();
     init();
+
+    watch(
+      () => props.options,
+      () => {
+        init();
+      },
+    );
 
     return {
       uuid: uuid(),
