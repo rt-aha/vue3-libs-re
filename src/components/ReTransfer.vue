@@ -8,6 +8,7 @@
           </div>
           <p class="total-count">共 {{ optionLength }} 個選項</p>
         </div>
+        <re-divider :margin="{ top: '0px', bottom: '5px' }" />
         <div class="transfer__options__content">
           <re-checkbox-group v-model="innerValue" :options="options" direction="verticle" />
         </div>
@@ -46,12 +47,14 @@
 import { defineComponent, ref, computed, shallowRef } from 'vue';
 import ReCheckboxGroup from '@/components/ReCheckboxGroup.vue';
 import ReCheckbox from '@/components/ReCheckbox.vue';
+import ReDivider from '@/components/ReDivider.vue';
 
 export default defineComponent({
   name: 'ReTransfer',
   components: {
     ReCheckboxGroup,
     ReCheckbox,
+    ReDivider,
   },
   props: {
     modelValue: {
@@ -205,15 +208,15 @@ export default defineComponent({
   &__options {
     flex: none;
     width: 50%;
-    @include padding(10px);
+    @include padding(5px 10px 10px);
     height: 100%;
     @include flex(flex-start, flex-start, column);
 
     &__header {
       width: 100%;
-      margin-bottom: 10px;
-      @include flex(flex-start, flex-start);
-      border-bottom: 1px solid #ccc;
+      // margin-bottom: 10px;
+      @include flex(flex-start, center);
+      // border-bottom: 1px solid #ccc;
     }
 
     &__content {
@@ -235,7 +238,7 @@ export default defineComponent({
       width: 100%;
       margin-bottom: 5px;
       @include padding(0 0 12px 0);
-      border-bottom: 1px solid #ccc;
+      // border-bottom: 1px solid #ccc;
 
       /* @include padding(10px); */
     }

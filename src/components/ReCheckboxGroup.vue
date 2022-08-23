@@ -195,6 +195,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+// * {
+//   outline: 1px solid #f00;
+// }
 .re-checkbox-group {
   width: 100%;
 
@@ -240,8 +243,7 @@ export default defineComponent({
   width: 100%;
 
   &__item {
-    margin-right: 10px;
-    margin-bottom: 10px;
+    padding: 5px 10px 5px 0;
 
     &--disabled {
       opacity: 0.5;
@@ -257,8 +259,8 @@ export default defineComponent({
 
       &__option {
         flex: none;
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
         border: 1px solid $c-main;
         border-radius: 2px;
 

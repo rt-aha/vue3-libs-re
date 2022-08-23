@@ -83,6 +83,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+// * {
+//   outline: 1px solid #f00;
+// }
+
 .re-checkbox {
   width: 100%;
 
@@ -91,8 +95,8 @@ export default defineComponent({
       color: blue;
       .chk-list__item {
         display: inline-block;
-        margin-right: 10px;
-        margin-bottom: 10px;
+        // margin-right: 10px;
+        // margin-bottom: 10pxs;
       }
     }
 
@@ -112,6 +116,8 @@ export default defineComponent({
   width: 100%;
 
   &__item {
+    margin: 5px 10px 5px 0;
+
     &--disabled {
       opacity: 0.5;
 
@@ -120,17 +126,18 @@ export default defineComponent({
       }
     }
 
-    & + & {
-      margin-top: 10px;
-    }
+    // & + & {
+    //   margin-top: 10px;
+    // }
+
     &__label {
       cursor: pointer;
       @include flex(flex-start, flex-start);
 
       &__option {
         flex: none;
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
         border: 1px solid $c-main;
         border-radius: 2px;
 
