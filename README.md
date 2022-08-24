@@ -20,7 +20,7 @@
 - [ ] Loading
 - [ ] Link
 
-### Medium (3/15)
+### Medium (4/15)
 - [ ] Accordion
 - [ ] Breadcrumb
 - [x] Checkbox
@@ -29,7 +29,7 @@
 - [ ] InputList/DynamicInputs
 - [x] Input
   - [ ] 功能 - 字數限制
-- [ ] InputNumber
+- [x] InputNumber
   - [ ] 小數點還要處理
   - [ ] 使用千分位
 - [ ] TreeSelect
