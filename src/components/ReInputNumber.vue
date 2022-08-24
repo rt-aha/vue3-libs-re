@@ -1,17 +1,13 @@
 <template>
   <div class="re-input" :class="{ 're-input--disabled': disabled }">
-    <div class="re-input__left" v-if="slots.left">
-      <slot name="left"></slot>
-    </div>
     <div class="re-input__center">
       <div class="re-input__center__prefix" v-if="slots.prefix">
         <slot name="prefix"></slot>
       </div>
-
       <div class="re-input__center__main">
         <input
           class="re-input-native-field"
-          :type="inputType"
+          type="number"
           ref="inputField"
           @input="(e) => updateValue(e, 'input')"
           @change="(e) => updateValue(e, 'change')"
@@ -20,24 +16,14 @@
           :disabled="disabled"
         />
       </div>
-      <div class="re-input__center__eye" @click="toggleEyeStatus" v-if="type === 'password'">
-        <img
-          class="re-input__center__eye__icon re-input__center__eye__icon--show"
-          src="@/assets/icon/eye-show.svg"
-          v-show="inputType === 'password'"
-        />
-        <img
-          class="re-input__center__eye__icon re-input__center__eye__icon--hide"
-          src="@/assets/icon/eye-hide.svg"
-          v-show="inputType === 'text'"
-        />
-      </div>
+
       <div class="re-input__center__suffix" v-if="slots.suffix">
         <slot name="suffix"></slot>
       </div>
-    </div>
-    <div class="re-input__right" v-if="slots.right">
-      <slot name="right"></slot>
+      <div class="re-input__center__control">
+        <img class="re-input__center__control__icon" src="@/assets/icon/minus.svg" @click="minus" />
+        <img class="re-input__center__control__icon" src="@/assets/icon/add.svg" @click="add" />
+      </div>
     </div>
   </div>
 </template>
@@ -50,12 +36,24 @@ export default defineComponent({
   name: 'ReInput',
   props: {
     modelValue: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     type: {
       type: String,
       default: 'input',
+    },
+    step: {
+      type: [String, Number],
+      default: 1,
+    },
+    max: {
+      type: [String, Number, undefined],
+      default: undefined,
+    },
+    min: {
+      type: [String, Number, undefined],
+      default: undefined,
     },
     disabled: {
       type: Boolean,
@@ -98,8 +96,36 @@ export default defineComponent({
       inputField.value.value = props.modelValue;
     };
 
+    const add = () => {
+      if (props.disabled) return;
+
+      let val = Number(props.modelValue) + Number(props.step);
+      if (props.max) {
+        if (val > props.max) {
+          val = props.max;
+        }
+      }
+
+      emit('update:modelValue', val);
+    };
+
+    const minus = () => {
+      if (props.disabled) return;
+      let val = Number(props.modelValue) - Number(props.step);
+
+      if (props.min) {
+        if (val < props.min) {
+          val = props.min;
+        }
+      }
+
+      emit('update:modelValue', val);
+    };
+
     const init = () => {
-      inputType.value = props.type || 'input';
+      if (!props.modelValue) {
+        emit('update:modelValue', 0);
+      }
     };
 
     onMounted(() => {
@@ -114,6 +140,8 @@ export default defineComponent({
       slots,
       toggleEyeStatus,
       inputType,
+      add,
+      minus,
       // handleInput,
       // handleChange,
       // handleBlur,
@@ -136,27 +164,9 @@ export default defineComponent({
     opacity: 0.5;
 
     .re-input-native-field,
-    .re-input__center__eye__icon {
+    .re-input__center__control__icon {
       cursor: not-allowed;
       opacity: 0.5;
-    }
-  }
-
-  &__left {
-    flex: none;
-    width: auto;
-    @include padding(0 8px);
-    @include form-font();
-    position: relative;
-
-    &::after {
-      content: '';
-      width: 1px;
-      height: 14px;
-      background-color: $c-form-border;
-      display: inline-block;
-      @include position(tr, 50%, 0);
-      transform: translateY(-50%);
     }
   }
 
@@ -171,33 +181,10 @@ export default defineComponent({
       @include form-font();
       @include flex(center);
     }
+
     &__main {
       flex: 1;
       @include padding(0px 8px);
-    }
-
-    &__eye {
-      flex: none;
-      width: auto;
-      @include padding(0px 8px);
-      @include form-font();
-      @include flex(center);
-      /* position: relative;
-
-      &::before {
-        content: '';
-        width: 1px;
-        height: 14px;
-        background-color: $c-form-border;
-        display: inline-block;
-        @include position(tl, 50%, 0);
-        transform: translateY(-50%);
-      } */
-
-      &__icon {
-        width: 20px;
-        cursor: pointer;
-      }
     }
 
     &__suffix {
@@ -207,22 +194,29 @@ export default defineComponent({
       @include form-font();
       @include flex(center);
     }
-  }
-  &__right {
-    flex: none;
-    width: auto;
-    @include padding(0 8px);
-    @include form-font();
-    position: relative;
 
-    &::before {
-      content: '';
-      width: 1px;
-      height: 14px;
-      background-color: $c-form-border;
-      display: inline-block;
-      @include position(tl, 50%, 0);
-      transform: translateY(-50%);
+    &__control {
+      flex: none;
+      width: auto;
+      @include padding(0px 8px);
+      @include form-font();
+      @include flex(center);
+      position: relative;
+
+      &::before {
+        content: '';
+        width: 1px;
+        height: 14px;
+        background-color: $c-form-border;
+        display: inline-block;
+        @include position(tl, 50%, 0);
+        transform: translateY(-50%);
+      }
+
+      &__icon {
+        width: 20px;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -233,5 +227,11 @@ export default defineComponent({
   border: 0px;
   outline: 0px;
   width: 100%;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+  }
 }
 </style>

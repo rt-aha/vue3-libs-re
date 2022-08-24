@@ -30,6 +30,8 @@
 - [x] Input
   - [ ] 功能 - 字數限制
 - [ ] InputNumber
+  - [ ] 小數點還要處理
+  - [ ] 使用千分位
 - [ ] TreeSelect
 - [ ] Upload
 - [ ] Countdown

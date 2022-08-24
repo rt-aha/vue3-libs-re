@@ -32,6 +32,14 @@ const children = [
     component: () => import(/* webpackChunkName: "ReInput" */ '@/views/components/ReInput.vue'),
   },
   {
+    path: 're-input-number',
+    name: 're-input-number',
+    component: () => import(/* webpackChunkName: "ReInputNumber" */ '@/views/components/ReInputNumber.vue'),
+    meta: {
+      title: 'Input Number 數字輸入',
+    },
+  },
+  {
     path: 're-textarea',
     name: 're-textarea',
     component: () => import(/* webpackChunkName: "ReTextarea" */ '@/views/components/ReTextarea.vue'),
