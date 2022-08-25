@@ -5,6 +5,14 @@ const children = [
     path: 're-form',
     name: 're-form',
     component: () => import(/* webpackChunkName: "ReForm" */ '@/views/widgets/ReForm.vue'),
+    meta: {
+      title: 'Form 表單',
+    },
+    props: {
+      form: {
+        title: 'Form 表單',
+      },
+    },
   },
   {
     path: 'manage-page',

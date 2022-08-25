@@ -19,7 +19,7 @@ import { defineComponent, ref, watch } from 'vue';
 import ReForm from '@/components/ReForm.vue';
 import ReFormItem from '@/components/ReFormItem.vue';
 import ReInput from '@/components/ReInput.vue';
-import ReSelect from '@/components/ReSelect/index.vue';
+import ReSelect from '@/components/ReSelect.vue';
 import ReRadio from '@/components/ReRadio.vue';
 import ReCheckbox from '@/components/ReCheckbox.vue';
 import ReSwitch from '@/components/ReSwitch.vue';

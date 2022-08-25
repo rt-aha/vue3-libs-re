@@ -1,8 +1,12 @@
 <template>
   <div class="v-re-form">
     <!-- ReForm 施工中 ... -->
-    <ContentLayout>
-      <template v-slot:first>
+    <!-- <p class="extra-page-title">{{ title }}</p> -->
+
+    <!-- <ContentLayout>
+      <template v-slot:first> -->
+    <dev-section title="測試表單">
+      <div class="wrap">
         <ReEasyForm
           v-model:formValue="formValue2"
           :formConfig="formValue2Config"
@@ -10,9 +14,11 @@
           ref="formRef"
         />
         <ReButton @click="getValue">getValue</ReButton>
-      </template>
-      <template v-slot:second> </template>
-    </ContentLayout>
+      </div>
+    </dev-section>
+    <!-- </template> -->
+    <!-- <template v-slot:second> </template> -->
+    <!-- </ContentLayout> -->
   </div>
 </template>
 
@@ -29,7 +35,15 @@ export default defineComponent({
     ReButton,
     ReEasyForm,
   },
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+  },
   setup() {
+    // props, { attrs }
+
     const formRef = ref(null);
     const formValue = ref({
       input: '',
@@ -43,7 +57,7 @@ export default defineComponent({
       input2: '',
       select: 1,
       radio1: 'apple',
-      checkbox1: ['apple', 'banana'],
+      checkbox1: false,
       switch: false,
       timePicker: new Date(),
     });
@@ -60,12 +74,12 @@ export default defineComponent({
         label: '輸入框1',
         value: formValue2.value.input,
       },
-      {
-        compName: 'Input',
-        formKey: 'input2',
-        label: '輸入框2',
-        value: formValue2.value.input2,
-      },
+      // {
+      //   compName: 'Input',
+      //   formKey: 'input2',
+      //   label: '輸入框2',
+      //   value: formValue2.value.input2,
+      // },
       {
         compName: 'Select',
         formKey: 'select',
@@ -177,4 +191,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.extra-page-title {
+  @include font-style($c-main, 24, 500);
+}
+</style>

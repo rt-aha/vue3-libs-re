@@ -47,7 +47,13 @@ const children = [
   {
     path: 're-select',
     name: 're-select',
-    component: () => import(/* webpackChunkName: "ReSelect" */ '@/views/components/ReSelect.vue'),
+    components: {
+      default: () => import(/* webpackChunkName: "ReSelect" */ '@/views/components/ReSelect.vue'),
+      form: () => import(/* webpackChunkName: "ViewReForm" */ '@/views/widgets/ReForm.vue'),
+    },
+    meta: {
+      title: 'Select 選擇器',
+    },
   },
   {
     path: 're-radio',

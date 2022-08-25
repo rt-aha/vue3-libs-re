@@ -1,7 +1,14 @@
 <template>
   <div class="re-select">
     <div class="select" @click.stop="toggleExpand">
-      <p class="select__field">{{ innerValue }}</p>
+      <div>
+        <template v-if="multiple">
+          <re-select-multi-tag v-model="innerMulti" />
+        </template>
+        <template v-else>
+          <input class="select__field" readonly v-model="innerSingle" />
+        </template>
+      </div>
       <img
         class="select__drop-icon"
         :class="{
@@ -17,6 +24,9 @@
           <ul class="select-option-list">
             <li
               class="select-option-list__item"
+              :class="{
+                'select-option-list__item--disabled': opt.disabled,
+              }"
               v-for="opt of options"
               :key="opt.value"
               @click="() => handleOption(opt)"
@@ -32,14 +42,16 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, watch, computed } from 'vue';
+import { defineComponent, ref, watch, nextTick } from 'vue';
 import ReCollapseTransition from '@/components/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
+import ReSelectMultiTag from '@/components/ReSelectMultiTag.vue';
 
 export default defineComponent({
   name: 'ReSelect',
   components: {
     ReCollapseTransition,
+    ReSelectMultiTag,
   },
   props: {
     modelValue: {
@@ -49,18 +61,44 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
+    multiple: {
+      type: Boolean,
+      defualt: false,
+    },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'onChange'],
   setup(props, { emit }) {
+    const innerMulti = ref([
+      {
+        label: 'opt1',
+        value: 'opt1',
+      },
+    ]);
+
+    const innerSingle = ref('123');
+
+    // const tagOpts = ref([
+    //   {
+    //     label: 'opt1',
+    //     value: 'opt1',
+    //   },
+    // ]);
+
     const { validFn } = useValidate();
     const isExpand = ref(false);
 
     const setInitValue = () => {
-      innerValue.value = props.modelValue;
+      if (props.multiple) {
+        innerSingle.value = props.modelValue;
+      } else {
+        innerMulti.value = props.modelValue;
+      }
     };
 
     const toggleExpand = () => {
       isExpand.value = !isExpand.value;
+
+      console.log('isExpand.value', isExpand.value);
     };
 
     const openSelect = () => {
@@ -71,19 +109,63 @@ export default defineComponent({
       isExpand.value = false;
     };
 
-    const handleOption = (opt) => {
-      emit('update:modelValue', opt.value);
-      validFn('change');
-      isExpand.value = false;
+    const setInnerMulti = () => {
+      console.log('props.modelValue', props.modelValue);
+
+      const tempValue = props.options.filter((item) => props.modelValue.includes(item.value));
+
+      console.log('tempValue', tempValue);
+
+      innerMulti.value = tempValue;
     };
 
-    const innerValue = computed(() => {
+    const setInnerSingle = () => {
       const valueObj = props.options.find((item) => {
         return item.value === props.modelValue;
       });
 
-      return valueObj?.label || '';
-    });
+      innerSingle.value = valueObj?.label || '';
+    };
+
+    const handleOption = async (opt) => {
+      if (opt.disabled) return;
+
+      if (props.multiple) {
+        let newValue = [];
+        let actionType = '';
+        console.log('props.modelValue', props.modelValue);
+        console.log('opt.value', opt.value);
+        if (props.modelValue.includes(opt.value)) {
+          newValue = props.modelValue.filter((item) => item !== opt.value);
+          actionType = 'remove';
+        } else {
+          newValue = [...props.modelValue, opt.value];
+          actionType = 'add';
+        }
+
+        console.log('newValue', newValue);
+
+        emit('update:modelValue', newValue);
+        await nextTick();
+        setInnerMulti();
+        emit('onChange', actionType, opt, newValue);
+      } else {
+        emit('update:modelValue', opt.value);
+        await nextTick();
+        setInnerSingle();
+        emit('onChange', opt);
+      }
+      validFn('change');
+      isExpand.value = false;
+    };
+
+    // const innerValue = computed(() => {
+    //   const valueObj = props.options.find((item) => {
+    //     return item.value === props.modelValue;
+    //   });
+
+    //   return valueObj?.label || '';
+    // });
 
     watch(
       () => props.modelValue,
@@ -94,12 +176,15 @@ export default defineComponent({
     );
 
     return {
-      innerValue,
+      // innerValue,
       toggleExpand,
       isExpand,
       handleOption,
       openSelect,
       closeSelect,
+      innerMulti,
+      innerSingle,
+      // tagOpts,
     };
   },
 });
@@ -108,15 +193,16 @@ export default defineComponent({
 .re-select {
   // width: 200px;
   cursor: pointer;
-  box-shadow: 0 0 10px 3px $c-shadow;
+  /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
 }
 
 .select {
-  background-color: #eee;
+  /* background-color: #eee; */
   display: inline-block;
   height: 36px;
-  border-bottom: 1px solid $c-main;
+  border: 1px solid $c-form-border;
+  border-radius: 4px;
   @include padding(0px 10px);
   @include flex();
   // width: 200px;
@@ -142,7 +228,7 @@ export default defineComponent({
 }
 
 .select-options-wrap {
-  @include position(tl, 100%, 0);
+  @include position(tl, calc(100% + 5px), 0);
   background-color: $c-white;
   width: 100%;
   z-index: 100;
@@ -156,6 +242,11 @@ export default defineComponent({
     @include flex();
     height: 36px;
     cursor: pointer;
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
     &:hover {
       background-color: rgba($c-main, 0.2);

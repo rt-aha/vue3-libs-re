@@ -10,7 +10,14 @@
       </div>
       <div class="ly-base-layout__body__container">
         <p class="page-title">{{ $route.meta.title }}</p>
-        <router-view />
+        <div class="router-view-wrap">
+          <div class="router-view-wrap__view">
+            <router-view />
+          </div>
+          <div class="router-view-wrap__extra-view">
+            <router-view name="form" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -20,17 +27,22 @@ import { defineComponent } from 'vue';
 import LyHeader from '@/layout/LyHeader.vue';
 import LySidebar from '@/layout/LySidebar.vue';
 import { useRoute } from 'vue-router';
+// import ReForm from '@/views/widgets/ReForm.vue';
 
 export default defineComponent({
   components: {
     LyHeader,
     LySidebar,
+    // ReForm,
   },
   setup() {
     const route = useRoute();
 
+    // const showForm = ['group'].includes(route.meta.extraView);
+
     return {
       route,
+      // showForm,
     };
   },
 });
@@ -82,6 +94,21 @@ export default defineComponent({
     width: 100%;
     height: auto;
     flex: none;
+  }
+}
+
+.router-view-wrap {
+  @include flex(flex-start, flex-start);
+
+  &__view {
+    flex: none;
+    width: 50%;
+  }
+
+  &__extra-view {
+    flex: none;
+    width: 50%;
+    @include padding(0 0 0 30px);
   }
 }
 </style>
