@@ -46,8 +46,9 @@
 - [ ] DatePicker
 - [ ] TimePicker
 - [ ] Transfer
-- [ ] Select
-  - [ ] MultiSelect
+- [x] Select
+  - [ ] 可清除功能
+  - [x] MultiSelect
   - [ ] SearchSelect
   - [ ] GroupSelect
   - [ ] MultiLayerSelect

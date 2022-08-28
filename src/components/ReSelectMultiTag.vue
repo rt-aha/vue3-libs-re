@@ -88,13 +88,8 @@ export default defineComponent({
       if (tag.disabled) return;
 
       const findIndex = innerValue.value.findIndex((item) => item.value === tag.value);
-
-      console.log('findIndex', findIndex);
-
       const targetTag = innerValue.value.splice(findIndex, 1);
-
       emit('onRemoveItem', targetTag[0]);
-      emit('update:modelValue', innerValue.value);
     };
 
     const toggleAddTagStatus = async () => {
@@ -140,15 +135,17 @@ export default defineComponent({
       innerValue.value = props.modelValue;
     };
 
-    const getLabelHeight = () => {
-      const lastLabelItem = labelItemRef.value[labelItemRef.value.length - 1];
-      labelItemHeight.value = `${lastLabelItem.clientHeight + 2}px`;
-    };
+    // const getLabelHeight = () => {
+    //   console.log('labelItemRef.value', labelItemRef.value);
+
+    //   const lastLabelItem = labelItemRef.value[labelItemRef.value.length - 1];
+    //   labelItemHeight.value = `${lastLabelItem.clientHeight + 2}px`;
+    // };
 
     init();
 
     onMounted(() => {
-      getLabelHeight();
+      // getLabelHeight();
     });
 
     watch(
@@ -181,6 +178,7 @@ export default defineComponent({
 
 .re-tag {
   width: 100%;
+  @include padding(5px 0 0 0);
 
   &--editable {
     .tag-list__item {
@@ -194,10 +192,12 @@ export default defineComponent({
     display: inline-block;
     vertical-align: bottom;
     margin-right: 5px;
+    margin-bottom: 5px;
     /* margin-bottom: 10px; */
     border: 1px solid $c-main;
     border-radius: 4px;
     @include padding(2px 24px 2px 5px);
+
     @include inline-flex();
     cursor: pointer;
     position: relative;

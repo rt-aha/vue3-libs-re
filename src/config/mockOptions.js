@@ -45,6 +45,177 @@ export const singleOption = {
   value: true,
 };
 
+export const phoneOptions3 = [
+  {
+    id: 111,
+    label: 'Pixel 6',
+    price: '$111',
+    color: '黑',
+    value: 'pixel-6-black',
+    render: PhoneOption,
+  },
+  {
+    id: 222,
+    label: 'Pixel 6',
+    price: '$111',
+    color: '白',
+    value: 'pixel-6-white',
+    disabled: true,
+    render: PhoneOption,
+  },
+  {
+    id: 333,
+    label: 'Pixel 6a',
+    price: '$222',
+    color: '粉',
+    value: 'pixel-6a-pink',
+    render: PhoneOption,
+  },
+  {
+    id: 444,
+    label: 'Pixel 7',
+    price: '$333',
+    color: '金',
+    value: 'pixel-7-gold',
+    render: PhoneOption,
+  },
+  {
+    id: 444,
+    label: 'Pixel 7a',
+    price: '$333',
+    color: '黑',
+    value: 'pixel-7a-black',
+    render: PhoneOption,
+  },
+  {
+    id: 555,
+    label: 'Pixel 7 pro',
+    price: '$555',
+    color: '金',
+    value: 'pixel-7-prop-gold',
+    render: PhoneOption,
+    disabled: true,
+  },
+];
+
+export const basicOptions = [
+  {
+    label: 'option1',
+    value: 'option1',
+  },
+  {
+    label: 'option2',
+    value: 'option2',
+  },
+  {
+    label: 'option3',
+    value: 'option3',
+  },
+  {
+    label: 'option4',
+    value: 'option4',
+  },
+  {
+    label: 'option5',
+    value: 'option5',
+  },
+];
+
+export const basicWithDisabledOptions = [
+  {
+    label: 'option1',
+    value: 'option1',
+  },
+  {
+    label: 'option2',
+    value: 'option2',
+    disabled: true,
+  },
+  {
+    label: 'option3',
+    value: 'option3',
+  },
+  {
+    label: 'option4',
+    value: 'option4',
+  },
+  {
+    label: 'option5',
+    value: 'option5',
+    disabled: true,
+  },
+];
+
+export const renderOptions = [
+  {
+    id: 111,
+    label: 'Pixel 6',
+    price: '$111',
+    color: '黑',
+    value: 'pixel-6-black',
+    render: PhoneOption,
+  },
+  {
+    id: 222,
+    label: 'Pixel 6',
+    price: '$111',
+    color: '白',
+    value: 'pixel-6-white',
+    render: PhoneOption,
+  },
+  {
+    id: 333,
+    label: 'Pixel 6a',
+    price: '$222',
+    color: '粉',
+    value: 'pixel-6a-pink',
+    render: PhoneOption,
+  },
+  {
+    id: 444,
+    label: 'Pixel 7',
+    price: '$333',
+    color: '金',
+    value: 'pixel-gold',
+    render: PhoneOption,
+  },
+];
+
+export const renderWithDisabledOptions = [
+  {
+    id: 111,
+    label: 'Pixel 6',
+    price: '$111',
+    color: '黑',
+    value: 'pixel-6-black',
+    render: PhoneOption,
+  },
+  {
+    id: 222,
+    label: 'Pixel 6',
+    price: '$111',
+    color: '白',
+    value: 'pixel-6-white',
+    render: PhoneOption,
+  },
+  {
+    id: 333,
+    label: 'Pixel 6a',
+    price: '$222',
+    color: '粉',
+    value: 'pixel-6a-pink',
+    render: PhoneOption,
+  },
+  {
+    id: 444,
+    label: 'Pixel 7',
+    price: '$333',
+    color: '金',
+    value: 'pixel-gold',
+    render: PhoneOption,
+  },
+];
+
 export const phoneOptions = [
   {
     id: 111,
@@ -101,59 +272,6 @@ export const phoneOptions2 = [
     color: '金',
     value: 'pixel-gold',
     render: PhoneOption,
-  },
-];
-
-export const phoneOptions3 = [
-  {
-    id: 111,
-    label: 'Pixel 6',
-    price: '$111',
-    color: '黑',
-    value: 'pixel-6-black',
-    render: PhoneOption,
-  },
-  {
-    id: 222,
-    label: 'Pixel 6',
-    price: '$111',
-    color: '白',
-    value: 'pixel-6-white',
-    disabled: true,
-    render: PhoneOption,
-  },
-  {
-    id: 333,
-    label: 'Pixel 6a',
-    price: '$222',
-    color: '粉',
-    value: 'pixel-6a-pink',
-    render: PhoneOption,
-  },
-  {
-    id: 444,
-    label: 'Pixel 7',
-    price: '$333',
-    color: '金',
-    value: 'pixel-7-gold',
-    render: PhoneOption,
-  },
-  {
-    id: 444,
-    label: 'Pixel 7',
-    price: '$333',
-    color: '黑',
-    value: 'pixel-7-black',
-    render: PhoneOption,
-  },
-  {
-    id: 555,
-    label: 'Pixel 7 pro',
-    price: '$555',
-    color: '金',
-    value: 'pixel-7-prop-gold',
-    render: PhoneOption,
-    disabled: true,
   },
 ];
 
