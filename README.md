@@ -63,6 +63,7 @@
 
 ## widgets
 - [ ] Form/FormItem/FormMessage
+  - [ ] 把非同步驗證加進去，完成後刪除 async-validator 套件
 - [ ] Table
 - [ ] Navigation
 - [ ] Menu

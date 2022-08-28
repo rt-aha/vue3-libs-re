@@ -99,14 +99,30 @@ export default defineComponent({
     const formRules = {
       account: {
         trigger: ['input'],
-        validator: ({ value, label }) =>
-          vld({
-            value,
+        validator: ({ value, label }) => {
+          console.log('value', value);
+          return vld(value, {
             label,
-            ruleList: ['vldRequired', 'vldLengthMoreThen'],
+            ruleList: [
+              {
+                name: 'vldRequired',
+              },
+              {
+                // args: 規則名稱
+                name: 'vldLengthMoreThen',
+                // args: 定義參數
+                args: {
+                  min: 6,
+                },
+                // cusError: '定義名字'
+              },
+            ],
+            options: {
+              test: 'hi',
+            },
             // 若另外設定，就走另外設定的
-            // ruleError: { vldRequired: 'vldRequiredWithLabel' },
-          }),
+          });
+        },
       },
 
       // input2: [

@@ -1,6 +1,6 @@
 // import regExps from '@/utils/validate/regExps';
 
-export const vldRequired = (value, errMsg, rule, args) => {
+export const vldRequired = (value) => {
   if (value) {
     return true;
   }
@@ -8,8 +8,8 @@ export const vldRequired = (value, errMsg, rule, args) => {
   return false;
 };
 
-export const vldLengthMoreThen = (value, errMsg, rule, args = 6) => {
-  if (value.length >= args) {
+export const vldLengthMoreThen = (value, args) => {
+  if (value.length >= args.min) {
     return true;
   }
 

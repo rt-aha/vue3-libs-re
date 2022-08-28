@@ -64,8 +64,6 @@ export default defineComponent({
       if (formRules[props.formKey]) {
         const errorMessage = await validate(event);
 
-        console.log('errorMessage', errorMessage);
-
         if (errorMessage) {
           formErrorMessage.value = errorMessage;
           return false;

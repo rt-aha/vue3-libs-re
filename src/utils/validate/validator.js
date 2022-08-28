@@ -4,51 +4,36 @@ import * as errorMessage from '@/utils/validate/errorMessage';
 const validator = {
   ruleList: [],
 
-  vldFunc(value, ruleError, rule, args, options) {
-    const validate = {
-      ...allRules,
-    };
-
-    const isPass = validate[rule](value, ruleError, rule, args, options);
+  vldFunc(value, ruleData) {
+    const { name, args } = ruleData;
+    const isPass = allRules[name](value, args);
 
     if (!isPass) {
-      return this.errMsg(ruleError, rule, args, options);
+      return this.errMsg(name, ruleData);
     }
   },
 
   // 取得錯誤訊息
   getErrorMessage(rule, args, options) {
-    const defaultErrMsg = {
-      ...errorMessage,
-    };
-
-    return defaultErrMsg[rule](args, options);
+    return errorMessage[rule](args, options);
   },
 
   // 回傳錯誤訊息
-  errMsg(ruleError, rule, args, options) {
+  errMsg(name, ruleData) {
+    const { cusError, args, options } = ruleData;
+
     let errorMessage = '';
-    if (rule in ruleError) {
-      errorMessage = this.getErrorMessage(ruleError[rule], args, options);
+    if (cusError) {
+      errorMessage = this.getErrorMessage(cusError, args, options);
     } else {
-      errorMessage = this.getErrorMessage(rule, args, options);
+      errorMessage = this.getErrorMessage(name, args, options);
     }
 
     return {
-      rule,
+      rule: name,
       errorMessage,
       isPass: false,
     };
-  },
-
-  // 將驗證規則加入陣列
-  add(value, rules, ruleError, options) {
-    rules.forEach((r) => {
-      const rule = r.split(':')[0]; // 規則名稱
-      const args = r.split(':')[1] || null; // 額外參數
-
-      this.ruleList.push(() => this.vldFunc.call(this, value, ruleError, rule, args, options));
-    });
   },
 
   // 開始驗證
@@ -57,7 +42,6 @@ const validator = {
       const msg = fn();
 
       if (msg) {
-        this.cleanRuleList();
         return msg;
       }
     }
@@ -68,18 +52,27 @@ const validator = {
     };
   },
 
+  // 將驗證規則加入陣列
+  add(value, ruleData) {
+    const { ruleList } = ruleData;
+
+    this.ruleList = ruleList.map((r) => {
+      return this.vldFunc.bind(this, value, r);
+    });
+  },
+
   cleanRuleList() {
     this.ruleList = [];
   },
 };
 
-const vld = ({ value = '', ruleList = [], ruleError = {}, options, label }) => {
-  const opts = {
-    ...options,
+// , ruleError = {}, options,
+const vld = (value = '', { label, ruleList = [], options }) => {
+  validator.add(value, {
+    ruleList,
     label,
-  };
-
-  validator.add(value, ruleList, ruleError, opts);
+    options,
+  });
 
   return new Promise((resolve) => {
     try {
