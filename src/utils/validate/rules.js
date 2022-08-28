@@ -1,7 +1,6 @@
-import regExps from '@/utils/validate/regExp';
+// import regExps from '@/utils/validate/regExps';
 
 export const vldRequired = (value, errMsg, rule, args) => {
-  console.log('111', value);
   if (value) {
     return true;
   }

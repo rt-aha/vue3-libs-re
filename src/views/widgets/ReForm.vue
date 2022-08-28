@@ -11,7 +11,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
-import { vld } from '@/utils/validate/vld';
+import { vld } from '@/utils/validate/validator';
 import ReButton from '@/components/ReButton.vue';
 import { phoneOptions, phoneOptions2 } from '@/config/mockOptions.js';
 import ReEasyForm from '@/components/ReEasyForm.vue';
