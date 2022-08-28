@@ -51,7 +51,6 @@
   - [x] MultiSelect
   - [ ] SearchSelect
   - [ ] GroupSelect
-  - [ ] MultiLayerSelect
 - [ ] Slider
 - [ ] Pagination
 - [ ] Message

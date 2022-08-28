@@ -1,30 +1,17 @@
 <template>
   <div class="v-re-form">
-    <!-- ReForm 施工中 ... -->
-    <!-- <p class="extra-page-title">{{ title }}</p> -->
-
-    <!-- <ContentLayout>
-      <template v-slot:first> -->
-    <dev-section title="測試表單">
+    <dev-section title="基本使用">
       <div class="wrap">
-        <ReEasyForm
-          v-model:formValue="formValue2"
-          :formConfig="formValue2Config"
-          :formRules="formRules"
-          ref="formRef"
-        />
+        <ReEasyForm v-model:formValue="formValue" :formConfig="formValueConfig" :formRules="formRules" ref="formRef" />
         <ReButton @click="getValue">getValue</ReButton>
       </div>
     </dev-section>
-    <!-- </template> -->
-    <!-- <template v-slot:second> </template> -->
-    <!-- </ContentLayout> -->
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
-
+import { vld } from '@/utils/validate/vld';
 import ReButton from '@/components/ReButton.vue';
 import { phoneOptions, phoneOptions2 } from '@/config/mockOptions.js';
 import ReEasyForm from '@/components/ReEasyForm.vue';
@@ -45,16 +32,10 @@ export default defineComponent({
     // props, { attrs }
 
     const formRef = ref(null);
-    const formValue = ref({
-      input: '',
-      input2: '',
-      select1: 1,
-      radio1: 'apple',
-    });
 
-    const formValue2 = ref({
-      input: '222',
-      input2: '',
+    const formValue = ref({
+      account: '',
+      password: '',
       select: 1,
       radio1: 'apple',
       checkbox1: false,
@@ -63,126 +44,124 @@ export default defineComponent({
     });
 
     setTimeout(() => {
-      // formValue2.value.input = '111';
-      // formValue2.value.radio1 = 'banana';
+      // formValue.value.input = '111';
+      // formValue.value.radio1 = 'banana';
     }, 1500);
 
-    const formValue2Config = [
+    const formValueConfig = [
       {
         compName: 'Input',
-        formKey: 'input',
-        label: '輸入框1',
-        value: formValue2.value.input,
+        formKey: 'account',
+        label: '帳號',
+        value: formValue.value.input,
+      },
+      {
+        compName: 'Input',
+        formKey: 'password',
+        label: '密碼',
+        value: formValue.value.input2,
       },
       // {
-      //   compName: 'Input',
-      //   formKey: 'input2',
-      //   label: '輸入框2',
-      //   value: formValue2.value.input2,
+      //   compName: 'Select',
+      //   formKey: 'select',
+      //   label: '下拉選單',
+      //   value: formValue.value.select,
+      //   options: phoneOptions,
       // },
-      {
-        compName: 'Select',
-        formKey: 'select',
-        label: '下拉選單',
-        value: formValue2.value.select,
-        options: phoneOptions,
-      },
-      {
-        compName: 'Radio',
-        formKey: 'radio1',
-        label: '單選',
-        value: formValue2.value.radio1,
-        options: phoneOptions,
-      },
-      {
-        compName: 'Checkbox',
-        formKey: 'checkbox1',
-        label: '多選',
-        value: formValue2.value.checkbox1,
-        options: phoneOptions,
-      },
-      {
-        compName: 'Switch',
-        formKey: 'switch',
-        label: '是否',
-        value: formValue2.value.switch,
-      },
-      {
-        compName: 'TimePicker',
-        formKey: 'timePicker',
-        label: '時間',
-        value: formValue2.value.timePicker,
-      },
+      // {
+      //   compName: 'Radio',
+      //   formKey: 'radio1',
+      //   label: '單選',
+      //   value: formValue.value.radio1,
+      //   options: phoneOptions,
+      // },
+      // {
+      //   compName: 'Checkbox',
+      //   formKey: 'checkbox1',
+      //   label: '多選',
+      //   value: formValue.value.checkbox1,
+      //   options: phoneOptions,
+      // },
+      // {
+      //   compName: 'Switch',
+      //   formKey: 'switch',
+      //   label: '是否',
+      //   value: formValue.value.switch,
+      // },
+      // {
+      //   compName: 'TimePicker',
+      //   formKey: 'timePicker',
+      //   label: '時間',
+      //   value: formValue.value.timePicker,
+      // },
     ];
 
     const formRules = {
-      input: [
-        {
-          trigger: ['input'],
-          message: '長度>=2',
-          validator: (val) => {
-            return val.length > 2;
-          },
-        },
-        {
-          trigger: ['input', 'blur'],
-          message: '長度>=4',
-          validator: (val) => {
-            return val.length > 4;
-          },
-        },
-      ],
-      input2: [
-        {
-          message: '長度>=3',
-          validator: (val) => {
-            return val.length > 3;
-          },
-        },
-        {
-          message: '長度>=5',
-          validator: (val) => {
-            return val.length > 5;
-          },
-        },
-      ],
-      checkbox1: [
-        {
-          trigger: ['change'],
-          message: '長度>3',
-          validator: (val) => {
-            return val.length > 3;
-          },
-        },
-      ],
-      switch: [
-        {
-          trigger: ['change'],
-          message: '必須為啟用',
-          validator: (val) => {
-            return val;
-          },
-        },
-      ],
+      account: {
+        trigger: ['input'],
+        validator: ({ value, label }) =>
+          vld({
+            value,
+            label,
+            ruleList: ['vldRequired', 'vldLengthMoreThen'],
+            // 若另外設定，就走另外設定的
+            // ruleError: { vldRequired: 'vldRequiredWithLabel' },
+          }),
+      },
+
+      // input2: [
+      //   {
+      //     trigger: ['input'],
+      //     message: '需為英文或數字',
+      //     validator: (val) => {
+      //       return regExp.alphebatOrNumeric.test(val);
+      //     },
+      //   },
+      //   {
+      //     trigger: ['input'],
+      //     message: msgLengthMoreThen(6),
+      //     validator: (val) => {
+      //       console.log('val...', val);
+      //       return vldLengthMoreThen(val, 6);
+      //     },
+      //   },
+      // ],
+      // checkbox1: [
+      //   {
+      //     trigger: ['change'],
+      //     message: '長度>3',
+      //     validator: (val) => {
+      //       return val.length > 3;
+      //     },
+      //   },
+      // ],
+      // switch: [
+      //   {
+      //     trigger: ['change'],
+      //     message: '必須為啟用',
+      //     validator: (val) => {
+      //       return val;
+      //     },
+      //   },
+      // ],
     };
 
     const getValue = () => {
       const validResult = formRef.value.validateAll();
 
-      console.log('validResult', validResult);
-      console.log('formValue2', formValue2.value);
+      console.log('valid result...', validResult);
+      console.log('formValue', formValue.value);
     };
 
-    // watch(() => formValue2.value, () => {
-    //   console.log('formValue2',formValue2.value)
+    // watch(() => formValue.value, () => {
+    //   console.log('formValue',formValue.value)
     // })
 
     return {
-      formValue,
       formRules,
       phoneOptions,
-      formValue2,
-      formValue2Config,
+      formValue,
+      formValueConfig,
       getValue,
       phoneOptions2,
       formRef,

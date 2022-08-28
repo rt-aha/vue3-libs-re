@@ -38,15 +38,21 @@ export default defineComponent({
     const formValue = inject('formValue');
     const formRules = inject('formRules');
 
-    const validate = (event) => {
-      for (let rule of formRules[props.formKey]) {
+    const validate = async (event) => {
+      let rule = formRules[props.formKey];
+
+      if (rule) {
         const triggerEvents = rule.trigger || [];
 
         if (triggerEvents.includes(event) || event === 'enforceValidate') {
-          const valid = rule.validator(formValue()[props.formKey]);
+          // 這個 validator 就是是外面設定的
+          const result = await rule.validator({
+            value: formValue()[props.formKey],
+            label: props.label,
+          });
 
-          if (!valid) {
-            return rule.message;
+          if (!result.isPass) {
+            return result.errorMessage;
           }
         }
       }
@@ -54,9 +60,11 @@ export default defineComponent({
       return null;
     };
 
-    const validateFields = (event) => {
+    const validateFields = async (event) => {
       if (formRules[props.formKey]) {
-        const errorMessage = validate(event);
+        const errorMessage = await validate(event);
+
+        console.log('errorMessage', errorMessage);
 
         if (errorMessage) {
           formErrorMessage.value = errorMessage;
@@ -86,16 +94,16 @@ export default defineComponent({
   }
 
   &__label {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 
     &__text {
       display: inline-block;
-      @include font-style($c-main, 16, 400, 1.6px, 28px);
+      @include font-style($c-main, 14, 400, 1.6px, 20px);
     }
 
     &__hint {
       display: inline-block;
-      @include font-style($c-input-hint, 14, 400, 1.4px, 28px);
+      @include font-style($c-input-hint, 12, 400, 1.4px, 24px);
     }
   }
 
