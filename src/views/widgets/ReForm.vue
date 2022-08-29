@@ -13,7 +13,7 @@
 import { defineComponent, ref } from 'vue';
 import { vld } from '@/utils/validate/validator';
 import ReButton from '@/components/ReButton.vue';
-import { phoneOptions, phoneOptions2 } from '@/config/mockOptions.js';
+import { phoneOptions, phoneOptions2, genderOptions, incomeOptions, hobbyOptions } from '@/config/mockOptions.js';
 import ReEasyForm from '@/components/ReEasyForm.vue';
 
 export default defineComponent({
@@ -36,9 +36,10 @@ export default defineComponent({
     const formValue = ref({
       account: '',
       password: '',
-      select: 1,
-      radio1: 'apple',
-      checkbox1: false,
+      gender: 0,
+      income: 0,
+      agree: false,
+      hobby: [1],
       switch: false,
       timePicker: new Date(),
     });
@@ -53,35 +54,41 @@ export default defineComponent({
         compName: 'Input',
         formKey: 'account',
         label: '帳號',
-        value: formValue.value.input,
+        value: formValue.value.account,
       },
       {
         compName: 'Input',
         formKey: 'password',
         label: '密碼',
-        value: formValue.value.input2,
+        value: formValue.value.password,
       },
-      // {
-      //   compName: 'Select',
-      //   formKey: 'select',
-      //   label: '下拉選單',
-      //   value: formValue.value.select,
-      //   options: phoneOptions,
-      // },
-      // {
-      //   compName: 'Radio',
-      //   formKey: 'radio1',
-      //   label: '單選',
-      //   value: formValue.value.radio1,
-      //   options: phoneOptions,
-      // },
-      // {
-      //   compName: 'Checkbox',
-      //   formKey: 'checkbox1',
-      //   label: '多選',
-      //   value: formValue.value.checkbox1,
-      //   options: phoneOptions,
-      // },
+      {
+        compName: 'Select',
+        formKey: 'gender',
+        label: '性別',
+        value: formValue.value.gender,
+        options: genderOptions,
+      },
+      {
+        compName: 'Radio',
+        formKey: 'income',
+        label: '收入',
+        value: formValue.value.income,
+        options: incomeOptions,
+      },
+      {
+        compName: 'Checkbox',
+        formKey: 'agree',
+        label: '同意書',
+        value: formValue.value.agree,
+      },
+      {
+        compName: 'CheckboxGroup',
+        formKey: 'hobby',
+        label: '興趣',
+        value: formValue.value.hobby,
+        options: hobbyOptions,
+      },
       // {
       //   compName: 'Switch',
       //   formKey: 'switch',
@@ -100,21 +107,31 @@ export default defineComponent({
       account: {
         trigger: ['input'],
         validator: ({ value, label }) => {
-          console.log('value', value);
           return vld(value, {
             label,
             ruleList: [
+              // 基本使用
               {
                 name: 'vldRequired',
               },
+              // 帶參數
               {
-                // args: 規則名稱
+                // name: 規則名稱
                 name: 'vldLengthMoreThen',
                 // args: 定義參數
                 args: {
                   min: 6,
                 },
-                // cusError: '定義名字'
+              },
+              // 自訂錯誤訊息
+              {
+                name: 'vldEnglish',
+                // cusError: 自定義名字錯誤訊息名稱(寫在 errorMessage 中)
+                cusError: 'cusVldEnglish',
+              },
+              // 非同步
+              {
+                name: 'vldAsyncFn',
               },
             ],
             options: {
@@ -124,42 +141,47 @@ export default defineComponent({
           });
         },
       },
-
-      // input2: [
-      //   {
-      //     trigger: ['input'],
-      //     message: '需為英文或數字',
-      //     validator: (val) => {
-      //       return regExp.alphebatOrNumeric.test(val);
-      //     },
-      //   },
-      //   {
-      //     trigger: ['input'],
-      //     message: msgLengthMoreThen(6),
-      //     validator: (val) => {
-      //       console.log('val...', val);
-      //       return vldLengthMoreThen(val, 6);
-      //     },
-      //   },
-      // ],
-      // checkbox1: [
-      //   {
-      //     trigger: ['change'],
-      //     message: '長度>3',
-      //     validator: (val) => {
-      //       return val.length > 3;
-      //     },
-      //   },
-      // ],
-      // switch: [
-      //   {
-      //     trigger: ['change'],
-      //     message: '必須為啟用',
-      //     validator: (val) => {
-      //       return val;
-      //     },
-      //   },
-      // ],
+      password: {
+        trigger: ['input'],
+        validator: ({ value, label }) => {
+          return vld(value, {
+            label,
+            ruleList: [
+              {
+                name: 'vldRequired',
+                cusError: 'vldRequiredWithLabel',
+              },
+            ],
+          });
+        },
+      },
+      gender: {
+        trigger: ['change'],
+        validator: ({ value, label }) => {
+          return vld(value, {
+            label,
+            ruleList: [
+              {
+                name: 'vldSelect',
+                cusError: 'vldSelectWithLabel',
+              },
+            ],
+          });
+        },
+      },
+      income: {
+        trigger: ['change'],
+        validator: ({ value, label }) => {
+          return vld(value, {
+            label,
+            ruleList: [
+              {
+                name: 'vldSelect',
+              },
+            ],
+          });
+        },
+      },
     };
 
     const getValue = () => {

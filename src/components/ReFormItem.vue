@@ -49,6 +49,7 @@ export default defineComponent({
           const result = await rule.validator({
             value: formValue()[props.formKey],
             label: props.label,
+            trigger: triggerEvents,
           });
 
           if (!result.isPass) {

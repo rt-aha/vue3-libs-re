@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import { defineComponent, watch, provide, ref } from 'vue';
 
 export default defineComponent({
@@ -13,31 +12,32 @@ export default defineComponent({
   props: {
     formValue: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     formRules: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
   },
   setup(props) {
     const innerFormValue = ref({});
     const formErrorMessage = ref({});
 
-    watch(() => props.formValue, () => {
-      innerFormValue.value = props.formValue;
-    }, { deep: true, immediate: true })
+    watch(
+      () => props.formValue,
+      () => {
+        innerFormValue.value = props.formValue;
+      },
+      { deep: true, immediate: true },
+    );
 
-    provide('formValue', () => innerFormValue.value)
-    provide('formErrorMessage', () => formErrorMessage.value)
+    provide('formValue', () => innerFormValue.value);
+    provide('formErrorMessage', () => formErrorMessage.value);
     provide('formRules', props.formRules);
 
-    return {
-
-    }
-  }
+    return {};
+  },
 });
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

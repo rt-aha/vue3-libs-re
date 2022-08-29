@@ -4,30 +4,21 @@ import * as errorMessage from '@/utils/validate/errorMessage';
 const validator = {
   ruleList: [],
 
-  vldFunc(value, ruleData) {
+  async vldFunc(value, ruleData) {
     const { name, args } = ruleData;
-    const isPass = allRules[name](value, args);
+    const isPass = await allRules[name](value, args);
 
     if (!isPass) {
       return this.errMsg(name, ruleData);
     }
   },
 
-  // 取得錯誤訊息
-  getErrorMessage(rule, args, options) {
-    return errorMessage[rule](args, options);
-  },
-
   // 回傳錯誤訊息
   errMsg(name, ruleData) {
-    const { cusError, args, options } = ruleData;
+    const { cusError } = ruleData;
 
-    let errorMessage = '';
-    if (cusError) {
-      errorMessage = this.getErrorMessage(cusError, args, options);
-    } else {
-      errorMessage = this.getErrorMessage(name, args, options);
-    }
+    const errName = cusError ? cusError : name;
+    const errorMessage = this.getErrorMessage(errName, ruleData);
 
     return {
       rule: name,
@@ -36,10 +27,15 @@ const validator = {
     };
   },
 
+  // 取得錯誤訊息
+  getErrorMessage(name, ruleData) {
+    return errorMessage[name](ruleData);
+  },
+
   // 開始驗證
-  start() {
+  async start() {
     for (const fn of this.ruleList) {
-      const msg = fn();
+      const msg = await fn();
 
       if (msg) {
         return msg;
@@ -54,10 +50,15 @@ const validator = {
 
   // 將驗證規則加入陣列
   add(value, ruleData) {
-    const { ruleList } = ruleData;
+    const { label, ruleList, options } = ruleData;
 
     this.ruleList = ruleList.map((r) => {
-      return this.vldFunc.bind(this, value, r);
+      const data = {
+        ...r,
+        label,
+        options,
+      };
+      return this.vldFunc.bind(this, value, data);
     });
   },
 
