@@ -39,8 +39,9 @@ export default defineComponent({
       gender: 0,
       income: 0,
       agree: false,
-      hobby: [1],
-      switch: false,
+      hobby: [],
+      enable: false,
+      height: 0,
       timePicker: new Date(),
     });
 
@@ -53,48 +54,55 @@ export default defineComponent({
       {
         compName: 'Input',
         formKey: 'account',
-        label: '帳號',
+        formItemLabel: '帳號',
         value: formValue.value.account,
       },
       {
         compName: 'Input',
         formKey: 'password',
-        label: '密碼',
+        formItemLabel: '密碼',
         value: formValue.value.password,
       },
       {
         compName: 'Select',
         formKey: 'gender',
-        label: '性別',
+        formItemLabel: '性別',
         value: formValue.value.gender,
         options: genderOptions,
       },
       {
         compName: 'Radio',
         formKey: 'income',
-        label: '收入',
+        formItemLabel: '收入',
         value: formValue.value.income,
         options: incomeOptions,
       },
       {
         compName: 'Checkbox',
         formKey: 'agree',
-        label: '同意書',
+        formItemLabel: '同意書',
+        label: '我同意',
         value: formValue.value.agree,
       },
       {
         compName: 'CheckboxGroup',
         formKey: 'hobby',
-        label: '興趣',
+        formItemLabel: '興趣',
         value: formValue.value.hobby,
         options: hobbyOptions,
       },
-      // {
-      //   compName: 'Switch',
-      //   formKey: 'switch',
-      //   label: '是否',
-      //   value: formValue.value.switch,
-      // },
+      {
+        compName: 'Switch',
+        formKey: 'enable',
+        formItemLabel: '啟用',
+        value: formValue.value.enable,
+      },
+      {
+        compName: 'InputNumber',
+        formKey: 'height',
+        formItemLabel: '身高',
+        value: formValue.value.height,
+      },
       // {
       //   compName: 'TimePicker',
       //   formKey: 'timePicker',
@@ -177,6 +185,35 @@ export default defineComponent({
             ruleList: [
               {
                 name: 'vldSelect',
+              },
+            ],
+          });
+        },
+      },
+      hobby: {
+        trigger: ['change'],
+        validator: ({ value, label }) => {
+          return vld(value, {
+            label,
+            ruleList: [
+              {
+                name: 'vldCheckMultiple',
+                args: {
+                  min: 1,
+                },
+              },
+            ],
+          });
+        },
+      },
+      agree: {
+        trigger: ['change'],
+        validator: ({ value, label }) => {
+          return vld(value, {
+            label,
+            ruleList: [
+              {
+                name: 'vldCheck',
               },
             ],
           });

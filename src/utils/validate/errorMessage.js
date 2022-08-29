@@ -9,7 +9,9 @@ export const vldSelectWithLabel = (d) => `請選擇${d.label}`;
 // --- custom end
 
 export const vldRequired = () => '此為必填選項';
-export const vldSelect = (d) => `請選擇${d.label}`;
+export const vldSelect = () => `請選擇`;
+export const vldCheck = () => `請勾選`;
+export const vldCheckMultiple = (d) => `請選擇至少${d.args.min}個`;
 
 export const vldLengthMoreThen = (d) => `長度需大於${d.args.min}位數`;
 export const vldEnglish = () => `請輸入英文`;

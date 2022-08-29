@@ -3,7 +3,7 @@
     <ReForm :formValue="innerForm" :formRules="formRules">
       <ReFormItem
         :formKey="f.formKey"
-        :label="f.label"
+        :label="f.formItemLabel"
         :hint="f.hint"
         v-for="f of formConfig"
         :key="f.formKey"
@@ -19,6 +19,7 @@ import { defineComponent, ref, watch } from 'vue';
 import ReForm from '@/components/ReForm.vue';
 import ReFormItem from '@/components/ReFormItem.vue';
 import ReInput from '@/components/ReInput.vue';
+import ReInputNumber from '@/components/ReInputNumber.vue';
 import ReSelect from '@/components/ReSelect.vue';
 import ReRadio from '@/components/ReRadio.vue';
 import ReCheckbox from '@/components/ReCheckbox.vue';
@@ -32,6 +33,7 @@ export default defineComponent({
     ReForm,
     ReFormItem,
     ReInput,
+    ReInputNumber,
     ReSelect,
     ReRadio,
     ReCheckbox,

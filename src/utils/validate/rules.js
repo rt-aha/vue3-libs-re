@@ -46,3 +46,19 @@ export const vldSelect = (value) => {
 
   return false;
 };
+
+export const vldCheck = (value) => {
+  if (value) {
+    return true;
+  }
+
+  return false;
+};
+
+export const vldCheckMultiple = (value, args) => {
+  if (value.length >= args.min) {
+    return true;
+  }
+
+  return false;
+};
