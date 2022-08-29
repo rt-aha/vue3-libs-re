@@ -93,11 +93,12 @@ export default defineComponent({
       if (opt.disabled) return;
       let newValue = [];
       let actionType = '';
-      if (props.modelValue.includes(e.target.value)) {
-        newValue = props.modelValue.filter((item) => item !== e.target.value);
+      if (props.modelValue.includes(opt.value)) {
+        newValue = props.modelValue.filter((item) => item !== opt.value);
         actionType = 'remove';
       } else {
-        newValue = [...props.modelValue, e.target.value];
+        newValue = [...props.modelValue, opt.value];
+
         actionType = 'add';
       }
 
@@ -114,8 +115,6 @@ export default defineComponent({
         const limitNum = Number(props.limit);
         const newValueLen = newValue.length;
 
-        console.log('newValueLen', newValueLen);
-        console.log('limitNum', limitNum);
         if (newValueLen >= limitNum) {
           innerOptions.value = innerOptions.value.map((item) => {
             const isItemInNewValue = newValue.includes(item.value);
