@@ -1,4 +1,4 @@
-// --- test start 要打英文啊~~ (自定義錯誤測試)
+// --- test start (自定義錯誤測試)
 export const cusVldEnglish = () => `要打英文啊~`;
 export const vldAsyncFn = () => `非同步測試錯誤`;
 // --- test end
