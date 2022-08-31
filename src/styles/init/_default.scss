@@ -17,7 +17,7 @@ body {
 
   // Noto Sans TC 中文字體
   // Nunito 英文字體
-  font-family: "Nunito Sans", "Noto Sans TC", sans-serif, "PingFang TC", Microsoft JhengHei, 微軟正黑體, Arial,
+  font-family: 'Nunito Sans', 'Noto Sans TC', sans-serif, 'PingFang TC', Microsoft JhengHei, 微軟正黑體, Arial,
     Helvetica, sans-serif;
 }
 
@@ -33,9 +33,28 @@ body {
   overscroll-behavior-y: contain;
 }
 
-
 .wrap {
   width: 100%;
+
+  &__content {
+    @include flex();
+    flex-wrap: wrap;
+    margin: 0 -20px;
+
+    &__box {
+      width: 25%;
+      @include padding(20px);
+
+      
+    }
+  }
+
+  &__inline {
+    > div {
+      width: 25%;
+      display: inline-block
+    }
+  }
 }
 
 .text {
