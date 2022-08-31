@@ -14,7 +14,7 @@
     <dev-section title="自定義內容">
       <div class="wrap">
         <dev-desc api="props" type="Array">options: e.g. [{...props, render: renderFunction}]</dev-desc>
-        <ReSelect v-model="value4" :options="renderOptions" multiple />
+        <ReSelect v-model="value3" :options="renderOptions" />
       </div>
     </dev-section>
     <dev-section title="多選">

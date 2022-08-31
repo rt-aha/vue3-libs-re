@@ -14,7 +14,7 @@
           <div class="router-view-wrap__view">
             <router-view />
           </div>
-          <div class="router-view-wrap__extra-view">
+          <div class="router-view-wrap__extra-view" v-if="isFormViewExist">
             <router-view name="form" />
           </div>
         </div>
@@ -23,11 +23,10 @@
   </div>
 </template>
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 import LyHeader from '@/layout/LyHeader.vue';
 import LySidebar from '@/layout/LySidebar.vue';
 import { useRoute } from 'vue-router';
-// import ReForm from '@/views/widgets/ReForm.vue';
 
 export default defineComponent({
   components: {
@@ -38,10 +37,21 @@ export default defineComponent({
   setup() {
     const route = useRoute();
 
+    const routeMatchedLasteIndex = route.matched.length - 1;
+
+    const isFormViewExist = computed(() => {
+      if (route.matched?.[routeMatchedLasteIndex]?.components?.form) {
+        return true;
+      }
+
+      return false;
+    });
+
     // const showForm = ['group'].includes(route.meta.extraView);
 
     return {
       route,
+      isFormViewExist,
       // showForm,
     };
   },
@@ -101,8 +111,9 @@ export default defineComponent({
   @include flex(flex-start, flex-start);
 
   &__view {
-    flex: none;
-    width: 50%;
+    // flex: none;
+    // width: ;
+    flex: 1;
   }
 
   &__extra-view {

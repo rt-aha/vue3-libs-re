@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 're-dropdown',
+    name: 're-dropdown',
+    component: () => import(/* webpackChunkName: "ReDropdown" */ '@/views/components/ReDropdown.vue'),
+    meta: {
+      title: 'Dropdown 下拉選單',
+    },
+  },
+  {
     path: 'collapse-transition',
     name: 'collapse-transition',
     component: () => import(/* webpackChunkName: "CollapseTransition" */ '@/views/components/CollapseTransition.vue'),

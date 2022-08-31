@@ -1,45 +1,31 @@
 <template>
-  <div class="re-select">
-    <div class="select" @click.stop="toggleExpand">
-      <div class="select__active-wrap">
-        <template v-if="multiple">
-          <input class="select__field" readonly placeholder="請選擇" v-show="innerMulti.length === 0" />
-          <re-select-multi-tag v-model="innerMulti" @onRemoveItem="onRemoveItem" v-show="innerMulti.length > 0" />
-        </template>
-        <template v-else>
-          <input class="select__field" readonly v-model="innerSingle" placeholder="請選擇" />
-        </template>
+  <div class="re-dropdown">
+    <div class="dropdown" @click.stop="toggleExpand">
+      <div class="dropdown__active-wrap">
+        <p class="dropdown__feild">{{ innerSingle }}</p>
       </div>
-      <img
-        class="select__drop-icon"
-        :class="{
-          'select__drop-icon--active': isExpand,
-        }"
-        src="@/assets/icon/icon-down.svg"
-      />
     </div>
     <!-- @click="toggleExpand" -->
-    <div class="select-options-wrap">
+    <div class="dropdown-options-wrap">
       <ReCollapseTransition :show="isExpand">
-        <div class="select-options" v-click-away="closeSelect">
-          <ul class="select-option-list">
+        <div class="dropdown-options" v-click-away="closeSelect">
+          <ul class="dropdown-option-list">
             <li
-              class="select-option-list__item"
+              class="dropdown-option-list__item"
               :class="{
-                'select-option-list__item--disabled': opt.disabled,
-                'select-option-list__item--active': isActive(opt),
+                'dropdown-option-list__item--disabled': opt.disabled,
+                'dropdown-option-list__item--active': isActive(opt),
               }"
               v-for="opt of options"
               :key="opt.value"
               @click="() => handleOption(opt)"
             >
-              <p class="select-option-list__item__component" v-if="opt.render">
+              <p class="dropdown-option-list__item__component" v-if="opt.render">
                 <component :is="opt.render" v-bind="opt" />
               </p>
-              <p class="select-option-list__item__label" v-else>
+              <p class="dropdown-option-list__item__label" v-else>
                 {{ opt.label }}
               </p>
-              <img class="select-option-list__item__check-icon" src="@/assets/icon/check.svg" />
             </li>
           </ul>
         </div>
@@ -51,13 +37,11 @@
 import { defineComponent, ref, watch, nextTick } from 'vue';
 import ReCollapseTransition from '@/components/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
-import ReSelectMultiTag from '@/components/ReSelectMultiTag.vue';
 
 export default defineComponent({
-  name: 'ReSelect',
+  name: 'ReDropdown',
   components: {
     ReCollapseTransition,
-    ReSelectMultiTag,
   },
   props: {
     modelValue: {
@@ -67,33 +51,15 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-    multiple: {
-      type: Boolean,
-      defualt: false,
-    },
   },
   emits: ['update:modelValue', 'onChange'],
   setup(props, { emit }) {
-    const innerMulti = ref([]);
-
     const innerSingle = ref('');
-
-    // const tagOpts = ref([
-    //   {
-    //     label: 'opt1',
-    //     value: 'opt1',
-    //   },
-    // ]);
-
     const { validFn } = useValidate();
     const isExpand = ref(false);
 
     const setInitValue = () => {
-      if (props.multiple) {
-        innerMulti.value = props.modelValue;
-      } else {
-        innerSingle.value = props.modelValue;
-      }
+      innerSingle.value = props.modelValue;
     };
 
     const toggleExpand = () => {
@@ -108,12 +74,6 @@ export default defineComponent({
       isExpand.value = false;
     };
 
-    const setInnerMulti = () => {
-      const tempValue = props.options.filter((item) => props.modelValue.includes(item.value));
-
-      innerMulti.value = tempValue;
-    };
-
     const setInnerSingle = () => {
       const valueObj = props.options.find((item) => {
         return item.value === props.modelValue;
@@ -125,54 +85,21 @@ export default defineComponent({
     const handleOption = async (opt) => {
       if (opt.disabled) return;
 
-      if (props.multiple) {
-        let newValue = [];
-        let actionType = '';
-
-        if (props.modelValue.includes(opt.value)) {
-          newValue = props.modelValue.filter((item) => item !== opt.value);
-          actionType = 'remove';
-        } else {
-          newValue = [...props.modelValue, opt.value];
-          actionType = 'add';
-        }
-
-        emit('update:modelValue', newValue);
-        await nextTick();
-        setInnerMulti();
-        emit('onChange', actionType, opt, newValue);
-      } else {
-        emit('update:modelValue', opt.value);
-        await nextTick();
-        setInnerSingle();
-        emit('onChange', opt);
-      }
+      emit('update:modelValue', opt.value);
+      await nextTick();
+      setInnerSingle();
+      emit('onChange', opt);
       validFn('change');
       isExpand.value = false;
     };
 
     const isActive = (opt) => {
-      if (props.multiple) {
-        const isMatch = props.modelValue.includes(opt.value);
-        return isMatch;
-      } else {
-        const isMatch = opt.value === props.modelValue;
-
-        return isMatch;
-      }
+      return opt.value === props.modelValue;
     };
 
     const onRemoveItem = (opt) => {
       handleOption(opt);
     };
-
-    // const innerValue = computed(() => {
-    //   const valueObj = props.options.find((item) => {
-    //     return item.value === props.modelValue;
-    //   });
-
-    //   return valueObj?.label || '';
-    // });
 
     watch(
       () => props.modelValue,
@@ -189,7 +116,6 @@ export default defineComponent({
       handleOption,
       openSelect,
       closeSelect,
-      innerMulti,
       innerSingle,
       // tagOpts,
       isActive,
@@ -199,14 +125,14 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.re-select {
+.re-dropdown {
   // width: 200px;
   cursor: pointer;
   /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
 }
 
-.select {
+.dropdown {
   /* background-color: #eee; */
   display: inline-block;
   min-height: 36px;
@@ -214,7 +140,7 @@ export default defineComponent({
   border: 1px solid $c-form-border;
   border-radius: 4px;
   @include padding(0px 10px);
-  @include flex();
+  @include inline-flex();
   // width: 200px;
   position: relative;
 
@@ -246,14 +172,14 @@ export default defineComponent({
   }
 }
 
-.select-options-wrap {
+.dropdown-options-wrap {
   @include position(tl, calc(100% + 5px), 0);
   background-color: $c-white;
-  width: 100%;
+  // width: 100%;
   z-index: 100;
 }
 
-.select-option-list {
+.dropdown-option-list {
   background-color: $c-white;
   height: auto;
   max-height: 200px;
@@ -266,11 +192,11 @@ export default defineComponent({
     cursor: pointer;
 
     &--active {
-      .select-option-list__item__label {
+      .dropdown-option-list__item__label {
         @include font-style($c-main--active, 14, 400, 1px, 14px);
       }
 
-      .select-option-list__item__check-icon {
+      .dropdown-option-list__item__check-icon {
         display: inline-block;
         vertical-align: bottom;
       }
