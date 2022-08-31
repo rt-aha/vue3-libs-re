@@ -113,6 +113,23 @@
         </div>
       </div>
     </dev-section>
+    <dev-section title="背景圖">
+      <div class="wrap">
+        <dev-desc api="props" type="Boolean">bg: 用背景圖</dev-desc>
+        <div class="wrap__inline">
+          <div class="wrap__content__box image-box">
+            <ReImage
+              :srcPlaceholder="cusImagePlaceholder"
+              bg
+              :bgSetting="{ width: '200px', height: '200px', position: 'center', size: 'cover' }"
+            />
+          </div>
+          <div class="wrap__content__box image-box">
+            <ReImage :srcPlaceholder="tulip2" bg :bgSetting="{ width: '200px', height: '200px', position: 'center' }" />
+          </div>
+        </div>
+      </div>
+    </dev-section>
   </div>
 </template>
 

@@ -1,6 +1,15 @@
 <template>
   <div class="c-image" :style="imgContainerStyle">
+    <div
+      class="c-image__bg"
+      :style="{
+        'background-image': `url('${imgSrc}')`,
+        ...bgStyle,
+      }"
+      v-if="bg"
+    ></div>
     <img
+      v-else
       class="c-image__img"
       :class="{
         'c-image__img--contain': contain,
@@ -56,6 +65,18 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    // 以下用於設定背景圖
+    bg: {
+      type: Boolean,
+      default: false,
+    },
+    bgSetting: {
+      width: '100%',
+      height: '100%',
+      position: 'center',
+      repeat: 'no-repeat',
+      size: 'cover',
+    },
   },
   setup(props) {
     const imgSrc = computed(() => {
@@ -99,12 +120,23 @@ export default defineComponent({
       };
     });
 
+    const bgStyle = computed(() => {
+      return {
+        width: props.bgSetting.width,
+        height: props.bgSetting.height,
+        'background-position': props.bgSetting.position || 'center',
+        'background-repeat': props.bgSetting.repeat || 'no-repeat',
+        'background-size': props.bgSetting.size || 'cover',
+      };
+    });
+
     return {
       imagePlaceholder,
       imgSrc,
       arialLabelValue,
       imgStyle,
       imgContainerStyle,
+      bgStyle,
     };
   },
 });
