@@ -17,6 +17,24 @@
         <ReDropdown v-model="value3" :options="renderOptions" />
       </div>
     </dev-section>
+
+    <dev-section title="下拉選單位置">
+      <div class="wrap">
+        <dev-desc api="props" type="String">align: left | center | right, default: left</dev-desc>
+
+        <div class="wrap-comps">
+          <div class="wrap-comps__comp">
+            <ReDropdown v-model="value4" :options="renderOptions" align="left" />
+          </div>
+          <div class="wrap-comps__comp">
+            <ReDropdown v-model="value5" :options="renderOptions" align="center" />
+          </div>
+          <div class="wrap-comps__comp">
+            <ReDropdown v-model="value6" :options="renderOptions" align="right" />
+          </div>
+        </div>
+      </div>
+    </dev-section>
   </div>
 </template>
 
@@ -33,7 +51,10 @@ export default defineComponent({
   setup() {
     const value1 = ref('option1');
     const value2 = ref('option1');
-    const value3 = ref('Pixel 6');
+    const value3 = ref('phone');
+    const value4 = ref('phone');
+    const value5 = ref('phone');
+    const value6 = ref('phone');
 
     return {
       basicOptions,
@@ -42,9 +63,10 @@ export default defineComponent({
       value1,
       value2,
       value3,
+      value4,
+      value5,
+      value6,
     };
   },
 });
 </script>
-
-<style lang="scss" scoped></style>

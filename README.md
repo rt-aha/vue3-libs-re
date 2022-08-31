@@ -5,7 +5,9 @@
 - [x] Avatar
   - [ ] 應改為背景圖
 - [ ] Button
-- [ ] Dropdown
+- [x] Dropdown
+  - [ ] 多層級
+  - [ ] hover 展開
 - [x] Radio
 - [x] Switch
 - [ ] Empty

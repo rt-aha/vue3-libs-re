@@ -6,7 +6,7 @@
       </div>
     </div>
     <!-- @click="toggleExpand" -->
-    <div class="dropdown-options-wrap">
+    <div class="dropdown-options-wrap" :class="[`dropdown-options-wrap--align--${align}`]">
       <ReCollapseTransition :show="isExpand">
         <div class="dropdown-options" v-click-away="closeSelect">
           <ul class="dropdown-option-list">
@@ -37,6 +37,7 @@
 import { defineComponent, ref, watch, nextTick } from 'vue';
 import ReCollapseTransition from '@/components/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
+import { stringify } from 'uuid';
 
 export default defineComponent({
   name: 'ReDropdown',
@@ -50,6 +51,10 @@ export default defineComponent({
     options: {
       type: Array,
       default: () => [],
+    },
+    align: {
+      type: String,
+      default: 'center',
     },
   },
   emits: ['update:modelValue', 'onChange'],
@@ -130,11 +135,12 @@ export default defineComponent({
   cursor: pointer;
   /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
+  display: inline-block;
 }
 
 .dropdown {
   /* background-color: #eee; */
-  display: inline-block;
+  // display: inline-block;
   min-height: 36px;
   height: auto;
   border: 1px solid $c-form-border;
@@ -173,10 +179,25 @@ export default defineComponent({
 }
 
 .dropdown-options-wrap {
-  @include position(tl, calc(100% + 5px), 0);
+  display: inline-block;
+  width: auto;
   background-color: $c-white;
-  // width: 100%;
   z-index: 100;
+
+  &--align {
+    &--center {
+      @include position(tl, calc(100% + 5px), 50%);
+      transform: translateX(-50%);
+    }
+
+    &--left {
+      @include position(tl, calc(100% + 5px), 0);
+    }
+
+    &--right {
+      @include position(tr, calc(100% + 5px), 0);
+    }
+  }
 }
 
 .dropdown-option-list {
