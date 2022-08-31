@@ -1,6 +1,6 @@
 ## components
 
-### Easy (5/16)
+### Easy (6/16)
 - [x] Divider
 - [x] Avatar
   - [ ] 應改為背景圖
@@ -43,7 +43,7 @@
 - [ ] Modal
 - [ ] Steps
 
-### Hard (0/13)
+### Hard (1/13)
 - [ ] AutoComplete
 - [ ] DatePicker
 - [ ] TimePicker
