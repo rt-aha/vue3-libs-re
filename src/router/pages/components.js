@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 're-empty',
+    name: 're-empty',
+    component: () => import(/* webpackChunkName: "ReEmpty" */ '@/views/components/ReEmpty.vue'),
+    meta: {
+      title: 'Empty 無資料',
+    },
+  },
+  {
     path: 're-dropdown',
     name: 're-dropdown',
     component: () => import(/* webpackChunkName: "ReDropdown" */ '@/views/components/ReDropdown.vue'),

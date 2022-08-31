@@ -1,6 +1,6 @@
 ## components
 
-### Easy (6/16)
+### Easy (7/16)
 - [x] Divider
 - [x] Avatar
   - [ ] 應改為背景圖
@@ -10,7 +10,7 @@
   - [ ] hover 展開
 - [x] Radio
 - [x] Switch
-- [ ] Empty
+- [x] Empty
 - [ ] Skeleton
 - [ ] Image
 - [ ] Textarea

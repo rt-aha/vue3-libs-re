@@ -22,7 +22,10 @@
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
         <div class="select-options" v-click-away="closeSelect">
-          <ul class="select-option-list">
+          <div v-if="options.length === 0">
+            <slot name="noData" />
+          </div>
+          <ul class="select-option-list" v-else>
             <li
               class="select-option-list__item"
               :class="{

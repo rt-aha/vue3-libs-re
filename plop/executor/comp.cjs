@@ -13,7 +13,7 @@ module.exports = function (plop) {
       {
         type: 'add',
         path: '../../src/components/Re{{name}}.vue',
-        templateFile: '../index.hbs',
+        templateFile: '../component.hbs',
       },
     ],
   });
