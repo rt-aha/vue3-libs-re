@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 're-skeleton',
+    name: 're-skeleton',
+    component: () => import(/* webpackChunkName: "ReSkeleton" */ '@/views/components/ReSkeleton.vue'),
+    meta: {
+      title: 'ReSkeleton 骨架',
+    },
+  },
+  {
     path: 're-image',
     name: 're-image',
     component: () => import(/* webpackChunkName: "ReImage" */ '@/views/components/ReImage.vue'),
