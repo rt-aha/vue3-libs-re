@@ -1,6 +1,6 @@
 ## components
 
-### Easy (7/16)
+### Easy (7/15)
 - [x] Divider
 - [x] Avatar
   - [ ] 應改為背景圖
@@ -12,17 +12,16 @@
 - [x] Switch
 - [x] Empty
 - [ ] Skeleton
-- [ ] Image
+- [x] Image
 - [ ] Textarea
 - [ ] Drawer
-- [ ] Tabs
 - [x] Badge
   - [ ] 新增一個可以插入文字或圖的功能
 - [ ] Progress
 - [ ] Loading
 - [ ] Link
 
-### Medium (4/15)
+### Medium (4/16)
 - [ ] Accordion
 - [ ] Breadcrumb
 - [x] Checkbox
@@ -36,6 +35,7 @@
   - [ ] 使用千分位
 - [ ] TreeSelect
 - [ ] Upload
+- [ ] Tabs
 - [ ] Countdown
 - [ ] NumberAnimation
 - [ ] TimeLine

@@ -14,6 +14,7 @@
           @blur="(e) => updateValue(e, 'blur')"
           :value="modelValue"
           :disabled="disabled"
+          inputmode="numeric"
         />
       </div>
 
