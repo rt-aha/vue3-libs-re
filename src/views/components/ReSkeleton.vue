@@ -47,14 +47,6 @@
         <ReSkeleton type="circle" wh="60px" mt="30px" mb="30px" animate-fadeInOut />
       </div>
     </dev-section>
-    <dev-section title="設定動畫：淡入淡出">
-      <div class="wrap">
-        <ReSkeleton bgColor="#4caf50" round="4px" animate-progressing />
-        <ReSkeleton mt="10px" mb="10px" bgColor="#cd853f" round="4px" animate-progressing />
-        <ReSkeleton round="4px" bgColor="#cd5c5c" animate-progressing />
-        <ReSkeleton type="circle" wh="60px" mt="30px" mb="30px" animate-progressing />
-      </div>
-    </dev-section>
   </div>
 </template>
 

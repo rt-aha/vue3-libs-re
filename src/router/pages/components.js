@@ -75,6 +75,9 @@ const children = [
     path: 're-textarea',
     name: 're-textarea',
     component: () => import(/* webpackChunkName: "ReTextarea" */ '@/views/components/ReTextarea.vue'),
+    meta: {
+      title: 'Textarea 文本',
+    },
   },
   {
     path: 're-select',

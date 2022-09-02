@@ -1,22 +1,14 @@
 <template>
   <div
-    class="c-skeleton c-skeleton__rect"
+    class="c-skeleton"
     :class="{
       'c-skeleton--animate--fadeInOut': animateFadeInOut,
-      'c-skeleton--animate--progressing': animateProgressing,
     }"
-    v-if="type === 'rect'"
-    :style="rectStyle"
-  ></div>
-  <div
-    class="c-skeleton c-skeleton__circle"
-    :class="{
-      'c-skeleton--animate--fadeInOut': animateFadeInOut,
-      'c-skeleton--animate--progressing': animateProgressing,
-    }"
-    v-if="type === 'circle'"
-    :style="circleStyle"
-  ></div>
+    :style="marginSetting"
+  >
+    <div class="c-skeleton__rect" v-if="type === 'rect'" :style="rectStyle"></div>
+    <div class="c-skeleton__circle" v-if="type === 'circle'" :style="circleStyle"></div>
+  </div>
 </template>
 
 <script>
@@ -58,18 +50,12 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    animateProgressing: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   setup(props) {
     const rectStyle = computed(() => {
       return {
         height: props.bold,
-        marginTop: props.mt,
-        marginBottom: props.mb,
         backgroundColor: props.bgColor,
         borderRadius: props.round,
       };
@@ -80,17 +66,24 @@ export default defineComponent({
       const radius = props.wh.replace('px', '') / 2 + 'px';
 
       return {
-        marginTop: props.mt,
-        marginBottom: props.mb,
         width: props.wh,
         height: props.wh,
         backgroundColor: props.bgColor,
         borderRadius: props.round || radius,
       };
     });
+
+    const marginSetting = computed(() => {
+      return {
+        marginTop: props.mt,
+        marginBottom: props.mb,
+      };
+    });
+
     return {
       rectStyle,
       circleStyle,
+      marginSetting,
     };
   },
 });
@@ -98,15 +91,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .c-skeleton {
-  height: 12px;
+  overflow: hidden;
 
   &--animate {
     &--fadeInOut {
       animation: 3s fadeInOut infinite;
-    }
-
-    &--progressing {
-      animation: 3s progressing infinite;
     }
   }
 }

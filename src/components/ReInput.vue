@@ -12,7 +12,7 @@
         <input
           class="re-input-native-field"
           :type="inputType"
-          ref="inputField"
+          ref="inputRef"
           @input="(e) => updateValue(e, 'input')"
           @change="(e) => updateValue(e, 'change')"
           @blur="(e) => updateValue(e, 'blur')"
@@ -67,7 +67,7 @@ export default defineComponent({
     const { validFn } = useValidate();
     const inputType = ref('');
     // const validFn = getCurrentInstance().parent.ctx.validateFields;
-    const inputField = ref(null);
+    const inputRef = ref(null);
     // const formRules = inject('formRules', {});
 
     const updateValue = (e, event) => {
@@ -95,7 +95,7 @@ export default defineComponent({
     // }
 
     const setInitInputFieldValue = () => {
-      inputField.value.value = props.modelValue;
+      inputRef.value.value = props.modelValue;
     };
 
     const init = () => {
@@ -109,7 +109,7 @@ export default defineComponent({
     init();
 
     return {
-      inputField,
+      inputRef,
       updateValue,
       slots,
       toggleEyeStatus,
