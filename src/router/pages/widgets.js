@@ -15,6 +15,14 @@ const children = [
     },
   },
   {
+    path: 're-search',
+    name: 're-search',
+    component: () => import(/* webpackChunkName: "ReSearch" */ '@/views/widgets/ReSearch.vue'),
+    meta: {
+      title: 'Search 搜尋',
+    },
+  },
+  {
     path: 'manage-page',
     name: 'manage-page',
     component: () => import(/* webpackChunkName: "ManagePage" */ '@/views/widgets/ManagePage.vue'),
