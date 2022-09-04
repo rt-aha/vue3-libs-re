@@ -16,14 +16,13 @@
   - [ ] 做些卡片或文章之類的例子
 - [x] Image
 - [x] Textarea
-- [ ] Drawer
 - [x] Badge
   - [ ] 新增一個可以插入文字或圖的功能
 - [ ] Progress
 - [ ] Loading
 - [ ] Link
 
-### Medium (4/16)
+### Medium (5/17)
 - [ ] Accordion
 - [ ] Breadcrumb
 - [x] Checkbox
@@ -42,7 +41,8 @@
 - [ ] NumberAnimation
 - [ ] TimeLine
 - [ ] Tree
-- [ ] Modal
+- [x] Modal
+- [ ] Drawer
 - [ ] Steps
 
 ### Hard (1/13)
@@ -67,7 +67,7 @@
 
 ## widgets
 - [x] Form/FormItem/FormMessage
-  - [ ] 把非同步驗證加進去，完成後刪除 async-validator 套件
+  - [x] 把非同步驗證加進去，完成後刪除 async-validator 套件
 - [ ] Table
 - [ ] Navigation
 - [ ] Menu
