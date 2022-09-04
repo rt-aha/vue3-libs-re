@@ -1,7 +1,10 @@
 <template>
   <div class="v-search">
-    <ReSearch v-model:formValue="formValue" :formConfig="searchConfig" ref="searchRef" />
-    <ReButton @click="getValue">getValue</ReButton>
+    <dev>
+      <!-- <dev-desc api="props" type="Array">options: e.g. [{...props, render: renderFunction}]</dev-desc> -->
+      <ReSearch v-model:formValue="formValue" :formConfig="searchConfig" ref="searchRef" />
+      <ReButton @click="getValue">getValue</ReButton>
+    </dev>
   </div>
 </template>
 
@@ -61,9 +64,7 @@ export default defineComponent({
         multiple: true,
         options: genderOptions,
         layout: {
-          768: 12,
-          1024: 8,
-          1440: 6,
+          768: 6,
         },
       },
       {
@@ -72,18 +73,27 @@ export default defineComponent({
         formItemLabel: '同意書',
         label: '我同意',
         value: formValue.value.agree,
+        layout: {
+          768: 6,
+        },
       },
       {
         compName: 'Switch',
         formKey: 'enable',
         formItemLabel: '啟用',
         value: formValue.value.enable,
+        layout: {
+          768: 6,
+        },
       },
       {
         compName: 'InputNumber',
         formKey: 'height',
         formItemLabel: '身高',
         value: formValue.value.height,
+        layout: {
+          768: 6,
+        },
       },
     ];
 

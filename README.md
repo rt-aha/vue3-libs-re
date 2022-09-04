@@ -48,8 +48,8 @@
 ### Hard (1/13)
 - [ ] AutoComplete
 - [ ] DatePicker
-- [ ] TimePicker
-- [ ] Transfer
+- [x] TimePicker
+- [x] Transfer
 - [x] Select
   - [ ] 可清除功能
   - [x] MultiSelect
@@ -66,9 +66,9 @@
 ## hooks
 
 ## widgets
-- [ ] Form/FormItem/FormMessage
+- [x] Form/FormItem/FormMessage
   - [ ] 把非同步驗證加進去，完成後刪除 async-validator 套件
 - [ ] Table
 - [ ] Navigation
 - [ ] Menu
-- [ ] Search
+- [x] Search
