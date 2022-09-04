@@ -6,11 +6,6 @@ const children = [
     name: 'use-request',
     component: () => import(/* webpackChunkName: "UseRequest" */ '@/views/hooks/UseRequest.vue'),
   },
-  {
-    path: 'use-async-dialog',
-    name: 'use-async-dialog',
-    component: () => import(/* webpackChunkName: "UseAsyncDialog" */ '@/views/hooks/UseAsyncDialog.vue'),
-  },
 ];
 const routes = [
   {
