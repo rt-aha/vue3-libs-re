@@ -1,24 +1,22 @@
 <template>
   <div
-    class="re-dialog"
+    class="re-modal"
     :class="[
       {
-        're-dialog--animate-in': dialogActive,
-        're-dialog--animate-out': !dialogActive,
+        're-modal--animate-in': modalActive,
+        're-modal--animate-out': !modalActive,
       },
     ]"
     @animationend="handleAniamtionEnd"
     @click.self="close"
   >
-    <div class="re-dialog__box">
-      <div class="re-dialog__box__body">
+    <div class="re-modal__box">
+      <div class="re-modal__box__body">
         <template v-if="render">
           <component :is="render" v-bind="$props" @close="close" />
         </template>
-
         <template v-else>
-          <p>{{ content }}</p>
-          {{ btns }}
+          <div v-html="content"></div>
 
           <div class="btn-wrap" v-if="btns && btns.length">
             <div class="btn-wrap__btn" v-for="btn of btns" :key="btn.label">
@@ -36,7 +34,7 @@ import { defineComponent, ref } from 'vue';
 import ReButton from '@/components/ReButton.vue';
 
 export default defineComponent({
-  name: 'AsyncDialog',
+  name: 'ReModal',
   components: {
     ReButton,
   },
@@ -64,24 +62,28 @@ export default defineComponent({
       default: '',
     },
   },
-  emits: ['update:visible'],
+  emits: ['closeModal'],
   setup(props, { emit }) {
     // const internalInstance = getCurrentInstance();
-    const dialogActive = ref(true);
+    const modalActive = ref(true);
+    // 傳給外層使用這個 hook 的內容;
+    const fulfillContent = ref(null);
 
     const handleAniamtionEnd = (e) => {
       if (e.animationName.includes('fadeOut')) {
-        emit('update:visible');
+        emit('closeModal', fulfillContent.value);
       }
     };
 
-    const close = async () => {
-      dialogActive.value = false;
+    const close = (content) => {
+      fulfillContent.value = content;
+      // 觸發動畫
+      modalActive.value = false;
     };
 
-    const handleBtn = (cb) => {
+    const handleBtn = async (cb) => {
       if (cb) {
-        cb();
+        await cb();
       }
       close();
     };
@@ -89,7 +91,7 @@ export default defineComponent({
     return {
       close,
       handleBtn,
-      dialogActive,
+      modalActive,
       handleAniamtionEnd,
     };
   },
@@ -137,11 +139,11 @@ export default defineComponent({
   overflow: hidden;
 }
 
-.re-dialog {
+.re-modal {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: $zi-dialog;
+  z-index: $zi-modal;
   width: 100%;
   height: 100%;
   background-color: rgba(#333, 0.5);
@@ -149,14 +151,14 @@ export default defineComponent({
 
   &--animate-in {
     animation: fadeIn 0.3s;
-    .re-dialog__box {
+    .re-modal__box {
       animation: slideIn 0.2s forwards;
     }
   }
 
   &--animate-out {
     animation: fadeOut 0.3s;
-    .re-dialog__box {
+    .re-modal__box {
       animation: slideOut 0.2s forwards;
     }
   }
@@ -168,9 +170,10 @@ export default defineComponent({
     min-width: 320px;
     transform: translate(-50%, -50%);
     background-color: $c-white;
+    border-radius: 12px;
 
     &__body {
-      @include padding(50px 75px);
+      @include padding(50px 40px);
     }
   }
 }

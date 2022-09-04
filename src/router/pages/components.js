@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 're-modal',
+    name: 're-modal',
+    component: () => import(/* webpackChunkName: "ReModal" */ '@/views/components/ReModal.vue'),
+    meta: {
+      title: 'ReModal 彈窗',
+    },
+  },
+  {
     path: 're-skeleton',
     name: 're-skeleton',
     component: () => import(/* webpackChunkName: "ReSkeleton" */ '@/views/components/ReSkeleton.vue'),

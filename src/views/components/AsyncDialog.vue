@@ -102,8 +102,8 @@ export default defineComponent({
   },
   setup() {
     const { asyncDialog } = useAsyncDialog();
-    const toggleDialog1 = () => {
-      asyncDialog({
+    const toggleDialog1 = async () => {
+      const dialog = await asyncDialog({
         content: '刪除成功',
         btns: [
           {
@@ -126,6 +126,8 @@ export default defineComponent({
           },
         ],
       });
+
+      console.log('dialog', dialog);
     };
 
     const toggleDialog2 = () => {

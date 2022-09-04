@@ -1,31 +1,16 @@
 import { ref, createApp, h } from 'vue';
+
 import AsyncDialog from '@/components/ReAsyncDialog.vue';
 
 export default () => {
-  const asyncDialog = ({ content = '', render, btns, renderType = 'normal', desc }) => {
-    const getAppendDom = (target) => {
-      let targetEle = document.querySelector(`.${target}`);
-      if (targetEle) {
-        return targetEle;
-      }
-
-      const dialogRoot = document.createElement('div');
-      dialogRoot.className = 'dialog-wrap';
-      document.body.appendChild(dialogRoot);
-
-      return dialogRoot;
-    };
-
-    return new Promise((resolve) => {
-      const dialogRoot = getAppendDom('dialog-wrap');
-
+  const asyncDialog = ({ content = '', render, btns, renderType = 'normal' }) =>
+    new Promise((resolve) => {
       const app = createApp({
         setup() {
           const visible = ref(true);
-          const closeSubDialog = () => {
+          const closeSubDialog = (status) => {
             visible.value = false;
-            resolve('dialogRemoved');
-            app.unmount();
+            resolve(status);
           };
           return () =>
             h(AsyncDialog, {
@@ -33,7 +18,6 @@ export default () => {
               'onUpdate:visible': closeSubDialog,
               btns,
               renderType,
-              desc,
               render: h(
                 renderType === 'render' ? render : 'div',
                 {
@@ -45,9 +29,17 @@ export default () => {
         },
       });
 
-      app.mount(dialogRoot);
+      const root = document.createElement('div');
+      document.body.appendChild(root);
+
+      return {
+        instance: app.mount(root),
+        unmount() {
+          app.unmount(root);
+          document.body.removeChild(root);
+        },
+      };
     });
-  };
 
   return {
     asyncDialog,

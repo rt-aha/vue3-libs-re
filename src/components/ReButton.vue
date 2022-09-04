@@ -27,11 +27,16 @@ export default defineComponent({
 <style lang="scss" scoped>
 .c-button {
   width: auto;
-  @include padding(8px 12px);
+  height: 40px;
+  @include padding(0 12px);
   border: 0;
   outline: 0;
   text-align: center;
   cursor: pointer;
+
+  & + & {
+    margin-left: 10px;
+  }
 
   &__content {
     @include flex();
