@@ -22,7 +22,7 @@
 - [ ] Loading
 - [ ] Link
 
-### Medium (5/17)
+### Medium (6/17)
 - [ ] Accordion
 - [ ] Breadcrumb
 - [x] Checkbox
@@ -42,7 +42,7 @@
 - [ ] TimeLine
 - [ ] Tree
 - [x] Modal
-- [ ] Drawer
+- [x] Drawer
 - [ ] Steps
 
 ### Hard (1/13)
