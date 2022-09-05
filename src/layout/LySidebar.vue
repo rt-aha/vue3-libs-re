@@ -42,6 +42,7 @@ import { defineComponent, ref } from 'vue';
 import { children as components } from '@/router/pages/components';
 import { children as hooks } from '@/router/pages/hooks';
 import { children as widgets } from '@/router/pages/widgets';
+import { children as compForm } from '@/views/compForm/compForm';
 import { toCamel } from '@/utils/toCamel';
 import { useRouter } from 'vue-router';
 import { useRoute } from 'vue-router';
@@ -56,6 +57,9 @@ export default defineComponent({
     const mainListConfig = [
       {
         label: 'components',
+      },
+      {
+        label: 'compForm',
       },
       {
         label: 'widgets',
@@ -79,6 +83,12 @@ export default defineComponent({
         };
       }),
       hooks: hooks.map((item) => {
+        return {
+          label: toCamel(item.name),
+          name: item.name,
+        };
+      }),
+      compForm: compForm.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
@@ -154,6 +164,8 @@ export default defineComponent({
 .sub-list-wrap {
   @include padding(15px 15px 15px 50px);
   width: 250px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .sub-list {

@@ -10,7 +10,12 @@
     @animationend="handleAniamtionEnd"
     @click.self="close"
   >
-    <div class="re-drawer__box">
+    <div
+      class="re-drawer__box"
+      :style="{
+        width,
+      }"
+    >
       <div class="re-drawer__box__body">
         <template v-if="render">
           <component :is="render" v-bind="$props" @close="close" />
@@ -60,6 +65,10 @@ export default defineComponent({
     renderType: {
       type: String,
       default: '',
+    },
+    width: {
+      type: String,
+      default: '220px',
     },
   },
   emits: ['closeModal'],
@@ -173,9 +182,12 @@ export default defineComponent({
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     height: 100%;
+    @include padding(30px 0);
 
     &__body {
-      @include padding(50px 40px);
+      height: 100%;
+      overflow-y: auto;
+      @include padding(0 40px);
     }
   }
 }

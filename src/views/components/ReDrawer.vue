@@ -6,6 +6,9 @@
     <dev-section title="使用預設按鈕">
       <ReButton @click="openDrawerWithDefaultBtns">Open Modal With Default Button</ReButton>
     </dev-section>
+    <dev-section title="定義寬度">
+      <ReButton @click="openDrawerWithCustomWidth">40vw Drawer</ReButton>
+    </dev-section>
     <dev-section title="使用自定義內容(可塞入 component)">
       <ReButton @click="openDrawerWithComponent">Open Modal With Component</ReButton>
     </dev-section>
@@ -76,6 +79,20 @@ export default defineComponent({
       console.log('drawer2', drawer2);
     };
 
+    const openDrawerWithCustomWidth = async () => {
+      const drawer4 = await drawer({
+        content: '這裡可以寫一些訊息 default ',
+        width: '40vw',
+        data: {
+          a: 4,
+          b: 'str',
+          c: true,
+        },
+      });
+
+      console.log('drawer4', drawer4);
+    };
+
     const openDrawerWithComponent = async () => {
       const drawer3 = await drawer({
         data: {
@@ -90,7 +107,8 @@ export default defineComponent({
     };
 
     const opevDrawerWithInnevDrawer = async () => {
-      const drawer4 = await drawer({
+      const drawer5 = await drawer({
+        width: '40vw',
         data: {
           a: 4,
           b: 'str',
@@ -99,13 +117,14 @@ export default defineComponent({
         render: DevDrawerInnerDrawer,
       });
 
-      console.log('drawer4', drawer4);
+      console.log('drawer5', drawer5);
     };
 
     return {
       openDrawer,
       openDrawerWithDefaultBtns,
       openDrawerWithComponent,
+      openDrawerWithCustomWidth,
       opevDrawerWithInnevDrawer,
     };
   },

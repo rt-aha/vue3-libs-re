@@ -1,35 +1,5 @@
 <template>
   <div class="v-re-checkbox">
-    <dev-title size="main">re-checkbox 組件</dev-title>
-    <dev-section title="單個選項時">
-      <div>
-        <dev-desc api="props" type="String">label: 選項名字</dev-desc>
-        <re-checkbox v-model="value1" label="我同意協議書內容" />
-      </div>
-    </dev-section>
-
-    <dev-section title="單個選項時，自定義內容">
-      <div>
-        <dev-desc api="props" type="Function">render: .vue 組件/渲染函式</dev-desc>
-        <re-checkbox v-model="value2" :render="CheckboxContent" />
-      </div>
-    </dev-section>
-
-    <dev-section title="禁用">
-      <div>
-        <dev-desc api="props" type="Boolean">disabled: 是否禁用</dev-desc>
-        <re-checkbox v-model="value3" label="是否啟用" :options="phoneOptions3" disabled />
-      </div>
-    </dev-section>
-
-    <dev-section title="checkbox被點擊時">
-      <div>
-        <dev-desc api="event">change 事件：點擊時觸發</dev-desc>
-        <re-checkbox v-model="value1" label="我同意協議書內容" @onChange="onCheckboxChange" />
-      </div>
-    </dev-section>
-
-    <dev-title size="main">re-checkbox-group 組件</dev-title>
     <dev-section title="多選項">
       <div>
         <dev-desc api="props" type="Array">options: e.g. [{label: 'aaa': value: 'aaa'}]</dev-desc>

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import components from '@/router/pages/components';
 import hooks from '@/router/pages/hooks';
 import widgets from '@/router/pages/widgets';
+import compForm from '@/views/compForm/compForm';
 
 // console.log('routes..', pages);
 
@@ -17,6 +18,7 @@ const router = createRouter({
     ...components,
     ...widgets,
     ...hooks,
+    ...compForm,
   ],
 });
 

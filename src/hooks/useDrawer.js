@@ -2,23 +2,21 @@ import { ref, createApp, h } from 'vue';
 import ReDrawer from '@/components/ReDrawer.vue';
 
 export default () => {
-  const drawer = ({ content = '', render, btns, data }) => {
+  const drawer = ({ content = '', render, btns, data, width }) => {
     const getAppendDom = (target) => {
       let targetEle = document.querySelector(`.${target}`);
 
       if (targetEle) {
-        if (targetEle.children) {
-          const drawerRoot = document.createElement('div');
-          drawerRoot.className = 'inner-drawer-wrap';
-          document.body.appendChild(drawerRoot);
-          return drawerRoot;
+        if (targetEle.hasChildNodes()) {
+          const ele = getAppendDom('drawer-inner-wrap');
+          return ele;
         } else {
           return targetEle;
         }
       }
 
       const drawerRoot = document.createElement('div');
-      drawerRoot.className = 'drawer-wrap';
+      drawerRoot.className = target;
       document.body.appendChild(drawerRoot);
 
       return drawerRoot;
@@ -41,6 +39,7 @@ export default () => {
               data,
               btns,
               content,
+              width,
               render: render
                 ? h(render, {
                     close: closeDrawer,

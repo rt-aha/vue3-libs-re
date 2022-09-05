@@ -7,18 +7,16 @@ export default () => {
       let targetEle = document.querySelector(`.${target}`);
 
       if (targetEle) {
-        if (targetEle.children) {
-          const modalRoot = document.createElement('div');
-          modalRoot.className = 'inner-modal-wrap';
-          document.body.appendChild(modalRoot);
-          return modalRoot;
+        if (targetEle.hasChildNodes()) {
+          const ele = getAppendDom('modal-inner-wrap');
+          return ele;
         } else {
           return targetEle;
         }
       }
 
       const modalRoot = document.createElement('div');
-      modalRoot.className = 'modal-wrap';
+      modalRoot.className = target;
       document.body.appendChild(modalRoot);
 
       return modalRoot;
