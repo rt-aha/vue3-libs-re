@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 're-drawer',
+    name: 're-drawer',
+    component: () => import(/* webpackChunkName: "ReDrawer" */ '@/views/components/ReDrawer.vue'),
+    meta: {
+      title: 'ReDrawer 抽屜',
+    },
+  },
+  {
     path: 're-modal',
     name: 're-modal',
     component: () => import(/* webpackChunkName: "ReModal" */ '@/views/components/ReModal.vue'),
@@ -46,11 +54,11 @@ const children = [
     name: 'collapse-transition',
     component: () => import(/* webpackChunkName: "CollapseTransition" */ '@/views/components/CollapseTransition.vue'),
   },
-  {
-    path: 'async-dialog',
-    name: 'async-dialog',
-    component: () => import(/* webpackChunkName: "AsyncDialog" */ '@/views/components/AsyncDialog.vue'),
-  },
+  // {
+  //   path: 'async-dialog',
+  //   name: 'async-dialog',
+  //   component: () => import(/* webpackChunkName: "AsyncDialog" */ '@/views/components/AsyncDialog.vue'),
+  // },
   {
     path: 'paragraph',
     name: 'paragraph',
