@@ -1,35 +1,24 @@
 <template>
-  <div class="v-re-email-auto-complete">ReEmailAutoComplete 施工中 ...</div>
+  <div class="v-re-email-auto-complete">
+    <ReEmailAutoComplete v-model="value" />
+  </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { serialize } from 'object-to-formdata';
+import { defineComponent, ref } from 'vue';
+import ReEmailAutoComplete from '@/components/ReEmailAutoComplete.vue';
 
 export default defineComponent({
   name: 'ViewReEmailAutoComplete',
+  components: {
+    ReEmailAutoComplete,
+  },
   setup() {
-    const formData = serialize({
-      a: '1',
-      b: 1,
-      c: true,
-      d: {
-        aa: 'aa',
-        bb: 'bb',
-        cc: [1, 2, 3, 'a', 'b', 'c'],
-      },
-      e: [
-        {
-          hi: 'hi',
-          bye: 123,
-          status: false,
-        },
-      ],
-    });
+    const value = ref('123');
 
-    console.log(formData.values());
-
-    return {};
+    return {
+      value,
+    };
   },
 });
 </script>

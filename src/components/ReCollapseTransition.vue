@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, onMounted, watch } from 'vue';
+import { defineComponent, ref, onMounted, watch, nextTick } from 'vue';
 
 export default defineComponent({
   name: 'ReCollapseTransition',
@@ -13,6 +13,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    detect: {},
   },
   setup(props) {
     const calcHeight = ref(0);
@@ -26,9 +27,15 @@ export default defineComponent({
       wrapper.value.style.height = `${calcHeight.value}px`;
     };
 
-    onMounted(() => {
+    const reCalcHeight = async () => {
+      wrapper.value.style.height = 'auto';
+      await nextTick();
       calcHeight.value = wrapper.value.clientHeight;
-      wrapper.value.style.height = '0px';
+      // wrapper.value.style.height = '0px';
+    };
+
+    onMounted(() => {
+      reCalcHeight();
     });
 
     watch(
@@ -40,6 +47,14 @@ export default defineComponent({
           hide();
         }
       },
+    );
+
+    watch(
+      () => props.detect,
+      () => {
+        reCalcHeight();
+      },
+      { deep: true },
     );
 
     return {
