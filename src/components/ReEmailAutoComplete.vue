@@ -123,7 +123,6 @@ export default defineComponent({
       // this.triggerValidate('change', emailValue.value);
       setOptions();
       closeOptions();
-      ㄉ;
     };
     const removeOption = (val) => {
       const storageOptions = localStorage.getItem(props.storageKey);
