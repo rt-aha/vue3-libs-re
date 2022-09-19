@@ -1,5 +1,5 @@
 <template>
-  <button class="c-button" @click="onClick">
+  <button class="c-button" :class="`c-button--type--${type}`" @click="onClick">
     <span class="c-button__content">
       <slot />
     </span>
@@ -11,6 +11,12 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ReButton',
+  props: {
+    type: {
+      type: String,
+      default: 'gradient',
+    },
+  },
   emit: ['emit'],
   setup(props, { emit }) {
     const onClick = () => {
@@ -38,8 +44,50 @@ export default defineComponent({
     margin-left: 10px;
   }
 
+  &--type {
+    &--gradient {
+      width: 160px;
+      height: 46px;
+      background: transparent linear-gradient(90deg, #2eaed0 0%, #07b253 100%) 0% 0% no-repeat padding-box;
+      border-radius: 30px;
+      @include font-style($c-white, 16, 400, 2px, 27px);
+    }
+
+    &--grey {
+      width: 160px;
+      height: 46px;
+      background: $c-grey;
+      border-radius: 30px;
+      @include font-style($c-white, 16, 400, 2px, 27px);
+    }
+
+    &--blue {
+      width: 160px;
+      height: 46px;
+      background: $c-main;
+      border-radius: 30px;
+      @include font-style($c-white, 16, 400, 2px, 27px);
+    }
+
+    &--plain {
+      width: 'auto';
+      height: 46px;
+      background: transparent;
+      @include font-style($c-grey, 16, 400, 2px, 27px);
+    }
+
+    &--small-plain {
+      width: 'auto';
+      height: 20px;
+      border: 1px solid $c-grey;
+      border-radius: 2px;
+      @include font-style($c-grey, 12, 400, 2px, 20px);
+      background-color: transparent;
+    }
+  }
+
   &__content {
-    @include flex();
+    @include flex(center);
   }
 }
 </style>

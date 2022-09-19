@@ -77,6 +77,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@popperjs/core@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.0.tgz#0e1bdf8d021e7ea58affade33d9d607e11365915"
+  integrity sha512-NMrDy6EWh9TPdSRiHmHH2ye1v5U0gBD7pRYwSwJvomx7Bm4GG04vu63dYiVzebLOx2obPpJugew06xVP0Nk7hA==
+
 "@rushstack/eslint-patch@^1.1.0":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.3.tgz#6801033be7ff87a6b7cadaf5b337c9f366a3c4b0"
@@ -129,6 +134,11 @@
   version "4.14.182"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
   integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
+
+"@types/lodash@^4.14.165":
+  version "4.14.185"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.185.tgz#c9843f5a40703a8f5edfd53358a58ae729816908"
+  integrity sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==
 
 "@types/ms@*":
   version "0.7.31"
@@ -654,10 +664,20 @@ csstype@~3.0.5:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.11.tgz#d66700c5eacfac1940deb4e3ee5642792d85cd33"
   integrity sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==
 
+date-fns-tz@^1.0.12:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/date-fns-tz/-/date-fns-tz-1.3.7.tgz#e8e9d2aaceba5f1cc0e677631563081fdcb0e69a"
+  integrity sha512-1t1b8zyJo+UI8aR+g3iqr5fkUHWpd58VBx8J/ZSQ+w7YrGlw80Ag4sA86qkfCXRBLmMc4I2US+aPMd4uKvwj5g==
+
 date-fns-tz@^1.3.3:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/date-fns-tz/-/date-fns-tz-1.3.5.tgz#415086b0095dab80121d66912b93f1dec5729e6e"
   integrity sha512-SNhl/fWe7i2HoIB9ejLZhEEJ6ZtRRpOBbzizFrq11K2/iceS9Nk7fPN2VTYVOMgFB9u0f3eidSC4n1xaRONW2A==
+
+date-fns@^2.16.1:
+  version "2.29.3"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.3.tgz#27402d2fc67eb442b511b70bbdf98e6411cd68a8"
+  integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
 
 date-fns@^2.28.0:
   version "2.28.0"
@@ -1996,7 +2016,7 @@ lodash.merge@^4.6.2:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
-lodash@^4.17.21:
+lodash@^4.17.20, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -2945,6 +2965,17 @@ uuid@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+v-calendar@^3.0.0-alpha.8:
+  version "3.0.0-alpha.8"
+  resolved "https://registry.yarnpkg.com/v-calendar/-/v-calendar-3.0.0-alpha.8.tgz#3bc8c69f4788fb527c39706f41fd2a502a17c827"
+  integrity sha512-T23H5UbK0EomrwArlF/jrT2LFbV/lu+Bp9JroZ1paN6rPoaMyvE+HrLxvAmUgi+pODrdTURDMzM3+WPgeFKEBQ==
+  dependencies:
+    "@popperjs/core" "2.4.0"
+    "@types/lodash" "^4.14.165"
+    date-fns "^2.16.1"
+    date-fns-tz "^1.0.12"
+    lodash "^4.17.20"
 
 v8-compile-cache@^2.0.3:
   version "2.3.0"
