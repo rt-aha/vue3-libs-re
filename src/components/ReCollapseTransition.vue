@@ -1,10 +1,12 @@
 <template>
-  <div class="v-collapse-transition" :class="{ 'v-collapse-transition--show': show }" ref="wrapper">
-    <slot></slot>
+  <div class="v-collapse-transition" ref="wrapper">
+    <div class="v-collapse-transition__content">
+      <slot />
+    </div>
   </div>
 </template>
 <script>
-import { defineComponent, ref, onMounted, watch } from 'vue';
+import { defineComponent, ref, onMounted, watch, nextTick } from 'vue';
 
 export default defineComponent({
   name: 'ReCollapseTransition',
@@ -13,6 +15,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    detect: {},
   },
   setup(props) {
     const calcHeight = ref(0);
@@ -26,9 +29,15 @@ export default defineComponent({
       wrapper.value.style.height = `${calcHeight.value}px`;
     };
 
-    onMounted(() => {
+    const reCalcHeight = async () => {
+      wrapper.value.style.height = 'auto';
+      await nextTick();
       calcHeight.value = wrapper.value.clientHeight;
       wrapper.value.style.height = '0px';
+    };
+
+    onMounted(() => {
+      reCalcHeight();
     });
 
     watch(
@@ -42,6 +51,15 @@ export default defineComponent({
       },
     );
 
+    watch(
+      () => props.detect,
+      () => {
+        reCalcHeight();
+        show();
+      },
+      // { deep: true },
+    );
+
     return {
       calcHeight,
       wrapper,
@@ -52,12 +70,12 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .v-collapse-transition {
-  overflow: hidden;
   transition: 0.4s;
+  overflow: hidden;
   border-radius: 4px;
+  box-shadow: 1px 1px 5px #ededed;
 
-  &--show {
-    box-shadow: 0 0 10px 3px $c-shadow;
+  &__content {
   }
 }
 </style>
