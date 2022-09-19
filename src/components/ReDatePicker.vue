@@ -1,5 +1,5 @@
 <template>
-  <div class="re-date-range-picker">
+  <div class="re-date-picker">
     <div class="select" @click.stop="toggleExpand">
       <div class="select__active-wrap">
         <input class="select__field" readonly placeholder="請選擇" :value="inputValue" />
@@ -15,22 +15,16 @@
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
         <div class="select-options" v-click-away="closeSelect">
-          <div class="radio-wrap">
-            <!-- <ReRadio :options="periodOptions" v-model="shortcut" @onChange="handleShortcut" /> -->
-            <ReButton v-for="p of periodOptions" :key="p.value" type="small-plain" @click="handleShortcut(p.value)">
-              {{ p.label }}
-            </ReButton>
-          </div>
-          <DatePicker v-model="date" is-range />
+          <DatePicker v-model="date" @change="handleChange" />
         </div>
       </ReCollapseTransition>
     </div>
   </div>
 </template>
 <script>
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, watch } from 'vue';
 import ReCollapseTransition from '@/components/ReCollapseTransition.vue';
-import ReButton from '@/components/ReButton.vue';
+// import ReButton from '@/components/ReButton.vue';
 import { DatePicker } from 'v-calendar';
 import dayjs from 'dayjs';
 import 'v-calendar/dist/style.css';
@@ -42,41 +36,19 @@ export default defineComponent({
   components: {
     ReCollapseTransition,
     DatePicker,
-    ReButton,
+    // ReButton,
   },
   props: {
     modelValue: {
-      type: Object,
-      default: () => ({}),
+      type: Date,
+      default: new Date(),
     },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const periodOptions = [
-      {
-        label: '今日',
-        value: 'today',
-      },
-      {
-        label: '昨日',
-        value: 'yesterday',
-      },
-      {
-        label: '過去7天',
-        value: 'week',
-      },
-      {
-        label: '本月',
-        value: 'currMonth',
-      },
-    ];
-
     const isExpand = ref(false);
     const shortcut = ref('');
-    const date = ref({
-      start: dayjs().$d,
-      end: dayjs().$d,
-    });
+    const date = ref('');
 
     const toggleExpand = () => {
       isExpand.value = !isExpand.value;
@@ -90,42 +62,28 @@ export default defineComponent({
       isExpand.value = false;
     };
 
-    const handleShortcut = (val) => {
-      console.log('opt', val);
-      const d = new Date();
+    const inputValue = computed(() => {
+      console.log('props.modelValue', props.modelValue);
+      return dayjs(props.modelValue).format('YYYY/MM/DD');
+    });
 
-      switch (val) {
-        case 'yesterday':
-          date.value = {
-            start: dayjs().subtract(1, 'day').$d,
-            end: dayjs().subtract(1, 'day').$d,
-          };
-          break;
-        case 'week':
-          date.value = {
-            start: dayjs().subtract(6, 'day').$d,
-            end: dayjs().$d,
-          };
-          break;
-        case 'currMonth':
-          date.value = {
-            start: new Date(d.getFullYear(), d.getMonth(), 1),
-            end: dayjs().$d,
-          };
-          break;
-        default:
-          date.value = {
-            start: dayjs().$d,
-            end: dayjs().$d,
-          };
-      }
-
-      emit('update:modelValue', date.value);
+    const handleChange = (v) => {
+      console.log('...', v);
     };
 
-    const inputValue = computed(() => {
-      return `${dayjs(date.value.start).format('YYYY/MM/DD')} ~ ${dayjs(date.value.end).format('YYYY/MM/DD')}`;
-    });
+    const init = () => {
+      date.value = props.modelValue;
+    };
+
+    init();
+
+    // 看有沒有辦法不要用 watch
+    watch(
+      () => date.value,
+      () => {
+        emit('update:modelValue', date.value);
+      },
+    );
 
     return {
       isExpand,
@@ -134,15 +92,14 @@ export default defineComponent({
       closeSelect,
       date,
       shortcut,
-      periodOptions,
-      handleShortcut,
       inputValue,
+      handleChange,
     };
   },
 });
 </script>
 <style lang="scss" scoped>
-.re-date-range-picker {
+.re-date-picker {
   width: 100%;
   // width: 200px;
   cursor: pointer;

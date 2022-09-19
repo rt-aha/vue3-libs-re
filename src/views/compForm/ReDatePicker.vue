@@ -1,25 +1,22 @@
 <template>
-  <div class="v-date-range-picker">
+  <div class="v-date-picker">
     <dev-section title="基本使用">
-      <ReDateRangePicker v-model="value" />
+      <ReDatePicker v-model="value" />
     </dev-section>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue';
-import ReDateRangePicker from '@/components/ReDateRangePicker.vue';
+import ReDatePicker from '@/components/ReDatePicker.vue';
 
 export default defineComponent({
-  name: 'ViewReDateRangePicker',
+  name: 'ViewReDatePicker',
   components: {
-    ReDateRangePicker,
+    ReDatePicker,
   },
   setup() {
-    const value = ref({
-      start: new Date(),
-      end: new Date(),
-    });
+    const value = ref(new Date());
 
     return {
       value,
