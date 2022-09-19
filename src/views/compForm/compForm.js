@@ -26,6 +26,22 @@ const children = [
     },
   },
   {
+    path: 're-auto-input',
+    name: 're-auto-input',
+    component: () => import(/* webpackChunkName: "ReAutoInput" */ '@/views/compForm/ReAutoInput.vue'),
+    meta: {
+      title: 'Auto Input 自動填入',
+    },
+  },
+  {
+    path: 're-input-timer',
+    name: 're-input-timer',
+    component: () => import(/* webpackChunkName: "ReInputTimer" */ '@/views/compForm/ReInputTimer.vue'),
+    meta: {
+      title: 'Input Timer 倒數時器輸入框',
+    },
+  },
+  {
     path: 're-textarea',
     name: 're-textarea',
     component: () => import(/* webpackChunkName: "ReTextarea" */ '@/views/compForm/ReTextarea.vue'),
@@ -109,9 +125,12 @@ const children = [
     },
   },
   {
-    path: 're-input-timer',
-    name: 're-input-timer',
-    component: () => import(/* webpackChunkName: "ReInputTimer" */ '@/views/compForm/ReInputTimer.vue'),
+    path: 're-upload',
+    name: 're-upload',
+    component: () => import(/* webpackChunkName: "ReUpload" */ '@/views/compForm/ReUpload.vue'),
+    meta: {
+      title: 'Upload 上傳',
+    },
   },
 ];
 

@@ -29,7 +29,7 @@ class GenComp {
         type: 'rawlist',
         name: 'group',
         message: 'Select group',
-        choices: ['components', 'widgets', 'hooks'],
+        choices: ['compForm', 'components', 'widgets', 'hooks'],
       },
     ]);
 

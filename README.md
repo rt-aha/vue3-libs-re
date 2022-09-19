@@ -1,7 +1,7 @@
 ## components
 
 ### Easy (10/14)
-- [ ] Button
+- [-] Button
   - [ ] 放各種 btn 就好
 - [x] Divider
 - [x] Avatar
@@ -22,20 +22,21 @@
 - [ ] Loading
 - [ ] Link
 
-### Medium (6/17)
+### Medium (7/17)
 - [ ] Accordion
 - [ ] Breadcrumb
 - [x] Checkbox
 - [x] Tags/DynamicTags
   - [ ] extra 編輯功能
-- [ ] InputList/DynamicInputs
+- [x] InputList/DynamicInputs
+  - [ ] 待 emailAutoComplete 完成，做一版輸入 email 的
 - [x] Input
   - [ ] 功能 - 字數限制
 - [x] InputNumber
   - [ ] 小數點還要處理
   - [ ] 使用千分位
 - [ ] TreeSelect
-- [ ] Upload
+- [09/20] Upload
 - [ ] Tabs
 - [ ] Countdown
 - [ ] NumberAnimation
@@ -45,10 +46,11 @@
 - [x] Drawer
 - [ ] Steps
 
-### Hard (1/13)
-- [ ] AutoComplete
-- [ ] DatePicker
+### Hard (5/11)
+- [] AutoComplete
 - [x] TimePicker
+- [x] DatePicker
+- [x] DateRangePicker
 - [x] Transfer
 - [x] Select
   - [ ] 可清除功能
@@ -56,7 +58,7 @@
   - [ ] SearchSelect
   - [ ] GroupSelect
 - [ ] Slider
-- [ ] Pagination
+- [09/20] Pagination
 - [ ] Message
 - [ ] Notification
 - [ ] Tooltip(PopOver)
