@@ -18,6 +18,14 @@ const children = [
     },
   },
   {
+    path: 're-input-list',
+    name: 're-input-list',
+    component: () => import(/* webpackChunkName: "ReInputList" */ '@/views/compForm/ReInputList.vue'),
+    meta: {
+      title: 'Input List 多輸入框',
+    },
+  },
+  {
     path: 're-textarea',
     name: 're-textarea',
     component: () => import(/* webpackChunkName: "ReTextarea" */ '@/views/compForm/ReTextarea.vue'),
@@ -57,7 +65,7 @@ const children = [
     name: 're-checkbox-group',
     component: () => import(/* webpackChunkName: "ReCheckboxGroup" */ '@/views/compForm/ReCheckboxGroup.vue'),
     meta: {
-      title: 'CheckboxGroup 多選框',
+      title: 'Checkbox Group 多選框',
     },
   },
   {
@@ -72,21 +80,33 @@ const children = [
     path: 're-time-picker',
     name: 're-time-picker',
     component: () => import(/* webpackChunkName: "ReTimePicker" */ '@/views/compForm/ReTimePicker.vue'),
+    meta: {
+      title: 'Time Picker 時間選擇器',
+    },
   },
   {
     path: 're-date-picker',
     name: 're-date-picker',
     component: () => import(/* webpackChunkName: "ReDatePicker" */ '@/views/compForm/ReDatePicker.vue'),
+    meta: {
+      title: 'Date Picker 日期選擇器',
+    },
   },
   {
     path: 're-date-range-picker',
     name: 're-date-range-picker',
     component: () => import(/* webpackChunkName: "ReDateRangePicker" */ '@/views/compForm/ReDateRangePicker.vue'),
+    meta: {
+      title: 'Date Range Picker 日期區間選擇器',
+    },
   },
   {
     path: 're-email-auto-complete',
     name: 're-email-auto-complete',
     component: () => import(/* webpackChunkName: "ReEmailAutoComplete" */ '@/views/compForm/ReEmailAutoComplete.vue'),
+    meta: {
+      title: 'Email Auto Complete Email自動補全',
+    },
   },
   {
     path: 're-input-timer',
