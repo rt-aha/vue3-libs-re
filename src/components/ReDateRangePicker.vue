@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed, watch } from 'vue';
 import ReCollapseTransition from '@/components/ReCollapseTransition.vue';
 import ReButton from '@/components/ReButton.vue';
 import { DatePicker } from 'v-calendar';
@@ -126,6 +126,20 @@ export default defineComponent({
     const inputValue = computed(() => {
       return `${dayjs(date.value.start).format('YYYY/MM/DD')} ~ ${dayjs(date.value.end).format('YYYY/MM/DD')}`;
     });
+
+    const init = () => {
+      date.value = props.modelValue;
+    };
+
+    init();
+
+    // 看有沒有辦法不要用 watch
+    watch(
+      () => date.value,
+      () => {
+        emit('update:modelValue', date.value);
+      },
+    );
 
     return {
       isExpand,
