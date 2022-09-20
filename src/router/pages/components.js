@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 're-pagination',
+    name: 're-pagination',
+    component: () => import(/* webpackChunkName: "RePagination" */ '@/views/components/RePagination.vue'),
+    meta: {
+      title: 'RePagination 頁數',
+    },
+  },
+  {
     path: 're-drawer',
     name: 're-drawer',
     component: () => import(/* webpackChunkName: "ReDrawer" */ '@/views/components/ReDrawer.vue'),

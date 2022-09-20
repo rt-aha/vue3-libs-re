@@ -51,7 +51,7 @@
 - [x] Drawer
 - [ ] Steps
 
-### Hard (5/11)
+### Hard (6/11)
 - [] AutoComplete
 - [x] TimePicker
 - [x] DatePicker
@@ -63,7 +63,7 @@
   - [ ] SearchSelect
   - [ ] GroupSelect
 - [ ] Slider
-- [09/20] Pagination
+- [x] Pagination
 - [ ] Message
 - [ ] Notification
 - [ ] Tooltip(PopOver)

@@ -16,6 +16,7 @@
           @input="(e) => updateValue(e, 'input')"
           @change="(e) => updateValue(e, 'change')"
           @blur="(e) => updateValue(e, 'blur')"
+          @keydown.enter="(e) => updateValue(e, 'keydown.enter')"
           :value="modelValue"
           :disabled="disabled"
         />
@@ -62,7 +63,7 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'onChange'],
   setup(props, { emit, slots }) {
     const { validFn } = useValidate();
     const inputType = ref('');
@@ -73,6 +74,8 @@ export default defineComponent({
     const updateValue = (e, event) => {
       if (props.disabled) return;
       emit('update:modelValue', e.target.value);
+      emit('onChange', e.target.value, event);
+
       validFn(event);
     };
 

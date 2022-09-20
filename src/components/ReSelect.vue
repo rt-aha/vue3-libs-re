@@ -231,6 +231,7 @@ export default defineComponent({
     border: 0px;
     outline: 0px;
     cursor: pointer;
+    width: 100%;
   }
 
   &__drop-icon {
