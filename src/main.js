@@ -10,6 +10,7 @@ import ContentLayout from '@/components/Global/ContentLayout.vue';
 import DevSection from '@/forDev/components/DevSection.vue';
 import DevTitle from '@/forDev/components/DevTitle.vue';
 import DevDesc from '@/forDev/components/DevDesc.vue';
+import ReLoading from '@/components/ReLoading.vue';
 
 import VueClickAway from 'vue3-click-away';
 
@@ -18,5 +19,6 @@ app.component('ContentLayout', ContentLayout);
 app.component('DevSection', DevSection);
 app.component('DevDesc', DevDesc);
 app.component('DevTitle', DevTitle);
+app.component('ReLoading', ReLoading);
 
 app.use(createPinia()).use(router).use(VueHighlightJS).use(VueClickAway).mount('#app');

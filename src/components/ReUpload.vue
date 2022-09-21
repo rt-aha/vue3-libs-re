@@ -9,9 +9,8 @@
         @change="handleFileChange"
         :disabled="isDisabled"
       />
-      <!-- @click="handleClick" -->
 
-      <!-- FIXED: 不知為何包了 re-button/button 無法生效-->
+      <!-- FIXED: 不知為何包了 re-button 無法生效-->
 
       <div class="trigger-scope" @click="handleClick">
         <slot>
@@ -22,8 +21,17 @@
       </div>
     </div>
 
-    <div class="preview-box-wrapper" v-if="preview.use">
-      <re-preview-box
+    <div class="preview-row-wrapper" v-if="preview.use && preview.type === 'row'">
+      <re-upload-preview-row
+        v-for="(attachment, index) of attachments"
+        :key="attachment.name + index"
+        :attachment="attachment"
+        :preview="preview"
+        @removeFile="removeFile"
+      />
+    </div>
+    <div class="preview-box-wrapper" v-if="preview.use && preview.type === 'box'">
+      <re-upload-preview-box
         v-for="(attachment, index) of attachments"
         :key="attachment.name + index"
         :attachment="attachment"
@@ -38,13 +46,15 @@
 import { defineComponent, ref, computed } from 'vue';
 import { v4 as uuid } from 'uuid';
 import ReButton from '@/components/ReButton.vue';
-import RePreviewBox from '@/components/PreviewBox.vue';
+import ReUploadPreviewBox from '@/components/ReUploadPreviewBox.vue';
+import ReUploadPreviewRow from '@/components/ReUploadPreviewRow.vue';
 
 export default defineComponent({
   name: 'ReUpload',
   components: {
     ReButton,
-    RePreviewBox,
+    ReUploadPreviewRow,
+    ReUploadPreviewBox,
   },
   props: {
     modelValue: {
@@ -54,15 +64,15 @@ export default defineComponent({
     // 允許上傳多個圖片
     multiple: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     // 壓縮設定
     compress: {
       type: Object,
       default: () => ({
         use: true,
-        limitWidth: 600,
-        limitHeight: 600,
+        limitWidth: 1000,
+        limitHeight: 1000,
         defaultExt: '', // 設定圖片壓縮格副檔名
       }),
     },
@@ -78,22 +88,19 @@ export default defineComponent({
     },
     // 檔案大小限制，以kb計算，預設 1024kb = 1mb
     uploadSizeLimit: {
-      type: Number,
+      type: [Number, String],
       default: 1024,
     },
     // 上傳檔案個數限制
     uploadCountLimit: {
-      type: Number,
+      type: [Number, String],
       default: 5,
     },
     preview: {
       type: Object,
       default: () => ({
         use: true,
-        image: true,
-        name: true,
-        size: true,
-        type: 'default', // default: 一行一行的圖片、圖片名稱、圖片大小
+        type: 'row', // default: 一行一行的圖片、圖片名稱、圖片大小
       }),
     },
   },
@@ -126,11 +133,11 @@ export default defineComponent({
       }
 
       if (type === 'multiple') {
-        if (props.multiple && files.value.length > props.uploadCountLimit) {
+        if (props.multiple && files.value.length > Number(props.uploadCountLimit)) {
           return true;
         }
 
-        if (props.multiple && files.value.length + attachments.value.length > props.uploadCountLimit) {
+        if (props.multiple && files.value.length + attachments.value.length > Number(props.uploadCountLimit)) {
           return true;
         }
       }
@@ -150,7 +157,7 @@ export default defineComponent({
         for (const file of files.value) {
           const fileKbSize = Math.ceil(file.size / 1024);
 
-          if (fileKbSize > props.uploadSizeLimit) {
+          if (fileKbSize > Number(props.uploadSizeLimit)) {
             return true;
           }
         }
@@ -175,13 +182,10 @@ export default defineComponent({
       handleMessage({});
     };
     const updateFiles = (file, fileName, fileSize, fileType) => {
-      const name = props.preview.name ? fileName : '';
-      const size = props.preview.size ? `${(fileSize / 1024).toFixed(2)}Kb` : '';
-
       attachments.value.push({
         id: uuid(),
-        name,
-        size,
+        name: fileName,
+        size: `${(fileSize / 1024).toFixed(2)}Kb`,
         file,
         type: fileType,
       });
@@ -490,8 +494,15 @@ export default defineComponent({
   }
 }
 
-.preview-box-wrapper {
-  width: 500px;
+.preview-row-wrapper {
+  width: 100%;
   margin-top: 10px;
+}
+
+.preview-box-wrapper {
+  width: 100%;
+  margin-top: 10px;
+  @include flex(flex-start, flex-start);
+  flex-wrap: wrap;
 }
 </style>
