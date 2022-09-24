@@ -21,8 +21,9 @@
   - [ ] 只做一個圈圈而已
 - [x] Tooltip(PopOver)
 
-### Medium (7/17)
-- [ ] Accordion
+### Medium (10/17)
+- [-] Accordion
+  - 還有可放入組件的 demo 要處理
 - [ ] Breadcrumb
 - [x] Checkbox
 - [x] Tags/DynamicTags
