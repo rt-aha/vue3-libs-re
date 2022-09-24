@@ -41,7 +41,14 @@ const children = [
       title: 'Paragraph 文章段落',
     },
   },
-
+  {
+    path: 'accordion',
+    name: 'accordion',
+    component: () => import(/* webpackChunkName: "ReList" */ '@/views/dataDisplay/ReAccordion.vue'),
+    meta: {
+      title: 'ReAccordion 手風琴',
+    },
+  },
   {
     path: 'tag',
     name: 'tag',

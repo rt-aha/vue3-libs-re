@@ -105,9 +105,9 @@ export default defineComponent({
   height: 40px;
   border-radius: 20px;
   outline: 0px transparent;
-  background-color: $c-main-yellow;
+  background-color: $c-assist-yellow;
   cursor: pointer;
-  border: 2px solid $c-main-yellow;
+  border: 2px solid $c-assist-yellow;
   width: 100%;
   white-space: nowrap;
 
@@ -132,7 +132,7 @@ export default defineComponent({
     opacity: 0.5;
 
     &:hover {
-      background-color: $c-main-yellow;
+      background-color: $c-assist-yellow;
     }
   }
 
