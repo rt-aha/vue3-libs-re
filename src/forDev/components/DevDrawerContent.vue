@@ -11,8 +11,8 @@
 <script>
 import { ref } from 'vue';
 import { vld } from '@/utils/validate/validator';
-import ReEasyForm from '@/components/ReEasyForm.vue';
-import ReButton from '@/components/ReButton.vue';
+import ReEasyForm from '@/components/dataInput/ReEasyForm.vue';
+import ReButton from '@/components/common/ReButton.vue';
 
 export default {
   name: 'DevModalContent',

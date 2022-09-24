@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import components from '@/router/pages/components';
-import hooks from '@/router/pages/hooks';
-import widgets from '@/router/pages/widgets';
-import compForm from '@/views/compForm/compForm';
+import common from '@/router/pages/common';
+import dataDisplay from '@/router/pages/dataDisplay';
+import navigation from '@/router/pages/navigation';
+import dataInput from '@/router/pages/dataInput';
+import feedback from '@/router/pages/feedback';
 
 // console.log('routes..', pages);
 
@@ -14,11 +15,14 @@ const router = createRouter({
       name: 'home',
       component: () => import(/* webpackChunkName: "Home" */ '@/views/Home.vue'),
     },
-
-    ...components,
-    ...widgets,
-    ...hooks,
-    ...compForm,
+    ...common,
+    ...dataDisplay,
+    ...navigation,
+    ...dataInput,
+    ...feedback,
+    // ...widgets,
+    // ...hooks,
+    // ...compForm,
   ],
 });
 

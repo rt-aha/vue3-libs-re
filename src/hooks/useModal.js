@@ -1,5 +1,5 @@
 import { ref, createApp, h } from 'vue';
-import ReModal from '@/components/ReModal.vue';
+import ReModal from '@/components/feedback/ReModal.vue';
 
 export default () => {
   const modal = ({ content = '', render, btns, data }) => {

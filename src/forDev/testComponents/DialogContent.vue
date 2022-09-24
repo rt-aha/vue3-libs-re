@@ -11,7 +11,7 @@
 </template>
 <script>
 import { defineComponent } from 'vue';
-import ReButton from '@/components/ReButton.vue';
+import ReButton from '@/components/common/ReButton.vue';
 
 export default defineComponent({
   name: 'TestComp',

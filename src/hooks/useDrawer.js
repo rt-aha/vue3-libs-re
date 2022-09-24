@@ -1,5 +1,5 @@
 import { ref, createApp, h } from 'vue';
-import ReDrawer from '@/components/ReDrawer.vue';
+import ReDrawer from '@/components/feedback/ReDrawer.vue';
 
 export default () => {
   const drawer = ({ content = '', render, btns, data, width }) => {

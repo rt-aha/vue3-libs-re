@@ -2,22 +2,21 @@
   <div class="v-home">
     <div class="v-home__content">
       <p class="title">Vue3 Libs for Easy Life(?)</p>
-      <router-link :to="{name: 'collapse-transition'}">
+      <router-link :to="{ name: 're-button' }">
         <re-button>Entry</re-button>
       </router-link>
-
     </div>
   </div>
 </template>
 <script>
 import { defineComponent } from 'vue';
-import ReButton from '@/components/ReButton.vue'
+import ReButton from '@/components/common/ReButton.vue';
 
 export default defineComponent({
   name: 'home',
   components: {
-    ReButton
-  }
+    ReButton,
+  },
 });
 </script>
 <style lang="scss" scoped>

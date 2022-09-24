@@ -39,10 +39,12 @@
 </template>
 <script>
 import { defineComponent, ref } from 'vue';
-import { children as components } from '@/router/pages/components';
-import { children as hooks } from '@/router/pages/hooks';
-import { children as widgets } from '@/router/pages/widgets';
-import { children as compForm } from '@/views/compForm/compForm';
+import { children as common } from '@/router/pages/common';
+import { children as dataDisplay } from '@/router/pages/dataDisplay';
+import { children as dataInput } from '@/router/pages/dataInput';
+import { children as navigation } from '@/router/pages/navigation';
+import { children as feedback } from '@/router/pages/feedback';
+// import { children as compForm } from '@/views/compForm/compForm';
 import { toCamel } from '@/utils/toCamel';
 import { useRouter } from 'vue-router';
 import { useRoute } from 'vue-router';
@@ -53,47 +55,62 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const activedType = ref('components');
+    const activedType = ref('dataDisplay');
     const mainListConfig = [
       {
-        label: 'components',
+        label: 'common',
       },
       {
-        label: 'compForm',
+        label: 'dataDisplay',
       },
       {
-        label: 'widgets',
+        label: 'dataInput',
       },
       {
-        label: 'hooks',
+        label: 'navigation',
+      },
+      {
+        label: 'feedback',
       },
     ];
 
     const subListConfig = {
-      components: components.map((item) => {
+      common: common.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
         };
       }),
-      widgets: widgets.map((item) => {
+      dataDisplay: dataDisplay.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
         };
       }),
-      hooks: hooks.map((item) => {
+      dataInput: dataInput.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
         };
       }),
-      compForm: compForm.map((item) => {
+      navigation: navigation.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
         };
       }),
+      feedback: feedback.map((item) => {
+        return {
+          label: toCamel(item.name),
+          name: item.name,
+        };
+      }),
+      // dataInput: dataInput.map((item) => {
+      //   return {
+      //     label: toCamel(item.name),
+      //     name: item.name,
+      //   };
+      // }),
     };
 
     const handleMainListItem = (label) => {

@@ -6,11 +6,11 @@ import '@/styles/init/index.scss';
 import '@/styles/utils/_rwd.scss';
 import VueHighlightJS from 'vue3-highlightjs';
 import '@/styles/libs/atom-one-dark.scss';
-import ContentLayout from '@/components/Global/ContentLayout.vue';
+import ContentLayout from '@/forDev/global/ContentLayout.vue';
 import DevSection from '@/forDev/components/DevSection.vue';
 import DevTitle from '@/forDev/components/DevTitle.vue';
 import DevDesc from '@/forDev/components/DevDesc.vue';
-import ReLoading from '@/components/ReLoading.vue';
+import ReLoading from '@/components/feedback/ReLoading.vue';
 
 import VueClickAway from 'vue3-click-away';
 
