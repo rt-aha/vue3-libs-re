@@ -22,8 +22,7 @@
 - [x] Tooltip(PopOver)
 
 ### Medium (10/17)
-- [-] Accordion
-  - 還有可放入組件的 demo 要處理
+- [x] Accordion
 - [ ] Breadcrumb
 - [x] Checkbox
 - [x] Tags/DynamicTags

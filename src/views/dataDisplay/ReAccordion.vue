@@ -7,7 +7,9 @@
     </dev-section>
 
     <dev-section title="可放入組件：待處理">
-      <div class="wrap">...</div>
+      <div class="wrap">
+        <re-accordion :data="workReportBudget" />
+      </div>
     </dev-section>
   </div>
 </template>
@@ -15,7 +17,7 @@
 <script>
 import { defineComponent } from 'vue';
 import ReAccordion from '@/components/dataDisplay/ReAccordion.vue';
-import { aboutUsServices } from '@/config/mockAccordionConfig';
+import { aboutUsServices, workReportBudget } from '@/config/mockAccordionConfig';
 
 export default defineComponent({
   name: 'ViewAccordion',
@@ -25,6 +27,7 @@ export default defineComponent({
   setup() {
     return {
       aboutUsServices,
+      workReportBudget,
     };
   },
 });

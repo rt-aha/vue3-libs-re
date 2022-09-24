@@ -1,4 +1,6 @@
+import { h } from 'vue';
 import { v4 as uuid } from 'uuid';
+import LinkList from '@/forDev/testComponents/LinkList.vue';
 
 export const aboutUsServices = [
   {
@@ -20,6 +22,37 @@ export const aboutUsServices = [
     key: uuid(),
     title: '社會教育宣導',
     content: ['製作各式出版品，提供社會大眾認識早產兒，共同預防早產。'],
+  },
+  {
+    key: uuid(),
+    title: '籌募基金',
+    content: ['結合社會資源，籌募基金，做早產兒最堅強的後盾。'],
+  },
+];
+
+const linkConfig = [
+  {
+    label: 'Yahoo!',
+    link: 'https://tw.yahoo.com/',
+  },
+  {
+    label: 'Youtube',
+    link: 'https://www.youtube.com/',
+  },
+  {
+    label: 'Google Map',
+    link: 'https://www.google.com.tw/maps',
+  },
+];
+
+export const workReportBudget = [
+  {
+    key: uuid(),
+    title: '計畫與經費預算',
+    content: ['content ...'],
+    renderContent: h(LinkList, {
+      list: linkConfig,
+    }),
   },
   {
     key: uuid(),
