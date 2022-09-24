@@ -82,6 +82,9 @@ const children = [
     path: 're-button',
     name: 're-button',
     component: () => import(/* webpackChunkName: "ReButton" */ '@/views/components/ReButton.vue'),
+    meta: {
+      title: 'Button 按鈕',
+    },
   },
   // {
   //   path: 're-input',

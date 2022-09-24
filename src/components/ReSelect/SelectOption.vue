@@ -62,11 +62,11 @@ export default {
 
 <style lang="scss" scoped>
 .re-select-option {
-  @include box-padding(10px);
-  @include font-style($c-assist, 14px);
+  @include padding(10px);
+  @include font-style($c-grey, 14px);
   display: inline-block;
   width: 100%;
-  color: $c-assist;
+  color: $c-grey;
   cursor: pointer;
 
   &:not([data-label='true']),

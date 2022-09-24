@@ -132,7 +132,7 @@ export default defineComponent({
   position: relative;
 
   &__native {
-    // @include box-padding(10px);
+    // @include padding(10px);
     box-sizing: border-box;
     padding: 10px;
     width: 200px;

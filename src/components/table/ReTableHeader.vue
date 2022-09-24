@@ -33,7 +33,7 @@ export default defineComponent({
 // .re-table-header {
 //   &__content {
 //     // width: 100%;
-//     // border-top: 1px solid $c-assist2;
+//     // border-top: 1px solid $c-grey2;
 //   }
 // }
 

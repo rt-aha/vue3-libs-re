@@ -1,0 +1,124 @@
+<template>
+  <div class="c-red-circle-button">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 75">
+      <path class="cls-1" d="M68.41,56a36,36,0,1,1-1.79-39.77" />
+      <path class="cls-2" d="M70.55,37.5a33.05,33.05,0,1,1-33-33A33.05,33.05,0,0,1,70.55,37.5" />
+    </svg>
+    <p class="label-text-wrap">
+      <span
+        class="label-text"
+        :style="{
+          color: labelColor,
+        }"
+      >
+        {{ label }}
+      </span>
+    </p>
+  </div>
+</template>
+<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'RedCircleButton',
+  props: {
+    label: {
+      type: String,
+      default: '',
+    },
+    labelColor: {
+      type: String,
+      default: '#111111',
+    },
+    routeInfo: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+});
+</script>
+<style lang="scss" scoped>
+.c-red-circle-button {
+  cursor: pointer;
+  height: 52px;
+  @include flex();
+}
+
+.red-circle-wrap {
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.red-circle {
+  @include circle(52px);
+  @include position(center);
+  transition: 0.3s;
+  border: 3px solid $c-main;
+  pointer-events: none;
+}
+
+.label-text-wrap {
+  display: inline-block;
+  // padding: 8px 10px 12px 0px;
+  margin-bottom: 5px;
+  margin-left: -4px;
+  position: relative;
+  z-index: 10;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.label-text {
+  @include font-size();
+  letter-spacing: 0.8px;
+  font-weight: bold;
+}
+
+svg {
+  width: 52px;
+  .cls-1,
+  .cls-2 {
+    fill: none;
+    stroke: #c30013;
+    stroke-miterlimit: 10;
+    stroke-width: 3px;
+  }
+  .cls-1 {
+    transition-delay: 0.17s;
+  }
+  .cls-2 {
+    opacity: 0;
+    transition-property: d, stroke-width, opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+  }
+}
+
+.c-red-circle-button {
+  position: relative;
+
+  &:hover {
+    .red-circle {
+      width: 0px;
+      height: 0px;
+      border: 6px solid $c-main;
+    }
+    svg {
+      .cls-1 {
+        transition-delay: 0s;
+        opacity: 0;
+        d: path('M70.55,37.5a33.05,33.05,0,1,1-33-33A33.05,33.05,0,0,1,70.55,37.5');
+      }
+      .cls-2 {
+        d: path('M41.5,37.5a4,4,0,1,1-4-4,4,4,0,0,1,4,4');
+        transition-property: d, stroke-width;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+        stroke-width: 8px;
+        opacity: 1;
+      }
+    }
+  }
+}
+</style>

@@ -1,8 +1,7 @@
 ## components
 
 ### Easy (10/14)
-- [-] Button
-  - [09/21] 放各種 btn 就好
+- [x] Button
 - [x] Divider
 - [x] Avatar
   - [ ] 應改為背景圖
@@ -18,7 +17,6 @@
 - [x] Textarea
 - [x] Badge
   - [ ] 新增一個可以插入文字或圖的功能
-- [ ] Progress
 - [ ] Loading
 - [ ] Link
 
