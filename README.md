@@ -39,7 +39,8 @@
   - [x] 預覽方式要有條列式和方塊形式
   - [x] 影片預覽圖，中間要有一個播放鍵
   - [x] 影片點擊要可以播放
-- [ ] Tabs
+- [-] Tabs
+  - [ ] 先只做最基本的
 - [ ] Countdown
 - [ ] NumberAnimation
 - [ ] TimeLine

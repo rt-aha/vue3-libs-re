@@ -1,13 +1,12 @@
 <template>
-  <!-- <div class="pr-button" :class="{'pr-button--auto': auto}"> -->
   <button
-    class="btn"
+    class="pbf-btn"
     :class="[
-      `btn--color--${color}`,
+      `pbf-btn--color--${color}`,
       {
-        'btn--shadow': shadow,
-        'btn--padding': width === 'auto',
-        'btn--disabled': loading || disabled,
+        'pbf-btn--shadow': shadow,
+        'pbf-btn--padding': width === 'auto',
+        'pbf-btn--disabled': loading || disabled,
       },
     ]"
     :style="{ width: w, maxWidth: mW }"
@@ -15,11 +14,9 @@
     :disabled="loading || disabled"
   >
     <slot />
-    <!-- <span class="btn__text ">{{title}}</span> -->
     <loading v-if="loading"></loading>
-    <img v-show="arrow" class="btn__img" src="@/assets/icon/go.svg" />
+    <img v-show="arrow" class="pbf-btn__img" src="@/assets/icon/go.svg" />
   </button>
-  <!-- </div> -->
 </template>
 <script>
 import { defineComponent, computed } from 'vue';
@@ -100,15 +97,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.pr-button {
-  width: 100%;
-
-  &--auto {
-    width: auto;
-  }
-}
-
-.btn {
+.pbf-btn {
   @include flex(center);
   @include font-style($c-main, 16, 500, 1.6px);
   // width: auto;

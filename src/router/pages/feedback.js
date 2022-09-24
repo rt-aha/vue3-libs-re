@@ -33,6 +33,14 @@ const children = [
       title: 'ReMessage 訊息',
     },
   },
+  {
+    path: 'loading',
+    name: 'loading',
+    component: () => import(/* webpackChunkName: "ReLoading" */ '@/views/feedback/Loading.vue'),
+    meta: {
+      title: 'Loading 載入小動畫',
+    },
+  },
 ];
 
 const routes = [

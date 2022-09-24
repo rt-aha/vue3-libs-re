@@ -9,6 +9,14 @@ const children = [
       title: 'RePagination 頁數',
     },
   },
+  {
+    path: 'tabs',
+    name: 'tabs',
+    component: () => import(/* webpackChunkName: "ReTabs" */ '@/views/navigation/ReTabs.vue'),
+    meta: {
+      title: 'ReTabs 標籤頁',
+    },
+  },
 ];
 
 const routes = [

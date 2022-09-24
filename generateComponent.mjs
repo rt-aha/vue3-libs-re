@@ -29,7 +29,7 @@ class GenComp {
         type: 'rawlist',
         name: 'group',
         message: 'Select group',
-        choices: ['compForm', 'components', 'widgets', 'hooks'],
+        choices: ['common', 'dataDisplay', 'dataInput', 'feedback', 'navigation'],
       },
     ]);
 
@@ -57,7 +57,7 @@ class GenComp {
 
     const genComponent = () => {
       log('generate component');
-      sh.exec(`yarn plop:comp ${upperCamelCaseCompName}`);
+      sh.exec(`yarn plop:comp ${group} ${upperCamelCaseCompName} ${compName}`);
     };
 
     const genView = () => {
