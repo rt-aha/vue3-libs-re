@@ -34,6 +34,14 @@ const children = [
     },
   },
   {
+    path: 'tooltip',
+    name: 'tooltip',
+    component: () => import(/* webpackChunkName: "ReTooltip" */ '@/views/feedback/ReTooltip.vue'),
+    meta: {
+      title: 'ReTooltip 彈出訊息',
+    },
+  },
+  {
     path: 'loading',
     name: 'loading',
     component: () => import(/* webpackChunkName: "ReLoading" */ '@/views/feedback/Loading.vue'),

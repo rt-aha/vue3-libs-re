@@ -1,7 +1,7 @@
 <template>
   <div class="ly-header">
     <div class="ly-header__content">
-      <p class="rakuen">Rakuen</p>
+      <p class="rakuen">Vue3 Component Library</p>
     </div>
   </div>
 </template>
@@ -30,6 +30,6 @@ export default defineComponent({
 }
 
 .rakuen {
-  @include font-style($c-white, 24, 400, 2px);
+  @include font-style($c-white, 20, 400, 2px);
 }
 </style>

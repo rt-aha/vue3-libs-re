@@ -1,6 +1,6 @@
 ## components
 
-### Easy (10/14)
+### Easy (13/13)
 - [x] Button
 - [x] Divider
 - [x] Avatar
@@ -17,8 +17,9 @@
 - [x] Textarea
 - [x] Badge
   - [ ] 新增一個可以插入文字或圖的功能
-- [ ] Loading
-- [ ] Link
+- [x] Loading
+  - [ ] 只做一個圈圈而已
+- [x] Tooltip(PopOver)
 
 ### Medium (7/17)
 - [ ] Accordion
@@ -49,8 +50,8 @@
 - [x] Drawer
 - [ ] Steps
 
-### Hard (6/11)
-- [] AutoComplete
+### Hard (6/10)
+- [ ] AutoComplete
 - [x] TimePicker
 - [x] DatePicker
 - [x] DateRangePicker
@@ -64,7 +65,7 @@
 - [x] Pagination
 - [ ] Message
 - [ ] Notification
-- [ ] Tooltip(PopOver)
+
 
 ### Other
 
