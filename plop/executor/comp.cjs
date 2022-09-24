@@ -5,14 +5,24 @@ module.exports = function (plop) {
     prompts: [
       {
         type: 'input',
+        name: 'folder',
+        message: 'view folder',
+      },
+      {
+        type: 'input',
         name: 'name',
         message: 'component name',
+      },
+      {
+        type: 'input',
+        name: 'kebabName',
+        message: 'kebab name',
       },
     ],
     actions: [
       {
         type: 'add',
-        path: '../../src/components/Re{{name}}.vue',
+        path: '../../src/components/{{folder}}/Re{{name}}.vue',
         templateFile: '../component.hbs',
       },
     ],

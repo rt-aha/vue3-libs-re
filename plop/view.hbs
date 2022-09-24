@@ -1,14 +1,21 @@
 <template>
   <div class="v-{{kebabName}}">
-    {{ name }} 施工中 ...
+    {{name}} 施工中 ...
+    <dev-section title="基本使用">
+      <re-{{name}}></re-{{name}}>
+    </dev-section>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import Re{{name}} from '@/components/{{folder}}/Re{{name}}.vue';
 
 export default defineComponent({
   name: 'View{{name}}',
+  components:{
+    Re{{name}}
+  },
 });
 </script>
 
