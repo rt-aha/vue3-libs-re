@@ -2,7 +2,7 @@
   <div class="v-home">
     <div class="v-home__content">
       <p class="title">Vue3 Libs for Easy Life(?)</p>
-      <router-link :to="{ name: 're-button' }">
+      <router-link :to="{ name: 'button' }">
         <re-button>Entry</re-button>
       </router-link>
     </div>
