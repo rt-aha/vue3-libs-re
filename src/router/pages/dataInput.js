@@ -132,6 +132,14 @@ const children = [
       title: 'Upload 上傳',
     },
   },
+  {
+    path: 'easy-form',
+    name: 'easy-form',
+    component: () => import(/* webpackChunkName: "Easyform" */ '@/views/dataDisplay/Easyform.vue'),
+    meta: {
+      title: 'Easyform 表單',
+    },
+  },
 ];
 
 const routes = [
