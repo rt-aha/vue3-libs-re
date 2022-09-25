@@ -68,14 +68,14 @@ export default defineComponent({
       { deep: true },
     );
 
-    const validateAll = () => {
+    const validateAll = async () => {
       let resultList = [];
 
-      formItemRef.value.forEach((refEle) => {
-        const result = refEle.validateFields('enforceValidate');
+      for (let refEle of formItemRef.value) {
+        const result = await refEle.validateFields('enforceValidate');
 
         resultList.push(result);
-      });
+      }
 
       return !resultList.some((val) => val === false);
     };
