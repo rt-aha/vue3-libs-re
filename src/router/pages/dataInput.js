@@ -135,7 +135,7 @@ const children = [
   {
     path: 'easy-form',
     name: 'easy-form',
-    component: () => import(/* webpackChunkName: "Easyform" */ '@/views/dataDisplay/Easyform.vue'),
+    component: () => import(/* webpackChunkName: "Easyform" */ '@/views/dataInput/Easyform.vue'),
     meta: {
       title: 'Easyform 表單',
     },

@@ -11,17 +11,17 @@
 </template>
 <script>
 import { defineComponent, ref, watch } from 'vue';
-import ReSearchWrap from '@/components/ReSearchWrap.vue';
-import ReSearchItem from '@/components/ReSearchItem.vue';
-import ReSearchGrid from '@/components/ReSearchGrid.vue';
-import ReInput from '@/components/ReInput.vue';
-import ReInputNumber from '@/components/ReInputNumber.vue';
-import ReSelect from '@/components/ReSelect.vue';
-import ReRadio from '@/components/ReRadio.vue';
-import ReCheckbox from '@/components/ReCheckbox.vue';
-import ReCheckboxGroup from '@/components/ReCheckboxGroup.vue';
-import ReSwitch from '@/components/ReSwitch.vue';
-import ReTimePicker from '@/components/ReTimePicker/index.vue';
+import ReSearchWrap from '@/components/dataInput/ReSearchWrap.vue';
+import ReSearchItem from '@/components/dataInput/ReSearchItem.vue';
+import ReSearchGrid from '@/components/dataInput/ReSearchGrid.vue';
+import ReInput from '@/components/dataInput/ReInput.vue';
+import ReInputNumber from '@/components/dataInput/ReInputNumber.vue';
+import ReSelect from '@/components/dataInput/ReSelect.vue';
+import ReRadio from '@/components/dataInput/ReRadio.vue';
+import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
+import ReCheckboxGroup from '@/components/dataInput/ReCheckboxGroup.vue';
+import ReSwitch from '@/components/dataInput/ReSwitch.vue';
+import ReTimePicker from '@/components/dataInput/ReTimePicker/index.vue';
 
 export default defineComponent({
   name: 'ReSearch',

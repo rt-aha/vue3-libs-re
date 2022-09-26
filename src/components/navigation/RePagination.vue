@@ -69,8 +69,8 @@
 <script>
 import { defineComponent, ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import ReSelect from '@/components/ReSelect.vue';
-import ReInput from '@/components/ReInput.vue';
+import ReSelect from '@/components/dataInput/ReSelect.vue';
+import ReInput from '@/components/dataInput/ReInput.vue';
 
 export default defineComponent({
   name: 'RePagination',
