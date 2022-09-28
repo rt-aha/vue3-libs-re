@@ -4,6 +4,7 @@ import dataDisplay from '@/router/pages/dataDisplay';
 import navigation from '@/router/pages/navigation';
 import dataInput from '@/router/pages/dataInput';
 import feedback from '@/router/pages/feedback';
+import testPage from '@/router/pages/testPage';
 
 // console.log('routes..', pages);
 
@@ -20,6 +21,7 @@ const router = createRouter({
     ...navigation,
     ...dataInput,
     ...feedback,
+    ...testPage,
     // ...widgets,
     // ...hooks,
     // ...compForm,
