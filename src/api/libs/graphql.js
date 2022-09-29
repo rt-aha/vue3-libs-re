@@ -7,6 +7,7 @@ import validate from './validate';
 import { print } from 'graphql/language/printer';
 
 const toGraphqlPayload = (gqlSyntax, variables) => {
+  console.log('print(gqlSyntax)',print(gqlSyntax))
   return {
     query: print(gqlSyntax),
     variables,
@@ -79,8 +80,6 @@ const graphql = ({
         data: toGraphqlPayload(data.query, data.payload),
         ...rest,
       });
-
-      console.log('res????',res)
 
       return formatResponse(res);
     } catch (err) {

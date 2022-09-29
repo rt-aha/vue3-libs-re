@@ -31,7 +31,6 @@
       </template>
       <template v-slot:second>
         <p>useRequest.vue</p>
-        
 
         <pre v-highlightjs>
           <code class="javascript">
@@ -70,7 +69,7 @@
 <script>
 import { defineComponent } from 'vue';
 import useRequest from '@/hooks/useRequest';
-import { mockJsonPlaceholder } from '@/api/mockJsonPlaceholder.js';
+import { mockJsonPlaceholder } from '@/api/restfulTest.js';
 
 export default defineComponent({
   name: 'UseRequest',

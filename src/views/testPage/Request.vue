@@ -1,28 +1,82 @@
 <template>
-  <div class="v-request">v-Test</div>
+  <div class="v-request">
+    <dev-section title="Restful">
+      <ReButton @click="restfulRequest">Restful</ReButton>
+    </dev-section>
+    <dev-section title="Graphql">
+      <ReButton @click="graphqlRequest">Graphql</ReButton>
+    </dev-section>
+
+    <dev-section title="graphqlUpload">
+      <div class>
+        <input
+          type="file"
+          ref="inputRef"
+          class="file-input"
+          @change="handleFileChange"
+          accept="image/png, image/jpeg, image/jpg"
+        />
+
+        <ReButton @click="triggerUpload">Upload</ReButton>
+      </div>
+    </dev-section>
+  </div>
 </template>
 <script>
-import { defineComponent } from 'vue';
-import { mockJsonPlaceholder } from '@/api/mockJsonPlaceholder';
-import { loginPublicAPI } from '@/api/site';
+import { defineComponent, ref } from 'vue';
+import { mockJsonPlaceholder } from '@/api/restfulTest';
+import { getSiteRuleAPI, uploadImageAPI } from '@/api/gqlTest';
 import useRequest from '@/hooks/useRequest';
+import ReButton from '@/components/common/ReButton.vue';
 
 export default defineComponent({
   name: 'TestReqest',
+  components: {
+    ReButton,
+  },
   setup() {
     const { request: restfulReq } = useRequest(mockJsonPlaceholder);
+    const { request: gqlReq } = useRequest(getSiteRuleAPI);
+    const { request: imageUploadGqlReq } = useRequest(uploadImageAPI);
 
-    const { request: gqlReq } = useRequest(loginPublicAPI);
+    const file = ref();
+    const inputRef = ref(null);
 
-    restfulReq();
-    gqlReq({
-      in: {
-        code: '',
-        password: '',
-      },
-    });
+    const restfulRequest = () => {
+      restfulReq();
+    };
+    const graphqlRequest = () => {
+      gqlReq({
+        in: 'Cookie',
+      });
+    };
 
-    return {};
+    const handleFileChange = (event) => {
+      console.log(event);
+      file.value = event.target.files;
+
+      console.log(1);
+      imageUploadGqlReq({
+        file: file.value,
+        in: {
+          type: 'Avator',
+        },
+      });
+
+      console.log(2);
+    };
+
+    const triggerUpload = () => {
+      inputRef.value.click();
+    };
+
+    return {
+      restfulRequest,
+      graphqlRequest,
+      handleFileChange,
+      inputRef,
+      triggerUpload,
+    };
   },
 });
 </script>
