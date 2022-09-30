@@ -56,12 +56,14 @@ export default defineComponent({
       file.value = event.target.files;
 
       console.log(1);
-      imageUploadGqlReq({
-        file: file.value,
-        in: {
-          type: 'Avator',
+      imageUploadGqlReq(
+        {
+          in: {
+            type: 'Avator',
+          },
         },
-      });
+        file.value,
+      );
 
       console.log(2);
     };

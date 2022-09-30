@@ -12,12 +12,14 @@ export const getSiteRuleAPI = async (payload) => {
   return res;
 };
 
-export const uploadImageAPI = async (payload) => {
+export const uploadImageAPI = async (payload, files) => {
+  console.log('files', files);
   const res = await gqlReuqest({
     data: {
       query: uploadImage,
       payload,
     },
+    file: files,
   });
 
   return res;

@@ -5,15 +5,69 @@ import { formatResponse } from './formatResponse';
 import interceptor from './interceptor';
 import validate from './validate';
 import { print } from 'graphql/language/printer';
+import { isArray, get, isString, set } from 'lodash-es';
 
 const toGraphqlPayload = (gqlSyntax, variables) => {
-  console.log('print(gqlSyntax)',print(gqlSyntax))
+  console.log('print(gqlSyntax)', print(gqlSyntax));
   return {
     query: print(gqlSyntax),
     variables,
   };
 };
 
+const toGraphqlPayloadWithFiles = (gqlSyntax, variables, files) => {
+
+  console.log('variables',variables)
+
+
+
+  const originFileList = files;
+  console.log('111', originFileList)
+  const multiple = isArray(originFileList);
+  console.log('222', multiple)
+
+  if (!originFileList) {
+    return null;
+  }
+  const form = new FormData();
+
+  const fileList = [];
+
+  for (let i = 0; i < originFileList.length; i += 1) {
+    const file = originFileList[i];
+    const newFile = new File([file], file.name, { type: file.type });
+    fileList.push(newFile);
+  }
+
+  console.log('fileList ?', fileList)
+
+  // 把 variables 中放置檔案的字段值為 null
+  if (multiple) originFileList.fill(null);
+  else set(variables, files, null);
+
+  // operations
+  form.append('operations', JSON.stringify(toGraphqlPayload(gqlSyntax, variables)));
+  console.log('operations',JSON.stringify(toGraphqlPayload(gqlSyntax, variables)))
+  const { map, list } = fileList.reduce(
+    (acc, file, idx) => {
+      const { map: accMap, list: accList } = acc;
+
+      return {
+        map: { ...accMap, [idx]: multiple ? [`variables.${files}.${idx}`] : [`variables.${files}`] },
+        list: [...accList, file],
+      };
+    },
+    { map: {}, list: [] },
+  );
+  // map
+  form.append('map', JSON.stringify(map));
+
+  // file
+  list.forEach((file, idx) => {
+    form.append(idx, file);
+  });
+  return form;
+};
 
 /**
  *
@@ -57,6 +111,7 @@ const graphql = ({
     authFunc = getTokenFunc,
     useAuth = auth,
     formatResponse = formatResponseFunc,
+    files = null, // 這個值是自定義的不是 axios 原本提供的
     ...rest
   }) => {
     if (!validate('method', method)) return;
@@ -71,13 +126,24 @@ const graphql = ({
       headers = authFunc(headers);
     }
 
+    const formatData = () => {
+      console.log('files', files);
+      console.log('data', data.payload);
+      if (files) {
+        return toGraphqlPayloadWithFiles(data.query, data.payload, files);
+      }
+
+      return toGraphqlPayload(data.query, data.payload);
+    };
+
     try {
       const res = await xhr.request({
         headers,
         method,
         url: '',
         params: params || {},
-        data: toGraphqlPayload(data.query, data.payload),
+        // data: toGraphqlPayload(data.query, data.payload),
+        data: formatData(),
         ...rest,
       });
 
