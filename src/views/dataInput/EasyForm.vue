@@ -13,8 +13,16 @@
 import { defineComponent, ref } from 'vue';
 import { vld } from '@/utils/validate/validator';
 import ReButton from '@/components/common/ReButton.vue';
-import { phoneOptions, phoneOptions2, genderOptions, incomeOptions, hobbyOptions } from '@/config/mockOptions.js';
+import { genderOptions, incomeOptions, occupationOptions } from '@/config/options.js';
 import ReEasyForm from '@/components/dataInput/ReEasyForm.vue';
+import {
+  checkRequired,
+  checkRadio,
+  checkCheckbox,
+  checkCheckboxGroup,
+  checkSelect,
+  checkNumberMoreThen,
+} from '@/utils/validate/generalValidator';
 
 export default defineComponent({
   name: 'ViewReForm',
@@ -39,7 +47,7 @@ export default defineComponent({
       gender: 0,
       income: 0,
       agree: false,
-      hobby: [],
+      occupation: [],
       enable: false,
       height: 0,
       timePicker: new Date(),
@@ -55,26 +63,23 @@ export default defineComponent({
         compName: 'Input',
         formKey: 'account',
         formItemLabel: '帳號',
-        value: formValue.value.account,
       },
       {
         compName: 'Input',
         formKey: 'password',
         formItemLabel: '密碼',
-        value: formValue.value.password,
+        type: 'password',
       },
       {
         compName: 'Select',
         formKey: 'gender',
         formItemLabel: '性別',
-        value: formValue.value.gender,
         options: genderOptions,
       },
       {
         compName: 'Radio',
         formKey: 'income',
         formItemLabel: '收入',
-        value: formValue.value.income,
         options: incomeOptions,
       },
       {
@@ -82,26 +87,22 @@ export default defineComponent({
         formKey: 'agree',
         formItemLabel: '同意書',
         label: '我同意',
-        value: formValue.value.agree,
       },
       {
         compName: 'CheckboxGroup',
-        formKey: 'hobby',
-        formItemLabel: '興趣',
-        value: formValue.value.hobby,
-        options: hobbyOptions,
+        formKey: 'occupation',
+        formItemLabel: '職業',
+        options: occupationOptions,
       },
       {
         compName: 'Switch',
         formKey: 'enable',
         formItemLabel: '啟用',
-        value: formValue.value.enable,
       },
       {
         compName: 'InputNumber',
         formKey: 'height',
         formItemLabel: '身高',
-        value: formValue.value.height,
       },
       // {
       //   compName: 'TimePicker',
@@ -149,76 +150,12 @@ export default defineComponent({
           });
         },
       },
-      password: {
-        trigger: ['input'],
-        validator: ({ value, label }) => {
-          return vld(value, {
-            label,
-            ruleList: [
-              {
-                name: 'vldRequired',
-                cusError: 'vldRequiredWithLabel',
-              },
-            ],
-          });
-        },
-      },
-      gender: {
-        trigger: ['change'],
-        validator: ({ value, label }) => {
-          return vld(value, {
-            label,
-            ruleList: [
-              {
-                name: 'vldSelect',
-                cusError: 'vldSelectWithLabel',
-              },
-            ],
-          });
-        },
-      },
-      income: {
-        trigger: ['change'],
-        validator: ({ value, label }) => {
-          return vld(value, {
-            label,
-            ruleList: [
-              {
-                name: 'vldSelect',
-              },
-            ],
-          });
-        },
-      },
-      hobby: {
-        trigger: ['change'],
-        validator: ({ value, label }) => {
-          return vld(value, {
-            label,
-            ruleList: [
-              {
-                name: 'vldCheckMultiple',
-                args: {
-                  min: 1,
-                },
-              },
-            ],
-          });
-        },
-      },
-      agree: {
-        trigger: ['change'],
-        validator: ({ value, label }) => {
-          return vld(value, {
-            label,
-            ruleList: [
-              {
-                name: 'vldCheck',
-              },
-            ],
-          });
-        },
-      },
+      password: checkRequired(),
+      gender: checkSelect(),
+      income: checkRadio(),
+      agree: checkCheckbox(),
+      occupation: checkCheckboxGroup(),
+      height: checkNumberMoreThen(),
     };
 
     const getValue = () => {
@@ -234,11 +171,9 @@ export default defineComponent({
 
     return {
       formRules,
-      phoneOptions,
       formValue,
       formValueConfig,
       getValue,
-      phoneOptions2,
       formRef,
     };
   },

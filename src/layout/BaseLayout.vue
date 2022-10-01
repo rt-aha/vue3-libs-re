@@ -15,7 +15,8 @@
             <router-view />
           </div>
           <div class="router-view-wrap__extra-view" v-if="isFormViewExist">
-            <router-view name="form" />
+            <p class="page-title--form-preview">用於表單時</p>
+            <EasyForm />
           </div>
         </div>
       </div>
@@ -27,20 +28,26 @@ import { defineComponent, computed } from 'vue';
 import LyHeader from '@/layout/LyHeader.vue';
 import LySidebar from '@/layout/LySidebar.vue';
 import { useRoute } from 'vue-router';
+import EasyForm from '@/views/dataInput/EasyForm.vue';
 
 export default defineComponent({
   components: {
     LyHeader,
     LySidebar,
-    // ReForm,
+    EasyForm,
   },
   setup() {
     const route = useRoute();
 
-    const routeMatchedLasteIndex = route.matched.length - 1;
-
+    // const routeMatchedLasteIndex = route.matched.length - 1;
     const isFormViewExist = computed(() => {
-      if (route.matched?.[routeMatchedLasteIndex]?.components?.form) {
+      // if (route.matched?.[routeMatchedLasteIndex]?.components?.form) {
+      //   return true;
+      // }
+
+      console.log('route', route.meta);
+
+      if (route.meta.category === 'dataInput') {
         return true;
       }
 
@@ -61,6 +68,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .page-title {
   @include font-style($c-main, 24, 500);
+
+  &--form-preview {
+    @include font-size(20);
+  }
 }
 .ly-base-layout {
   width: 100%;
