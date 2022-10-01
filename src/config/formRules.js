@@ -55,6 +55,8 @@ export const basicFormRule = {
   height: checkNumberMoreThen(),
 };
 
+export const multiMultiFormRule = {};
+
 export const dependencyFormRule = {
   city: checkRequired(),
   region: checkRequired(),

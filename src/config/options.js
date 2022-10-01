@@ -407,3 +407,13 @@ export const incomeOptions = [
   { label: '401萬~600萬', value: 'IV' },
   { label: '601萬以上', value: 'V' },
 ];
+
+// 需求區域
+export const countiesOptions = [
+  { label: '台北市', value: '台北市' },
+  { label: '新北市', value: '新北市' },
+  { label: '桃園市', value: '桃園市' },
+  { label: '台中市', value: '台中市' },
+  { label: '台南市', value: '台南市' },
+  { label: '高雄市', value: '高雄市' },
+];

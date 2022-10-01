@@ -12,6 +12,18 @@
       </div>
     </dev-section>
 
+    <dev-section title="多對多">
+      <div class="wrap">
+        <ReEasyForm
+          v-model:formValue="multiMultiForm"
+          :formConfig="multiMultiFormConfig"
+          :formRules="multiMultiFormRule"
+          ref="dependencyFormRef"
+        />
+        <ReButton @click="multiMultiFormSubmit"> multiMulti form</ReButton>
+      </div>
+    </dev-section>
+
     <dev-section title="基本使用">
       <div class="wrap">
         <ReEasyForm
@@ -30,11 +42,16 @@
 import { ref } from 'vue';
 import ReButton from '@/components/common/ReButton.vue';
 import ReEasyForm from '@/components/dataInput/ReEasyForm.vue';
-import { basicFormRule, dependencyFormRule } from '@/config/formRules';
-import { basicFormConfig, dependencyFormConfig } from '@/config/formConfigs';
+import { basicFormRule, dependencyFormRule, multiMultiFormRule } from '@/config/formRules';
+import { basicFormConfig, dependencyFormConfig, multiMultiFormConfig } from '@/config/formConfigs';
 
 const basicFormRef = ref(null);
 const dependencyFormRef = ref(null);
+const multiMultiFormRef = ref(null);
+
+const multiMultiForm = ref({
+  mulltiCities: {},
+});
 
 const basicForm = ref({
   city: '',
@@ -61,6 +78,11 @@ const basicFormSubmit = () => {
 const dependencyFormSubmit = () => {
   const validResult = dependencyFormRef.value.validateAll();
   console.log('dependencyForm--result', validResult, dependencyForm.value);
+};
+
+const multiMultiFormSubmit = () => {
+  const validResult = multiMultiFormRef.value.validateAll();
+  console.log('dependencyForm--result', validResult, multiMultiForm.value);
 };
 </script>
 

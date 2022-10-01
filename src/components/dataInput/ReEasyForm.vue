@@ -32,6 +32,7 @@ import ReCheckboxGroup from '@/components/dataInput/ReCheckboxGroup.vue';
 import ReSwitch from '@/components/dataInput/ReSwitch.vue';
 import ReTimePicker from '@/components/dataInput/timePicker/ReTimePickerIndex.vue';
 import ReDependenceSelect from '@/components/dataInput/ReDependenceSelect.vue';
+import ReMultiMultiCheckboxGroup from '@/components/dataInput/ReMultiMultiCheckboxGroup.vue';
 
 export default defineComponent({
   name: 'ReEasyForm',
@@ -47,6 +48,7 @@ export default defineComponent({
     ReTimePicker,
     ReCheckboxGroup,
     ReDependenceSelect,
+    ReMultiMultiCheckboxGroup,
   },
   props: {
     formValue: {

@@ -1,4 +1,4 @@
-import { genderOptions, incomeOptions, occupationOptions } from '@/config/options.js';
+import { genderOptions, incomeOptions, occupationOptions, countiesOptions } from '@/config/options.js';
 import taiwanCitiesRegions from '@/config/taiwanCitiesRegions';
 
 const cityRegionForSelectOptions = taiwanCitiesRegions.map((city) => {
@@ -81,6 +81,20 @@ export const dependencyFormConfig = [
     dependenceOptions: cityRegionForSelectOptions,
     layout: {
       768: 12,
+    },
+  },
+];
+
+export const multiMultiFormConfig = [
+  {
+    // 這是個一個神奇的功能！
+    compName: 'MultiMultiCheckboxGroup',
+    formKey: 'mulltiCities',
+    formItemLabel: '需求區域',
+    hint: '可複選',
+    options: countiesOptions,
+    layout: {
+      768: 24,
     },
   },
 ];
