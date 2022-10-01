@@ -1,6 +1,6 @@
 <template>
   <div class="re-select">
-    <div class="select" @click.stop="toggleExpand">
+    <div class="select" @click="toggleExpand" v-click-away="closeSelect">
       <div class="select__active-wrap">
         <template v-if="multiple">
           <input class="select__field" readonly placeholder="請選擇" v-show="innerMulti.length === 0" />
@@ -21,7 +21,7 @@
     <!-- @click="toggleExpand" -->
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
-        <div class="select-options" v-click-away="closeSelect">
+        <div class="select-options">
           <div v-if="options.length === 0">
             <slot name="noData" />
           </div>

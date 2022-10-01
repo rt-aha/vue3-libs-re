@@ -9,7 +9,12 @@
         :key="f.formKey"
         ref="formItemRef"
       >
-        <component :is="`Re${f.compName}`" v-model="innerForm[f.formKey]" v-bind="f" />
+        <component
+          :is="`Re${f.compName}`"
+          v-model="innerForm[f.formKey]"
+          v-model:extraValue="innerForm[f.extraFormKey]"
+          v-bind="f"
+        />
       </ReFormItem>
     </ReForm>
   </div>
@@ -26,6 +31,7 @@ import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
 import ReCheckboxGroup from '@/components/dataInput/ReCheckboxGroup.vue';
 import ReSwitch from '@/components/dataInput/ReSwitch.vue';
 import ReTimePicker from '@/components/dataInput/timePicker/ReTimePickerIndex.vue';
+import ReDependenceSelect from '@/components/dataInput/ReDependenceSelect.vue';
 
 export default defineComponent({
   name: 'ReEasyForm',
@@ -40,6 +46,7 @@ export default defineComponent({
     ReSwitch,
     ReTimePicker,
     ReCheckboxGroup,
+    ReDependenceSelect,
   },
   props: {
     formValue: {

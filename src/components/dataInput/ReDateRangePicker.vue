@@ -1,6 +1,6 @@
 <template>
   <div class="re-date-range-picker">
-    <div class="select" @click.stop="toggleExpand">
+    <div class="select" @click.stop="toggleExpand" v-click-away="closeSelect">
       <div class="select__active-wrap">
         <input class="select__field" readonly placeholder="請選擇" :value="inputValue" />
       </div>
@@ -14,7 +14,7 @@
     </div>
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
-        <div class="select-options" v-click-away="closeSelect">
+        <div class="select-options">
           <div class="radio-wrap">
             <!-- <ReRadio :options="periodOptions" v-model="shortcut" @onChange="handleShortcut" /> -->
             <ReButton v-for="p of periodOptions" :key="p.value" type="small-plain" @click="handleShortcut(p.value)">

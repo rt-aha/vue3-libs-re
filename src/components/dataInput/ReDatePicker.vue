@@ -1,6 +1,6 @@
 <template>
   <div class="re-date-picker">
-    <div class="select" @click.stop="toggleExpand">
+    <div class="select" @click.stop="toggleExpand" v-click-away="closeSelect">
       <div class="select__active-wrap">
         <input class="select__field" readonly placeholder="請選擇" :value="inputValue" />
       </div>
@@ -14,7 +14,7 @@
     </div>
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
-        <div class="select-options" v-click-away="closeSelect">
+        <div class="select-options">
           <DatePicker v-model="date" @change="handleChange" />
         </div>
       </ReCollapseTransition>

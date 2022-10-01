@@ -1,12 +1,7 @@
 <template>
   <div class="re-select">
     <div class="select" @click="toggleExpand" v-click-away="closeSelect">
-      <div class="select__prefix">
-        {{ prefix }}
-      </div>
-
       <div class="select__active-wrap">
-        {{}}
         <template v-if="multiple">
           <input class="select__field" readonly placeholder="請選擇" v-show="innerMulti.length === 0" />
           <re-select-multi-tag v-model="innerMulti" @onRemoveItem="onRemoveItem" v-show="innerMulti.length > 0" />
@@ -20,7 +15,7 @@
         :class="{
           'select__drop-icon--active': isExpand,
         }"
-        src="@/assets/icon/icon_down.svg"
+        src="@/assets/icon/icon-down.svg"
       />
     </div>
     <!-- @click="toggleExpand" -->
@@ -41,15 +36,13 @@
               :key="opt.value"
               @click="() => handleOption(opt)"
             >
-              <div class="select-option-list__item__check">
-                <img class="select-option-list__item__check__icon" src="@/assets/icon/check.svg" />
-              </div>
               <p class="select-option-list__item__component" v-if="opt.render">
                 <component :is="opt.render" v-bind="opt" />
               </p>
               <p class="select-option-list__item__label" v-else>
                 {{ opt.label }}
               </p>
+              <img class="select-option-list__item__check-icon" src="@/assets/icon/check.svg" />
             </li>
           </ul>
         </div>
@@ -87,7 +80,7 @@ export default defineComponent({
       type: String,
       defualt: '',
     },
-    dependenceValue: {
+    extraValue: {
       defualt: '',
     },
     dependenceOptions: {
@@ -113,15 +106,10 @@ export default defineComponent({
     const isExpand = ref(false);
 
     const setInitValue = () => {
-      console.log('12312', props.modelValue);
       if (props.multiple) {
-        console.log(1111);
         innerMulti.value = props.modelValue;
       } else {
-        console.log(2222);
         innerSingle.value = props.modelValue;
-
-        console.log('innerSingle.value', innerSingle.value);
       }
     };
 
@@ -181,14 +169,15 @@ export default defineComponent({
     };
 
     const isActive = (opt) => {
+      console.log('opt', opt);
       if (props.multiple) {
-        const isMatch = props.modelValue.includes(opt.value);
-        return isMatch;
-      } else {
-        const isMatch = opt.value === props.modelValue;
-
-        return isMatch;
+        console.log(1);
+        return props.modelValue.includes(opt.value);
       }
+
+      console.log(2, opt.value, props.modelValue, opt.value === props.modelValue);
+
+      return opt.value === props.modelValue;
     };
 
     const onRemoveItem = (opt) => {
@@ -204,10 +193,12 @@ export default defineComponent({
     // });
 
     const handleInnerOptions = () => {
-      if (validDependenceKeys.value.includes(props.dependenceValue)) {
+      if (validDependenceKeys.value.includes(props.extraValue)) {
         const matchList = props.dependenceOptions.find((item) => {
-          return item.key === props.dependenceValue;
+          return item.key === props.extraValue;
         });
+
+        console.log('matchList', matchList);
         innerOptions.value = matchList.options;
       }
     };
@@ -227,7 +218,7 @@ export default defineComponent({
     );
 
     watch(
-      () => props.dependenceValue,
+      () => props.extraValue,
       (newValue) => {
         emit('update:modelValue', '');
         handleInnerOptions();
@@ -263,32 +254,26 @@ export default defineComponent({
 .select {
   /* background-color: #eee; */
   display: inline-block;
-  min-height: 48px;
+  min-height: 36px;
   height: auto;
-  background: $c-input-bg;
+  border: 1px solid $c-form-border;
   border-radius: 4px;
   @include padding(0px 10px);
   @include flex();
   // width: 200px;
   position: relative;
 
-  &__prefix {
-    @include form-font();
-    @include flex(center);
-    color: $c-grey5;
-  }
-
   &__active-wrap {
     flex: 1;
-    margin-left: 8px;
   }
 
   &__field {
-    @include font-style($c-black, 16, 400, 1px, 18px);
+    @include font-style($c-black, 14, 400, 1px, 14px);
     background-color: transparent;
     border: 0px;
     outline: 0px;
     cursor: pointer;
+    width: 100%;
   }
 
   &__drop-icon {
@@ -309,32 +294,31 @@ export default defineComponent({
 
 .select-options-wrap {
   @include position(tl, calc(100% + 5px), 0);
-  // background-color: $c-input-bg;
+  background-color: $c-white;
   width: 100%;
   z-index: 100;
-  border-radius: 4px;
-  background-color: $c-input-bg;
 }
 
 .select-option-list {
-  // background-color: $c-input-bg;
-  // height: auto;
+  background-color: $c-white;
+  height: auto;
   max-height: 200px;
   overflow: auto;
 
   &__item {
     @include padding(0px 10px);
-    @include flex();
-    min-height: 48px;
+    @include flex(space-between);
+    min-height: 36px;
     cursor: pointer;
 
     &--active {
-      // .select-option-list__item__label {
-      //   @include font-style($c-lightblue1, 16, 400, 1px, 14px);
-      // }
+      .select-option-list__item__label {
+        @include font-style($c-main--active, 14, 400, 1px, 14px);
+      }
 
-      .select-option-list__item__check__icon {
+      .select-option-list__item__check-icon {
         display: inline-block;
+        vertical-align: bottom;
       }
     }
 
@@ -348,16 +332,11 @@ export default defineComponent({
     }
 
     &__label {
-      @include font-style($c-black, 16, 400, 1px, 14px);
+      @include font-style($c-black, 14, 400, 1px, 14px);
     }
 
-    &__check {
-      width: 30px;
-      &__icon {
-        vertical-align: bottom;
-        display: none;
-        width: 20px;
-      }
+    &__check-icon {
+      display: none;
     }
   }
 }

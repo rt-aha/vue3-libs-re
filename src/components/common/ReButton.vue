@@ -34,7 +34,7 @@ export default defineComponent({
 .c-button {
   width: auto;
   height: 40px;
-  @include padding(0 12px);
+  @include padding(0 20px);
   border: 0;
   outline: 0;
   text-align: center;
@@ -46,7 +46,7 @@ export default defineComponent({
 
   &--type {
     &--gradient {
-      width: 160px;
+      /* width: 160px; */
       height: 46px;
       background: transparent linear-gradient(90deg, #2eaed0 0%, #07b253 100%) 0% 0% no-repeat padding-box;
       border-radius: 30px;
@@ -54,7 +54,7 @@ export default defineComponent({
     }
 
     &--grey {
-      width: 160px;
+      /* width: 160px; */
       height: 46px;
       background: $c-grey;
       border-radius: 30px;
@@ -62,7 +62,7 @@ export default defineComponent({
     }
 
     &--blue {
-      width: 160px;
+      /* width: 160px; */
       height: 46px;
       background: $c-main;
       border-radius: 30px;
@@ -70,7 +70,7 @@ export default defineComponent({
     }
 
     &--plain {
-      width: 'auto';
+      /* width: 'auto'; */
       height: 46px;
       background: transparent;
       @include font-style($c-grey, 16, 400, 2px, 27px);

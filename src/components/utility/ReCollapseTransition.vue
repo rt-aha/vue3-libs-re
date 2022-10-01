@@ -1,7 +1,7 @@
 <template>
   <transition v-bind="listeners">
     <!-- 当visible的值发生改变时，过渡组件的监听器就会触发 -->
-    <div v-show="show" class="x-collapse-transition">
+    <div v-show="show" class="re-collapse-transition">
       <slot />
     </div>
   </transition>
@@ -32,8 +32,11 @@ const listeners = {
 };
 </script>
 <style lang="scss">
-.x-collapse-transition {
+.re-collapse-transition {
   overflow: hidden;
   transition: height 0.22s ease-in-out;
+  border: 1px solid $c-grey;
+  border-radius: 4px;
+  background-color: $c-white;
 }
 </style>

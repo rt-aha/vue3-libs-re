@@ -1,6 +1,6 @@
 <template>
   <div class="re-dropdown">
-    <div class="dropdown" @click.stop="toggleExpand">
+    <div class="dropdown" @click.stop="toggleExpand" v-click-away="closeSelect">
       <div class="dropdown__active-wrap">
         <p class="dropdown__feild">{{ innerSingle }}</p>
       </div>
@@ -8,7 +8,7 @@
     <!-- @click="toggleExpand" -->
     <div class="dropdown-options-wrap" :class="[`dropdown-options-wrap--align--${align}`]">
       <ReCollapseTransition :show="isExpand">
-        <div class="dropdown-options" v-click-away="closeSelect">
+        <div class="dropdown-options">
           <ul class="dropdown-option-list">
             <li
               class="dropdown-option-list__item"

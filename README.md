@@ -61,6 +61,8 @@
   - [x] MultiSelect
   - [ ] SearchSelect
   - [ ] GroupSelect
+- [-] DependencySelect
+  - [ ] 還沒有獨立頁面
 - [ ] Slider
 - [x] Pagination
 - [ ] Message
