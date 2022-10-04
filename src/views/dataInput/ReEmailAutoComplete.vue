@@ -1,6 +1,8 @@
 <template>
   <div class="v-re-email-auto-complete">
-    <ReEmailAutoComplete v-model="value" />
+    <dev-section title="基本使用">
+      <ReEmailAutoComplete v-model="value" />
+    </dev-section>
   </div>
 </template>
 

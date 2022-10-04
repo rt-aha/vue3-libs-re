@@ -21,7 +21,7 @@
   - [ ] 只做一個圈圈而已
 - [x] Tooltip(PopOver)
 
-### Medium (10/17)
+### Medium (11/18)
 - [x] Accordion
 - [ ] Breadcrumb
 - [x] Checkbox
@@ -49,6 +49,7 @@
 - [x] Modal
 - [x] Drawer
 - [ ] Steps
+- [x] EmailAutoComplete
 
 ### Hard (6/10)
 - [ ] AutoComplete

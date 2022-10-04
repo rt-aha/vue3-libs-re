@@ -17,6 +17,14 @@ const children = [
       title: 'ReTabs 標籤頁',
     },
   },
+  {
+    path: 'breadcrumb',
+    name: 'breadcrumb',
+    component: () => import(/* webpackChunkName: "ReBreadcrumb" */ '@/views/navigation/ReBreadcrumb.vue'),
+    meta: {
+      title: 'ReBreadcrumb 麵包屑',
+    },
+  },
 ];
 
 const routes = [

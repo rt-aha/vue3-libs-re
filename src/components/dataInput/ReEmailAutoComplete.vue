@@ -1,6 +1,6 @@
 <template>
-  <div class="re-select">
-    <div class="re-select__input" v-click-away="closeOptions">
+  <div class="re-email-auto-complete">
+    <div class="re-email-auto-complete__input" v-click-away="closeOptions">
       <re-input
         v-model="emailValue"
         @click.stop
@@ -12,35 +12,37 @@
       />
       <!-- @focus="expandOptions" -->
     </div>
-    <ReCollapseTransition :show="isExpand">
-      <div class="re-select__option__content">
-        <ul class="re-select__option__content__list">
-          <li
-            class="re-select-option"
-            :class="[
-              {
-                're-select-option--active': keyboardIndex === idx,
-                're-select-option--disabled': opt.disabled,
-              },
-            ]"
-            @click="handleSelect(opt.value)"
-            v-for="(opt, idx) of extraOptions"
-            :key="opt.value"
-            v-bind="opt"
-          >
-            <component v-if="opt.render" :is="render()" v-bind="opt.optionConfig" />
-            <span v-else class="re-select-option__item">{{ opt.label }}</span>
-            <span
-              v-show="opt.allowedDelete"
-              class="re-select-option__remove"
-              :allowedDelete="opt.allowedDelete"
-              @click.stop="removeOption(opt.value)"
-              >刪除</span
+    <div class="re-email-auto-complete-expand">
+      <ReCollapseTransition :show="isExpand">
+        <div class="re-email-auto-complete__option__content">
+          <ul class="re-email-auto-complete__option__content__list">
+            <li
+              class="re-email-auto-complete-option"
+              :class="[
+                {
+                  're-email-auto-complete-option--active': keyboardIndex === idx,
+                  're-email-auto-complete-option--disabled': opt.disabled,
+                },
+              ]"
+              @click="handleSelect(opt.value)"
+              v-for="(opt, idx) of extraOptions"
+              :key="opt.value"
+              v-bind="opt"
             >
-          </li>
-        </ul>
-      </div>
-    </ReCollapseTransition>
+              <component v-if="opt.render" :is="render()" v-bind="opt.optionConfig" />
+              <span v-else class="re-email-auto-complete-option__item">{{ opt.label }}</span>
+              <span
+                v-show="opt.allowedDelete"
+                class="re-email-auto-complete-option__remove"
+                :allowedDelete="opt.allowedDelete"
+                @click.stop="removeOption(opt.value)"
+                >刪除</span
+              >
+            </li>
+          </ul>
+        </div>
+      </ReCollapseTransition>
+    </div>
   </div>
 </template>
 
@@ -285,7 +287,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.re-select {
+.re-email-auto-complete {
   position: relative;
   width: 100%;
 
@@ -320,7 +322,14 @@ export default defineComponent({
   }
 }
 
-.re-select-option {
+.re-email-auto-complete-expand {
+  @include position(tl, calc(100% + 5px), 0);
+  background-color: $c-white;
+  width: 100%;
+  z-index: 100;
+}
+
+.re-email-auto-complete-option {
   display: inline-block;
   width: 100%;
   cursor: pointer;
