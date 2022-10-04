@@ -1,6 +1,7 @@
 <template>
   <div class="re-form-item">
     <p class="re-form-item__label">
+      <span class="re-form-item__label__required" v-if="required"></span>
       <span class="re-form-item__label__text">{{ label }}</span>
       <span class="re-form-item__label__hint">{{ hint }}</span>
     </p>
@@ -31,6 +32,9 @@ export default defineComponent({
     hint: {
       type: String,
       default: '',
+    },
+    required: {
+      default: false,
     },
   },
   setup(props) {
@@ -97,7 +101,16 @@ export default defineComponent({
 
     &__text {
       display: inline-block;
-      @include font-style($c-main, 14, 400, 1.6px, 20px);
+      @include font-style($c-deepblue, 14, 400, 1.6px, 20px);
+    }
+
+    &__required {
+      @include circle(4px);
+      background-color: $c-red;
+      position: relative;
+      top: -4px;
+      display: inline-block;
+      margin-right: 5px;
     }
 
     &__hint {

@@ -48,7 +48,8 @@ export default defineComponent({
     &--gradient {
       /* width: 160px; */
       height: 46px;
-      background: transparent linear-gradient(90deg, #2eaed0 0%, #07b253 100%) 0% 0% no-repeat padding-box;
+      // background: transparent linear-gradient(90deg, #2eaed0 0%, #07b253 100%) 0% 0% no-repeat padding-box;
+      background-image: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%);
       border-radius: 30px;
       @include font-style($c-white, 16, 400, 2px, 27px);
     }
@@ -64,7 +65,7 @@ export default defineComponent({
     &--blue {
       /* width: 160px; */
       height: 46px;
-      background: $c-main;
+      background: $c-deepblue;
       border-radius: 30px;
       @include font-style($c-white, 16, 400, 2px, 27px);
     }

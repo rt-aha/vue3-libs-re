@@ -101,7 +101,7 @@ export default defineComponent({
 .table-wrap {
   width: 100%;
   overflow: hidden;
-  border: 1px solid rgba($c-main, 0.5);
+  border: 1px solid rgba($c-deepblue, 0.5);
   border-radius: 10px;
 
   &--mt {
@@ -118,7 +118,7 @@ export default defineComponent({
 }
 
 .table {
-  // border: 1px solid $c-main;
+  // border: 1px solid $c-deepblue;
   width: 100%;
   table-layout: fixed;
   word-break: break-all;
@@ -127,7 +127,7 @@ export default defineComponent({
   &__thead {
     tr {
       td {
-        border: 1px solid rgba($c-main, 0.5);
+        border: 1px solid rgba($c-deepblue, 0.5);
         border-top: transparent;
         border-bottom: transparent;
         @include padding(10px);
@@ -160,7 +160,7 @@ export default defineComponent({
       }
 
       td {
-        border: 1px solid rgba($c-main, 0.5);
+        border: 1px solid rgba($c-deepblue, 0.5);
         border-bottom: transparent;
         @include padding(10px);
         @include font-normal();

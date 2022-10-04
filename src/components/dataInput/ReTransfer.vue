@@ -303,7 +303,7 @@ export default defineComponent({
     border-radius: 2px;
 
     &:hover {
-      background-color: rgba($c-main, 0.5);
+      background-color: rgba($c-deepblue, 0.5);
 
       .checked-list__item__box__delete {
         display: block;

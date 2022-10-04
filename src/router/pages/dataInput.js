@@ -18,38 +18,6 @@ const children = [
     },
   },
   {
-    path: 'input-list',
-    name: 'input-list',
-    component: () => import(/* webpackChunkName: "ReInputList" */ '@/views/dataInput/ReInputList.vue'),
-    meta: {
-      title: 'Input List 多輸入框',
-    },
-  },
-  {
-    path: 'auto-input',
-    name: 'auto-input',
-    component: () => import(/* webpackChunkName: "ReAutoInput" */ '@/views/dataInput/ReAutoInput.vue'),
-    meta: {
-      title: 'Auto Input 自動填入',
-    },
-  },
-  {
-    path: 'input-timer',
-    name: 'input-timer',
-    component: () => import(/* webpackChunkName: "ReInputTimer" */ '@/views/dataInput/ReInputTimer.vue'),
-    meta: {
-      title: 'Input Timer 倒數時器輸入框',
-    },
-  },
-  {
-    path: 'textarea',
-    name: 'textarea',
-    component: () => import(/* webpackChunkName: "ReTextarea" */ '@/views/dataInput/ReTextarea.vue'),
-    meta: {
-      title: 'Textarea 文本',
-    },
-  },
-  {
     path: 'select',
     name: 'select',
     components: {
@@ -93,6 +61,14 @@ const children = [
     },
   },
   {
+    path: 'textarea',
+    name: 'textarea',
+    component: () => import(/* webpackChunkName: "ReTextarea" */ '@/views/dataInput/ReTextarea.vue'),
+    meta: {
+      title: 'Textarea 文本',
+    },
+  },
+  {
     path: 'time-picker',
     name: 'time-picker',
     component: () => import(/* webpackChunkName: "ReTimePicker" */ '@/views/dataInput/ReTimePicker.vue'),
@@ -117,6 +93,14 @@ const children = [
     },
   },
   {
+    path: 'input-list',
+    name: 'input-list',
+    component: () => import(/* webpackChunkName: "ReInputList" */ '@/views/dataInput/ReInputList.vue'),
+    meta: {
+      title: 'Input List 多輸入框',
+    },
+  },
+  {
     path: 'email-auto-complete',
     name: 'email-auto-complete',
     component: () => import(/* webpackChunkName: "ReEmailAutoComplete" */ '@/views/dataInput/ReEmailAutoComplete.vue'),
@@ -124,6 +108,23 @@ const children = [
       title: 'Email Auto Complete Email自動補全',
     },
   },
+  {
+    path: 'auto-input',
+    name: 'auto-input',
+    component: () => import(/* webpackChunkName: "ReAutoInput" */ '@/views/dataInput/ReAutoInput.vue'),
+    meta: {
+      title: 'Auto Input 自動填入',
+    },
+  },
+  {
+    path: 'input-timer',
+    name: 'input-timer',
+    component: () => import(/* webpackChunkName: "ReInputTimer" */ '@/views/dataInput/ReInputTimer.vue'),
+    meta: {
+      title: 'Input Timer 倒數時器輸入框',
+    },
+  },
+
   {
     path: 'upload',
     name: 'upload',

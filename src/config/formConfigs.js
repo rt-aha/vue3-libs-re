@@ -19,69 +19,166 @@ export const basicFormConfig = [
   {
     compName: 'Input',
     formKey: 'account',
-    formItemLabel: '帳號',
+    formItem: {
+      label: '帳號',
+      hint: '(Input)',
+      required: true,
+    },
+    layout: {
+      768: 12,
+    },
   },
   {
     compName: 'Input',
+    compProps: {
+      type: 'password',
+    },
+    formItem: {
+      label: '密碼',
+      hint: '(Input)',
+    },
     formKey: 'password',
-    formItemLabel: '密碼',
-    type: 'password',
+    layout: {
+      768: 12,
+    },
+  },
+  {
+    compName: 'InputNumber',
+    formItem: {
+      label: '身高',
+      hint: '(InputNumber)',
+    },
+    formKey: 'height',
   },
   {
     compName: 'Select',
+    compProps: {
+      options: genderOptions,
+    },
     formKey: 'gender',
-    formItemLabel: '性別',
-    options: genderOptions,
+    formItem: {
+      label: '性別',
+      hint: '(Select)',
+    },
   },
   {
     compName: 'Radio',
+    compProps: {
+      options: incomeOptions,
+    },
     formKey: 'income',
-    formItemLabel: '收入',
-    options: incomeOptions,
+    formItem: {
+      label: '收入',
+      hint: '(Radio)',
+    },
   },
   {
     compName: 'Checkbox',
+    compProps: {
+      label: '我同意',
+    },
     formKey: 'agree',
-    formItemLabel: '同意書',
-    label: '我同意',
+    formItem: {
+      label: '同意書',
+      hint: '(Checkbox)',
+    },
   },
   {
     compName: 'CheckboxGroup',
+    compProps: {
+      options: occupationOptions,
+    },
     formKey: 'occupation',
-    formItemLabel: '職業',
-    options: occupationOptions,
+    formItem: {
+      label: '職業',
+      hint: '(CheckboxGroup)',
+    },
   },
   {
     compName: 'Switch',
     formKey: 'enable',
-    formItemLabel: '啟用',
+    formItem: {
+      label: '啟用',
+      hint: '(Switch)',
+    },
   },
   {
-    compName: 'InputNumber',
-    formKey: 'height',
-    formItemLabel: '身高',
+    compName: 'Textarea',
+    formKey: 'remark',
+    formItem: {
+      label: '備註',
+      hint: '(Textarea)',
+    },
+  },
+  {
+    compName: 'TimePicker',
+    formKey: 'time',
+    formItem: {
+      label: '時間',
+      hint: '(TimePicker)',
+    },
+  },
+  {
+    compName: 'DatePicker',
+    formKey: 'date',
+    formItem: {
+      label: '日期選擇',
+      hint: '(DatePicker)',
+    },
+  },
+  {
+    compName: 'DateRangePicker',
+    formKey: 'dateRange',
+    formItem: {
+      label: '時間範圍選擇',
+      hint: '(DateRangePicker)',
+    },
+  },
+  {
+    compName: 'EmailAutoComplete',
+    formKey: 'email',
+    formItem: {
+      label: 'Email',
+      hint: '(EmailAutoComplete)',
+    },
+  },
+  {
+    compName: 'Upload',
+    formKey: 'upload',
+    formItem: {
+      label: '圖片',
+      hint: '(Upload)',
+    },
+  },
+  {
+    compName: 'InputList',
+    formKey: 'multipleInput',
+    formItem: {
+      label: '多輸入框',
+      hint: '(InputList)',
+    },
   },
 ];
 
 export const dependencyFormConfig = [
   {
     compName: 'Select',
+    compProps: {
+      options: cityOptions,
+    },
     formKey: 'city',
-    formItemLabel: '縣市',
-    options: cityOptions,
-    layout: {
-      768: 12,
+    formItem: {
+      label: '縣市',
     },
   },
   {
     compName: 'DependenceSelect',
     formKey: 'region',
     extraFormKey: 'city',
-    formItemLabel: '區/鄉/鎮',
-    dependenceOptions: cityRegionForSelectOptions,
-    layout: {
-      768: 12,
+    formItem: {
+      label: '區/鄉/鎮',
     },
+    dependenceOptions: cityRegionForSelectOptions,
   },
 ];
 
@@ -89,10 +186,14 @@ export const multiMultiFormConfig = [
   {
     // 這是個一個神奇的功能！
     compName: 'MultiMultiCheckboxGroup',
+    compProps: {
+      options: countiesOptions,
+    },
     formKey: 'mulltiCities',
-    formItemLabel: '需求區域',
-    hint: '可複選',
-    options: countiesOptions,
+    formItem: {
+      label: '需求區域',
+      hint: '可複選',
+    },
     layout: {
       768: 24,
     },

@@ -58,7 +58,7 @@ export default defineComponent({
     },
     width: {
       type: [Number, String],
-      default: 300,
+      default: '100%',
     },
     disabled: {
       type: Boolean,
@@ -93,6 +93,12 @@ export default defineComponent({
       return props.autosize;
     });
     const cssStyle = computed(() => {
+      if (props.width === '100%') {
+        return {
+          width: '100%',
+        };
+      }
+
       return {
         width: `${props.width}px`,
       };
@@ -128,6 +134,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .re-textarea {
+  width: 100%;
   display: inline-block;
   position: relative;
 

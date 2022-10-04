@@ -135,12 +135,12 @@ export default defineComponent({
 
         &--active {
           position: relative;
-          color: $c-main;
+          color: $c-deepblue;
 
           &::after {
             display: inline-block;
             z-index: 300;
-            background-color: $c-main;
+            background-color: $c-deepblue;
           }
         }
 

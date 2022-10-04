@@ -54,7 +54,7 @@ export default defineComponent({
   @include circle(52px);
   @include position(center);
   transition: 0.3s;
-  border: 3px solid $c-main;
+  border: 3px solid $c-deepblue;
   pointer-events: none;
 }
 
@@ -102,7 +102,7 @@ svg {
     .red-circle {
       width: 0px;
       height: 0px;
-      border: 6px solid $c-main;
+      border: 6px solid $c-deepblue;
     }
     svg {
       .cls-1 {

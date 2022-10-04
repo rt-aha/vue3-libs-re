@@ -316,7 +316,7 @@ export default defineComponent({
         flex: none;
         width: 18px;
         height: 18px;
-        border: 1px solid $c-main;
+        border: 1px solid $c-deepblue;
         border-radius: 2px;
 
         &--actived {
@@ -328,8 +328,8 @@ export default defineComponent({
             @include position(center);
             width: 10px;
             height: 10px;
-            border: 1px solid $c-main;
-            background-color: $c-main;
+            border: 1px solid $c-deepblue;
+            background-color: $c-deepblue;
             border-radius: 2px;
           }
         }

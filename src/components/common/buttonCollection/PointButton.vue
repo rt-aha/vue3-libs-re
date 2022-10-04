@@ -76,12 +76,12 @@ export default defineComponent({
   &--normal {
     .mi-button {
       border: 1px transparent solid;
-      background-color: $c-main;
+      background-color: $c-deepblue;
       color: $c-white;
 
       &:hover {
-        border: 1px $c-main solid;
-        color: $c-main;
+        border: 1px $c-deepblue solid;
+        color: $c-deepblue;
         background-color: transparent;
       }
     }
@@ -89,8 +89,8 @@ export default defineComponent({
 
   &--border {
     .mi-button {
-      border: 1px solid $c-main;
-      color: $c-main;
+      border: 1px solid $c-deepblue;
+      color: $c-deepblue;
       background-color: $c-white;
     }
   }

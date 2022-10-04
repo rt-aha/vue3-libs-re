@@ -94,7 +94,7 @@ export default defineComponent({
 
     &__text {
       display: inline-block;
-      @include font-style($c-main, 14, 400, 1.6px, 20px);
+      @include font-style($c-deepblue, 14, 400, 1.6px, 20px);
     }
 
     &__hint {

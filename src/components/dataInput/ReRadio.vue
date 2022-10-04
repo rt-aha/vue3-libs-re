@@ -102,7 +102,7 @@ export default defineComponent({
 
     &--actived {
       .radio-list__item__label__selected {
-        border: 1px solid $c-main;
+        border: 1px solid $c-deepblue;
         position: relative;
 
         &::before {
@@ -111,7 +111,7 @@ export default defineComponent({
           @include position(center);
           transform: translate(-50%, -50%);
           display: inline-block;
-          background-color: $c-main;
+          background-color: $c-deepblue;
         }
       }
     }

@@ -161,11 +161,11 @@ background-image: linear-gradient($c-grey8, 1px, transparent 0),
   background-size: 20% 100%;
 }
 
-@mixin font-normal($c: $c-main, $fs: 16, $fw: 400, $ls: 1.6px, $lh: 28px) {
+@mixin font-normal($c: $c-deepblue, $fs: 16, $fw: 400, $ls: 1.6px, $lh: 28px) {
   @include font-style($c, $fs, $fw, $ls, $lh);
 }
 
-@mixin font-important($c: $c-main, $fs: 20, $fw: 500, $ls: 2px, $lh: 28px) {
+@mixin font-important($c: $c-deepblue, $fs: 20, $fw: 500, $ls: 2px, $lh: 28px) {
   @include font-style($c, $fs, $fw, $ls, $lh);
 }
 

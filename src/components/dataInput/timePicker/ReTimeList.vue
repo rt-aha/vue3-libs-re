@@ -200,7 +200,7 @@ $item-height: 30px;
     overflow-y: auto;
 
     &__item {
-      @include font-style($c-main, 14);
+      @include font-style($c-deepblue, 14);
       display: inline-flex;
       justify-content: center;
       align-items: center;

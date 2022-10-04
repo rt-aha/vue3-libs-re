@@ -139,7 +139,7 @@ export default defineComponent({
 
     &__text {
       margin-left: 5px;
-      @include font-style($c-main, 14);
+      @include font-style($c-deepblue, 14);
     }
   }
 }

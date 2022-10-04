@@ -99,7 +99,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .pbf-btn {
   @include flex(center);
-  @include font-style($c-main, 16, 500, 1.6px);
+  @include font-style($c-deepblue, 16, 500, 1.6px);
   // width: auto;
   transition: 0.4s;
   height: 40px;

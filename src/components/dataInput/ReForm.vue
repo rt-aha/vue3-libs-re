@@ -34,10 +34,17 @@ export default defineComponent({
     provide('formValue', () => innerFormValue.value);
     provide('formErrorMessage', () => formErrorMessage.value);
     provide('formRules', props.formRules);
+    provide('formSetting', props.setting);
 
     return {};
   },
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.re-form {
+  @include flex(flex-start, flex-start);
+  margin: 0 -8px;
+  flex-wrap: wrap;
+}
+</style>

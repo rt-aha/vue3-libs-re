@@ -194,7 +194,7 @@ export default defineComponent({
     margin-right: 5px;
     margin-bottom: 5px;
     /* margin-bottom: 10px; */
-    border: 1px solid $c-main;
+    border: 1px solid $c-deepblue;
     border-radius: 4px;
     @include padding(2px 24px 2px 5px);
 
@@ -203,17 +203,17 @@ export default defineComponent({
     position: relative;
 
     &--add {
-      border: 1px dashed $c-main;
+      border: 1px dashed $c-deepblue;
       padding: 2px 5px !important;
     }
 
     &--add-input {
-      border: 1px dashed $c-main;
+      border: 1px dashed $c-deepblue;
       padding: 2px !important;
     }
 
     &__label {
-      @include font-style($c-main, 14);
+      @include font-style($c-deepblue, 14);
     }
 
     &__remove {

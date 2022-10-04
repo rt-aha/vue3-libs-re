@@ -20,7 +20,7 @@
 }
 
 .agreement-title {
-  @include font-style($c-main, 24);
+  @include font-style($c-deepblue, 24);
 }
 
 .agreement-desc {

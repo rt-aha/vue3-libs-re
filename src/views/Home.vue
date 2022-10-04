@@ -28,7 +28,7 @@ export default defineComponent({
 }
 
 .title {
-  @include font-style($c-main, 20, 400, 1px);
+  @include font-style($c-deepblue, 20, 400, 1px);
   margin-bottom: 30px;
 }
 </style>

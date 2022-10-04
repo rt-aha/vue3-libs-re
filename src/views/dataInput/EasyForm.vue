@@ -1,5 +1,17 @@
 <template>
   <div class="v-re-form">
+    <dev-section title="基本使用">
+      <div class="wrap">
+        <ReEasyForm
+          v-model:formValue="basicForm"
+          :formConfig="basicFormConfig"
+          :formRules="basicFormRule"
+          ref="basicFormRef"
+        />
+        <ReButton @click="basicFormSubmit"> basic form</ReButton>
+      </div>
+    </dev-section>
+
     <dev-section title="有依賴關係的">
       <div class="wrap">
         <ReEasyForm
@@ -21,18 +33,6 @@
           ref="dependencyFormRef"
         />
         <ReButton @click="multiMultiFormSubmit"> multiMulti form</ReButton>
-      </div>
-    </dev-section>
-
-    <dev-section title="基本使用">
-      <div class="wrap">
-        <ReEasyForm
-          v-model:formValue="basicForm"
-          :formConfig="basicFormConfig"
-          :formRules="basicFormRule"
-          ref="basicFormRef"
-        />
-        <ReButton @click="basicFormSubmit"> basic form</ReButton>
       </div>
     </dev-section>
   </div>
@@ -88,6 +88,6 @@ const multiMultiFormSubmit = () => {
 
 <style lang="scss" scoped>
 .extra-page-title {
-  @include font-style($c-main, 24, 500);
+  @include font-style($c-deepblue, 24, 500);
 }
 </style>

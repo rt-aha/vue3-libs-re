@@ -299,7 +299,7 @@ export default defineComponent({
       @include padding(10px);
       width: 100%;
       background: $c-white;
-      border: 2px solid $c-main;
+      border: 2px solid $c-deepblue;
       border-radius: 10px;
     }
   }
@@ -309,7 +309,7 @@ export default defineComponent({
     z-index: 100;
     margin-top: 5px;
     background-color: $c-white;
-    border: 1px solid $c-main;
+    border: 1px solid $c-deepblue;
     border-radius: 4px;
     overflow: hidden;
 
@@ -339,7 +339,7 @@ export default defineComponent({
 
   &:not([data-disabled-status='true']) {
     &:hover {
-      background-color: rgba($c-main, 0.2);
+      background-color: rgba($c-deepblue, 0.2);
     }
   }
 
@@ -348,7 +348,7 @@ export default defineComponent({
   }
 
   &--active {
-    background-color: rgba($c-main, 0.2);
+    background-color: rgba($c-deepblue, 0.2);
   }
 
   &__remove {

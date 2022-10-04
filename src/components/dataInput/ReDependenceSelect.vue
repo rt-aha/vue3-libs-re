@@ -313,7 +313,7 @@ export default defineComponent({
 
     &--active {
       .select-option-list__item__label {
-        @include font-style($c-main--active, 14, 400, 1px, 14px);
+        @include font-style($c-deepblue--active, 14, 400, 1px, 14px);
       }
 
       .select-option-list__item__check-icon {
@@ -328,7 +328,7 @@ export default defineComponent({
     }
 
     &:hover {
-      background-color: rgba($c-main, 0.2);
+      background-color: rgba($c-deepblue, 0.2);
     }
 
     &__label {

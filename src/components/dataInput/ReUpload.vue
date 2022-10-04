@@ -45,7 +45,8 @@
 <script>
 import { defineComponent, ref, computed } from 'vue';
 import { v4 as uuid } from 'uuid';
-import ReButton from '@/components/common/ReButton.vue';
+// import ReButton from '@/components/common/ReButton.vue';
+import ReButton from '@/components/common/buttonCollection/ReButton.vue';
 import ReUploadPreviewRow from '@/components/dataInput/ReUploadPreviewRow.vue';
 import ReUploadPreviewBox from '@/components/dataInput/ReUploadPreviewBox.vue';
 
@@ -391,7 +392,7 @@ export default defineComponent({
 .ing-persent {
   width: 30%;
   height: 3px;
-  background-color: $c-main;
+  background-color: $c-deepblue;
   border-radius: 1.5px;
 }
 

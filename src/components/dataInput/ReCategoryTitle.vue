@@ -18,13 +18,13 @@ export default {
 
 <style lang="scss" scoped>
 .cus-select-option {
-  @include font-style($c-main, 14px, 700);
+  @include font-style($c-deepblue, 14px, 700);
   position: relative;
 
   &::after {
     content: '';
     display: inline-block;
-    background-color: $c-main;
+    background-color: $c-deepblue;
     height: 1px;
     width: 100%;
     @include position(tl, calc(100% + 10px), 0);

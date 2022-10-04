@@ -43,7 +43,7 @@ export default defineComponent({
 }
 .header-tr {
   // border-radius: 5px;
-  background-color: $c-main;
+  background-color: $c-deepblue;
 
   &__td {
     @include padding(10px);

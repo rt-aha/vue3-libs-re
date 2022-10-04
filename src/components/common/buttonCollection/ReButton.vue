@@ -178,16 +178,16 @@ export default defineComponent({
   }
 
   &--default {
-    background-color: $c-main;
+    background-color: $c-deepblue;
   }
 
   &--border {
-    color: $c-main;
-    border: 1px solid $c-main;
+    color: $c-deepblue;
+    border: 1px solid $c-deepblue;
   }
 
   &--plain {
-    color: $c-main;
+    color: $c-deepblue;
   }
 
   &--disabled {

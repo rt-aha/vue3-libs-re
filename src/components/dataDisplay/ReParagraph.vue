@@ -65,7 +65,7 @@ export default defineComponent({
     }
 
     &--large {
-      @include font-style($c-main, 35, 700, 3px, 51px);
+      @include font-style($c-deepblue, 35, 700, 3px, 51px);
     }
 
     &--normal {
@@ -78,17 +78,17 @@ export default defineComponent({
     }
 
     &--normal-indent {
-      @include font-style($c-main, 16, 400, 1.6px, 28px);
+      @include font-style($c-deepblue, 16, 400, 1.6px, 28px);
       padding-left: 16px;
     }
 
     &--normal-bold {
-      @include font-style($c-main, 16, 700, 1.6px, 28px);
+      @include font-style($c-deepblue, 16, 700, 1.6px, 28px);
       margin-top: 20px;
     }
 
     &--normal-underline {
-      @include font-style($c-main, 16, 400, 1.6px, 28px);
+      @include font-style($c-deepblue, 16, 400, 1.6px, 28px);
       text-decoration: underline;
     }
   }

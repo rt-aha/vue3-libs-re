@@ -52,7 +52,7 @@ export default defineComponent({
 
   svg path,
   svg rect {
-    fill: $c-main;
+    fill: $c-deepblue;
   }
 
   &--white {

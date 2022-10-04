@@ -48,7 +48,9 @@ export default defineComponent({
       console.log('route', route.meta);
 
       if (route.meta.category === 'dataInput') {
-        return true;
+        if (route.name !== 'easy-form') {
+          return true;
+        }
       }
 
       return false;
@@ -67,7 +69,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .page-title {
-  @include font-style($c-main, 24, 500);
+  @include font-style($c-deepblue, 24, 500);
 
   &--form-preview {
     @include font-size(20);

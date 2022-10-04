@@ -197,7 +197,7 @@ export default defineComponent({
           width: 100%;
           height: 1px;
           @include position(bl, -4px, 0);
-          background-color: $c-main;
+          background-color: $c-deepblue;
           opacity: 1;
         }
       }
@@ -216,7 +216,7 @@ export default defineComponent({
           width: 0%;
           height: 1px;
           @include position(bl, -4px, 0);
-          background-color: $c-main;
+          background-color: $c-deepblue;
           opacity: 0;
           transition: 0.4s;
         }

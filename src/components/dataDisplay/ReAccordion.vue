@@ -120,7 +120,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .re-accordion {
-  background-color: rgba($c-main, 0.1);
+  background-color: rgba($c-deepblue, 0.1);
   border-radius: 20px;
   width: 100%;
 
@@ -142,7 +142,7 @@ export default defineComponent({
   cursor: pointer;
 
   &__text {
-    @include font-style($c-main, 20, 700, 1.6px, 28px);
+    @include font-style($c-deepblue, 20, 700, 1.6px, 28px);
   }
 
   &__expand {
@@ -150,7 +150,7 @@ export default defineComponent({
     width: 40px;
     height: 40px;
     position: relative;
-    background-color: rgba($c-main, 0.3);
+    background-color: rgba($c-deepblue, 0.3);
     border-radius: 20px;
     @include flex(center);
     margin-left: 15px;
@@ -168,12 +168,12 @@ export default defineComponent({
 }
 
 .desc {
-  border-top: 1px solid rgba($c-main, 0.5);
+  border-top: 1px solid rgba($c-deepblue, 0.5);
   @include padding(24px 0 0 0);
   margin-top: 20px;
 
   &__text {
-    @include font-style($c-main, 16, 400, 4px);
+    @include font-style($c-deepblue, 16, 400, 4px);
   }
 }
 
@@ -183,6 +183,6 @@ export default defineComponent({
 }
 
 .vhtml-content {
-  @include font-style($c-main, 16, 400, 4px);
+  @include font-style($c-deepblue, 16, 400, 4px);
 }
 </style>

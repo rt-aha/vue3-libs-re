@@ -56,7 +56,7 @@ export default defineComponent({
   // width: 100%;
   @include flex(flex-start);
   border-radius: 5px;
-  background-color: rgba($c-main, 0.5);
+  background-color: rgba($c-deepblue, 0.5);
   box-shadow: 3px 3px 6px rgba($c-black, 0.1);
   @include padding(0 10px);
 
