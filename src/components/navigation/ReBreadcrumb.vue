@@ -1,50 +1,52 @@
 <template>
   <div class="c-breadcrumb">
     <ul class="breadcrumb-list">
-      <li class="breadcrumb-list__item" v-for="(item, idx) of config" :key="item.name" @click="() => handleClick(item)">
-        <span class="breadcrumb-list__item__label">
+      <li v-for="(item, idx) of config" :key="item.name" class="breadcrumb-list__item" @click="() => handleClick(item)">
+        <template v-if="item.render">
+          <component :is="item.render" v-bind="item" />
+        </template>
+        <span
+          v-else
+          class="breadcrumb-list__item__label"
+          :class="{
+            'breadcrumb-list__item__label--clarify': clarify && config.length - 1 > idx,
+          }"
+        >
           {{ item.label }}
         </span>
 
         <img
-          class="breadcrumb-list__item__arrow"
           v-show="config.length - 1 !== idx"
+          class="breadcrumb-list__item__arrow"
           src="@/assets/icon/arrow_right.svg"
-        />
+        >
       </li>
     </ul>
   </div>
 </template>
-<script>
-import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'BreadCrumb',
-  props: {
-    config: {
-      type: Array,
-      default: () => [],
-    },
+<script setup>
+const props = defineProps({
+  config: {
+    type: Array,
+    default: () => [],
   },
-  emits: ['onClick'],
-  setup(_, { emit }) {
-    // const route = useRoute();
-
-    const handleClick = (item) => {
-      emit('onClick', item);
-    };
-
-    return {
-      handleClick,
-    };
+  clarify: {
+    type: Boolean,
+    dafault: false,
   },
 });
+const emit = defineEmits(['onClick']);
+
+const handleClick = (item) => {
+  emit('onClick', item);
+};
 </script>
+
 <style lang="scss" scoped>
 .c-breadcrumb {
   height: 40px;
   @include flex();
-  // margin-top: 10px;
   @include max-width(1700);
   position: relative;
   z-index: 10;
@@ -55,25 +57,15 @@ export default defineComponent({
 
   &__item {
     @include flex();
-    // width: 50px;
-
-    // flex: 1;
-
-    &--hide {
-      display: none;
-    }
-
-    &--extra {
-      flex: 1;
-    }
 
     &__label {
       @include font-style($c-black, 14);
       cursor: pointer;
 
-      &--extra {
-        @include word-ellipsis();
+      &--clarify {
+        opacity: 0.5;
       }
+
     }
 
     &__arrow {

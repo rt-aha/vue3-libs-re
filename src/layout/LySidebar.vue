@@ -3,16 +3,18 @@
     <div class="main-list-wrap">
       <ul class="main-list">
         <li
+          v-for="ml of mainListConfig"
+          :key="ml.label"
           class="main-list__item"
           :class="{
             'main-list__item--actived': ml.label === activedType,
           }"
-          v-for="ml of mainListConfig"
-          :key="ml.label"
           @click="handleMainListItem(ml.label)"
         >
           <div class="main-list__item__box">
-            <p class="main-list__item__box__text">{{ capitalize(ml.label) }}</p>
+            <p class="main-list__item__box__text">
+              {{ capitalize(ml.label) }}
+            </p>
           </div>
         </li>
       </ul>
@@ -21,24 +23,28 @@
     <div class="sub-list-wrap">
       <ul class="sub-list">
         <li
+          v-for="sl of subListConfig[activedType]"
+          :key="sl.label"
           class="sub-list__item"
           :class="{
             'sub-list__item--actived': sl.name === route.name,
           }"
-          v-for="sl of subListConfig[activedType]"
-          :key="sl.label"
           @click="toPage(sl.name)"
         >
           <div class="sub-list__item__box">
-            <p class="sub-list__item__box__text">{{ sl.label }}</p>
+            <p class="sub-list__item__box__text">
+              {{ sl.label }}
+            </p>
           </div>
         </li>
       </ul>
     </div>
   </div>
 </template>
+
 <script>
 import { defineComponent, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { children as common } from '@/router/pages/common';
 import { children as dataDisplay } from '@/router/pages/dataDisplay';
 import { children as dataInput } from '@/router/pages/dataInput';
@@ -46,8 +52,6 @@ import { children as navigation } from '@/router/pages/navigation';
 import { children as feedback } from '@/router/pages/feedback';
 // import { children as compForm } from '@/views/compForm/compForm';
 import { toCamel } from '@/utils/toCamel';
-import { useRouter } from 'vue-router';
-import { useRoute } from 'vue-router';
 import capitalize from '@/utils/capitalize';
 
 export default defineComponent({
@@ -124,7 +128,7 @@ export default defineComponent({
     };
 
     const setActivedMenu = () => {
-      const categories = mainListConfig.map((item) => item.label);
+      const categories = mainListConfig.map(item => item.label);
 
       if (categories.includes(route.meta.category)) {
         activedType.value = route.meta.category;
@@ -145,6 +149,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .ly-sidebar {
   height: 100%;
@@ -153,7 +158,7 @@ export default defineComponent({
 }
 
 .main-list-wrap {
-  @include position(tl, 0, 0);
+           @include position(tl, 0, 0);
 }
 .main-list {
   height: 100%;
@@ -197,10 +202,11 @@ export default defineComponent({
         &::before {
           content: '';
           width: 100%;
-          height: 4px;
+             height: 5px;
           @include position(bl, 3px, 5px);
           background-color: $c-main-pink;
           opacity: 0.4;
+
         }
       }
     }
@@ -216,11 +222,12 @@ export default defineComponent({
         &:before {
           content: '';
           width: 0%;
-          height: 4px;
+          height: 5px;
           @include position(bl, 3px, 5px);
           background-color: $c-main-pink;
           opacity: 0;
           transition: 0.4s;
+          z-index: -1;
         }
 
         &:hover {

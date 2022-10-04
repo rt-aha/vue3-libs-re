@@ -2,30 +2,30 @@
   <div class="re-radio" :class="[`re-radio--direction--${direction}`]">
     <ul class="radio-list">
       <li
+        v-for="(opt, idx) of options"
+        :key="opt.value"
         class="radio-list__item"
         :class="{
           'radio-list__item--actived': opt.value === modelValue,
           'radio-list__item--disabled': opt.disabled,
         }"
-        v-for="(opt, idx) of options"
-        :key="opt.value"
       >
         <label class="radio-list__item__label" :for="uuid + String(idx)">
           <div class="radio-list__item__label__selected">
             <input
+              :id="uuid + String(idx)"
               class="re-radio-input__field"
               type="radio"
               :name="uuid"
-              @change="handleChange(opt)"
               :checked="opt.value === modelValue"
               :value="opt.value"
-              :id="uuid + String(idx)"
-            />
+              @change="handleChange(opt)"
+            >
           </div>
-          <div class="radio-list__item__label__component" v-if="opt.render">
+          <div v-if="opt.render" class="radio-list__item__label__component">
             <component :is="opt.render" v-bind="opt" />
           </div>
-          <div class="radio-list__item__label__text-box" v-else>
+          <div v-else class="radio-list__item__label__text-box">
             <span class="radio-list__item__label__text-box__label">{{ opt.label }} {{ opt.disabled }}</span>
           </div>
         </label>
@@ -59,7 +59,7 @@ export default defineComponent({
     const { validFn } = useValidate();
 
     const handleChange = (opt) => {
-      if (opt.disabled) return;
+      if (opt.disabled) { return; }
 
       emit('update:modelValue', opt.value);
       emit('onChange', opt);

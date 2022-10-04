@@ -13,7 +13,7 @@
           />
         </div>
       </div>
-      <n-collapse-transition :show="expandStatus[d.key]">
+      <ReCollapseTransition :show="expandStatus[d.key]">
         <div class="desc">
           <template v-if="d.renderContent">
             <component :is="d.renderContent" />
@@ -32,19 +32,20 @@
             </template>
           </template>
         </div>
-      </n-collapse-transition>
+      </ReCollapseTransition>
     </div>
   </div>
 </template>
 <script>
 import { defineComponent, onMounted, ref, watch } from 'vue';
-import { NCollapseTransition } from 'naive-ui';
+import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
+
 import { useRoute } from 'vue-router';
 
 export default defineComponent({
   name: 'ReAccordion',
   components: {
-    NCollapseTransition,
+    ReCollapseTransition,
   },
   props: {
     data: {
