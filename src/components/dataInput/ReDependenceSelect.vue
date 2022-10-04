@@ -7,7 +7,7 @@
           <re-select-multi-tag v-model="innerMulti" @onRemoveItem="onRemoveItem" v-show="innerMulti.length > 0" />
         </template>
         <template v-else>
-          <input class="select__field" readonly v-model="innerSingle" placeholder="請選擇" />
+          <input class="select__field" readonly :value="modelValue" placeholder="請選擇" />
         </template>
       </div>
       <img
@@ -22,8 +22,8 @@
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
         <div class="select-options">
-          <div v-if="options.length === 0">
-            <slot name="noData" />
+          <div v-if="innerOptions.length === 0">
+            <ReEmpty emptyText="請選擇縣市" />
           </div>
           <ul class="select-option-list" v-else>
             <li
@@ -32,7 +32,7 @@
                 'select-option-list__item--disabled': opt.disabled,
                 'select-option-list__item--active': isActive(opt),
               }"
-              v-for="opt of options"
+              v-for="opt of innerOptions"
               :key="opt.value"
               @click="() => handleOption(opt)"
             >
@@ -55,12 +55,14 @@ import { defineComponent, ref, watch, nextTick } from 'vue';
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
 import ReSelectMultiTag from '@/components/dataInput/ReSelectMultiTag.vue';
+import ReEmpty from '@/components/dataDisplay/ReEmpty.vue';
 
 export default defineComponent({
-  name: 'ReSelect',
+  name: 'ReDependenceSelect',
   components: {
     ReCollapseTransition,
     ReSelectMultiTag,
+    ReEmpty,
   },
   props: {
     modelValue: {
@@ -74,12 +76,24 @@ export default defineComponent({
       type: Boolean,
       defualt: false,
     },
+    prefix: {
+      type: String,
+      defualt: '',
+    },
+    extraValue: {
+      defualt: '',
+    },
+    dependenceOptions: {
+      type: Array,
+      default: () => [],
+    },
   },
   emits: ['update:modelValue', 'onChange'],
   setup(props, { emit }) {
     const innerMulti = ref([]);
-
     const innerSingle = ref('');
+    const innerOptions = ref([]);
+    const validDependenceKeys = ref([]);
 
     // const tagOpts = ref([
     //   {
@@ -103,9 +117,9 @@ export default defineComponent({
       isExpand.value = !isExpand.value;
     };
 
-    const openSelect = () => {
-      isExpand.value = true;
-    };
+    // const openSelect = () => {
+    //   isExpand.value = true;
+    // };
 
     const closeSelect = () => {
       isExpand.value = false;
@@ -155,14 +169,15 @@ export default defineComponent({
     };
 
     const isActive = (opt) => {
+      console.log('opt', opt);
       if (props.multiple) {
-        const isMatch = props.modelValue.includes(opt.value);
-        return isMatch;
-      } else {
-        const isMatch = opt.value === props.modelValue;
-
-        return isMatch;
+        console.log(1);
+        return props.modelValue.includes(opt.value);
       }
+
+      console.log(2, opt.value, props.modelValue, opt.value === props.modelValue);
+
+      return opt.value === props.modelValue;
     };
 
     const onRemoveItem = (opt) => {
@@ -177,6 +192,23 @@ export default defineComponent({
     //   return valueObj?.label || '';
     // });
 
+    const handleInnerOptions = () => {
+      if (validDependenceKeys.value.includes(props.extraValue)) {
+        const matchList = props.dependenceOptions.find((item) => {
+          return item.key === props.extraValue;
+        });
+
+        console.log('matchList', matchList);
+        innerOptions.value = matchList.options;
+      }
+    };
+
+    const init = () => {
+      validDependenceKeys.value = props.dependenceOptions.map((item) => item.key);
+    };
+
+    init();
+
     watch(
       () => props.modelValue,
       () => {
@@ -185,18 +217,28 @@ export default defineComponent({
       { immediate: true },
     );
 
+    watch(
+      () => props.extraValue,
+      (newValue) => {
+        emit('update:modelValue', '');
+        handleInnerOptions();
+        console.log('newValue', newValue);
+      },
+    );
+
     return {
       // innerValue,
       toggleExpand,
       isExpand,
       handleOption,
-      openSelect,
+      // openSelect,
       closeSelect,
       innerMulti,
       innerSingle,
       // tagOpts,
       isActive,
       onRemoveItem,
+      innerOptions,
     };
   },
 });

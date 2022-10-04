@@ -8,6 +8,34 @@ export const vldRequired = (value) => {
   return false;
 };
 
+export const vldRadio = (value) => {
+  if (value) {
+    return true;
+  }
+
+  return false;
+};
+
+export const vldCheckbox = (value) => {
+  if (Array.isArray(value)) {
+    if (value.length > 0) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+export const vldCheckboxGroup = (value) => {
+  if (Array.isArray(value)) {
+    if (value.length > 0) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 export const vldLengthMoreThen = (value, args) => {
   if (value.length >= args.min) {
     return true;
@@ -61,4 +89,56 @@ export const vldCheckMultiple = (value, args) => {
   }
 
   return false;
+};
+
+export const vldNumberMoreThen = (value, args) => {
+  console.log('value', value);
+
+  if (value >= args.min) {
+    return true;
+  }
+
+  return false;
+};
+
+export const vldBoughtCustomer = (value, args, opt) => {
+  console.log('opt', opt.relatedValue());
+
+  const { boughtProject, boughtCustomerName, boughtCustomerRelationship } = opt.relatedValue();
+
+  if (value) {
+    if (boughtProject && boughtCustomerName && boughtCustomerRelationship) {
+      return true;
+    }
+
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export const vldNotBuyCustomer = (value, args, opt) => {
+  const { notBuyCustomerName, notBuyCustomerRelatioship } = opt.relatedValue();
+
+  if (value) {
+    if (notBuyCustomerName && notBuyCustomerRelatioship) {
+      return true;
+    }
+
+    return false;
+  } else {
+    return true;
+  }
+};
+
+export const vldStayMins = (value, args, opt) => {
+  const { stayTimeMins } = opt.relatedValue();
+
+  if (Number(stayTimeMins) <= 0) {
+    if (value <= 0) {
+      return false;
+    }
+  }
+
+  return true;
 };

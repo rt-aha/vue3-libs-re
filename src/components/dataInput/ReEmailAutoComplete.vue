@@ -12,7 +12,7 @@
       />
       <!-- @focus="expandOptions" -->
     </div>
-    <ReCollapseTransition :show="isExpand" :detect="extraOptions">
+    <ReCollapseTransition :show="isExpand">
       <div class="re-select__option__content">
         <ul class="re-select__option__content__list">
           <li

@@ -25,12 +25,12 @@
         <img
           class="re-input__center__eye__icon re-input__center__eye__icon--show"
           src="@/assets/icon/eye-show.svg"
-          v-show="inputType === 'password'"
+          v-show="inputType === 'text'"
         />
         <img
           class="re-input__center__eye__icon re-input__center__eye__icon--hide"
           src="@/assets/icon/eye-hide.svg"
-          v-show="inputType === 'text'"
+          v-show="inputType === 'password'"
         />
       </div>
       <div class="re-input__center__suffix" v-if="slots.suffix">
