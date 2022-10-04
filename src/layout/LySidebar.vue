@@ -192,13 +192,15 @@ export default defineComponent({
   &__item {
     &--actived {
       .sub-list__item__box__text {
+        font-weight: 700;
+
         &::before {
           content: '';
           width: 100%;
-          height: 1px;
-          @include position(bl, -4px, 0);
-          background-color: $c-deepblue;
-          opacity: 1;
+          height: 4px;
+          @include position(bl, 3px, 5px);
+          background-color: $c-main-pink;
+          opacity: 0.4;
         }
       }
     }
@@ -214,9 +216,9 @@ export default defineComponent({
         &:before {
           content: '';
           width: 0%;
-          height: 1px;
-          @include position(bl, -4px, 0);
-          background-color: $c-deepblue;
+          height: 4px;
+          @include position(bl, 3px, 5px);
+          background-color: $c-main-pink;
           opacity: 0;
           transition: 0.4s;
         }
@@ -224,7 +226,8 @@ export default defineComponent({
         &:hover {
           &::before {
             width: 100%;
-            opacity: 1;
+            background-color: $c-main-pink;
+            opacity: 0.4;
           }
         }
       }
