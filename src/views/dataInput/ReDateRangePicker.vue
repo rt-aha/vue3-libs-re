@@ -1,7 +1,9 @@
 <template>
   <div class="v-date-range-picker">
     <dev-section title="基本使用">
-      <ReDateRangePicker v-model="value" />
+      <div class="wrap">
+        <ReDateRangePicker v-model="value" />
+      </div>
     </dev-section>
   </div>
 </template>

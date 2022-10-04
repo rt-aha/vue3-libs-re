@@ -84,6 +84,7 @@ export default defineComponent({
       },
     },
   },
+  emits: ['click'],
   setup(props, { emit }) {
     const setExtraStyle = computed(() => {
       let extraStyles = {};

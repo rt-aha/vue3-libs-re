@@ -1,6 +1,6 @@
 <template>
   <div class="re-period-picker">
-    <div class="select" @click.stop="toggleExpand">
+    <div class="select" @click.stop="toggleExpand" v-click-away="closeSelect">
       <div class="select__active-wrap">
         <input class="select__field" readonly placeholder="請選擇" :value="inputValue" />
       </div>
@@ -9,14 +9,13 @@
         :class="{
           'select__drop-icon--active': isExpand,
         }"
-        src="@/assets/icon/icon_down.svg"
+        src="@/assets/icon/icon-down.svg"
       />
     </div>
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
-        <div v-click-away="closeSelect" class="select-options">
+        <div class="select-options">
           <div class="radio-wrap">
-            <!-- <ReRadio :options="periodOptions" v-model="shortcut" @onChange="handleShortcut" /> -->
             <ReButton v-for="p of periodOptions" :key="p.value" type="small-plain" @click="handleShortcut(p.value)">
               {{ p.label }}
             </ReButton>
@@ -32,8 +31,8 @@
 import { computed, defineComponent, ref } from 'vue';
 import dayjs from 'dayjs';
 import { DatePicker } from 'v-calendar';
-import ReCollapseTransition from '@/components/form/ReCollapseTransition.vue';
-import ReButton from '@/components/global/ReButton.vue';
+import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
+import ReButton from '@/components/common/ReButton.vue';
 import 'v-calendar/dist/style.css';
 
 export default defineComponent({
@@ -147,7 +146,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.re-select {
+.re-period-picker {
   // width: 200px;
   cursor: pointer;
   /* box-shadow: 0 0 10px 3px $c-shadow; */
@@ -166,11 +165,10 @@ export default defineComponent({
 }
 
 .select {
-  /* background-color: #eee; */
   display: inline-block;
-  min-height: 48px;
+  border: 1px solid $c-form-border;
+  min-height: 36px;
   height: auto;
-  background: $c-input-bg;
   border-radius: 4px;
   @include padding(0px 10px);
   @include flex();
@@ -182,7 +180,7 @@ export default defineComponent({
   }
 
   &__field {
-    @include font-style($c-black, 16, 400, 1px, 14px);
+    @include font-style($c-black, 14, 400, 1px, 14px);
     background-color: transparent;
     border: 0px;
     outline: 0px;
@@ -207,7 +205,6 @@ export default defineComponent({
 
 .select-options-wrap {
   @include position(tl, calc(100% + 5px), 0);
-  background-color: $c-input-bg;
   background-color: $c-white;
   width: 100%;
   z-index: 100;

@@ -17,10 +17,10 @@ export default defineComponent({
       default: 'gradient',
     },
   },
-  emit: ['emit'],
+  emits: ['click'],
   setup(props, { emit }) {
     const onClick = () => {
-      emit('onClick');
+      emit('click');
     };
 
     return {

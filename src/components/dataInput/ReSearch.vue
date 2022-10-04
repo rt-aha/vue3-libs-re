@@ -52,7 +52,7 @@ export default defineComponent({
       deafult: () => ({}),
     },
   },
-  emit: ['update:formValue'],
+  emits: ['update:formValue'],
   setup(props, { emit }) {
     const innerForm = ref(props.formValue);
     const formItemRef = ref(null);
