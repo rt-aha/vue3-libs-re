@@ -26,8 +26,10 @@
   - [ ] 可點擊
   - [ ] 可禁用
   - [ ] render
-- [ ] NumberAnimation
-- [ ] swiper
+- [-] CountTo 
+  - 只是多包一層 countup，多了一個接近顯示才開始轉動的判斷，但可再優化
+- [-] swiper
+  - 先輕封裝一層，config 那些還沒寫進去
 ### dataInput
 - [x] Form//
   - [x] 把非同步驗證加進去，完成後刪除 async-validator 套件

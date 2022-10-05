@@ -1,5 +1,5 @@
 <template>
-  <span :id="countId" ref="number" />
+  <span :id="countId" ref="numberRef" />
 </template>
 
 <script setup>
@@ -49,8 +49,7 @@ const props = defineProps({
   },
 });
 
-let isStarted = false;
-const number = ref(null);
+const numberRef = ref(null);
 const countId = nanoid();
 let counter = reactive({});
 
@@ -69,15 +68,13 @@ const countStart = () => {
 };
 
 const handleScroll = () => {
-  if (isStarted) { return; }
-  if (!number.value.getBoundingClientRect) { return; }
-  const numberEle = number.value.getBoundingClientRect();
+  if (!numberRef.value.getBoundingClientRect) { return; }
+  const numberEle = numberRef.value.getBoundingClientRect();
   if (!numberEle) { return; }
   const windowTopOffset = numberEle.top;
   const threshold = document.body.clientHeight * 0.9; // 距離底部 10% （1-0.9）時出現
 
   if (threshold > windowTopOffset) {
-    isStarted = true;
     countStart();
     document.querySelector('#app').removeEventListener('scroll', handleScroll);
   }

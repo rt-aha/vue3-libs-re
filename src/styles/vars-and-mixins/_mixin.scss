@@ -151,7 +151,6 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;
-
 }
 
 // 網格背景
@@ -172,4 +171,11 @@ background-image: linear-gradient($c-grey8, 1px, transparent 0),
 
 @mixin form-font() {
   @include font-style($c-form-basic, 14, 400, 1px, 18px);
+}
+
+
+@mixin normalBg() {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

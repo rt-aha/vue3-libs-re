@@ -111,7 +111,7 @@ export default defineComponent({
     &__container {
       flex: 1;
       height: 100%;
-      overflow: auto;
+      overflow-y: auto;
       @include padding(25px);
     }
   }
@@ -126,9 +126,11 @@ export default defineComponent({
 }
 
 .router-view-wrap {
+  width: 100%;
   @include flex(flex-start, flex-start);
 
   &__view {
+    width: 100%;
     // flex: none;
     // width: ;
     flex: 1;

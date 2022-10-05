@@ -60,6 +60,8 @@ export default defineComponent({
 
 <style lang="scss">
 .dev-section {
+  width: 100%;
+
   &__content {
     > * {
       margin-left: 30px;

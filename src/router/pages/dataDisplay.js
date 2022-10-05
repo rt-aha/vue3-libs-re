@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 'swiper',
+    name: 'swiper',
+    component: () => import(/* webpackChunkName: "ReSwiper" */ '@/views/dataDisplay/ReSwiper.vue'),
+    meta: {
+      title: 'Swiper 輪播',
+    },
+  },
+  {
     path: 'countTo',
     name: 'countTo',
     component: () => import(/* webpackChunkName: "ReCountTo" */ '@/views/dataDisplay/ReCountTo.vue'),

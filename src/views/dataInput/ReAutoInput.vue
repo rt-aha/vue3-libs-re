@@ -1,15 +1,13 @@
 <template>
   <div class="v-auto-input">
-    AutoInput 施工中 ...
+    <ReAutoInput v-model="val" />
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup>
+import ReAutoInput from '@/components/dataInput/ReAutoInput.vue';
 
-export default defineComponent({
-  name: 'ViewAutoInput',
-});
+const val = ref('');
 </script>
 
 <style lang="scss" scoped>
