@@ -20,8 +20,8 @@
 - [-] Table
 - [x] SimpleTable
 - [ ] TreeSelect
-- [ ] Countdown
-- [ ] TimeLine
+- [10/7] Countdown
+- [10/7] TimeLine
 - [x] Tree
   - [ ] 可點擊
   - [ ] 可禁用
@@ -45,6 +45,7 @@
 - [x] Checkbox
 - [x] InputList/DynamicInputs
   - [ ] 待 emailAutoComplete 完成，做一版輸入 email 的
+  - [ ] 可動態插不同組件
 - [x] Input
   - [ ] 功能 - 字數限制
 - [x] InputNumber
@@ -62,9 +63,10 @@
   - [ ] SearchSelect
   - [ ] GroupSelect
 - [-] DependencySelect
-  - [ ] 還沒有獨立頁面
+  - [ ] 寫進Select 不需要額外一個組件
 - [x] EmailAutoComplete
 - [ ] Slider
+- [x] AutoInput
 ### feedback
 - [x] Modal
 - [x] Drawer
