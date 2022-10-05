@@ -1,18 +1,27 @@
 <template>
   <div class="c-select-cities">
     <div class="title">
-      <p class="title__text">{{ data.selectCity }}</p>
-      <p class="title__hint">(可複選)</p>
+      <p class="title__text">
+        {{ data.selectCity }}
+      </p>
+      <p class="title__hint">
+        (可複選)
+      </p>
     </div>
     <ReCheckboxGroup v-model="cities" :options="filterOptions" />
     <div class="btns-wrap">
-      <ReButton type="grey" @click="close">取消</ReButton>
-      <ReButton type="gradient" @click="saveAndClose">確認</ReButton>
+      <ReButton type="grey" @click="close">
+        取消
+      </ReButton>
+      <ReButton type="gradient" @click="saveAndClose">
+        確認
+      </ReButton>
     </div>
   </div>
 </template>
+
 <script>
-import { defineComponent, ref, computed } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 // import { moreCityOptions } from '@/config/options';
 import ReCheckboxGroup from '@/components/dataInput/ReCheckboxGroup.vue';
 import ReButton from '@/components/common/ReButton.vue';
@@ -78,6 +87,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .c-select-cities {
   width: 600px;

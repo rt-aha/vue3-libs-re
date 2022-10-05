@@ -1,6 +1,8 @@
 <template>
   <div class="comp-agreement">
-    <p class="agreement-title">ＯＯＸＸ協議書</p>
+    <p class="agreement-title">
+      ＯＯＸＸ協議書
+    </p>
     <p class="agreement-desc">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis mollitia, temporibus blanditiis debitis
       dolorum aliquam illum accusamus voluptates sed, nesciunt incidunt, ad vero est! Velit hic nesciunt ipsum harum

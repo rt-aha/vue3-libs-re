@@ -1,5 +1,5 @@
 <template>
-  <div class="re-list" ref="reListRef">
+  <div ref="reListRef" class="re-list">
     <!-- overflow:hidden 包 flex 的內容會失效，所以要多夾一層 -->
     <div class="re-list__wrap">
       <div
@@ -8,14 +8,15 @@
           width: listContentWidth,
         }"
       >
-        <list-header :columns="config.columns" />
-        <list-content :columns="config.columns" :contentData="contentData" />
+        <ListHeader :columns="config.columns" />
+        <ListContent :columns="config.columns" :content-data="contentData" />
       </div>
     </div>
   </div>
 </template>
+
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import ListHeader from '@/components/dataDisplay/list/ReListHeader.vue';
 import ListContent from '@/components/dataDisplay/list/ReListContent.vue';
 
@@ -62,7 +63,7 @@ export default defineComponent({
       const wrapWidth = reListRef.value.clientWidth;
 
       const colFullWidth = props.config.columns
-        .map((ele) => ele.width || '100')
+        .map(ele => ele.width || '100')
         .reduce((acc, ele) => {
           acc += Number(ele);
           return acc;
@@ -76,7 +77,7 @@ export default defineComponent({
       }
 
       listContentWidth.value = `${wrapWidth}px`;
-      listContentWidth.value = `100%`;
+      listContentWidth.value = '100%';
     };
 
     onMounted(() => {
@@ -90,6 +91,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-list {
   width: 100%;

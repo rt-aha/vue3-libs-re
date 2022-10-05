@@ -10,16 +10,17 @@
       },
     ]"
     :style="{ width: w, maxWidth: mW }"
-    @click="handleClick"
     :disabled="loading || disabled"
+    @click="handleClick"
   >
     <slot />
-    <loading v-if="loading"></loading>
-    <img v-show="arrow" class="pbf-btn__img" src="@/assets/icon/go.svg" />
+    <loading v-if="loading" />
+    <img v-show="arrow" class="pbf-btn__img" src="@/assets/icon/go.svg">
   </button>
 </template>
+
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { isNumber } from 'lodash-es';
 
 export default defineComponent({
@@ -96,6 +97,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .pbf-btn {
   @include flex(center);

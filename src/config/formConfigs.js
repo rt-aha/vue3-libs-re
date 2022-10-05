@@ -1,10 +1,10 @@
-import { genderOptions, incomeOptions, occupationOptions, countiesOptions } from '@/config/options.js';
+import { countiesOptions, genderOptions, incomeOptions, occupationOptions } from '@/config/options.js';
 import taiwanCitiesRegions from '@/config/taiwanCitiesRegions';
 
 const cityRegionForSelectOptions = taiwanCitiesRegions.map((city) => {
   return {
     key: city.name,
-    options: city.region.map((region) => ({ label: region.name, value: region.name })),
+    options: city.region.map(region => ({ label: region.name, value: region.name })),
   };
 });
 

@@ -10,6 +10,7 @@
     </p> -->
   </div>
 </template>
+
 <script>
 import { defineComponent, inject, ref } from 'vue';
 // import ReSearchMessage from '@/components/ReSearchMessage.vue';
@@ -39,7 +40,7 @@ export default defineComponent({
     const formRules = inject('formRules');
 
     const validate = async (event) => {
-      let rule = formRules[props.formKey];
+      const rule = formRules[props.formKey];
 
       if (rule) {
         const triggerEvents = rule.trigger || [];
@@ -84,6 +85,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-search-item {
   position: relative;

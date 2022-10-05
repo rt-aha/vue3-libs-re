@@ -2,27 +2,27 @@
   <div class="re-upload-file">
     <div class="upload-box">
       <input
+        ref="uploadInputRef"
         type="file"
         class="file-input"
-        ref="uploadInputRef"
         :multiple="multiple && 'multiple'"
-        @change="handleFileChange"
         :disabled="isDisabled"
-      />
+        @change="handleFileChange"
+      >
 
-      <!-- FIXED: 不知為何包了 re-button 無法生效-->
+      <!-- FIXED: 不知為何包了 re-button 無法生效 -->
 
       <div class="trigger-scope" @click="handleClick">
         <slot>
-          <re-button @click.prevent>
+          <ReButton @click.prevent>
             <span class="btn-wrap__upload">上傳</span>
-          </re-button>
+          </ReButton>
         </slot>
       </div>
     </div>
 
-    <div class="preview-row-wrapper" v-if="preview.use && preview.type === 'row'">
-      <re-upload-preview-row
+    <div v-if="preview.use && preview.type === 'row'" class="preview-row-wrapper">
+      <ReUploadPreviewRow
         v-for="(attachment, index) of attachments"
         :key="attachment.name + index"
         :attachment="attachment"
@@ -30,8 +30,8 @@
         @removeFile="removeFile"
       />
     </div>
-    <div class="preview-box-wrapper" v-if="preview.use && preview.type === 'box'">
-      <re-upload-preview-box
+    <div v-if="preview.use && preview.type === 'box'" class="preview-box-wrapper">
+      <ReUploadPreviewBox
         v-for="(attachment, index) of attachments"
         :key="attachment.name + index"
         :attachment="attachment"
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import { v4 as uuid } from 'uuid';
 // import ReButton from '@/components/common/ReButton.vue';
 import ReButton from '@/components/common/buttonCollection/ReButton.vue';
@@ -193,7 +193,7 @@ export default defineComponent({
       updateValue();
     };
     const removeFile = (id) => {
-      attachments.value = attachments.value.filter((ele) => ele.id !== id);
+      attachments.value = attachments.value.filter(ele => ele.id !== id);
       updateValue();
       handleMessage({});
     };
@@ -242,7 +242,7 @@ export default defineComponent({
       console.log('files.value', files.value);
 
       // files.value.forEach((file) => {
-      for (let file of files.value) {
+      for (const file of files.value) {
         const fileType = file.type.split('/')[1];
 
         if (props.accept.image.includes(fileType)) {
@@ -254,7 +254,8 @@ export default defineComponent({
 
             if (useCompress) {
               compressFile(targetResult, w, h, file, updateFiles);
-            } else {
+            }
+            else {
               updateFiles(targetResult, file.name, file.size, 'image');
             }
           };
@@ -292,7 +293,8 @@ export default defineComponent({
             // 高度按照寬度比例縮放
             targetWidth = maxWidth;
             targetHeight = Math.round(maxWidth * (originHeight / originWidth));
-          } else {
+          }
+          else {
             // 高度大於寬度，以高度為基準，按高度比例縮放
             targetHeight = maxHeight;
             targetWidth = Math.round(maxHeight * (originWidth / originHeight));

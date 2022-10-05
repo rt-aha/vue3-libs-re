@@ -8,9 +8,11 @@ export default (requestApi) => {
       isLoading.value = true;
       const res = await requestApi(args, otherArgs);
       return res;
-    } catch (e) {
+    }
+    catch (e) {
       console.log('e...', e);
-    } finally {
+    }
+    finally {
       isLoading.value = false;
     }
     return null;

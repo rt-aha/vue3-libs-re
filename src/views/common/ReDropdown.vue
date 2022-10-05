@@ -7,20 +7,26 @@
     </dev-section>
     <dev-section title="禁用">
       <div class="wrap">
-        <dev-desc type="boolean">disabled：禁用</dev-desc>
+        <dev-desc type="boolean">
+          disabled：禁用
+        </dev-desc>
         <ReDropdown v-model="value2" :options="basicWithDisabledOptions" />
       </div>
     </dev-section>
     <dev-section title="自定義內容">
       <div class="wrap">
-        <dev-desc api="props" type="Array">options: e.g. [{...props, render: renderFunction}]</dev-desc>
+        <dev-desc api="props" type="Array">
+          options: e.g. [{...props, render: renderFunction}]
+        </dev-desc>
         <ReDropdown v-model="value3" :options="renderOptions" />
       </div>
     </dev-section>
 
     <dev-section title="下拉選單位置">
       <div class="wrap">
-        <dev-desc api="props" type="String">align: left | center | right, default: left</dev-desc>
+        <dev-desc api="props" type="String">
+          align: left | center | right, default: left
+        </dev-desc>
 
         <div class="wrap-comps">
           <div class="wrap-comps__comp">

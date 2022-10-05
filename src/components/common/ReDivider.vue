@@ -11,16 +11,16 @@
       'margin-right': m.right,
       'border-top': setting.bt,
       'border-left': setting.bl,
-      width: setting.w,
-      height: setting.h,
+      'width': setting.w,
+      'height': setting.h,
       'border-color': c,
       'border-style': bs,
     }"
-  ></div>
+  />
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ReDivider',

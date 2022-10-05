@@ -12,6 +12,7 @@
     </tr>
   </thead>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 
@@ -29,6 +30,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 // .re-table-header {
 //   &__content {

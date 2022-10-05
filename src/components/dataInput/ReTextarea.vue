@@ -1,6 +1,8 @@
 <template>
   <div class="re-textarea">
     <textarea
+      v-bind="$attrs"
+      ref="textareaRef"
       :style="cssStyle"
       class="re-textarea__native"
       :class="[
@@ -11,17 +13,15 @@
           're-textarea__native--disabled': disabled,
         },
       ]"
+      :rows="textAreaRows"
+      :value="modelValue"
       @input="(e) => updateValue(e, 'input')"
       @change="(e) => updateValue(e, 'change')"
       @blur="(e) => updateValue(e, 'blur')"
-      v-bind="$attrs"
-      :rows="textAreaRows"
-      ref="textareaRef"
-      :value="modelValue"
     />
     <div
-      class="count-limit"
       v-if="textLimit !== ''"
+      class="count-limit"
       :class="[
         {
           'count-limit--warning': isOverTextLimit,
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed, onMounted } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import { isNumber } from 'lodash-es';
 import useValidate from '@/hooks/useValidate';
 
@@ -50,7 +50,7 @@ export default defineComponent({
     autosize: {
       type: [Boolean, String],
       default: false,
-      validator: (val) => ['none', 'vertical', 'horizontal', true, false].includes(val),
+      validator: val => ['none', 'vertical', 'horizontal', true, false].includes(val),
     },
     rows: {
       type: [String, Number],
@@ -67,7 +67,7 @@ export default defineComponent({
     textLimit: {
       type: [String, Number],
       default: '',
-      validator: (val) => isNumber(Number(val)),
+      validator: val => isNumber(Number(val)),
     },
   },
   setup(props, { emit }) {
@@ -76,7 +76,7 @@ export default defineComponent({
     const textareaRef = ref(null);
 
     const nativeTextareaValue = computed(() => {
-      if (!props.modelValue) return '';
+      if (!props.modelValue) { return ''; }
       return String(props.modelValue);
     });
     const currTextCount = computed(() => {
@@ -89,7 +89,7 @@ export default defineComponent({
       return String(props.rows);
     });
     const resizeValue = computed(() => {
-      if (typeof props.autosize === 'boolean' && props.autosize) return true;
+      if (typeof props.autosize === 'boolean' && props.autosize) { return true; }
       return props.autosize;
     });
     const cssStyle = computed(() => {
@@ -105,7 +105,7 @@ export default defineComponent({
     });
 
     const updateValue = (e, event) => {
-      if (props.disabled) return;
+      if (props.disabled) { return; }
       emit('update:modelValue', e.target.value);
       validFn(event);
     };

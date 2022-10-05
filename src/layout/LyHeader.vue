@@ -1,10 +1,13 @@
 <template>
   <div class="ly-header">
     <div class="ly-header__content">
-      <p class="rakuen">Vue3 Component Library</p>
+      <p class="rakuen">
+        Vue3 Component Library
+      </p>
     </div>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 
@@ -12,6 +15,7 @@ export default defineComponent({
   name: 'LyHeader',
 });
 </script>
+
 <style lang="scss" scoped></style>
 
 <style lang="scss" scoped>

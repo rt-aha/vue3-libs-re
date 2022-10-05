@@ -1,9 +1,13 @@
 <template>
   <div class="dev-modal-contnet">
-    <ReEasyForm v-model:formValue="formValue" :formConfig="formValueConfig" :formRules="formRules" ref="formRef" />
+    <ReEasyForm ref="formRef" v-model:formValue="formValue" :form-config="formValueConfig" :form-rules="formRules" />
     <div class="btn-wrap">
-      <ReButton @click="getValue">getValue</ReButton>
-      <ReButton @click="closeModal">關閉</ReButton>
+      <ReButton @click="getValue">
+        getValue
+      </ReButton>
+      <ReButton @click="closeModal">
+        關閉
+      </ReButton>
     </div>
   </div>
 </template>

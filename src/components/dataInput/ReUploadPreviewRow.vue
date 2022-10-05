@@ -3,17 +3,17 @@
     <div class="re-upload-preview__content">
       <div class="preview-row">
         <div class="preview-row__frame">
-          <div class="preview-row__frame__loading" v-if="isLoading">
+          <div v-if="isLoading" class="preview-row__frame__loading">
             <re-loading />
           </div>
           <template v-else>
-            <img class="preview-row__frame__image" :src="snapImage || attachment.file" />
+            <img class="preview-row__frame__image" :src="snapImage || attachment.file">
             <div class="preview-row__frame__overlay" @click="openPreviewModal">
               <img
+                v-if="attachment.type === 'video'"
                 class="preview-row__frame__overlay__play-icon"
                 src="@/assets/icon/play.svg"
-                v-if="attachment.type === 'video'"
-              />
+              >
             </div>
           </template>
         </div>
@@ -26,7 +26,7 @@
         </p>
 
         <div class="preview-row__action" @click="removeFile">
-          <img class="preview-row__action__delete" src="@/assets/icon/close_white.svg" />
+          <img class="preview-row__action__delete" src="@/assets/icon/close_white.svg">
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import useModal from '@/hooks/useModal';
 import ReUploadPreviewVideoModalContent from '@/components/dataInput/ReUploadPreviewVideoModalContent.vue';
 const { modal } = useModal();

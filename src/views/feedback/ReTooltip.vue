@@ -1,20 +1,22 @@
 <template>
   <div class="v-tooltip">
     <dev-section title="基本使用">
-      <re-tooltip label="這個按鈕說明">
-        <re-button size="small"> 小按鈕 </re-button>
-      </re-tooltip>
+      <ReTooltip label="這個按鈕說明">
+        <ReButton size="small">
+          小按鈕
+        </ReButton>
+      </ReTooltip>
     </dev-section>
     <dev-section title="基本使用">
-      <re-tooltip label="新增">
-        <img class="demo-icon" src="@/assets/icon/add.svg" />
-      </re-tooltip>
-      <re-tooltip label="編輯">
-        <img class="demo-icon" src="@/assets/icon/edit.svg" />
-      </re-tooltip>
-      <re-tooltip label="刪除">
-        <img class="demo-icon" src="@/assets/icon/delete.svg" />
-      </re-tooltip>
+      <ReTooltip label="新增">
+        <img class="demo-icon" src="@/assets/icon/add.svg">
+      </ReTooltip>
+      <ReTooltip label="編輯">
+        <img class="demo-icon" src="@/assets/icon/edit.svg">
+      </ReTooltip>
+      <ReTooltip label="刪除">
+        <img class="demo-icon" src="@/assets/icon/delete.svg">
+      </ReTooltip>
     </dev-section>
   </div>
 </template>

@@ -2,24 +2,24 @@
   <div class="re-input-list">
     <div class="re-input-list__add" @click="addNewItem">
       <span class="re-input-list__add__text">新增</span>
-      <img class="re-input-list__add__icon" src="@/assets/icon/add.svg" @click="addNew" />
+      <img class="re-input-list__add__icon" src="@/assets/icon/add.svg" @click="addNew">
     </div>
 
-    <div class="re-input" :class="{ 're-input--disabled': disabled }" v-for="v of innerValue" :key="v.id">
+    <div v-for="v of innerValue" :key="v.id" class="re-input" :class="{ 're-input--disabled': disabled }">
       <div class="re-input__center">
         <div class="re-input__center__main">
           <input
-            class="re-input-native-field"
             ref="inputField"
+            class="re-input-native-field"
+            :value="v.value"
+            :disabled="v.disabled"
             @input="(e) => updateValue(e, v, 'input')"
             @change="(e) => updateValue(e, v, 'change')"
             @blur="(e) => updateValue(e, v, 'blur')"
-            :value="v.value"
-            :disabled="v.disabled"
-          />
+          >
         </div>
         <div class="re-input__center__remove" @click="removeItem(v)">
-          <img class="re-input__center__remove__icon" src="@/assets/icon/close.svg" />
+          <img class="re-input__center__remove__icon" src="@/assets/icon/close.svg">
         </div>
       </div>
     </div>
@@ -28,8 +28,8 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
-import useValidate from '@/hooks/useValidate';
 import { v4 as uuid } from 'uuid';
+import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
   name: 'ReInputList',
@@ -73,7 +73,7 @@ export default defineComponent({
     // const formRules = inject('formRules', {});
 
     const updateValue = (e, v, event) => {
-      if (v.disabled) return;
+      if (v.disabled) { return; }
       innerValue.value = innerValue.value.map((item) => {
         if (item.id === v.id) {
           item.value = e.target.value;

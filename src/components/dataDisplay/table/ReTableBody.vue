@@ -1,7 +1,7 @@
 <template>
   <tbody class="re-table-body">
-    <tr class="re-table-body__tr" v-for="(data, idx1) of contentData" :key="data.key">
-      <td class="re-table-body__tr__td" v-for="col of columns" :key="col.id || col.key">
+    <tr v-for="(data, idx1) of contentData" :key="data.key" class="re-table-body__tr">
+      <td v-for="col of columns" :key="col.id || col.key" class="re-table-body__tr__td">
         <!-- <list-content-row :columns="columns" :data="data" :idx1="idx1" /> -->
 
         <div class="cell">
@@ -16,6 +16,7 @@
     </tr>
   </tbody>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 
@@ -48,6 +49,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-table-body {
   &__tr {

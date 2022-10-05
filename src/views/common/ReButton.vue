@@ -5,51 +5,87 @@
     </dev-section>
 
     <dev-section title="基本使用">
-      <re-button> 預設按鈕 </re-button>
-      <re-button :disabled="true"> disabled按鈕 </re-button>
-      <re-button type="border"> border按鈕 </re-button>
-      <re-button type="plain"> plain按鈕 </re-button>
+      <ReButton> 預設按鈕 </ReButton>
+      <ReButton :disabled="true">
+        disabled按鈕
+      </ReButton>
+      <ReButton type="border">
+        border按鈕
+      </ReButton>
+      <ReButton type="plain">
+        plain按鈕
+      </ReButton>
     </dev-section>
     <dev-section title="前綴、後綴">
-      <re-button><template #prefix>pre</template>按鈕</re-button>
-      <re-button>
-        <template #prefix>pre</template>
+      <ReButton>
+        <template #prefix>
+          pre
+        </template>按鈕
+      </ReButton>
+      <ReButton>
+        <template #prefix>
+          pre
+        </template>
         按鈕
-        <template #suffix>suf</template>
-      </re-button>
-      <re-button>預設按鈕<template #suffix>suf</template></re-button>
+        <template #suffix>
+          suf
+        </template>
+      </ReButton>
+      <ReButton>
+        預設按鈕<template #suffix>
+          suf
+        </template>
+      </ReButton>
     </dev-section>
 
     <dev-section title="帶 loading">
-      <re-button :isLoading="true">按紐</re-button>
-      <re-button :isLoading="true" type="border"> border按鈕 </re-button>
-      <re-button :isLoading="true" type="plain"> plain按鈕 </re-button>
-      <re-button :isLoading="true" size="small"> 小按鈕 </re-button>
+      <ReButton :is-loading="true">
+        按紐
+      </ReButton>
+      <ReButton :is-loading="true" type="border">
+        border按鈕
+      </ReButton>
+      <ReButton :is-loading="true" type="plain">
+        plain按鈕
+      </ReButton>
+      <ReButton :is-loading="true" size="small">
+        小按鈕
+      </ReButton>
     </dev-section>
 
     <dev-section title="小 size">
-      <re-button size="small"> 小按鈕 </re-button>
+      <ReButton size="small">
+        小按鈕
+      </ReButton>
     </dev-section>
 
     <dev-section title="圓形">
-      <re-button extra="circle">circle</re-button>
-      <re-button :style="{ 'border-color': '#CD5C5C', color: '#CD5C5C' }" type="border">按紐</re-button>
+      <ReButton extra="circle">
+        circle
+      </ReButton>
+      <ReButton :style="{ 'border-color': '#CD5C5C', 'color': '#CD5C5C' }" type="border">
+        按紐
+      </ReButton>
     </dev-section>
 
     <dev-section title="自訂背景色">
-      <re-button bgColor="#CD5C5C">按紐</re-button>
+      <ReButton bg-color="#CD5C5C">
+        按紐
+      </ReButton>
     </dev-section>
 
     <dev-section title="自訂邊框顏色、內容文字顏色">
-      <re-button :style="{ 'border-color': '#CD5C5C', color: '#CD5C5C' }" type="border">按紐</re-button>
+      <ReButton :style="{ 'border-color': '#CD5C5C', 'color': '#CD5C5C' }" type="border">
+        按紐
+      </ReButton>
     </dev-section>
 
     <dev-section title="其他">
-      <pbf-button>按鈕</pbf-button>
+      <PbfButton>按鈕</PbfButton>
     </dev-section>
 
     <dev-section title="其他">
-      <red-circle-button label="按鈕" />
+      <RedCircleButton label="按鈕" />
     </dev-section>
   </div>
 </template>

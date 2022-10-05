@@ -1,19 +1,29 @@
 <template>
   <div class="v-drawer">
     <dev-section title="基本使用">
-      <ReButton @click="openDrawer">Open Drawer</ReButton>
+      <ReButton @click="openDrawer">
+        Open Drawer
+      </ReButton>
     </dev-section>
     <dev-section title="使用預設按鈕">
-      <ReButton @click="openDrawerWithDefaultBtns">Open Modal With Default Button</ReButton>
+      <ReButton @click="openDrawerWithDefaultBtns">
+        Open Modal With Default Button
+      </ReButton>
     </dev-section>
     <dev-section title="定義寬度">
-      <ReButton @click="openDrawerWithCustomWidth">40vw Drawer</ReButton>
+      <ReButton @click="openDrawerWithCustomWidth">
+        40vw Drawer
+      </ReButton>
     </dev-section>
     <dev-section title="使用自定義內容(可塞入 component)">
-      <ReButton @click="openDrawerWithComponent">Open Modal With Component</ReButton>
+      <ReButton @click="openDrawerWithComponent">
+        Open Modal With Component
+      </ReButton>
     </dev-section>
     <dev-section title="抽屜中的抽屜">
-      <ReButton @click="opevDrawerWithInnevDrawer">Inner modal</ReButton>
+      <ReButton @click="opevDrawerWithInnevDrawer">
+        Inner modal
+      </ReButton>
     </dev-section>
   </div>
 </template>

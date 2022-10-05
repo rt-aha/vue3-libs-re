@@ -8,9 +8,9 @@
 
 <script>
 import { defineComponent, h } from 'vue';
+import { v4 as uuid } from 'uuid';
 import SimpleTable from '@/components/dataDisplay/simpleTable/SimpleTableIndex.vue';
 import Paragraph from '@/components/dataDisplay/ReParagraph.vue';
-import { v4 as uuid } from 'uuid';
 
 export default defineComponent({
   name: 'ViewSimpleTable',

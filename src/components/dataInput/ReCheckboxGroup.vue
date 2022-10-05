@@ -2,27 +2,27 @@
   <div class="re-checkbox-group" :class="[`re-checkbox-group--direction--${direction}`]">
     <template v-for="(opt, idx) of innerOptions" :key="opt.value">
       <input
+        :id="uuid + opt.value + idx"
         class="re-checkbox-group__field"
         type="checkbox"
-        :id="uuid + opt.value + idx"
         :value="opt.value"
         :checked="modelValue.includes(opt.value)"
         @change="(e) => handleChange(e, opt)"
-      />
+      >
     </template>
 
     <div :class="[`re-checkbox-group-content--direction--${checkAllDirection}`]">
-      <div class="chk-all" v-if="checkAll">
-        <re-checkbox v-model="isAll" label="全選" @onChange="onChange" />
+      <div v-if="checkAll" class="chk-all">
+        <ReCheckbox v-model="isAll" label="全選" @onChange="onChange" />
       </div>
       <ul class="chk-list">
         <li
+          v-for="(opt, idx) of innerOptions"
+          :key="opt.value"
           class="chk-list__item"
           :class="{
             'chk-list__item--disabled': opt.disabled,
           }"
-          v-for="(opt, idx) of innerOptions"
-          :key="opt.value"
         >
           <label class="chk-list__item__label" :for="uuid + opt.value + idx">
             <div
@@ -30,11 +30,11 @@
               :class="{
                 'chk-list__item__label__option--actived': modelValue.includes(opt.value),
               }"
-            ></div>
+            />
 
             <div class="chk-list__item__label__content">
               <component :is="opt.render" v-bind="opt" v-if="opt.render" />
-              <p class="chk-list__item__label__content__label" v-else>{{ opt.label }}</p>
+              <p v-else class="chk-list__item__label__content__label">{{ opt.label }}</p>
             </div>
           </label>
         </li>
@@ -46,9 +46,9 @@
 <script>
 import { defineComponent, ref, shallowRef, watch } from 'vue';
 import { v4 as uuid } from 'uuid';
+import { cloneDeep } from 'lodash-es';
 import useValidate from '@/hooks/useValidate';
 import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
-import { cloneDeep } from 'lodash-es';
 
 export default defineComponent({
   name: 'ReCheckboxGroup',
@@ -90,13 +90,14 @@ export default defineComponent({
     const recordOriginDisabledItems = shallowRef([]);
 
     const handleChange = (e, opt) => {
-      if (opt.disabled) return;
+      if (opt.disabled) { return; }
       let newValue = [];
       let actionType = '';
       if (props.modelValue.includes(opt.value)) {
-        newValue = props.modelValue.filter((item) => item !== opt.value);
+        newValue = props.modelValue.filter(item => item !== opt.value);
         actionType = 'remove';
-      } else {
+      }
+      else {
         newValue = [...props.modelValue, opt.value];
 
         actionType = 'add';
@@ -106,7 +107,8 @@ export default defineComponent({
       if (props.checkAll) {
         if (newValue.length === innerOptions.value.length) {
           isAll.value = true;
-        } else {
+        }
+        else {
           isAll.value = false;
         }
       }
@@ -124,12 +126,14 @@ export default defineComponent({
 
             return item;
           });
-        } else {
+        }
+        else {
           innerOptions.value = innerOptions.value.map((item) => {
             const isDisabledItem = recordOriginDisabledItems.value.includes(item.value);
             if (isDisabledItem) {
               item.disabled = true;
-            } else {
+            }
+            else {
               item.disabled = false;
             }
 
@@ -144,15 +148,16 @@ export default defineComponent({
     };
 
     const onChange = (val) => {
-      if (!props.checkAll) return;
+      if (!props.checkAll) { return; }
 
       let actionType = '';
       let newValue = [];
       if (val) {
         actionType = 'all';
-        newValue = innerOptions.value.map((item) => item.value);
+        newValue = innerOptions.value.map(item => item.value);
         // newValue = cloneDeep(props.innerOptions);
-      } else {
+      }
+      else {
         actionType = 'reset';
       }
 
@@ -164,7 +169,7 @@ export default defineComponent({
 
     const initChecked = () => {
       if (props.limit && props.checkAll) {
-        console.warn(`limit 與 checkAll 不應同時存在`);
+        console.warn('limit 與 checkAll 不應同時存在');
       }
     };
 

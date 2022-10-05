@@ -1,36 +1,36 @@
 <template>
   <div class="re-input" :class="{ 're-input--disabled': disabled }">
     <div class="re-input__center">
-      <div class="re-input__center__prefix" v-if="slots.prefix">
-        <slot name="prefix"></slot>
+      <div v-if="slots.prefix" class="re-input__center__prefix">
+        <slot name="prefix" />
       </div>
       <div class="re-input__center__main">
         <input
+          ref="inputField"
           class="re-input-native-field"
           type="number"
-          ref="inputField"
-          @input="(e) => updateValue(e, 'input')"
-          @change="(e) => updateValue(e, 'change')"
-          @blur="(e) => updateValue(e, 'blur')"
           :value="modelValue"
           :disabled="disabled"
           inputmode="numeric"
-        />
+          @input="(e) => updateValue(e, 'input')"
+          @change="(e) => updateValue(e, 'change')"
+          @blur="(e) => updateValue(e, 'blur')"
+        >
       </div>
 
-      <div class="re-input__center__suffix" v-if="slots.suffix">
-        <slot name="suffix"></slot>
+      <div v-if="slots.suffix" class="re-input__center__suffix">
+        <slot name="suffix" />
       </div>
       <div class="re-input__center__control">
-        <img class="re-input__center__control__icon" src="@/assets/icon/minus.svg" @click="minus" />
-        <img class="re-input__center__control__icon" src="@/assets/icon/add.svg" @click="add" />
+        <img class="re-input__center__control__icon" src="@/assets/icon/minus.svg" @click="minus">
+        <img class="re-input__center__control__icon" src="@/assets/icon/add.svg" @click="add">
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
@@ -70,13 +70,13 @@ export default defineComponent({
     // const formRules = inject('formRules', {});
 
     const updateValue = (e, event) => {
-      if (props.disabled) return;
+      if (props.disabled) { return; }
       emit('update:modelValue', e.target.value);
       validFn(event);
     };
 
     const toggleEyeStatus = () => {
-      if (props.disabled) return;
+      if (props.disabled) { return; }
       inputType.value = inputType.value === 'password' ? 'text' : 'password';
     };
 
@@ -98,7 +98,7 @@ export default defineComponent({
     };
 
     const add = () => {
-      if (props.disabled) return;
+      if (props.disabled) { return; }
 
       let val = Number(props.modelValue) + Number(props.step);
       if (props.max) {
@@ -111,7 +111,7 @@ export default defineComponent({
     };
 
     const minus = () => {
-      if (props.disabled) return;
+      if (props.disabled) { return; }
       let val = Number(props.modelValue) - Number(props.step);
 
       if (props.min) {

@@ -1,9 +1,13 @@
 <template>
   <div class="dev-modal-inner-modal">
-    <ReEasyForm v-model:formValue="formValue" :formConfig="formValueConfig" :formRules="formRules" ref="formRef" />
+    <ReEasyForm ref="formRef" v-model:formValue="formValue" :form-config="formValueConfig" :form-rules="formRules" />
     <div class="btn-wrap">
-      <ReButton @click="handleForm">確認</ReButton>
-      <ReButton @click="cancel">取消</ReButton>
+      <ReButton @click="handleForm">
+        確認
+      </ReButton>
+      <ReButton @click="cancel">
+        取消
+      </ReButton>
     </div>
   </div>
 </template>

@@ -1,10 +1,11 @@
 <template>
   <div class="c-link-item">
     <a class="link" target="_blank" rel="noreferrer noopener" :href="link">
-      <span class="link__label"> {{ label }} <img class="link__icon" src="@/assets/icon/link.svg" /></span>
+      <span class="link__label"> {{ label }} <img class="link__icon" src="@/assets/icon/link.svg"></span>
     </a>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 
@@ -23,6 +24,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .link {
   // @include flex();

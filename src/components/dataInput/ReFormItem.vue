@@ -1,16 +1,17 @@
 <template>
   <div class="re-form-item">
     <p class="re-form-item__label">
-      <span class="re-form-item__label__required" v-if="required"></span>
+      <span v-if="required" class="re-form-item__label__required" />
       <span class="re-form-item__label__text">{{ label }}</span>
       <span class="re-form-item__label__hint">{{ hint }}</span>
     </p>
     <slot />
     <p class="re-form-item__message">
-      <ReFormMessage :errorMessage="formErrorMessage" v-show="formErrorMessage" />
+      <ReFormMessage v-show="formErrorMessage" :error-message="formErrorMessage" />
     </p>
   </div>
 </template>
+
 <script>
 import { defineComponent, inject, ref } from 'vue';
 import ReFormMessage from '@/components/dataInput/ReFormMessage.vue';
@@ -43,7 +44,7 @@ export default defineComponent({
     const formRules = inject('formRules');
 
     const validate = async (event) => {
-      let rule = formRules[props.formKey];
+      const rule = formRules[props.formKey];
 
       if (rule) {
         const triggerEvents = rule.trigger || [];
@@ -88,6 +89,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-form-item {
   position: relative;

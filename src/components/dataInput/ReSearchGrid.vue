@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import { debounce } from 'lodash';
 
 export default defineComponent({
@@ -21,15 +21,15 @@ export default defineComponent({
     const layoutSetting = ref();
 
     const selectLayoutSetting = () => {
-      if (!props.layout) return;
+      if (!props.layout) { return; }
 
       layoutSetting.value = '24';
       const windowWidth = document.body.clientWidth;
       const widthBreakPoint = Object.keys(props.layout)
-        .map((item) => Number(item))
+        .map(item => Number(item))
         .sort((a, b) => b - a);
 
-      for (let breakPoint of widthBreakPoint) {
+      for (const breakPoint of widthBreakPoint) {
         if (windowWidth > breakPoint) {
           layoutSetting.value = String(breakPoint);
           return;
@@ -42,13 +42,13 @@ export default defineComponent({
     const gridStyle = computed(() => {
       if (!props.layout) {
         return {
-          width: `100%`,
+          width: '100%',
         };
       }
 
       if (layoutSetting.value === '24') {
         return {
-          width: `100%`,
+          width: '100%',
         };
       }
 

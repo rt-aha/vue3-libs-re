@@ -1,15 +1,15 @@
 <template>
   <div class="c-paragraph">
-    <div class="c-paragraph__section" v-for="(t, idx) of wording" :key="`${t.text}${idx}`" :style="t.style">
-      <div :style="t.style ? t.style : null" v-if="t.render">
+    <div v-for="(t, idx) of wording" :key="`${t.text}${idx}`" class="c-paragraph__section" :style="t.style">
+      <div v-if="t.render" :style="t.style ? t.style : null">
         <component :is="t.render" />
       </div>
-      <div class="text-loop" :style="t.style ? t.style : null" v-else>
+      <div v-else class="text-loop" :style="t.style ? t.style : null">
         <p
-          :class="['text-loop__word', `text-loop__word--${t.type}`]"
+          v-for="(w, i) of t.text" :key="`${w}+${i}`"
+          class="text-loop__word"
+          :class="[`text-loop__word--${t.type}`]"
           :style="i === 0 && t.style ? t.style : null"
-          v-for="(w, i) of t.text"
-          :key="`${w}+${i}`"
         >
           {{ w }}
         </p>
@@ -17,6 +17,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 
@@ -30,6 +31,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .c-paragraph {
   width: 100%;

@@ -1,50 +1,50 @@
 <template>
   <div class="re-input" :class="{ 're-input--disabled': disabled }">
-    <div class="re-input__left" v-if="slots.left">
-      <slot name="left"></slot>
+    <div v-if="slots.left" class="re-input__left">
+      <slot name="left" />
     </div>
     <div class="re-input__center">
-      <div class="re-input__center__prefix" v-if="slots.prefix">
-        <slot name="prefix"></slot>
+      <div v-if="slots.prefix" class="re-input__center__prefix">
+        <slot name="prefix" />
       </div>
 
       <div class="re-input__center__main">
         <input
+          ref="inputRef"
           class="re-input-native-field"
           :type="inputType"
-          ref="inputRef"
+          :value="modelValue"
+          :disabled="disabled"
           @input="(e) => updateValue(e, 'input')"
           @change="(e) => updateValue(e, 'change')"
           @blur="(e) => updateValue(e, 'blur')"
           @keydown.enter="(e) => updateValue(e, 'keydown.enter')"
-          :value="modelValue"
-          :disabled="disabled"
-        />
+        >
       </div>
-      <div class="re-input__center__eye" @click="toggleEyeStatus" v-if="type === 'password'">
+      <div v-if="type === 'password'" class="re-input__center__eye" @click="toggleEyeStatus">
         <img
+          v-show="inputType === 'text'"
           class="re-input__center__eye__icon re-input__center__eye__icon--show"
           src="@/assets/icon/eye-show.svg"
-          v-show="inputType === 'text'"
-        />
+        >
         <img
+          v-show="inputType === 'password'"
           class="re-input__center__eye__icon re-input__center__eye__icon--hide"
           src="@/assets/icon/eye-hide.svg"
-          v-show="inputType === 'password'"
-        />
+        >
       </div>
-      <div class="re-input__center__suffix" v-if="slots.suffix">
-        <slot name="suffix"></slot>
+      <div v-if="slots.suffix" class="re-input__center__suffix">
+        <slot name="suffix" />
       </div>
     </div>
-    <div class="re-input__right" v-if="slots.right">
-      <slot name="right"></slot>
+    <div v-if="slots.right" class="re-input__right">
+      <slot name="right" />
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
@@ -72,7 +72,7 @@ export default defineComponent({
     // const formRules = inject('formRules', {});
 
     const updateValue = (e, event) => {
-      if (props.disabled) return;
+      if (props.disabled) { return; }
       emit('update:modelValue', e.target.value);
       emit('onChange', e.target.value, event);
 
@@ -80,7 +80,7 @@ export default defineComponent({
     };
 
     const toggleEyeStatus = () => {
-      if (props.disabled) return;
+      if (props.disabled) { return; }
       inputType.value = inputType.value === 'password' ? 'text' : 'password';
     };
 

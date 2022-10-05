@@ -1,29 +1,29 @@
 <template>
   <div class="re-pagination">
     <div class="re-pagination__content">
-      <ul class="re-pager-list" v-if="pager.totalPage !== 1">
+      <ul v-if="pager.totalPage !== 1" class="re-pager-list">
         <li
           v-show="pager.pageIndex !== 1 || pager.totalPage === 1"
+          v-if="showFirstLast"
           class="re-pager-list__item"
           @click="handlePageIndex('first')"
-          v-if="showFirstLast"
         >
-          <img class="re-pager-list__item__indicator-icon" src="@/assets/icon/pager_first.svg" />
+          <img class="re-pager-list__item__indicator-icon" src="@/assets/icon/pager_first.svg">
         </li>
 
         <li
           v-show="pager.pageIndex !== 1 || pager.totalPage === 1"
+          v-if="showPrevNext || showFirstLast"
           class="re-pager-list__item re-pager-list__item--prev"
           @click="handlePageIndex('prev')"
-          v-if="showPrevNext || showFirstLast"
         >
-          <img class="re-pager-list__item__indicator-icon" src="@/assets/icon/pager_prev.svg" />
+          <img class="re-pager-list__item__indicator-icon" src="@/assets/icon/pager_prev.svg">
         </li>
 
         <li
-          class="re-pager-list__item re-pager-list__item--number"
           v-for="(item, index) of renderPage"
           :key="index"
+          class="re-pager-list__item re-pager-list__item--number"
           @click="handlePageIndex('jump', item)"
         >
           <span
@@ -33,41 +33,40 @@
               { 're-pager-list__item__page-number--active': isActive(item) },
               { 're-pager-list__item__page-number--active--white': isActive(item, 'white') },
             ]"
-            >{{ item }}</span
-          >
+          >{{ item }}</span>
         </li>
 
         <li
           v-show="pager.pageIndex !== pager.totalPage && pager.totalPage > 1"
+          v-if="showPrevNext || showFirstLast"
           class="re-pager-list__item re-pager-list__item--next"
           @click="handlePageIndex('next')"
-          v-if="showPrevNext || showFirstLast"
         >
-          <img class="re-pager-list__item__indicator-icon" src="@/assets/icon/pager_next.svg" />
+          <img class="re-pager-list__item__indicator-icon" src="@/assets/icon/pager_next.svg">
         </li>
 
         <li
           v-show="pager.pageIndex !== pager.totalPage && pager.totalPage > 1"
+          v-if="showFirstLast"
           class="re-pager-list__item"
           @click="handlePageIndex('last')"
-          v-if="showFirstLast"
         >
-          <img class="re-pager-list__item__indicator-icon" src="@/assets/icon/pager_last.svg" />
+          <img class="re-pager-list__item__indicator-icon" src="@/assets/icon/pager_last.svg">
         </li>
       </ul>
 
-      <div class="page-size" v-if="pageSizeOptions && pageSizeOptions.length > 0">
+      <div v-if="pageSizeOptions && pageSizeOptions.length > 0" class="page-size">
         <ReSelect v-model="pageSize" :options="pageSizeOptions" @onChange="handlePageSize" />
       </div>
-      <div class="page-jump" v-if="showPageJump">
-        <ReInput v-model="pageJump" inputType="number" @onChange="handlePageJump" />
+      <div v-if="showPageJump" class="page-jump">
+        <ReInput v-model="pageJump" input-type="number" @onChange="handlePageJump" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, computed } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import ReSelect from '@/components/dataInput/ReSelect.vue';
 import ReInput from '@/components/dataInput/ReInput.vue';
@@ -82,7 +81,7 @@ export default defineComponent({
     size: {
       type: String,
       default: 'default',
-      validator: (val) => ['small', 'default'].includes(val),
+      validator: val => ['small', 'default'].includes(val),
     },
     pager: {
       type: Object,
@@ -139,7 +138,7 @@ export default defineComponent({
         // pageIndex + 2,
       ];
 
-      pageList = pageList.filter((ele) => ele >= firstPage.value && ele <= totalPage);
+      pageList = pageList.filter(ele => ele >= firstPage.value && ele <= totalPage);
 
       // 補1
       if (pageIndex - 1 - firstPage.value === 1) {
@@ -217,8 +216,8 @@ export default defineComponent({
     };
 
     const isActive = (pageNumber, isWhite) => {
-      const condition =
-        Number(props.pager.pageIndex) === Number(pageNumber) || Number(route.query.pageIndex) === Number(pageNumber);
+      const condition
+        = Number(props.pager.pageIndex) === Number(pageNumber) || Number(route.query.pageIndex) === Number(pageNumber);
 
       if (isWhite) {
         return condition && props.activeColor === 'white';

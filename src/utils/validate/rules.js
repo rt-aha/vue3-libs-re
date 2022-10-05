@@ -61,8 +61,8 @@ export const vldAsyncFn = async () => {
   //   }, 1000);
   // });
 
-  return await fetch('https://jsonplaceholder.typicode.com/todos/1').then(function (response) {
-    return response.status === 200 ? true : false;
+  return await fetch('https://jsonplaceholder.typicode.com/todos/1').then((response) => {
+    return response.status === 200;
     // return response.status === 200 ? false : true;
   });
 };
@@ -112,7 +112,8 @@ export const vldBoughtCustomer = (value, args, opt) => {
     }
 
     return false;
-  } else {
+  }
+  else {
     return true;
   }
 };
@@ -126,7 +127,8 @@ export const vldNotBuyCustomer = (value, args, opt) => {
     }
 
     return false;
-  } else {
+  }
+  else {
     return true;
   }
 };

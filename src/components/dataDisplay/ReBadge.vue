@@ -1,23 +1,23 @@
 <template>
   <div class="re-badge" :class="{ 're-badge--position': position !== '' }">
     <div class="re-badge__content" :class="{ 're-badge__content--position--left': position === 'left' }">
-      <slot></slot>
+      <slot />
     </div>
     <div
+      v-show="isShowZero"
       class="badge-box"
       :class="[`badge-box--position--${position}`, { 'badge-box--dot': dot }]"
       :style="{ 'background-color': color }"
-      v-show="isShowZero"
     >
       <div class="badge-box__value-cell" :class="{ 'badge-box__value-cell--dot': dot }">
-        <span class="badge-box__value-cell__value" v-if="!dot">{{ calcValue }}</span>
+        <span v-if="!dot" class="badge-box__value-cell__value">{{ calcValue }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ReBadge',
@@ -34,7 +34,7 @@ export default defineComponent({
       type: String,
       default: '',
       validator(val) {
-        return ['', 'left', 'right'].indexOf(val) > -1;
+        return ['', 'left', 'right'].includes(val);
       },
     },
     dot: {

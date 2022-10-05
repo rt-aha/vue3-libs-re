@@ -17,7 +17,7 @@ const validator = {
   errMsg(name, ruleData) {
     const { cusError } = ruleData;
 
-    const errName = cusError ? cusError : name;
+    const errName = cusError || name;
     const errorMessage = this.getErrorMessage(errName, ruleData);
 
     return {
@@ -79,7 +79,8 @@ const vld = (value = '', { label, ruleList = [], options }) => {
     try {
       const result = validator.start();
       resolve(result);
-    } catch (e) {
+    }
+    catch (e) {
       resolve(false);
     }
   });

@@ -1,27 +1,34 @@
 <template>
   <div class="v-request">
     <dev-section title="Restful">
-      <ReButton @click="restfulRequest">Restful</ReButton>
+      <ReButton @click="restfulRequest">
+        Restful
+      </ReButton>
     </dev-section>
     <dev-section title="Graphql">
-      <ReButton @click="graphqlRequest">Graphql</ReButton>
+      <ReButton @click="graphqlRequest">
+        Graphql
+      </ReButton>
     </dev-section>
 
     <dev-section title="graphqlUpload">
       <div class>
         <input
-          type="file"
           ref="inputRef"
+          type="file"
           class="file-input"
-          @change="handleFileChange"
           accept="image/png, image/jpeg, image/jpg"
-        />
+          @change="handleFileChange"
+        >
 
-        <ReButton @click="triggerUpload">Upload</ReButton>
+        <ReButton @click="triggerUpload">
+          Upload
+        </ReButton>
       </div>
     </dev-section>
   </div>
 </template>
+
 <script>
 import { defineComponent, ref } from 'vue';
 import { mockJsonPlaceholder } from '@/api/restfulTest';
@@ -82,4 +89,5 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped></style>

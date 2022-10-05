@@ -1,7 +1,6 @@
 <template>
   <button
     class="re-button"
-    @click="handleClick"
     :disabled="disabled || isLoading"
     :class="[
       `re-button--${type}`,
@@ -12,29 +11,30 @@
       },
     ]"
     :style="setExtraStyle"
+    @click="handleClick"
   >
-    <span class="re-button__prefix" v-if="$slots.prefix">
-      <slot name="prefix"></slot>
+    <span v-if="$slots.prefix" class="re-button__prefix">
+      <slot name="prefix" />
     </span>
     <span class="re-button__content" :class="[{ 're-button__content--circle': extra === 'circle' }]">
-      <slot></slot>
+      <slot />
     </span>
-    <span class="re-button__suffix" v-if="$slots.suffix">
-      <slot name="suffix"></slot>
+    <span v-if="$slots.suffix" class="re-button__suffix">
+      <slot name="suffix" />
     </span>
-    <span class="re-button__loading" v-if="isLoading">
+    <span v-if="isLoading" class="re-button__loading">
       <span
         class="re-button__loading__icon"
         :class="{
           're-button__loading__icon--main-color': ['border', 'plain'].includes(type),
         }"
-      ></span>
+      />
     </span>
   </button>
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ReButton',
@@ -47,21 +47,21 @@ export default defineComponent({
       type: String,
       default: 'default',
       validator(val) {
-        return ['default', 'border', 'plain', 'circle'].indexOf(val) > -1;
+        return ['default', 'border', 'plain', 'circle'].includes(val);
       },
     },
     size: {
       type: String,
       default: 'default',
       validator(val) {
-        return ['small', 'default', 'large'].indexOf(val) > -1;
+        return ['small', 'default', 'large'].includes(val);
       },
     },
     round: {
       type: String,
       default: 'default',
       validator(val) {
-        return ['none', 'default', 'round'].indexOf(val) > -1;
+        return ['none', 'default', 'round'].includes(val);
       },
     },
     isLoading: {
@@ -109,8 +109,8 @@ export default defineComponent({
 
         extraStyles = {
           ...extraStyles,
-          width: `${wh}px`,
-          height: `${wh}px`,
+          'width': `${wh}px`,
+          'height': `${wh}px`,
           'border-radius': `${wh / 2}px`,
         };
       }

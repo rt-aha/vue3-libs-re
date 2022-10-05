@@ -1,14 +1,14 @@
 <template>
   <div class="v-list">
     <dev-section title="基本使用">
-      <ReListIndex :config="customerManagementConfig" :contentData="mockData" />
+      <ReListIndex :config="customerManagementConfig" :content-data="mockData" />
     </dev-section>
   </div>
 </template>
 
 <script>
-import ReListIndex from '@/components/dataDisplay/list/ReListIndex.vue';
 import { defineComponent } from 'vue';
+import ReListIndex from '@/components/dataDisplay/list/ReListIndex.vue';
 import { customerManagementConfig } from '@/config/listMockConfig.js';
 
 export default defineComponent({
@@ -17,9 +17,9 @@ export default defineComponent({
   setup() {
     const mockData = Array.from({ length: 20 }).map((_, index) => ({
       key: index,
-      name: 'name' + index,
-      salesName: 'sales' + index,
-      customerName: 'customer' + index,
+      name: `name${index}`,
+      salesName: `sales${index}`,
+      customerName: `customer${index}`,
       phone: '0987654321',
       email: 'abc@aa.bb',
       status: Math.random() > 0.5 ? 'Yes' : 'No',

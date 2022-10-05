@@ -1,45 +1,47 @@
 <template>
   <div class="v-pagination">
-    <dev-section title="基本使用"> <RePagination :pager="pager" @handlePageIndex="handlePageIndex" /> </dev-section>
+    <dev-section title="基本使用">
+      <RePagination :pager="pager" @handlePageIndex="handlePageIndex" />
+    </dev-section>
 
     <dev-section title="前一頁、下一頁">
-      <RePagination :pager="pager" @handlePageIndex="handlePageIndex" showPrevNext />
+      <RePagination :pager="pager" show-prev-next @handlePageIndex="handlePageIndex" />
     </dev-section>
 
     <dev-section title="第一頁、最後頁">
       <!-- 有 fisrtLast 就會預設有 prevNext -->
-      <RePagination :pager="pager" @handlePageIndex="handlePageIndex" showFirstLast />
+      <RePagination :pager="pager" show-first-last @handlePageIndex="handlePageIndex" />
     </dev-section>
 
     <dev-section title="跳頁">
       <RePagination
         :pager="pager"
+        show-prev-next
+        show-page-jump
         @handlePageIndex="handlePageIndex"
         @handlePageJump="handlePageJump"
-        showPrevNext
-        showPageJump
       />
     </dev-section>
 
     <dev-section title="每頁顯示筆數">
       <RePagination
         :pager="pager"
-        :pageSizeOptions="pageSizeOptions"
+        :page-size-options="pageSizeOptions"
+        show-prev-next
         @handlePageIndex="handlePageIndex"
         @handlePageSize="handlePageSize"
-        showPrevNext
       />
     </dev-section>
 
     <dev-section title="所有功能">
       <RePagination
         :pager="pager"
-        :pageSizeOptions="pageSizeOptions"
+        :page-size-options="pageSizeOptions"
+        show-first-last
+        show-page-jump
         @handlePageIndex="handlePageIndex"
         @handlePageSize="handlePageSize"
         @handlePageJump="handlePageJump"
-        showFirstLast
-        showPageJump
       />
     </dev-section>
   </div>

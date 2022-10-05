@@ -1,18 +1,18 @@
 <template>
   <div class="r-time-list">
     <div class="time-list">
-      <div class="time-list__col time-list__hour" ref="tlh" @scroll="setPositionDebounce('tlh')">
-        <span class="time-list__col__item time-list__hour__item" v-for="(h, index) of timeList.h" :key="h + index">
+      <div ref="tlh" class="time-list__col time-list__hour" @scroll="setPositionDebounce('tlh')">
+        <span v-for="(h, index) of timeList.h" :key="h + index" class="time-list__col__item time-list__hour__item">
           {{ h }}
         </span>
       </div>
-      <div class="time-list__col time-list__minute" ref="tlm" @scroll="setPositionDebounce('tlm')">
-        <span class="time-list__col__item time-list__minute__item" v-for="(m, index) of timeList.m" :key="m + index">
+      <div ref="tlm" class="time-list__col time-list__minute" @scroll="setPositionDebounce('tlm')">
+        <span v-for="(m, index) of timeList.m" :key="m + index" class="time-list__col__item time-list__minute__item">
           {{ m }}
         </span>
       </div>
-      <div class="time-list__col time-list__second" ref="tls" @scroll="setPositionDebounce('tls')">
-        <span class="time-list__col__item time-list__second__item" v-for="(s, index) of timeList.s" :key="s + index">
+      <div ref="tls" class="time-list__col time-list__second" @scroll="setPositionDebounce('tls')">
+        <span v-for="(s, index) of timeList.s" :key="s + index" class="time-list__col__item time-list__second__item">
           {{ s }}
         </span>
       </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, reactive, nextTick, getCurrentInstance } from 'vue';
+import { defineComponent, getCurrentInstance, nextTick, reactive, ref } from 'vue';
 import { debounce } from 'lodash-es';
 import dayjs from 'dayjs';
 import { h, m, s } from './timeListConfig';
@@ -94,7 +94,8 @@ export default defineComponent({
       let updateTimeValue = targetPosition / 30;
       if (updateTimeValue < 10) {
         updateTimeValue = `0${String(updateTimeValue)}`;
-      } else {
+      }
+      else {
         updateTimeValue = String(updateTimeValue);
       }
 
@@ -133,7 +134,7 @@ export default defineComponent({
       calcTimeValue(calcType, scrollBarPosition);
     };
 
-    const setPositionDebounce = debounce(function (calcType) {
+    const setPositionDebounce = debounce((calcType) => {
       calcHourScrollBarPosition(calcType);
     }, 100);
 

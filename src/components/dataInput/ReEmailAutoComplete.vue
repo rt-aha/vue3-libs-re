@@ -1,14 +1,14 @@
 <template>
   <div class="re-email-auto-complete">
-    <div class="re-email-auto-complete__input" v-click-away="closeOptions">
-      <re-input
+    <div v-click-away="closeOptions" class="re-email-auto-complete__input">
+      <ReInput
         v-model="emailValue"
+        :value="modelValue"
+        :placeholder="$attrs.placeholder"
         @click.stop
         @input="(e) => updateValue(e, 'input')"
         @change="(e) => updateValue(e, 'change')"
         @keydown="handleKeydown"
-        :value="modelValue"
-        :placeholder="$attrs.placeholder"
       />
       <!-- @focus="expandOptions" -->
     </div>
@@ -17,6 +17,8 @@
         <div class="re-email-auto-complete__option__content">
           <ul class="re-email-auto-complete__option__content__list">
             <li
+              v-for="(opt, idx) of extraOptions"
+              :key="opt.value"
               class="re-email-auto-complete-option"
               :class="[
                 {
@@ -24,20 +26,17 @@
                   're-email-auto-complete-option--disabled': opt.disabled,
                 },
               ]"
-              @click="handleSelect(opt.value)"
-              v-for="(opt, idx) of extraOptions"
-              :key="opt.value"
               v-bind="opt"
+              @click="handleSelect(opt.value)"
             >
-              <component v-if="opt.render" :is="render()" v-bind="opt.optionConfig" />
+              <component :is="render()" v-if="opt.render" v-bind="opt.optionConfig" />
               <span v-else class="re-email-auto-complete-option__item">{{ opt.label }}</span>
               <span
                 v-show="opt.allowedDelete"
                 class="re-email-auto-complete-option__remove"
                 :allowedDelete="opt.allowedDelete"
                 @click.stop="removeOption(opt.value)"
-                >刪除</span
-              >
+              >刪除</span>
             </li>
           </ul>
         </div>
@@ -113,10 +112,11 @@ export default defineComponent({
     const handleSelect = (selectedValue) => {
       let fullEmail = '';
 
-      if (emailValue.value.indexOf('@') > -1) {
+      if (emailValue.value.includes('@')) {
         const account = emailValue.value.split('@')[0];
         fullEmail = `${account}@${selectedValue}`;
-      } else {
+      }
+      else {
         fullEmail = `${emailValue.value}@${selectedValue}`;
       }
 
@@ -128,16 +128,17 @@ export default defineComponent({
     };
     const removeOption = (val) => {
       const storageOptions = localStorage.getItem(props.storageKey);
-      if (!storageOptions) return;
+      if (!storageOptions) { return; }
 
       const emailOptions = JSON.parse(storageOptions);
 
       // 要移除的 domain
-      const filterOptions = emailOptions.filter((item) => item.value !== val);
+      const filterOptions = emailOptions.filter(item => item.value !== val);
 
       if (filterOptions.length === 0) {
         localStorage.removeItem(props.storageKey);
-      } else {
+      }
+      else {
         localStorage.setItem(props.storageKey, JSON.stringify(filterOptions));
       }
 
@@ -177,7 +178,7 @@ export default defineComponent({
       validFn(event);
       // this.triggerValidate('input', value);
 
-      if (props.disabled) return;
+      if (props.disabled) { return; }
 
       // 沒有值或是沒有小老鼠分割沒有兩個值，不開啟
       if (!val || emailValue.value.split('@').length !== 2) {
@@ -185,7 +186,7 @@ export default defineComponent({
         return;
       }
 
-      const mappingObj = extraOptions.value.find((item) => item.label.includes(val));
+      const mappingObj = extraOptions.value.find(item => item.label.includes(val));
 
       // 若有 mapping 到 部分相同的字段
       if (mappingObj) {
@@ -196,7 +197,8 @@ export default defineComponent({
           isExpand.value = false;
           return;
         }
-      } else {
+      }
+      else {
         // 若 mapping 不到部分相同的字段
         isExpand.value = false;
         return;
@@ -246,10 +248,10 @@ export default defineComponent({
       });
 
       if (domain) {
-        const isMatchDomain = emailDomains.value.some((item) => item.value.includes(domain));
+        const isMatchDomain = emailDomains.value.some(item => item.value.includes(domain));
 
         if (isMatchDomain) {
-          extraOptions.value = extraOptions.value.filter((item) => item.value.includes(domain));
+          extraOptions.value = extraOptions.value.filter(item => item.value.includes(domain));
         }
       }
     };

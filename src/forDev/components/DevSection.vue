@@ -1,10 +1,10 @@
 <template>
   <div class="dev-section">
-    <dev-title>
+    <DevTitle>
       {{ title }}
-    </dev-title>
+    </DevTitle>
     <div class="dev-section__content" :class="{ 'dev-section__content--verticle': verticle }">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

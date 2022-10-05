@@ -9,8 +9,8 @@
   >
     <div class="table-wrap__content">
       <table class="table">
-        <table-col-group :columnsConfig="content.colGroup" />
-        <thead class="table__thead" v-if="content.head.length">
+        <TableColGroup :columns-config="content.colGroup" />
+        <thead v-if="content.head.length" class="table__thead">
           <tr v-for="r of content.head" :key="r.id" :style="r.style || {}">
             <td
               v-for="d of r.texts"
@@ -21,16 +21,22 @@
                 'no-top-border': !content.head.length,
               }"
             >
-              <component :is="d.render" v-if="d.render"></component>
+              <component :is="d.render" v-if="d.render" />
               <template v-else-if="Array.isArray(d.t)">
                 <div class="td-cell">
                   <template v-for="text of d.t" :key="text.t ? text.t : text">
-                    <p v-if="typeof text === 'string'" :style="text.style">{{ text }}</p>
-                    <p v-else :style="text.style">{{ text.t }}</p>
+                    <p v-if="typeof text === 'string'" :style="text.style">
+                      {{ text }}
+                    </p>
+                    <p v-else :style="text.style">
+                      {{ text.t }}
+                    </p>
                   </template>
                 </div>
               </template>
-              <p :style="d.style" v-else>{{ d.t }}</p>
+              <p v-else :style="d.style">
+                {{ d.t }}
+              </p>
             </td>
           </tr>
         </thead>
@@ -46,17 +52,23 @@
               }"
               :style="d.tdStyle"
             >
-              <component :is="d.render" v-if="d.render"></component>
+              <component :is="d.render" v-if="d.render" />
               <template v-else-if="Array.isArray(d.t)">
                 <div class="td-cell">
                   <template v-for="text of d.t" :key="text.t ? text.t : text">
-                    <p v-if="typeof text === 'string'" :style="text.style">{{ text }}</p>
-                    <component v-else-if="text.renderText" :is="text.renderText"></component>
-                    <p v-else :style="text.style">{{ text.t }}</p>
+                    <p v-if="typeof text === 'string'" :style="text.style">
+                      {{ text }}
+                    </p>
+                    <component :is="text.renderText" v-else-if="text.renderText" />
+                    <p v-else :style="text.style">
+                      {{ text.t }}
+                    </p>
                   </template>
                 </div>
               </template>
-              <p :style="d.style" v-else>{{ d.t }}</p>
+              <p v-else :style="d.style">
+                {{ d.t }}
+              </p>
             </td>
           </tr>
         </tbody>
@@ -64,12 +76,13 @@
     </div>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 import TableColGroup from '@/components/dataDisplay/simpleTable/TableColGroup.vue';
 
 export default defineComponent({
-  name: 'simpleTableIndex',
+  name: 'SimpleTableIndex',
   components: {
     TableColGroup,
   },
@@ -97,6 +110,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .table-wrap {
   width: 100%;

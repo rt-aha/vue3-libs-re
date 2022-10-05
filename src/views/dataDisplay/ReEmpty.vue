@@ -7,14 +7,14 @@
     </dev-section>
     <dev-section title="帶文字">
       <div class="wrap">
-        <ReEmpty emptyText="無資料" />
+        <ReEmpty empty-text="無資料" />
       </div>
     </dev-section>
     <dev-section title="帶文字">
       <div class="wrap">
         <ReSelect v-model="value1" :options="options">
           <template #noData>
-            <ReEmpty emptyText="無資料" />
+            <ReEmpty empty-text="無資料" />
           </template>
         </ReSelect>
       </div>

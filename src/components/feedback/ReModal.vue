@@ -16,11 +16,13 @@
           <component :is="render" v-bind="$props" @close="close" />
         </template>
         <template v-else>
-          <div v-html="content"></div>
+          <div v-html="content" />
 
-          <div class="btn-wrap" v-if="btns && btns.length">
-            <div class="btn-wrap__btn" v-for="btn of btns" :key="btn.label">
-              <re-button @click="() => handleBtn(btn.cb)">{{ btn.label }}</re-button>
+          <div v-if="btns && btns.length" class="btn-wrap">
+            <div v-for="btn of btns" :key="btn.label" class="btn-wrap__btn">
+              <ReButton @click="() => handleBtn(btn.cb)">
+                {{ btn.label }}
+              </ReButton>
             </div>
           </div>
         </template>

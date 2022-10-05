@@ -2,13 +2,16 @@
   <div class="c-test-comp">
     c-test-comp
 
-    <div class="btn-wrap" v-if="btns && btns.length">
-      <div class="btn-wrap__btn" v-for="btn of btns" :key="btn.label">
-        <re-button @click="handleConfirm(btn.cb)">{{ btn.label }}</re-button>
+    <div v-if="btns && btns.length" class="btn-wrap">
+      <div v-for="btn of btns" :key="btn.label" class="btn-wrap__btn">
+        <ReButton @click="handleConfirm(btn.cb)">
+          {{ btn.label }}
+        </ReButton>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 import ReButton from '@/components/common/ReButton.vue';
@@ -46,6 +49,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .btn-wrap {
   margin-top: 30px;

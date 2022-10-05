@@ -2,20 +2,20 @@
   <div class="v-re-textarea">
     <dev-section title="基本使用">
       <div>
-        <re-textarea v-model="textarea1" />
+        <ReTextarea v-model="textarea1" />
       </div>
     </dev-section>
 
     <dev-section title="限制字數提醒、行數設定">
       <div>
-        <re-textarea v-model="textarea2" textLimit="5" rows="5" />
+        <ReTextarea v-model="textarea2" text-limit="5" rows="5" />
       </div>
     </dev-section>
 
     <dev-section title="resize">
-      <re-textarea v-model="textarea3" autosize="none" />
-      <re-textarea v-model="textarea3" autosize="vertical" />
-      <re-textarea v-model="textarea3" autosize="horizontal" />
+      <ReTextarea v-model="textarea3" autosize="none" />
+      <ReTextarea v-model="textarea3" autosize="vertical" />
+      <ReTextarea v-model="textarea3" autosize="horizontal" />
     </dev-section>
   </div>
 </template>

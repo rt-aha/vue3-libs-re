@@ -10,7 +10,7 @@
       ...statusColor,
     }"
   >
-    <input class="re-switch__field" :id="uuid" type="checkbox" :value="activeStatus" @change="handleChange" />
+    <input :id="uuid" class="re-switch__field" type="checkbox" :value="activeStatus" @change="handleChange">
     <label class="re-switch-box" :for="uuid">
       <!-- <div class="bar-wrap"> -->
       <div class="re-switch-box__bar" :style="reSwitchBarStyle">
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { v4 as uuid } from 'uuid';
 import useValidate from '@/hooks/useValidate';
 
@@ -55,7 +55,7 @@ export default defineComponent({
     },
     size: {
       type: String,
-      validator: (val) => ['small', 'default', 'large', 'custom'].includes(val),
+      validator: val => ['small', 'default', 'large', 'custom'].includes(val),
       default: 'default',
     },
     customSize: {
@@ -90,8 +90,8 @@ export default defineComponent({
       const sizeNum = sizeMapping[size].replace('px', '');
 
       return {
-        width: props.width || `${sizeNum * 2}px`,
-        height: sizeMapping[size],
+        'width': props.width || `${sizeNum * 2}px`,
+        'height': sizeMapping[size],
         'border-radius': `${sizeNum * 2}px`,
       };
     });
@@ -121,10 +121,10 @@ export default defineComponent({
       };
 
       return {
-        width: `${sizeNum - 4}px`,
-        height: `${sizeNum - 4}px`,
+        'width': `${sizeNum - 4}px`,
+        'height': `${sizeNum - 4}px`,
         'border-radius': `${sizeNum / 2}px`,
-        left: leftValue(),
+        'left': leftValue(),
       };
     });
 
@@ -156,8 +156,8 @@ export default defineComponent({
 
     const { validFn } = useValidate();
     const handleChange = (e) => {
-      if (props.disabled) return;
-      emit('update:modelValue', e.target.value === 't' ? false : true);
+      if (props.disabled) { return; }
+      emit('update:modelValue', e.target.value !== 't');
       validFn('change');
     };
 

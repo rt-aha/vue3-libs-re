@@ -2,13 +2,13 @@
   <div class="v-accordion">
     <dev-section title="基本使用">
       <div class="wrap">
-        <re-accordion :data="aboutUsServices" />
+        <ReAccordion :data="aboutUsServices" />
       </div>
     </dev-section>
 
     <dev-section title="可放入組件：待處理">
       <div class="wrap">
-        <re-accordion :data="workReportBudget" />
+        <ReAccordion :data="workReportBudget" />
       </div>
     </dev-section>
   </div>

@@ -2,11 +2,11 @@
   <div class="list-content-row">
     <ul class="content-row">
       <li
-        class="content-row__item"
-        :class="[`content-row__item--${col.type}`]"
-        :style="{ flex: col.width ? 'none' : '1', width: `${col.width}px`, 'text-align': col.align }"
         v-for="(col, idx2) of columns"
         :key="col.id || col.key"
+        class="content-row__item"
+        :class="[`content-row__item--${col.type}`]"
+        :style="{ 'flex': col.width ? 'none' : '1', 'width': `${col.width}px`, 'text-align': col.align }"
       >
         <div class="content-row__item__cell" :class="[{ 'content-row__item__cell--padding-left': idx2 === 0 }]">
           <template v-if="col.render">
@@ -46,6 +46,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .list-content-row {
   // border-radius: 5px;

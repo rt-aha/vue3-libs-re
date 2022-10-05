@@ -1,18 +1,19 @@
 <template>
   <li class="re-tree-item">
     <div class="re-tree-item__content" @click="toggleExpand">
-      <div class="re-tree-item__content__arrow"
+      <div
+        class="re-tree-item__content__arrow"
         :class="isExpand && `re-tree-item__content__arrow--active`"
       >
-        <div class="re-tree-item__content__arrow__icon" v-if="treeItem.children"></div>
+        <div v-if="treeItem.children" class="re-tree-item__content__arrow__icon" />
       </div>
       <div class="re-tree-item__content__label">
         <span>{{ treeItem.label }}</span>
       </div>
     </div>
     <ReCollapseTransition :show="isExpand">
-      <div class="re-tree-item__children" >
-        <re-tree :config="treeItem.children"></re-tree>
+      <div class="re-tree-item__children">
+        <re-tree :config="treeItem.children" />
       </div>
     </ReCollapseTransition>
   </li>
@@ -21,17 +22,15 @@
 <!-- v-click-away="closeSelect" -->
 
 <script setup>
-  import { ref} from 'vue';
-  import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
-
-
+import { ref } from 'vue';
+import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 
 const props = defineProps({
   treeItem: {
     type: Object,
     default: () => ({}),
-  }
-})
+  },
+});
 
 const isExpand = ref(false);
 
@@ -46,7 +45,6 @@ const openSelect = () => {
 const closeSelect = () => {
   isExpand.value = false;
 };
-
 </script>
 
 <style lang="scss" scoped>

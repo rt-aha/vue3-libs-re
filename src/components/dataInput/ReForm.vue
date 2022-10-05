@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent, watch, provide, ref } from 'vue';
+import { defineComponent, provide, ref, watch } from 'vue';
 
 export default defineComponent({
   name: 'ReReForm',

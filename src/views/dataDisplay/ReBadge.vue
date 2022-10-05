@@ -1,71 +1,81 @@
 <template>
   <div class="v-badge">
     <dev-section title="基本使用">
-      <re-badge :value="val.a">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge :value="val.a">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
 
-      <re-badge :value="val.b">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge :value="val.b">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
 
-      <re-badge :value="val.c">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge :value="val.c">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
     </dev-section>
 
     <dev-section title="顏色">
-      <re-badge color="#cd853f" value="35">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge color="#cd853f" value="35">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
 
-      <re-badge color="#4caf50">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge color="#4caf50">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
 
-      <re-badge color="#cd5c5c">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge color="#cd5c5c">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
     </dev-section>
 
     <dev-section title="上限">
-      <re-badge color="#cd5c5c" :value="val.c" limit="100">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge color="#cd5c5c" :value="val.c" limit="100">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
     </dev-section>
 
     <dev-section title="是否顯示0">
-      <re-badge color="#cd5c5c" value="0">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge color="#cd5c5c" value="0">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
 
-      <re-badge color="#cd5c5c" value="0" :showZero="false">
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge color="#cd5c5c" value="0" :show-zero="false">
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
     </dev-section>
 
     <dev-section title="小紅點，按鈕">
-      <re-badge color="#cd5c5c" dot>
-        <re-button>按鈕</re-button>
-      </re-badge>
+      <ReBadge color="#cd5c5c" dot>
+        <ReButton>按鈕</ReButton>
+      </ReBadge>
 
-      <re-badge color="#cd5c5c" dot> 通知 </re-badge>
+      <ReBadge color="#cd5c5c" dot>
+        通知
+      </ReBadge>
     </dev-section>
 
     <dev-section title="左邊">
-      <re-badge color="#032f60" position="left"> 通知 </re-badge>
+      <ReBadge color="#032f60" position="left">
+        通知
+      </ReBadge>
     </dev-section>
 
     <dev-section title="右邊">
-      <re-badge color="#032f60" position="right"> 通知 </re-badge>
+      <ReBadge color="#032f60" position="right">
+        通知
+      </ReBadge>
     </dev-section>
 
     <dev-section title="左邊，小紅點">
-      <re-badge color="#cd5c5c" position="right" dot> 通知 </re-badge>
+      <ReBadge color="#cd5c5c" position="right" dot>
+        通知
+      </ReBadge>
     </dev-section>
 
     <dev-section title="右邊，小綠點">
-      <re-badge color="#4caf50" position="left" dot> 通知 </re-badge>
+      <ReBadge color="#4caf50" position="left" dot>
+        通知
+      </ReBadge>
     </dev-section>
   </div>
 </template>

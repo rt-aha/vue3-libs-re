@@ -1,18 +1,19 @@
 <template>
   <Transition name="down">
-    <div class="my-message" :style="style[type]" v-show="isShow">
+    <div v-show="isShow" class="my-message" :style="style[type]">
       <!-- 上面绑定的是样式 -->
       <!-- 不同提示图标会变 -->
-      <i class="iconfont" :class="[style[type].icon]"></i>
+      <i class="iconfont" :class="[style[type].icon]" />
       <span class="text">{{ text }}</span>
     </div>
   </Transition>
 </template>
+
 <script>
 import { onMounted, ref } from 'vue';
 
 export default {
-  name: 'myMessage',
+  name: 'MyMessage',
   props: {
     text: {
       type: String,
@@ -56,6 +57,7 @@ export default {
   },
 };
 </script>
+
 <style scoped lang="scss">
 .down {
   &-enter {

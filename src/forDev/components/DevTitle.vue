@@ -1,6 +1,6 @@
 <template>
   <p class="dev-title" :class="[`dev-title--size--${size}`]">
-    <slot></slot>
+    <slot />
   </p>
 </template>
 
@@ -9,13 +9,13 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'DevTitle',
+  components: {},
   props: {
     size: {
       type: String,
       default: 'default',
     },
   },
-  components: {},
 });
 </script>
 

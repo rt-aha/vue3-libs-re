@@ -1,6 +1,6 @@
 <template>
   <div class="re-tooltip">
-    <slot></slot>
+    <slot />
     <p
       class="re-tooltip__desc"
       :class="[`re-tooltip__desc--${placement}`, `re-tooltip__desc--cus-type--${cusPlacementType}`]"
@@ -9,6 +9,7 @@
     </p>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 
@@ -30,6 +31,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-tooltip {
   position: relative;

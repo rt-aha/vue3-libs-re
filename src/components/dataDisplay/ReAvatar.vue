@@ -1,35 +1,39 @@
 <template>
   <div class="re-avatar" :style="{ height: wh }">
     <div
+      v-for="(d, idx) of avatarData"
+      :key="d.src || d.name"
       class="re-avatar__content"
       :class="{ 're-avatar__group': isGroup }"
       :style="{ left: calcOffset(idx), width: wh, height: wh }"
-      v-for="(d, idx) of avatarData"
-      :key="d.src || d.name"
     >
       <div
         v-if="avatarType(d) === 'src'"
         class="re-avatar__bg-img re-avatar__item"
         :style="{ 'background-image': `url(${d.src})` }"
-      ></div>
+      />
       <!-- :style="{ 'background-image': `url(${d.src})`, width: wh, height: wh }" -->
 
       <div v-if="avatarType(d) === 'name'" class="re-avatar__bg-name re-avatar__item">
         <!-- :style="{ width: wh, height: wh }" -->
-        <p class="re-avatar__bg-name__text">{{ firstLetter(d.name) }}</p>
+        <p class="re-avatar__bg-name__text">
+          {{ firstLetter(d.name) }}
+        </p>
       </div>
 
-      <img v-if="avatarType(d) === 'default'" class="re-avatar__item" :src="defaultAvatar" />
+      <img v-if="avatarType(d) === 'default'" class="re-avatar__item" :src="defaultAvatar">
 
       <div v-if="avatarType(d) === 'remaining'" class="re-avatar__remaining re-avatar__item">
-        <p class="re-avatar__remaining__text">{{ d.remaining }}</p>
+        <p class="re-avatar__remaining__text">
+          {{ d.remaining }}
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 import avatarPlacholder from '@/assets/icon/avatar.svg';
 
 export default defineComponent({
@@ -37,7 +41,7 @@ export default defineComponent({
   props: {
     size: {
       type: String,
-      validator: (val) => ['small', 'default', 'large', 'custom'].includes(val),
+      validator: val => ['small', 'default', 'large', 'custom'].includes(val),
       default: 'default',
     },
     src: {

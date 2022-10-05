@@ -2,50 +2,52 @@
   <div class="re-tag" :class="{ 're-tag--editable': editable }">
     <ul class="tag-list">
       <li
-        class="tag-list__item"
         v-for="tag of innerValue"
         :key="tag.value"
-        @click="handleClickItem(tag)"
         ref="labelItemRef"
+        class="tag-list__item"
+        @click="handleClickItem(tag)"
       >
-        <p class="tag-list__item__label">{{ tag.label }}</p>
+        <p class="tag-list__item__label">
+          {{ tag.label }}
+        </p>
         <div
+          v-if="editable"
           class="tag-list__item__remove"
           :class="{
             'tag-list__item__remove--disabled': tag.disabled,
           }"
-          v-if="editable"
           @click.stop="handleRemoveItem(tag)"
         >
-          <img class="tag-list__item__remove__icon" src="@/assets/icon/close.svg" />
+          <img class="tag-list__item__remove__icon" src="@/assets/icon/close.svg">
         </div>
       </li>
       <li
+        v-show="editable && !isAddStatus"
         class="tag-list__item tag-list__item--add"
         :style="{
           height: labelItemHeight,
         }"
-        v-show="editable && !isAddStatus"
         @click="toggleAddTagStatus"
       >
         <div class="tag-list__item__add">
-          <img class="tag-list__item__add__icon" src="@/assets/icon/add.svg" />
+          <img class="tag-list__item__add__icon" src="@/assets/icon/add.svg">
         </div>
       </li>
       <li
+        v-show="editable && isAddStatus"
         class="tag-list__item tag-list__item--add-input"
         :style="{
           height: labelItemHeight,
         }"
-        v-show="editable && isAddStatus"
       >
         <input
-          class="tag-list__item__add-input"
+          ref="inputRef"
           v-model="addValue"
+          class="tag-list__item__add-input"
           @blur="toggleAddTagStatus"
           @keydown.enter="addTag"
-          ref="inputRef"
-        />
+        >
       </li>
     </ul>
   </div>
@@ -87,9 +89,9 @@ export default defineComponent({
     };
 
     const handleRemoveItem = (tag) => {
-      if (tag.disabled) return;
+      if (tag.disabled) { return; }
 
-      const findIndex = innerValue.value.findIndex((item) => item.value === tag.value);
+      const findIndex = innerValue.value.findIndex(item => item.value === tag.value);
 
       console.log('findIndex', findIndex);
 
@@ -109,7 +111,7 @@ export default defineComponent({
 
     const addTag = () => {
       console.log('add tag!');
-      const isExist = innerValue.value.find((item) => item.label === addValue.value);
+      const isExist = innerValue.value.find(item => item.label === addValue.value);
       if (isExist) {
         console.warn('標籤名重複！');
         emit('onAddTagWarning', 'repeat');

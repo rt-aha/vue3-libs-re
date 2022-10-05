@@ -1,6 +1,6 @@
 <template>
   <div class="re-button-group" :class="[`re-button-group--${btnType}`]">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
@@ -11,6 +11,9 @@ export default {
     return {
       btnType: 'default',
     };
+  },
+  mounted() {
+    this.getBtnType();
   },
   methods: {
     getBtnType() {
@@ -23,9 +26,6 @@ export default {
         }
       }
     },
-  },
-  mounted() {
-    this.getBtnType();
   },
 };
 </script>

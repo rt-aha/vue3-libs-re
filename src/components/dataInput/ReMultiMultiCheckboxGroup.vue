@@ -17,12 +17,12 @@
       </div> -->
       <ul class="chk-list">
         <li
+          v-for="(opt, idx) of innerOptions"
+          :key="opt.value"
           class="chk-list__item"
           :class="{
             'chk-list__item--disabled': opt.disabled,
           }"
-          v-for="(opt, idx) of innerOptions"
-          :key="opt.value"
           @click="handleSelectGroupValue(opt.value)"
         >
           <label class="chk-list__item__label" :for="uuid + opt.value + idx">
@@ -31,11 +31,11 @@
               :class="{
                 'chk-list__item__label__option--actived': purchaseCityCount[opt.value].length > 0,
               }"
-            ></div>
+            />
 
             <div class="chk-list__item__label__content">
               <component :is="opt.render" v-bind="opt" v-if="opt.render" />
-              <p class="chk-list__item__label__content__label" v-else>
+              <p v-else class="chk-list__item__label__content__label">
                 {{ opt.label }} ({{ purchaseCityCount[opt.value].length }})
               </p>
             </div>
@@ -47,11 +47,11 @@
 </template>
 
 <script>
-import { defineComponent, ref, shallowRef, watch, reactive } from 'vue';
+import { defineComponent, reactive, ref, shallowRef, watch } from 'vue';
 import { v4 as uuid } from 'uuid';
+import { cloneDeep } from 'lodash-es';
 import useValidate from '@/hooks/useValidate';
 import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
-import { cloneDeep } from 'lodash-es';
 import useModal from '@/hooks/useModal';
 import SelectCities from '@/forDev/testComponents/SelectCities.vue';
 
@@ -106,13 +106,14 @@ export default defineComponent({
     });
 
     const handleChange = (e, opt) => {
-      if (opt.disabled) return;
+      if (opt.disabled) { return; }
       let newValue = [];
       let actionType = '';
       if (props.modelValue.includes(opt.value)) {
-        newValue = props.modelValue.filter((item) => item !== opt.value);
+        newValue = props.modelValue.filter(item => item !== opt.value);
         actionType = 'remove';
-      } else {
+      }
+      else {
         newValue = [...props.modelValue, opt.value];
 
         actionType = 'add';
@@ -122,7 +123,8 @@ export default defineComponent({
       if (props.checkAll) {
         if (newValue.length === innerOptions.value.length) {
           isAll.value = true;
-        } else {
+        }
+        else {
           isAll.value = false;
         }
       }
@@ -140,12 +142,14 @@ export default defineComponent({
 
             return item;
           });
-        } else {
+        }
+        else {
           innerOptions.value = innerOptions.value.map((item) => {
             const isDisabledItem = recordOriginDisabledItems.value.includes(item.value);
             if (isDisabledItem) {
               item.disabled = true;
-            } else {
+            }
+            else {
               item.disabled = false;
             }
 
@@ -180,7 +184,7 @@ export default defineComponent({
 
     const initChecked = () => {
       if (props.limit && props.checkAll) {
-        console.warn(`limit 與 checkAll 不應同時存在`);
+        console.warn('limit 與 checkAll 不應同時存在');
       }
     };
 

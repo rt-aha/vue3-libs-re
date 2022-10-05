@@ -4,41 +4,45 @@
       <div class="transfer__options">
         <div class="transfer__options__header">
           <div>
-            <re-checkbox v-model="isAll" label="全選" @onChange="onChange" />
+            <ReCheckbox v-model="isAll" label="全選" @onChange="onChange" />
           </div>
-          <p class="total-count">共 {{ optionLength }} 個選項</p>
+          <p class="total-count">
+            共 {{ optionLength }} 個選項
+          </p>
         </div>
         <div v-if="sourceFilter" class="filter-wrap">
-          <input class="filter-wrap__input" v-model="optFilterKeyword" @input="handleInput" />
+          <input v-model="optFilterKeyword" class="filter-wrap__input" @input="handleInput">
         </div>
-        <re-divider :margin="{ top: '0px', bottom: '5px' }" />
+        <ReDivider :margin="{ top: '0px', bottom: '5px' }" />
         <div class="transfer__options__content">
-          <re-checkbox-group v-model="innerValue" :options="filterOptions" direction="verticle" />
+          <ReCheckboxGroup v-model="innerValue" :options="filterOptions" direction="verticle" />
         </div>
       </div>
       <div class="transfer__select">
         <div class="transfer__select__header">
-          <p class="checked-count">已選 {{ checkedOptionLength }} 個選項</p>
+          <p class="checked-count">
+            已選 {{ checkedOptionLength }} 個選項
+          </p>
         </div>
 
-        <div class="filter-wrap" v-if="targetFilter">
-          <input class="filter-wrap__input" />
+        <div v-if="targetFilter" class="filter-wrap">
+          <input class="filter-wrap__input">
         </div>
         <div class="transfer__select__content">
           <div class="checked-list-wrap">
             <ul class="chcked-list">
               <li
-                class="checked-list__item"
-                :class="{ 'checked-list__item--disabled': opt.disabled }"
                 v-for="opt of checkedOptions"
                 :key="opt.value"
+                class="checked-list__item"
+                :class="{ 'checked-list__item--disabled': opt.disabled }"
               >
                 <div class="checked-list__item__box">
                   <p class="checked-list__item__box__label">
                     {{ opt.label }}
                   </p>
                   <div class="checked-list__item__box__delete" @click="removeOption(opt)">
-                    <img class="checked-list__item__box__delete__icon" src="@/assets/icon/close.svg" />
+                    <img class="checked-list__item__box__delete__icon" src="@/assets/icon/close.svg">
                   </div>
                 </div>
               </li>
@@ -51,7 +55,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, computed, shallowRef } from 'vue';
+import { computed, defineComponent, ref, shallowRef } from 'vue';
 import ReCheckboxGroup from '@/components/ReCheckboxGroup.vue';
 import ReCheckbox from '@/components/ReCheckbox.vue';
 import ReDivider from '@/components/ReDivider.vue';
@@ -95,7 +99,7 @@ export default defineComponent({
     const optionLength = computed(() => props.options.length);
     const checkedOptions = computed(() => {
       return props.options.filter((item) => {
-        return innerValue.value.find((item2) => item2 === item.value);
+        return innerValue.value.find(item2 => item2 === item.value);
       });
     });
     const checkedOptionLength = computed(() => checkedOptions.value.length);
@@ -106,8 +110,8 @@ export default defineComponent({
     };
 
     const removeOption = (opt) => {
-      if (opt.disabled) return;
-      const tempOpt = innerValue.value.filter((item) => item !== opt.value);
+      if (opt.disabled) { return; }
+      const tempOpt = innerValue.value.filter(item => item !== opt.value);
 
       // 更新組件內與外部 v-model 值
       updateModelValue(tempOpt);
@@ -121,7 +125,8 @@ export default defineComponent({
             if (isInclude) {
               list.push(item.value);
             }
-          } else {
+          }
+          else {
             list.push(item.value);
           }
 
@@ -161,7 +166,7 @@ export default defineComponent({
 
     const checkIsAll = () => {
       // 把 disabled 拔掉比較
-      const filterNonDisabledOptions = props.options.filter((item) => !item.disabled);
+      const filterNonDisabledOptions = props.options.filter(item => !item.disabled);
       const filterNonDisabledCheckedItem = innerValue.value.reduce((list, item) => {
         if (!recordOriginDisabledItems.value.includes(item)) {
           list.push(item);

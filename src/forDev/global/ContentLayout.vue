@@ -1,13 +1,14 @@
 <template>
   <div class="c-content-layout">
     <div class="c-content-layout__first">
-      <slot name="first"></slot>
+      <slot name="first" />
     </div>
     <div class="c-content-layout__second">
-      <slot name="second"></slot>
+      <slot name="second" />
     </div>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 
@@ -15,6 +16,7 @@ export default defineComponent({
   name: 'ContentLayout',
 });
 </script>
+
 <style lang="scss" scoped>
 @import '@/styles/utils/_rwd.scss';
 

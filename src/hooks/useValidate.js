@@ -7,7 +7,8 @@ export default () => {
   // if (getCurrentInstance().parent.ctx.$options.name === 'ReFormItem') {
   if (getCurrentInstance().parent?.ctx?.$options?.name === 'ReFormItem') {
     validFn = getCurrentInstance().parent.ctx.validateFields;
-  } else {
+  }
+  else {
     validFn = () => {};
   }
 

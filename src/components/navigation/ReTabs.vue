@@ -1,8 +1,11 @@
 <template>
   <div class="re-tabs">
     <div class="re-tabs__select">
-      <ul class="re-tabs__select__list" ref="ul">
+      <ul ref="ul" class="re-tabs__select__list">
         <li
+          v-for="(tab, index) of tabsConfig"
+          :key="tab.name"
+          :ref="tab.name"
           class="re-tabs__select__list__item"
           :class="[
             {
@@ -10,9 +13,6 @@
               're-tabs__select__list__item--active': modelValue === tab.name,
             },
           ]"
-          v-for="(tab, index) of tabsConfig"
-          :key="tab.name"
-          :ref="tab.name"
           :data-tab-name="tab.name"
           :data-tab-label="tab.label"
           @click="handleClick({ index, ...tab })"
@@ -21,10 +21,10 @@
         </li>
       </ul>
     </div>
-    <div class="re-tabs__content" v-for="content of tabsConfig" :key="content.name">
+    <div v-for="content of tabsConfig" :key="content.name" class="re-tabs__content">
       <!-- <Transition name="fade"> -->
       <div v-if="content.name === modelValue">
-        <slot :name="content.name"></slot>
+        <slot :name="content.name" />
       </div>
       <!-- </Transition> -->
     </div>
@@ -54,7 +54,7 @@ export default defineComponent({
     const tabWidth = ref({});
 
     const handleClick = (tab) => {
-      if (tab.disabled) return;
+      if (tab.disabled) { return; }
       emit('change', tab);
     };
 

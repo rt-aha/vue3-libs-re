@@ -2,13 +2,14 @@
   <div class="re-list-content">
     <div class="re-list-content__content">
       <ul class="content-list">
-        <li class="content-list__item" v-for="(data, idx1) of contentData" :key="data.key">
-          <list-content-row :columns="columns" :data="data" :idx1="idx1" />
+        <li v-for="(data, idx1) of contentData" :key="data.key" class="content-list__item">
+          <ListContentRow :columns="columns" :data="data" :idx1="idx1" />
         </li>
       </ul>
     </div>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 import ListContentRow from '@/components/dataDisplay/list/ReListContentRow.vue';
@@ -44,6 +45,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-list-content {
   &__content {

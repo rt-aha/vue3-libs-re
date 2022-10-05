@@ -1,10 +1,10 @@
 import {
-  checkRequired,
-  checkRadio,
   checkCheckbox,
   checkCheckboxGroup,
-  checkSelect,
   checkNumberMoreThen,
+  checkRadio,
+  checkRequired,
+  checkSelect,
 } from '@/utils/validate/generalValidator';
 
 import { vld } from '@/utils/validate/validator';

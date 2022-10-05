@@ -1,5 +1,5 @@
 <template>
-  <div class="re-accordion" :class="{ 're-accordion--mt': mt }" v-for="d of data" :key="d.key">
+  <div v-for="d of data" :key="d.key" class="re-accordion" :class="{ 're-accordion--mt': mt }">
     <div class="re-accordion__content">
       <div class="title" @click="handleExpandStatus(d.key)">
         <p class="title__text">
@@ -10,7 +10,7 @@
             class="title__expand__icon"
             :class="{ 'title__expand__icon--active': expandStatus[d.key] }"
             src="@/assets/icon/icon-down.svg"
-          />
+          >
         </div>
       </div>
       <ReCollapseTransition :show="expandStatus[d.key]">
@@ -18,10 +18,10 @@
           <template v-if="d.renderContent">
             <component :is="d.renderContent" />
           </template>
-          <div v-else-if="vhtml" class="vhtml-content" v-html="d.content"></div>
+          <div v-else-if="vhtml" class="vhtml-content" v-html="d.content" />
           <template v-else>
             <template v-if="Array.isArray(d.content)">
-              <p class="text-loop" v-for="w of d.content" :key="w">
+              <p v-for="w of d.content" :key="w" class="text-loop">
                 {{ w }}
               </p>
             </template>
@@ -36,11 +36,11 @@
     </div>
   </div>
 </template>
+
 <script>
 import { defineComponent, onMounted, ref, watch } from 'vue';
-import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
-
 import { useRoute } from 'vue-router';
+import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 
 export default defineComponent({
   name: 'ReAccordion',

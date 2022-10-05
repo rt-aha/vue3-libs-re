@@ -1,27 +1,27 @@
 <template>
   <div class="v-avatar">
     <dev-section title="頭像群" verticle>
-      <re-avatar :avatarList="avatarList" size="small" :defaultAvatar="defaultAvatar" />
-      <re-avatar :avatarList="avatarList" size="default" :defaultAvatar="defaultAvatar" />
-      <re-avatar :avatarList="avatarList" size="large" :defaultAvatar="defaultAvatar" />
-      <re-avatar :avatarList="avatarList" size="large" :defaultAvatar="defaultAvatar" customSize="80px" />
+      <ReAvatar :avatar-list="avatarList" size="small" :default-avatar="defaultAvatar" />
+      <ReAvatar :avatar-list="avatarList" size="default" :default-avatar="defaultAvatar" />
+      <ReAvatar :avatar-list="avatarList" size="large" :default-avatar="defaultAvatar" />
+      <ReAvatar :avatar-list="avatarList" size="large" :default-avatar="defaultAvatar" custom-size="80px" />
     </dev-section>
     <dev-section title="基本使用，尺寸：小、預設、大">
-      <re-avatar size="small" src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" />
-      <re-avatar src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" />
-      <re-avatar size="large" src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" />
+      <ReAvatar size="small" src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" />
+      <ReAvatar src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" />
+      <ReAvatar size="large" src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" />
     </dev-section>
     <dev-section title="自訂尺寸大小">
-      <re-avatar src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" customSize="100px" />
+      <ReAvatar src="https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png" custom-size="100px" />
     </dev-section>
     <dev-section title="預設沒圖片時">
-      <re-avatar size="large" />
+      <ReAvatar size="large" />
     </dev-section>
     <dev-section title="自訂沒圖片時的預設圖片">
-      <re-avatar size="large" :defaultAvatar="defaultAvatar" />
+      <ReAvatar size="large" :default-avatar="defaultAvatar" />
     </dev-section>
     <dev-section title="用名字第一個字">
-      <re-avatar size="small" name="Vicky" />
+      <ReAvatar size="small" name="Vicky" />
     </dev-section>
   </div>
 </template>

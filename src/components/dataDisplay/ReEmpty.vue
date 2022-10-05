@@ -1,8 +1,10 @@
 <template>
   <div class="re-empty">
     <div class="re-empty__content">
-      <img class="re-empty__content__icon" src="@/assets/icon/no-data.svg" />
-      <p class="re-empty__content__text">{{ emptyText }}</p>
+      <img class="re-empty__content__icon" src="@/assets/icon/no-data.svg">
+      <p class="re-empty__content__text">
+        {{ emptyText }}
+      </p>
     </div>
   </div>
 </template>

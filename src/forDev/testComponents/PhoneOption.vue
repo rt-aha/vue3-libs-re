@@ -1,12 +1,19 @@
 <template>
   <div class="comp-phone-option">
     <div class="phone-name-desc">
-      <p class="phone-name-desc__name">{{ $attrs.label }}</p>
-      <p class="phone-name-desc__price">{{ $attrs.price }}</p>
+      <p class="phone-name-desc__name">
+        {{ $attrs.label }}
+      </p>
+      <p class="phone-name-desc__price">
+        {{ $attrs.price }}
+      </p>
     </div>
-    <p class="phone-color">{{ $attrs.color }}</p>
+    <p class="phone-color">
+      {{ $attrs.color }}
+    </p>
   </div>
 </template>
+
 <script setup></script>
 
 <style lang="scss" scoped>

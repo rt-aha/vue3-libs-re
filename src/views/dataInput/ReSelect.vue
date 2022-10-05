@@ -7,19 +7,25 @@
     </dev-section>
     <dev-section title="禁用">
       <div class="wrap">
-        <dev-desc type="boolean">disabled：禁用</dev-desc>
+        <dev-desc type="boolean">
+          disabled：禁用
+        </dev-desc>
         <ReSelect v-model="value2" :options="basicWithDisabledOptions" />
       </div>
     </dev-section>
     <dev-section title="自定義內容">
       <div class="wrap">
-        <dev-desc api="props" type="Array">options: e.g. [{...props, render: renderFunction}]</dev-desc>
+        <dev-desc api="props" type="Array">
+          options: e.g. [{...props, render: renderFunction}]
+        </dev-desc>
         <ReSelect v-model="value3" :options="renderOptions" />
       </div>
     </dev-section>
     <dev-section title="多選">
       <div class="wrap">
-        <dev-desc type="boolean">multiple：是否可多選</dev-desc>
+        <dev-desc type="boolean">
+          multiple：是否可多選
+        </dev-desc>
         <ReSelect v-model="value4" :options="basicOptions" multiple />
       </div>
     </dev-section>

@@ -2,13 +2,13 @@
   <div class="re-checkbox" :class="[`re-checkbox--direction--${direction}`]">
     <template>
       <input
+        :id="uuid"
         class="re-checkbox__field"
         type="checkbox"
-        :id="uuid"
         :value="modelValue"
         :checked="modelValue"
         @change="handleChange"
-      />
+      >
     </template>
 
     <ul class="chk-list">
@@ -24,10 +24,10 @@
             :class="{
               'chk-list__item__label__option--actived': modelValue,
             }"
-          ></div>
+          />
           <div class="chk-list__item__label__content">
             <component :is="render" v-bind="$attrs" v-if="render" />
-            <p class="chk-list__item__label__content__label" v-else>{{ label }}</p>
+            <p v-else class="chk-list__item__label__content__label">{{ label }}</p>
           </div>
         </label>
       </li>
@@ -68,7 +68,7 @@ export default defineComponent({
     const { validFn } = useValidate();
 
     const handleChange = () => {
-      if (props.disabled) return;
+      if (props.disabled) { return; }
       emit('update:modelValue', !props.modelValue);
       emit('onChange', !props.modelValue);
       validFn('change');

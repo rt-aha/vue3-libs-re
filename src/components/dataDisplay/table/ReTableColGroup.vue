@@ -1,6 +1,6 @@
 <template>
   <colgroup class="comp-table-col-group">
-    <col v-for="col of columns" :key="col.key" :width="col.width" />
+    <col v-for="col of columns" :key="col.key" :width="col.width">
   </colgroup>
 </template>
 

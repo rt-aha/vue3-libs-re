@@ -6,13 +6,13 @@
     }"
     :style="marginSetting"
   >
-    <div class="c-skeleton__rect" v-if="type === 'rect'" :style="rectStyle"></div>
-    <div class="c-skeleton__circle" v-if="type === 'circle'" :style="circleStyle"></div>
+    <div v-if="type === 'rect'" class="c-skeleton__rect" :style="rectStyle" />
+    <div v-if="type === 'circle'" class="c-skeleton__circle" :style="circleStyle" />
   </div>
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ReSkeleton',
@@ -20,7 +20,7 @@ export default defineComponent({
     type: {
       type: String,
       default: 'rect',
-      validtor: (val) => ['rect', 'circle'].includes(val),
+      validtor: val => ['rect', 'circle'].includes(val),
     },
     bgColor: {
       type: String,
@@ -63,7 +63,7 @@ export default defineComponent({
 
     const circleStyle = computed(() => {
       console.log('firstprops.round', props.round);
-      const radius = props.wh.replace('px', '') / 2 + 'px';
+      const radius = `${props.wh.replace('px', '') / 2}px`;
 
       return {
         width: props.wh,

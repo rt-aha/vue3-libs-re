@@ -1,21 +1,25 @@
 <template>
   <div class="ly-base-layout">
     <div class="ly-base-layout__header">
-      <ly-header />
+      <LyHeader />
     </div>
 
     <div class="ly-base-layout__body">
       <div class="ly-base-layout__body__sidebar">
-        <ly-sidebar />
+        <LySidebar />
       </div>
       <div class="ly-base-layout__body__container">
-        <p class="page-title">{{ $route.meta.title }}</p>
+        <p class="page-title">
+          {{ $route.meta.title }}
+        </p>
         <div class="router-view-wrap">
           <div class="router-view-wrap__view">
             <router-view />
           </div>
-          <div class="router-view-wrap__extra-view" v-if="isFormViewExist">
-            <p class="page-title--form-preview">用於表單時</p>
+          <div v-if="isFormViewExist" class="router-view-wrap__extra-view">
+            <p class="page-title--form-preview">
+              用於表單時
+            </p>
             <EasyForm />
           </div>
         </div>
@@ -23,11 +27,12 @@
     </div>
   </div>
 </template>
+
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { useRoute } from 'vue-router';
 import LyHeader from '@/layout/LyHeader.vue';
 import LySidebar from '@/layout/LySidebar.vue';
-import { useRoute } from 'vue-router';
 import EasyForm from '@/views/dataInput/EasyForm.vue';
 
 export default defineComponent({

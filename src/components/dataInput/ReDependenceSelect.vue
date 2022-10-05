@@ -1,13 +1,13 @@
 <template>
   <div class="re-select">
-    <div class="select" @click="toggleExpand" v-click-away="closeSelect">
+    <div v-click-away="closeSelect" class="select" @click="toggleExpand">
       <div class="select__active-wrap">
         <template v-if="multiple">
-          <input class="select__field" readonly placeholder="請選擇" v-show="innerMulti.length === 0" />
-          <re-select-multi-tag v-model="innerMulti" @onRemoveItem="onRemoveItem" v-show="innerMulti.length > 0" />
+          <input v-show="innerMulti.length === 0" class="select__field" readonly placeholder="請選擇">
+          <ReSelectMultiTag v-show="innerMulti.length > 0" v-model="innerMulti" @onRemoveItem="onRemoveItem" />
         </template>
         <template v-else>
-          <input class="select__field" readonly :value="modelValue" placeholder="請選擇" />
+          <input class="select__field" readonly :value="modelValue" placeholder="請選擇">
         </template>
       </div>
       <img
@@ -16,33 +16,33 @@
           'select__drop-icon--active': isExpand,
         }"
         src="@/assets/icon/icon-down.svg"
-      />
+      >
     </div>
     <!-- @click="toggleExpand" -->
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
         <div class="select-options">
           <div v-if="innerOptions.length === 0">
-            <ReEmpty emptyText="請選擇縣市" />
+            <ReEmpty empty-text="請選擇縣市" />
           </div>
-          <ul class="select-option-list" v-else>
+          <ul v-else class="select-option-list">
             <li
+              v-for="opt of innerOptions"
+              :key="opt.value"
               class="select-option-list__item"
               :class="{
                 'select-option-list__item--disabled': opt.disabled,
                 'select-option-list__item--active': isActive(opt),
               }"
-              v-for="opt of innerOptions"
-              :key="opt.value"
               @click="() => handleOption(opt)"
             >
-              <p class="select-option-list__item__component" v-if="opt.render">
+              <p v-if="opt.render" class="select-option-list__item__component">
                 <component :is="opt.render" v-bind="opt" />
               </p>
-              <p class="select-option-list__item__label" v-else>
+              <p v-else class="select-option-list__item__label">
                 {{ opt.label }}
               </p>
-              <img class="select-option-list__item__check-icon" src="@/assets/icon/check.svg" />
+              <img class="select-option-list__item__check-icon" src="@/assets/icon/check.svg">
             </li>
           </ul>
         </div>
@@ -50,8 +50,9 @@
     </div>
   </div>
 </template>
+
 <script>
-import { defineComponent, ref, watch, nextTick } from 'vue';
+import { defineComponent, nextTick, ref, watch } from 'vue';
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
 import ReSelectMultiTag from '@/components/dataInput/ReSelectMultiTag.vue';
@@ -108,7 +109,8 @@ export default defineComponent({
     const setInitValue = () => {
       if (props.multiple) {
         innerMulti.value = props.modelValue;
-      } else {
+      }
+      else {
         innerSingle.value = props.modelValue;
       }
     };
@@ -126,7 +128,7 @@ export default defineComponent({
     };
 
     const setInnerMulti = () => {
-      const tempValue = props.options.filter((item) => props.modelValue.includes(item.value));
+      const tempValue = props.options.filter(item => props.modelValue.includes(item.value));
 
       innerMulti.value = tempValue;
     };
@@ -140,16 +142,17 @@ export default defineComponent({
     };
 
     const handleOption = async (opt) => {
-      if (opt.disabled) return;
+      if (opt.disabled) { return; }
 
       if (props.multiple) {
         let newValue = [];
         let actionType = '';
 
         if (props.modelValue.includes(opt.value)) {
-          newValue = props.modelValue.filter((item) => item !== opt.value);
+          newValue = props.modelValue.filter(item => item !== opt.value);
           actionType = 'remove';
-        } else {
+        }
+        else {
           newValue = [...props.modelValue, opt.value];
           actionType = 'add';
         }
@@ -158,7 +161,8 @@ export default defineComponent({
         await nextTick();
         setInnerMulti();
         emit('onChange', actionType, opt, newValue);
-      } else {
+      }
+      else {
         emit('update:modelValue', opt.value);
         await nextTick();
         setInnerSingle();
@@ -204,7 +208,7 @@ export default defineComponent({
     };
 
     const init = () => {
-      validDependenceKeys.value = props.dependenceOptions.map((item) => item.key);
+      validDependenceKeys.value = props.dependenceOptions.map(item => item.key);
     };
 
     init();
@@ -243,6 +247,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-select {
   // width: 200px;

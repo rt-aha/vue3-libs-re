@@ -1,18 +1,18 @@
 <template>
   <div class="re-upload-preview-video-modal-content">
     <template v-if="data.type === 'image'">
-      <img class="preview-img" :src="data.imageSource" />
+      <img class="preview-img" :src="data.imageSource">
     </template>
     <template v-if="data.type === 'video'">
-      <video class="preview-video" ref="videoDom" width="320" height="150" controls>
-        <source :src="videoSrc" type="video/mp4" />
+      <video ref="videoDom" class="preview-video" width="320" height="150" controls>
+        <source :src="videoSrc" type="video/mp4">
       </video>
     </template>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 
 export default defineComponent({
   name: 'ReUploadPreviewVideoModalContent',

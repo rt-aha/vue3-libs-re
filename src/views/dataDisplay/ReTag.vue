@@ -1,22 +1,30 @@
 <template>
   <div class="v-tag">
-    <dev-section title="基本使用，純顯示">
+    <DevSection title="基本使用，純顯示">
       <div class="wrap">
-        <re-tag v-model="tagValue1" />
+        <ReTag v-model="tagValue1" />
       </div>
-    </dev-section>
-    <dev-section title="tag被點擊時">
+    </DevSection>
+    <DevSection title="tag被點擊時">
       <div class="wrap">
-        <dev-desc api="event">onClickItem 事件：點擊時觸發</dev-desc>
-        <re-tag v-model="tagValue1" @onClickItem="onClickItem" />
+        <dev-desc api="event">
+          onClickItem 事件：點擊時觸發
+        </dev-desc>
+        <ReTag v-model="tagValue1" @onClickItem="onClickItem" />
       </div>
-    </dev-section>
-    <dev-section title="可新增/刪除">
+    </DevSection>
+    <DevSection title="可新增/刪除">
       <div class="wrap">
-        <dev-desc type="Boolean">editable: 新增/刪除功能</dev-desc>
-        <dev-desc api="event">onRemoveItem: 移除時觸發</dev-desc>
-        <dev-desc api="event">onAddTagWarning: 新增錯誤時觸發，e.g. 輸入重複 label 時</dev-desc>
-        <re-tag
+        <dev-desc type="Boolean">
+          editable: 新增/刪除功能
+        </dev-desc>
+        <dev-desc api="event">
+          onRemoveItem: 移除時觸發
+        </dev-desc>
+        <dev-desc api="event">
+          onAddTagWarning: 新增錯誤時觸發，e.g. 輸入重複 label 時
+        </dev-desc>
+        <ReTag
           v-model="tagValue2"
           editable
           @onClickItem="onClickItem"
@@ -24,21 +32,25 @@
           @onAddTagWarning="onAddTagWarning"
         />
       </div>
-    </dev-section>
+    </DevSection>
 
-    <dev-section title="設定可新增上限，假設 8 個">
+    <DevSection title="設定可新增上限，假設 8 個">
       <div class="wrap">
-        <dev-desc type="Number, String">limit: 新增錯誤時觸發，e.g. 達上限時</dev-desc>
-        <dev-desc api="event">onAddTagWarning: 新增錯誤時觸發，e.g. 達上限時</dev-desc>
-        <re-tag
+        <dev-desc type="Number, String">
+          limit: 新增錯誤時觸發，e.g. 達上限時
+        </dev-desc>
+        <dev-desc api="event">
+          onAddTagWarning: 新增錯誤時觸發，e.g. 達上限時
+        </dev-desc>
+        <ReTag
           v-model="tagValue3"
           editable
+          limit="8"
           @onRemoveItem="onRemoveItem"
           @onAddTagWarning="onAddTagWarning"
-          limit="8"
         />
       </div>
-    </dev-section>
+    </DevSection>
   </div>
 </template>
 

@@ -3,36 +3,42 @@
     <dev-section title="基本使用">
       <div class="wrap">
         <ReEasyForm
-          v-model:formValue="basicForm"
-          :formConfig="basicFormConfig"
-          :formRules="basicFormRule"
           ref="basicFormRef"
+          v-model:formValue="basicForm"
+          :form-config="basicFormConfig"
+          :form-rules="basicFormRule"
         />
-        <ReButton @click="basicFormSubmit"> basic form</ReButton>
+        <ReButton @click="basicFormSubmit">
+          basic form
+        </ReButton>
       </div>
     </dev-section>
 
     <dev-section title="有依賴關係的">
       <div class="wrap">
         <ReEasyForm
-          v-model:formValue="dependencyForm"
-          :formConfig="dependencyFormConfig"
-          :formRules="dependencyFormRule"
           ref="dependencyFormRef"
+          v-model:formValue="dependencyForm"
+          :form-config="dependencyFormConfig"
+          :form-rules="dependencyFormRule"
         />
-        <ReButton @click="dependencyFormSubmit"> dependency form</ReButton>
+        <ReButton @click="dependencyFormSubmit">
+          dependency form
+        </ReButton>
       </div>
     </dev-section>
 
     <dev-section title="多對多">
       <div class="wrap">
         <ReEasyForm
-          v-model:formValue="multiMultiForm"
-          :formConfig="multiMultiFormConfig"
-          :formRules="multiMultiFormRule"
           ref="dependencyFormRef"
+          v-model:formValue="multiMultiForm"
+          :form-config="multiMultiFormConfig"
+          :form-rules="multiMultiFormRule"
         />
-        <ReButton @click="multiMultiFormSubmit"> multiMulti form</ReButton>
+        <ReButton @click="multiMultiFormSubmit">
+          multiMulti form
+        </ReButton>
       </div>
     </dev-section>
   </div>

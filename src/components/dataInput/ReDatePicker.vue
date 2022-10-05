@@ -1,8 +1,8 @@
 <template>
   <div class="re-date-picker">
-    <div class="select" @click.stop="toggleExpand" v-click-away="closeSelect">
+    <div v-click-away="closeSelect" class="select" @click.stop="toggleExpand">
       <div class="select__active-wrap">
-        <input class="select__field" readonly placeholder="請選擇" :value="inputValue" />
+        <input class="select__field" readonly placeholder="請選擇" :value="inputValue">
       </div>
       <img
         class="select__drop-icon"
@@ -10,7 +10,7 @@
           'select__drop-icon--active': isExpand,
         }"
         src="@/assets/icon/icon-down.svg"
-      />
+      >
     </div>
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
@@ -21,12 +21,13 @@
     </div>
   </div>
 </template>
+
 <script>
-import { defineComponent, ref, computed, watch } from 'vue';
-import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
+import { computed, defineComponent, ref, watch } from 'vue';
 // import ReButton from '@/components/ReButton.vue';
 import { DatePicker } from 'v-calendar';
 import dayjs from 'dayjs';
+import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import 'v-calendar/dist/style.css';
 
 // console.log(dayjs());
@@ -98,6 +99,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-date-picker {
   width: 100%;

@@ -1,7 +1,7 @@
 <template>
   <p class="dev-desc" :class="{ 'dev-desc--mt': mt }">
     <span class="dev-desc__api"> {{ api }} </span>
-    <span class="dev-desc__type" v-if="type"> &lt{{ type }}&gt</span>
+    <span v-if="type" class="dev-desc__type"> &lt{{ type }}&gt</span>
     <span class="dev-desc__slot"> - <slot /> </span>
   </p>
 </template>

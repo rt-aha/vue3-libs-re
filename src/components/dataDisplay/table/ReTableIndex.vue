@@ -1,5 +1,5 @@
 <template>
-  <div class="re-table" ref="reTableRef">
+  <div ref="reTableRef" class="re-table">
     <div class="re-table__content">
       <table
         class="table"
@@ -9,13 +9,14 @@
       >
         <ReTableColGroup :columns="config.columns" />
         <ReTableHeader :columns="config.columns" />
-        <ReTableBody :columns="config.columns" :contentData="contentData" />
+        <ReTableBody :columns="config.columns" :content-data="contentData" />
       </table>
     </div>
   </div>
 </template>
+
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import ReTableColGroup from '@/components/dataDisplay/table/ReTableColGroup.vue';
 import ReTableHeader from '@/components/dataDisplay/table/ReTableHeader.vue';
 import ReTableBody from '@/components/dataDisplay/table/ReTableBody.vue';
@@ -64,7 +65,7 @@ export default defineComponent({
       const wrapWidth = reTableRef.value.clientWidth;
 
       const colFullWidth = props.config.columns
-        .map((ele) => ele.width || '150')
+        .map(ele => ele.width || '150')
         .reduce((acc, ele) => {
           acc += Number(ele);
           return acc;
@@ -89,6 +90,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-table {
   width: 100%;

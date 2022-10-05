@@ -1,6 +1,6 @@
 <template>
   <p class="re-form-message">
-    <span class="re-form-message__text" v-if="errorMessage">
+    <span v-if="errorMessage" class="re-form-message__text">
       {{ errorMessage }}
     </span>
   </p>

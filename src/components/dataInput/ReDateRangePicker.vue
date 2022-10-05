@@ -1,8 +1,8 @@
 <template>
   <div class="re-period-picker">
-    <div class="select" @click.stop="toggleExpand" v-click-away="closeSelect">
+    <div v-click-away="closeSelect" class="select" @click.stop="toggleExpand">
       <div class="select__active-wrap">
-        <input class="select__field" readonly placeholder="請選擇" :value="inputValue" />
+        <input class="select__field" readonly placeholder="請選擇" :value="inputValue">
       </div>
       <img
         class="select__drop-icon"
@@ -10,7 +10,7 @@
           'select__drop-icon--active': isExpand,
         }"
         src="@/assets/icon/icon-down.svg"
-      />
+      >
     </div>
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">

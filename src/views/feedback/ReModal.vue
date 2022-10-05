@@ -1,19 +1,27 @@
 <template>
   <div class="v-modal">
     <dev-section title="基本使用">
-      <ReButton @click="openModal">Open Modal</ReButton>
+      <ReButton @click="openModal">
+        Open Modal
+      </ReButton>
     </dev-section>
 
     <dev-section title="使用預設按鈕">
-      <ReButton @click="openModalWithDefaultBtns">Open Modal With Default Button</ReButton>
+      <ReButton @click="openModalWithDefaultBtns">
+        Open Modal With Default Button
+      </ReButton>
     </dev-section>
 
     <dev-section title="使用自定義內容(可塞入 component)">
-      <ReButton @click="openModalWithComponent">Open Modal With Component</ReButton>
+      <ReButton @click="openModalWithComponent">
+        Open Modal With Component
+      </ReButton>
     </dev-section>
 
     <dev-section title="彈窗中的彈窗">
-      <ReButton @click="openModalWithInnerModal">Inner modal</ReButton>
+      <ReButton @click="openModalWithInnerModal">
+        Inner modal
+      </ReButton>
     </dev-section>
   </div>
 </template>

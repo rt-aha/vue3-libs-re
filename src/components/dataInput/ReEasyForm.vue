@@ -1,6 +1,6 @@
 <template>
   <div class="re-easy-form">
-    <ReForm :formValue="innerForm" :formRules="formRules">
+    <ReForm :form-value="innerForm" :form-rules="formRules">
       <ReFormGrid
         v-for="f of formConfig"
         :key="f.formKey"
@@ -29,6 +29,7 @@
     </ReForm>
   </div>
 </template>
+
 <script>
 import { defineComponent, ref, watch } from 'vue';
 import ReForm from '@/components/dataInput/ReForm.vue';
@@ -102,15 +103,15 @@ export default defineComponent({
     );
 
     const validateAll = async () => {
-      let resultList = [];
+      const resultList = [];
 
-      for (let refEle of formItemRef.value) {
+      for (const refEle of formItemRef.value) {
         const result = await refEle.validateFields('enforceValidate');
 
         resultList.push(result);
       }
 
-      return !resultList.some((val) => val === false);
+      return !resultList.includes(false);
     };
 
     return {
@@ -121,4 +122,5 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped></style>

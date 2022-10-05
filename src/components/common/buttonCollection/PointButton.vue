@@ -15,11 +15,12 @@
       @click="onClick"
     >
       <loading v-if="isLoading" />
-      <div class="c-mi-button__icon" :class="`c-mi-button__icon--${icon}`" v-if="icon"></div>
-      <slot></slot>
+      <div v-if="icon" class="c-mi-button__icon" :class="`c-mi-button__icon--${icon}`" />
+      <slot />
     </button>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 
@@ -67,6 +68,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .c-mi-button {
   &--ml {

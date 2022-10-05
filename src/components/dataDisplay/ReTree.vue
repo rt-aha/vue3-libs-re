@@ -1,11 +1,10 @@
 <template>
   <ul class="r-tree">
-    <re-tree-item v-for="tree of config" :key="tree.label" :treeItem="tree" />
+    <re-tree-item v-for="tree of config" :key="tree.label" :tree-item="tree" />
   </ul>
 </template>
 
 <script>
-
 export default {
   name: 'ReTree',
   props: {

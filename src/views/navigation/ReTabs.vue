@@ -1,11 +1,17 @@
 <template>
   <div class="v-tabs">
     <dev-section title="基本使用">
-      <re-tabs v-model="tab" @change="handleTab" :tabsConfig="tabsConfig">
-        <template #sport>sport</template>
-        <template #entertainment>entertainment</template>
-        <template #life>life</template>
-      </re-tabs>
+      <ReTabs v-model="tab" :tabs-config="tabsConfig" @change="handleTab">
+        <template #sport>
+          sport
+        </template>
+        <template #entertainment>
+          entertainment
+        </template>
+        <template #life>
+          life
+        </template>
+      </ReTabs>
     </dev-section>
   </div>
 </template>

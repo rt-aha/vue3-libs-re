@@ -1,8 +1,10 @@
 <template>
   <div class="re-dropdown">
-    <div class="dropdown" @click.stop="toggleExpand" v-click-away="closeSelect">
+    <div v-click-away="closeSelect" class="dropdown" @click.stop="toggleExpand">
       <div class="dropdown__active-wrap">
-        <p class="dropdown__feild">{{ innerSingle }}</p>
+        <p class="dropdown__feild">
+          {{ innerSingle }}
+        </p>
       </div>
     </div>
     <!-- @click="toggleExpand" -->
@@ -11,19 +13,19 @@
         <div class="dropdown-options">
           <ul class="dropdown-option-list">
             <li
+              v-for="opt of options"
+              :key="opt.value"
               class="dropdown-option-list__item"
               :class="{
                 'dropdown-option-list__item--disabled': opt.disabled,
                 'dropdown-option-list__item--active': isActive(opt),
               }"
-              v-for="opt of options"
-              :key="opt.value"
               @click="() => handleOption(opt)"
             >
-              <p class="dropdown-option-list__item__component" v-if="opt.render">
+              <p v-if="opt.render" class="dropdown-option-list__item__component">
                 <component :is="opt.render" v-bind="opt" />
               </p>
-              <p class="dropdown-option-list__item__label" v-else>
+              <p v-else class="dropdown-option-list__item__label">
                 {{ opt.label }}
               </p>
             </li>
@@ -33,8 +35,9 @@
     </div>
   </div>
 </template>
+
 <script>
-import { defineComponent, ref, watch, nextTick } from 'vue';
+import { defineComponent, nextTick, ref, watch } from 'vue';
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
 
@@ -87,7 +90,7 @@ export default defineComponent({
     };
 
     const handleOption = async (opt) => {
-      if (opt.disabled) return;
+      if (opt.disabled) { return; }
 
       emit('update:modelValue', opt.value);
       await nextTick();
@@ -128,6 +131,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-dropdown {
   // width: 200px;

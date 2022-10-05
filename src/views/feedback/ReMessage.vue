@@ -1,6 +1,8 @@
 <template>
   <div class="v-message">
-    <re-button @click="onError">Error</re-button>
+    <ReButton @click="onError">
+      Error
+    </ReButton>
   </div>
 </template>
 

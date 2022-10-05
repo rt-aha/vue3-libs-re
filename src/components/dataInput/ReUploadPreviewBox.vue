@@ -3,17 +3,17 @@
     <div class="re-upload-preview__content">
       <div class="preview-box">
         <div class="preview-box__frame">
-          <div class="preview-box__frame__loading" v-if="isLoading">
+          <div v-if="isLoading" class="preview-box__frame__loading">
             <re-loading />
           </div>
           <template v-else>
-            <img class="preview-box__frame__image" :src="snapImage || attachment.file" />
+            <img class="preview-box__frame__image" :src="snapImage || attachment.file">
             <div class="preview-box__frame__overlay" @click="openPreviewModal">
               <img
+                v-if="attachment.type === 'video'"
                 class="preview-box__frame__overlay__play-icon"
                 src="@/assets/icon/play.svg"
-                v-if="attachment.type === 'video'"
-              />
+              >
             </div>
           </template>
         </div>
@@ -21,11 +21,15 @@
         <!-- v-if="$attrs.preview.image" -->
 
         <div class="preview-box__info">
-          <p class="preview-box__info__name">{{ attachment.name }}</p>
-          <p class="preview-box__info__size">({{ attachment.size }})</p>
+          <p class="preview-box__info__name">
+            {{ attachment.name }}
+          </p>
+          <p class="preview-box__info__size">
+            ({{ attachment.size }})
+          </p>
 
           <div class="preview-box__info__action" @click="removeFile">
-            <img class="preview-box__info__action__delete" src="@/assets/icon/close_white.svg" />
+            <img class="preview-box__info__action__delete" src="@/assets/icon/close_white.svg">
           </div>
         </div>
       </div>
@@ -34,7 +38,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import useModal from '@/hooks/useModal';
 import ReUploadPreviewVideoModalContent from '@/components/dataInput/ReUploadPreviewVideoModalContent.vue';
 const { modal } = useModal();

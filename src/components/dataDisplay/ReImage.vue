@@ -1,13 +1,13 @@
 <template>
   <div class="c-image" :style="imgContainerStyle">
     <div
+      v-if="bg"
       class="c-image__bg"
       :style="{
         'background-image': `url('${imgSrc}')`,
         ...bgStyle,
       }"
-      v-if="bg"
-    ></div>
+    />
     <img
       v-else
       class="c-image__img"
@@ -18,12 +18,12 @@
       :src="imgSrc"
       :alt="alt"
       :ariaLabel="arialLabelValue"
-    />
+    >
   </div>
 </template>
 
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 import imagePlaceholder from '@/assets/image/image-placeholder.jpeg';
 
 export default defineComponent({
@@ -103,8 +103,8 @@ export default defineComponent({
     const imgContainerStyle = computed(() => {
       if (props.contain) {
         const tempStyle = {
-          width: props.width,
-          height: props.height,
+          'width': props.width,
+          'height': props.height,
           'background-color': props.containBg,
         };
 
@@ -122,8 +122,8 @@ export default defineComponent({
 
     const bgStyle = computed(() => {
       return {
-        width: props.bgSetting.width,
-        height: props.bgSetting.height,
+        'width': props.bgSetting.width,
+        'height': props.bgSetting.height,
         'background-position': props.bgSetting.position || 'center',
         'background-repeat': props.bgSetting.repeat || 'no-repeat',
         'background-size': props.bgSetting.size || 'cover',

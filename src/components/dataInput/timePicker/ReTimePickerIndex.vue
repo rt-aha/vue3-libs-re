@@ -1,11 +1,11 @@
 <template>
   <div class="re-time-picker">
-    <re-input v-model="timeString" placeholder="請選擇時間" readonly @click.stop="openTimeList" />
-    <re-collapse-transition :show="visible">
+    <ReInput v-model="timeString" placeholder="請選擇時間" readonly @click.stop="openTimeList" />
+    <ReCollapseTransition :show="visible">
       <div v-click-away="closeTimeList">
-        <re-time-list :value="innerValue" @updateTime="handleInput" ref="timelistRef" />
+        <ReTimeList ref="timelistRef" :value="innerValue" @updateTime="handleInput" />
       </div>
-    </re-collapse-transition>
+    </ReCollapseTransition>
   </div>
 </template>
 

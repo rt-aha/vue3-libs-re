@@ -3,11 +3,12 @@
     <ReImage :src="editIcon" alt="logo" width="20px" cursor @click="toSurveySales" />
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 import ReImage from '@/components/dataDisplay/ReImage.vue';
 import editIcon from '@/assets/icon/edit.svg';
-import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'EditSurvey',
@@ -30,6 +31,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .c-edit-survey {
   display: inline-block;

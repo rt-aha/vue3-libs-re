@@ -2,13 +2,15 @@
   <div class="re-tag" :class="{ 're-tag--editable': editable }">
     <ul class="tag-list">
       <li
-        class="tag-list__item"
         v-for="tag of innerValue"
         :key="tag.value"
-        @click="handleClickItem(tag)"
         ref="labelItemRef"
+        class="tag-list__item"
+        @click="handleClickItem(tag)"
       >
-        <p class="tag-list__item__label">{{ tag.label }}</p>
+        <p class="tag-list__item__label">
+          {{ tag.label }}
+        </p>
         <div
           class="tag-list__item__remove"
           :class="{
@@ -16,7 +18,7 @@
           }"
           @click.stop="handleRemoveItem(tag)"
         >
-          <img class="tag-list__item__remove__icon" src="@/assets/icon/close.svg" />
+          <img class="tag-list__item__remove__icon" src="@/assets/icon/close.svg">
         </div>
       </li>
       <!-- <li
@@ -85,9 +87,9 @@ export default defineComponent({
     };
 
     const handleRemoveItem = (tag) => {
-      if (tag.disabled) return;
+      if (tag.disabled) { return; }
 
-      const findIndex = innerValue.value.findIndex((item) => item.value === tag.value);
+      const findIndex = innerValue.value.findIndex(item => item.value === tag.value);
       const targetTag = innerValue.value.splice(findIndex, 1);
       emit('onRemoveItem', targetTag[0]);
     };
@@ -102,7 +104,7 @@ export default defineComponent({
 
     const addTag = () => {
       console.log('add tag!');
-      const isExist = innerValue.value.find((item) => item.label === addValue.value);
+      const isExist = innerValue.value.find(item => item.label === addValue.value);
       if (isExist) {
         console.warn('標籤名重複！');
         emit('onAddTagWarning', 'repeat');

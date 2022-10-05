@@ -1,7 +1,7 @@
 <template>
   <div class="c-use-reuqest">
     <ContentLayout>
-      <template v-slot:first>
+      <template #first>
         <p>demo.vue</p>
 
         <pre v-highlightjs>
@@ -29,7 +29,7 @@
           </code>
         </pre>
       </template>
-      <template v-slot:second>
+      <template #second>
         <p>useRequest.vue</p>
 
         <pre v-highlightjs>
@@ -66,6 +66,7 @@
     </ContentLayout>
   </div>
 </template>
+
 <script>
 import { defineComponent } from 'vue';
 import useRequest from '@/hooks/useRequest';
@@ -84,6 +85,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss">
 @import '@/styles/libs/atom-one-dark.scss';
 </style>

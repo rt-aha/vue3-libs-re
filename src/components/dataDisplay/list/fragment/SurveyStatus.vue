@@ -1,10 +1,13 @@
 <template>
   <div class="c-survey-status" :class="[`c-survey-status--type--${calcType}`]">
-    <p class="c-survey-status__text">{{ convertStatusToString }}</p>
+    <p class="c-survey-status__text">
+      {{ convertStatusToString }}
+    </p>
   </div>
 </template>
+
 <script>
-import { defineComponent, computed } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'SurveyStatus',
@@ -38,6 +41,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .c-survey-status {
   display: inline-block;

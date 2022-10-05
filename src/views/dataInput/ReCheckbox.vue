@@ -2,29 +2,37 @@
   <div class="v-re-checkbox">
     <dev-section title="單選項">
       <div>
-        <dev-desc api="props" type="String">label: 選項名字</dev-desc>
-        <re-checkbox v-model="value1" label="我同意協議書內容" />
+        <dev-desc api="props" type="String">
+          label: 選項名字
+        </dev-desc>
+        <ReCheckbox v-model="value1" label="我同意協議書內容" />
       </div>
     </dev-section>
 
     <dev-section title="單選項，自定義內容">
       <div>
-        <dev-desc api="props" type="Function">render: .vue 組件/渲染函式</dev-desc>
-        <re-checkbox v-model="value2" :render="CheckboxContent" />
+        <dev-desc api="props" type="Function">
+          render: .vue 組件/渲染函式
+        </dev-desc>
+        <ReCheckbox v-model="value2" :render="CheckboxContent" />
       </div>
     </dev-section>
 
     <dev-section title="禁用">
       <div>
-        <dev-desc api="props" type="Boolean">disabled: 是否禁用</dev-desc>
-        <re-checkbox v-model="value3" label="是否啟用" :options="phoneOptions3" disabled />
+        <dev-desc api="props" type="Boolean">
+          disabled: 是否禁用
+        </dev-desc>
+        <ReCheckbox v-model="value3" label="是否啟用" :options="phoneOptions3" disabled />
       </div>
     </dev-section>
 
     <dev-section title="checkbox被點擊時">
       <div>
-        <dev-desc api="event">change 事件：點擊時觸發</dev-desc>
-        <re-checkbox v-model="value1" label="我同意協議書內容" @onChange="onCheckboxChange" />
+        <dev-desc api="event">
+          change 事件：點擊時觸發
+        </dev-desc>
+        <ReCheckbox v-model="value1" label="我同意協議書內容" @onChange="onCheckboxChange" />
       </div>
     </dev-section>
   </div>
@@ -33,7 +41,7 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
-import { singleOption, phoneOptions, phoneOptions2, phoneOptions3 } from '@/config/mockOptions';
+import { phoneOptions, phoneOptions2, phoneOptions3, singleOption } from '@/config/mockOptions';
 import CheckboxContent from '@/forDev/testComponents/CheckboxContent.vue';
 
 export default defineComponent({

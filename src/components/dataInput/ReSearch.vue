@@ -1,14 +1,15 @@
 <template>
   <div class="re-search">
-    <ReSearchWrap :formValue="innerForm" :formRules="formRules">
+    <ReSearchWrap :form-value="innerForm" :form-rules="formRules">
       <ReSearchGrid v-for="f of formConfig" :key="f.formKey" :layout="f.layout">
-        <ReSearchItem :formKey="f.formKey" :label="f.formItemLabel" :hint="f.hint" ref="formItemRef">
+        <ReSearchItem ref="formItemRef" :form-key="f.formKey" :label="f.formItemLabel" :hint="f.hint">
           <component :is="`Re${f.compName}`" v-model="innerForm[f.formKey]" v-bind="f" />
         </ReSearchItem>
       </ReSearchGrid>
     </ReSearchWrap>
   </div>
 </template>
+
 <script>
 import { defineComponent, ref, watch } from 'vue';
 import ReSearchWrap from '@/components/dataInput/ReSearchWrap.vue';
@@ -66,7 +67,7 @@ export default defineComponent({
     );
 
     const validateAll = () => {
-      let resultList = [];
+      const resultList = [];
 
       formItemRef.value.forEach((refEle) => {
         const result = refEle.validateFields('enforceValidate');
@@ -74,7 +75,7 @@ export default defineComponent({
         resultList.push(result);
       });
 
-      return !resultList.some((val) => val === false);
+      return !resultList.includes(false);
     };
 
     return {
@@ -85,6 +86,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .re-search {
   width: 100%;

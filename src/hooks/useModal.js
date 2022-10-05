@@ -1,16 +1,17 @@
-import { ref, createApp, h } from 'vue';
+import { createApp, h, ref } from 'vue';
 import ReModal from '@/components/feedback/ReModal.vue';
 
 export default () => {
   const modal = ({ content = '', render, btns, data }) => {
     const getAppendDom = (target) => {
-      let targetEle = document.querySelector(`.${target}`);
+      const targetEle = document.querySelector(`.${target}`);
 
       if (targetEle) {
         if (targetEle.hasChildNodes()) {
           const ele = getAppendDom('modal-inner-wrap');
           return ele;
-        } else {
+        }
+        else {
           return targetEle;
         }
       }
@@ -23,7 +24,7 @@ export default () => {
     };
 
     return new Promise((resolve) => {
-      let modalRoot = getAppendDom('modal-wrap');
+      const modalRoot = getAppendDom('modal-wrap');
 
       const app = createApp({
         setup() {
@@ -41,9 +42,9 @@ export default () => {
               content,
               render: render
                 ? h(render, {
-                    close: closeModal,
-                    data,
-                  })
+                  close: closeModal,
+                  data,
+                })
                 : null,
             });
         },

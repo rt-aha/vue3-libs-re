@@ -1,12 +1,12 @@
 <template>
   <div class="v-table">
-    <ReTableIndex :config="surveyListConfig" :contentData="mockData" />
+    <ReTableIndex :config="surveyListConfig" :content-data="mockData" />
   </div>
 </template>
 
 <script>
-import ReTableIndex from '@/components/dataDisplay/table/ReTableIndex.vue';
 import { defineComponent } from 'vue';
+import ReTableIndex from '@/components/dataDisplay/table/ReTableIndex.vue';
 import { surveyListConfig } from '@/config/tableMockConfig';
 
 export default defineComponent({
