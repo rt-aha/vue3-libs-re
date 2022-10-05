@@ -935,6 +935,11 @@ cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+countup@^1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/countup/-/countup-1.8.2.tgz#021ccc6a6f964540c6b27ed64681af27fb55f010"
+  integrity sha512-1qOuy+h+dgLY4TroLb4ZC2hK7HYS2Z7mnSUvdzoYAU7EZbqOse1mKZta/KYPhDPfd9lPDyP3Tb4pH6a10RkoCw==
+
 cross-spawn@^7.0.2:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"

@@ -22,8 +22,12 @@
 - [ ] TreeSelect
 - [ ] Countdown
 - [ ] TimeLine
-- [ ] Tree
+- [x] Tree
+  - [ ] 可點擊
+  - [ ] 可禁用
+  - [ ] render
 - [ ] NumberAnimation
+- [ ] swiper
 ### dataInput
 - [x] Form//
   - [x] 把非同步驗證加進去，完成後刪除 async-validator 套件

@@ -1,6 +1,5 @@
 <template>
   <div class="v-tree">
-    Tree 施工中 ...
     <dev-section title="基本使用">
       <ReTree :config="treeList" />
     </dev-section>

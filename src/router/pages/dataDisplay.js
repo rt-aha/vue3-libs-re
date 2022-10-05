@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 'countTo',
+    name: 'countTo',
+    component: () => import(/* webpackChunkName: "ReCountTo" */ '@/views/dataDisplay/ReCountTo.vue'),
+    meta: {
+      title: 'CountTo 數字動畫',
+    },
+  },
+  {
     path: 'tree',
     name: 'tree',
     component: () => import(/* webpackChunkName: "ReTree" */ '@/views/dataDisplay/ReTree.vue'),
