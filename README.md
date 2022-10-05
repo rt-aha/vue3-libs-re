@@ -38,7 +38,7 @@
 - [x] FormMessage
 - [x] Radio
 - [x] Switch
-- [ ] - [x] Textarea
+- [x] Textarea
 - [x] TimePicker
 - [x] DatePicker
 - [x] DateRangePicker
