@@ -4,7 +4,7 @@
 
 <script>
 import { defineComponent, onMounted } from 'vue';
-import { debounce } from 'lodash-es';
+
 import { useSiteStore } from '@/stores/site';
 
 export default defineComponent({

@@ -48,8 +48,8 @@
 
 <script>
 import { defineComponent, reactive, ref, shallowRef, watch } from 'vue';
-import { v4 as uuid } from 'uuid';
-import { cloneDeep } from 'lodash-es';
+
+
 import useValidate from '@/hooks/useValidate';
 import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
 import useModal from '@/hooks/useModal';
@@ -236,7 +236,7 @@ export default defineComponent({
     );
 
     return {
-      uuid: uuid(),
+      uuid: nanoid(),
       handleChange,
       isAll,
       // onChange,

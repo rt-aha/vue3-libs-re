@@ -37,7 +37,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { v4 as uuid } from 'uuid';
+
 import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
@@ -75,7 +75,7 @@ export default defineComponent({
     };
 
     return {
-      uuid: uuid(),
+      uuid: nanoid(),
       handleChange,
     };
   },

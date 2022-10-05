@@ -3,14 +3,8 @@
 </template>
 
 <script setup>
-import {
-  onMounted,
-  reactive,
-  ref,
-  watch,
-} from 'vue';
 import CountUp from 'countup';
-import { v4 as uuid } from 'uuid';
+//
 
 const props = defineProps({
   startVal: {
@@ -57,7 +51,7 @@ const props = defineProps({
 
 let isStarted = false;
 const number = ref(null);
-const countId = uuid();
+const countId = nanoid();
 let counter = reactive({});
 
 const countStart = () => {

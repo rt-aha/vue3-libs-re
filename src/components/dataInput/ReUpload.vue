@@ -44,7 +44,7 @@
 
 <script>
 import { computed, defineComponent, ref } from 'vue';
-import { v4 as uuid } from 'uuid';
+
 // import ReButton from '@/components/common/ReButton.vue';
 import ReButton from '@/components/common/buttonCollection/ReButton.vue';
 import ReUploadPreviewRow from '@/components/dataInput/ReUploadPreviewRow.vue';
@@ -184,7 +184,7 @@ export default defineComponent({
     };
     const updateFiles = (file, fileName, fileSize, fileType) => {
       attachments.value.push({
-        id: uuid(),
+        id: nanoid(),
         name: fileName,
         size: `${(fileSize / 1024).toFixed(2)}Kb`,
         file,

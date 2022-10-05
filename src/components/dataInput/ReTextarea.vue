@@ -37,7 +37,7 @@
 
 <script>
 import { computed, defineComponent, onMounted, ref } from 'vue';
-import { isNumber } from 'lodash-es';
+
 import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({

@@ -8,7 +8,7 @@
 
 <script>
 import { defineComponent, h } from 'vue';
-import { v4 as uuid } from 'uuid';
+
 import SimpleTable from '@/components/dataDisplay/simpleTable/SimpleTableIndex.vue';
 import Paragraph from '@/components/dataDisplay/ReParagraph.vue';
 
@@ -21,23 +21,23 @@ export default defineComponent({
     const HighRiskUnderStandingContent = {
       colGroup: [
         {
-          id: uuid(),
+          id: nanoid(),
           width: 200,
         },
         {
-          id: uuid(),
+          id: nanoid(),
           width: 200,
         },
 
         {
-          id: uuid(),
+          id: nanoid(),
           width: 200,
         },
       ],
       head: [],
       body: [
         {
-          id: uuid(),
+          id: nanoid(),
           texts: [
             {
               t: '母親',
@@ -49,7 +49,7 @@ export default defineComponent({
           ],
         },
         {
-          id: uuid(),
+          id: nanoid(),
           texts: [
             {
               t: '孕前',
@@ -91,7 +91,7 @@ export default defineComponent({
           ],
         },
         {
-          id: uuid(),
+          id: nanoid(),
           texts: [
             {
               render: h(Paragraph, {

@@ -28,7 +28,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
-import { v4 as uuid } from 'uuid';
+
 import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
@@ -89,7 +89,7 @@ export default defineComponent({
     const addNewItem = () => {
       innerValue.value.push({
         value: '',
-        id: uuid(),
+        id: nanoid(),
       });
       emit('update:modelValue', innerValue.value);
     };

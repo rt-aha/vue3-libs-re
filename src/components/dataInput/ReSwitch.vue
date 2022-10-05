@@ -24,7 +24,7 @@
 
 <script>
 import { computed, defineComponent } from 'vue';
-import { v4 as uuid } from 'uuid';
+
 import useValidate from '@/hooks/useValidate';
 
 export default defineComponent({
@@ -168,7 +168,7 @@ export default defineComponent({
     return {
       activeStatus,
       handleChange,
-      uuid: uuid(),
+      uuid: nanoid(),
       reSwitchStyle,
       reSwitchBarStyle,
       labelTextWidth,

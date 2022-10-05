@@ -21,7 +21,7 @@
 
 <script>
 import { computed, defineComponent } from 'vue';
-import { isNumber } from 'lodash-es';
+
 
 export default defineComponent({
   name: 'PbfButton',

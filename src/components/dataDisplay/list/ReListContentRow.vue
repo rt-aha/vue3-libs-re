@@ -11,7 +11,7 @@
         <div class="content-row__item__cell" :class="[{ 'content-row__item__cell--padding-left': idx2 === 0 }]">
           <template v-if="col.render">
             <component :is="col.render" v-bind="{ data, column: col, idx: idx1 }" />
-            <!-- :key="uuid()" -->
+            <!-- :key="nanoid()" -->
           </template>
           <template v-else>
             <span class="content-row__item__text">{{ data[col.key] }}</span>

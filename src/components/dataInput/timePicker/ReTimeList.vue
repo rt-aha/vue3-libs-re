@@ -22,7 +22,7 @@
 
 <script>
 import { defineComponent, getCurrentInstance, nextTick, reactive, ref } from 'vue';
-import { debounce } from 'lodash-es';
+
 import dayjs from 'dayjs';
 import { h, m, s } from './timeListConfig';
 
