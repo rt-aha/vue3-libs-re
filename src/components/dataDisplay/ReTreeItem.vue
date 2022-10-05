@@ -11,15 +11,13 @@
         <span>{{ treeItem.label }}</span>
       </div>
     </div>
-    <ReCollapseTransition :show="isExpand">
+    <ReCollapseTransition :show="isExpand" :border="false">
       <div class="re-tree-item__children">
         <re-tree :config="treeItem.children" />
       </div>
     </ReCollapseTransition>
   </li>
 </template>
-
-<!-- v-click-away="closeSelect" -->
 
 <script setup>
 import { ref } from 'vue';
@@ -36,14 +34,6 @@ const isExpand = ref(false);
 
 const toggleExpand = () => {
   isExpand.value = !isExpand.value;
-};
-
-const openSelect = () => {
-  isExpand.value = true;
-};
-
-const closeSelect = () => {
-  isExpand.value = false;
 };
 </script>
 
