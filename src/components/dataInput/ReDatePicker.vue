@@ -64,12 +64,11 @@ export default defineComponent({
     };
 
     const inputValue = computed(() => {
-      console.log('props.modelValue', props.modelValue);
       return dayjs(props.modelValue).format('YYYY/MM/DD');
     });
 
     const handleChange = (v) => {
-      console.log('...', v);
+
     };
 
     const init = () => {

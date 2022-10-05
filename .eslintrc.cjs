@@ -12,6 +12,7 @@ module.exports = {
     'vue/component-tags-order': ['error', {
       order: ['template', 'script', 'style'],
     }],
+    'vue/v-on-event-hyphenation': ['off', 'never'], // 關閉自定義事件強制 kebab-case 格式
 
     // other
     'no-console': ['warn'],

@@ -74,7 +74,7 @@ export default defineComponent({
         value: 'week',
       },
       {
-        label: '本月',
+        label: '近一個月',
         value: 'currMonth',
       },
     ];

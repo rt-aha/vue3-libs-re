@@ -113,7 +113,7 @@ const children = [
     name: 'auto-input',
     component: () => import(/* webpackChunkName: "ReAutoInput" */ '@/views/dataInput/ReAutoInput.vue'),
     meta: {
-      title: 'Auto Input 自動填入',
+      title: 'AutoInput 自動填入',
     },
   },
   {
@@ -121,7 +121,7 @@ const children = [
     name: 'input-timer',
     component: () => import(/* webpackChunkName: "ReInputTimer" */ '@/views/dataInput/ReInputTimer.vue'),
     meta: {
-      title: 'Input Timer 倒數時器輸入框',
+      title: 'InputTimer 倒數時器輸入框',
     },
   },
 

@@ -1,8 +1,8 @@
 <template>
   <div class="re-auto-input">
-    <div v-for="n of innerValue" :key="n.refIndex" class="input-field-box" :class="[`input-field-box--size--${size}`]">
+    <div v-for="(n, idx) of innerValue" :key="idx" class="input-field-box" :class="[`input-field-box--size--${size}`]">
       <input
-        :ref="n.refIndex"
+        ref="autoInputRef"
         v-model="n.value"
         class="input-field-box__field"
         :class="[`input-field-box__field--size--${size}`]"
@@ -10,110 +10,111 @@
         min="0"
         max="9"
         maxlength="1"
+        type="number"
         @input="handleInput"
-        @keydown="(e) => handleKeydown(e, n.refIndex)"
+        @keydown="(e) => handleKeydown(e, idx)"
       >
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ReAutoInput',
-  props: {
-    value: {
-      type: String,
-      default: '',
-    },
-    count: {
-      type: [String, Number],
-      default: 6,
-    },
-    size: {
-      type: String,
-      default: 'default',
-      validator: val => ['small', 'default', 'large'].includes(val),
-    },
+<script setup>
+import cloneRegExp from 'lodash-es/_cloneRegExp';
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: '',
   },
-  data() {
-    return {
-      innerValue: [],
-    };
+  count: {
+    type: [String, Number],
+    default: 6,
   },
-  mounted() {},
-  created() {
-    this.setValue();
+  size: {
+    type: String,
+    default: 'default',
+    validator: val => ['small', 'default', 'large'].includes(val),
   },
-  methods: {
-    // 刪除時作用
-    handleKeydown(e, refIndex) {
-      if (e.keyCode === 8) {
-        const prevIndex = Number(refIndex.substr(1)) - 1;
-        const prevRefIndex = `n${prevIndex}`;
-        const emptyInput = this.innerValue.find(item => item.value === '');
+});
+const emit = defineEmits(['onChange', 'onCompleted']);
 
-        // 表示現在全部輸入框都有數字，刪除現有輸入框數字
-        if (!emptyInput) {
-          this.innerValue = this.innerValue.map((item, index) => {
-            if (item.refIndex === refIndex) {
-              item.value = '';
-            }
+const innerValue = ref([]);
+const autoInputRef = ref(null);
 
-            return item;
-          });
-        }
-        else {
-          // 刪除前一個輸入框數字，並移動關注點到前一個
-          this.innerValue = this.innerValue.map((item, index) => {
-            if (item.refIndex === prevRefIndex) {
-              item.value = '';
-            }
+const handleChange = () => {
+  const value = innerValue.value.map(item => item.value).join('');
+  emit('onChange', value);
 
-            return item;
-          });
-
-          this.$nextTick(() => {
-            if (prevIndex !== 0) {
-              this.$refs[prevRefIndex][0].focus();
-            }
-          });
-        }
-
-        this.handleChange();
-      }
-    },
-    handleInput() {
-      this.handleChange();
-
-      const nextInput = this.innerValue.find(item => item.value === '');
-      if (!nextInput) { return; }
-
-      this.$nextTick(() => {
-        this.$refs[nextInput.refIndex][0].focus();
-      });
-    },
-    handleChange() {
-      const value = this.innerValue.map(item => item.value).join('');
-      this.$emit('change', value);
-    },
-    setValue() {
-      const val = [];
-
-      for (let i = 0; i < Number(this.count); i += 1) {
-        val.push('');
-      }
-
-      this.innerValue = val.map((n, index) => ({
-        value: '',
-        refIndex: `n${index + 1}`,
-      }));
-
-      this.$nextTick(() => {
-        this.$refs.n1[0].focus();
-      });
-    },
-  },
+  if (value.length === props.count) {
+    emit('onCompleted', value);
+  }
 };
+
+const handleKeydown = async (e, refIndex) => {
+  if (e.keyCode === 8) {
+    const prevIndex = refIndex - 1;
+    const emptyInput = innerValue.value.find(item => item.value === '');
+
+    // 表示現在全部輸入框都有數字，刪除現有輸入框數字
+    if (!emptyInput) {
+      innerValue.value = innerValue.value.map((item, index) => {
+        if (item.refIndex === refIndex) {
+          item.value = '';
+        }
+
+        return item;
+      });
+    }
+    else {
+      // 刪除前一個輸入框數字，並移動關注點到前一個
+      innerValue.value = innerValue.value.map((item) => {
+        if (item.refIndex === prevIndex) {
+          item.value = '';
+        }
+
+        return item;
+      });
+
+      await nextTick(() => {
+        if (prevIndex !== -1) {
+          autoInputRef.value[prevIndex].focus();
+        }
+      });
+    }
+
+    handleChange();
+  }
+};
+
+const handleInput = async () => {
+  handleChange();
+  const nextIndex = innerValue.value.findIndex(item => item.value === '');
+
+  if (nextIndex === -1) { return; }
+
+  await nextTick(() => {
+    autoInputRef.value[nextIndex].focus();
+  });
+};
+
+const setValue = async () => {
+  const val = [];
+
+  for (let i = 0; i < Number(props.count); i += 1) {
+    val.push('');
+  }
+
+  innerValue.value = val.map((n, index) => ({
+    value: '',
+    refIndex: index,
+  }));
+
+  await nextTick(() => {
+    autoInputRef.value[0].focus();
+  });
+};
+
+setValue();
 </script>
 
 <style lang="scss" scoped>
