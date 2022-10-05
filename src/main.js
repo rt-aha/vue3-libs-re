@@ -11,6 +11,8 @@ import DevSection from '@/forDev/components/DevSection.vue';
 import DevTitle from '@/forDev/components/DevTitle.vue';
 import DevDesc from '@/forDev/components/DevDesc.vue';
 import ReLoading from '@/components/feedback/ReLoading.vue';
+import ReTree from '@/components/dataDisplay/ReTree.vue'
+import ReTreeItem from '@/components/dataDisplay/ReTreeItem.vue'
 
 import VueClickAway from 'vue3-click-away';
 
@@ -20,5 +22,9 @@ app.component('DevSection', DevSection);
 app.component('DevDesc', DevDesc);
 app.component('DevTitle', DevTitle);
 app.component('ReLoading', ReLoading);
+app.component('ReTree', ReTree);
+app.component('ReTreeItem', ReTreeItem);
+
+
 
 app.use(createPinia()).use(router).use(VueHighlightJS).use(VueClickAway).mount('#app');

@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 'tree',
+    name: 'tree',
+    component: () => import(/* webpackChunkName: "ReTree" */ '@/views/dataDisplay/ReTree.vue'),
+    meta: {
+      title: 'Tree 樹形控件',
+    },
+  },
+  {
     path: 'avatar',
     name: 'avatar',
     component: () => import(/* webpackChunkName: "ReAvatar" */ '@/views/dataDisplay/ReAvatar.vue'),

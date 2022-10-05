@@ -1,13 +1,19 @@
 <template>
   <transition v-bind="listeners">
     <!-- 当visible的值发生改变时，过渡组件的监听器就会触发 -->
-    <div v-show="show" class="re-collapse-transition">
+    <div v-show="show" class="re-collapse-transition"
+    :class="{
+      're-collapse-transition--border': border
+    }">
       <slot />
     </div>
   </transition>
 </template>
 <script setup>
-defineProps({ show: Boolean });
+defineProps({ show: Boolean, border: {
+ type:Boolean, 
+ default: true
+} });
 const listeners = {
   // 元素由隐藏变为可见
   onEnter(/** @type {HTMLElement} */ el) {
@@ -35,8 +41,12 @@ const listeners = {
 .re-collapse-transition {
   overflow: hidden;
   transition: height 0.22s ease-in-out;
-  border: 1px solid $c-grey;
   border-radius: 4px;
   background-color: $c-white;
+  
+  &--border {
+    border: 1px solid $c-grey;
+
+  }
 }
 </style>
