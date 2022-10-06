@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 'time-line',
+    name: 'time-line',
+    component: () => import(/* webpackChunkName: "ReTimeline" */ '@/views/dataDisplay/ReTimeline.vue'),
+    meta: {
+      title: 'Timeline 時間軸',
+    },
+  },
+  {
     path: 'swiper',
     name: 'swiper',
     component: () => import(/* webpackChunkName: "ReSwiper" */ '@/views/dataDisplay/ReSwiper.vue'),
