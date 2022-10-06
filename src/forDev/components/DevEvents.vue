@@ -1,8 +1,9 @@
 <template>
-  <p class="dev-desc" :class="{ 'dev-desc--mt': mt }">
-    <span class="dev-desc__api"> {{ api }} </span>
-    <span v-if="type" class="dev-desc__type"> &lt{{ type }}&gt</span>
-    <span class="dev-desc__slot"> - <slot /> </span>
+  <p class="dev-events" :class="{ 'dev-events--mt': mt }">
+    <span class="dev-events__label"> - event: </span>
+    <span class="dev-events__event"> {{ eventName }} </span>
+    <span v-if="type" class="dev-events__type">&lt{{ type }}&gt </span>
+    <span class="dev-events__text"> {{ text }} </span>
   </p>
 </template>
 
@@ -10,16 +11,16 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'DevDesc',
+  name: 'DevEvents',
 
   props: {
-    desc: {
+    text: {
       type: String,
       default: '',
     },
-    api: {
+    eventName: {
       type: String,
-      default: 'props',
+      default: '',
     },
     type: {
       type: String,
@@ -34,22 +35,26 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.dev-desc {
+.dev-events {
   margin-bottom: 10px;
 
   &--mt {
     margin-top: 20px;
   }
 
-  &__api {
+  &__label {
     @include font-style(#555, 14, 400, 0.5px);
+  }
+
+  &__event {
+    @include font-style(#333, 14, 700, 0.5px);
   }
 
   &__type {
     @include font-style(#555, 14, 400, 0.5px);
   }
 
-  &__slot {
+  &__text {
     @include font-style(#555, 14, 400, 0.5px);
   }
 }

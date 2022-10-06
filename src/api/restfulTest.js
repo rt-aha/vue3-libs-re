@@ -5,5 +5,7 @@ export const mockJsonPlaceholder = async () => {
     url: '/users',
   });
 
+  console.log('res', res);
+
   return res;
 };

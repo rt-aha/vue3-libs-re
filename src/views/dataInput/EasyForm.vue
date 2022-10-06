@@ -74,6 +74,7 @@ const dependencyForm = ref({
   enable: false,
   height: 0,
   timePicker: new Date(),
+  mdEditor: '',
 });
 
 const basicFormSubmit = () => {

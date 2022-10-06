@@ -51,6 +51,7 @@ import ReInputList from '@/components/dataInput/ReInputList.vue';
 import ReDependenceSelect from '@/components/dataInput/ReDependenceSelect.vue';
 import ReMultiMultiCheckboxGroup from '@/components/dataInput/ReMultiMultiCheckboxGroup.vue';
 import ReTextarea from '@/components/dataInput/ReTextarea.vue';
+import ReMdEditor from '@/components/dataInput/ReMdEditor.vue';
 
 export default defineComponent({
   name: 'ReEasyForm',
@@ -74,6 +75,7 @@ export default defineComponent({
     ReTextarea,
     ReUpload,
     ReInputList,
+    ReMdEditor,
   },
   props: {
     formValue: {

@@ -12,6 +12,7 @@
     "genComp": "node generateComponent.mjs"
   },
   "dependencies": {
+    "@kangc/v-md-editor": "^2.3.15",
     "@vueuse/head": "^0.7.6",
     "axios": "^0.27.2",
     "chalk": "^5.0.1",

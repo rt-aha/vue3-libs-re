@@ -5,6 +5,7 @@ declare global {
   const cloneDeep: typeof import('lodash-es')['cloneDeep']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
+  const customAlphabet: typeof import('nanoid')['customAlphabet']
   const customRef: typeof import('vue')['customRef']
   const debounce: typeof import('lodash-es')['debounce']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']

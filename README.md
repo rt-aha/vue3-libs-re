@@ -19,8 +19,7 @@
 - [-] List
 - [-] Table
 - [x] SimpleTable
-- [ ] TreeSelect
-- [10/7] Countdown
+- [x] Countdown
 - [-] TimeLine
   - 先做了個基本的
   - [ ] 要能放 render comp 進去
@@ -64,11 +63,14 @@
   - [x] MultiSelect
   - [ ] SearchSelect
   - [ ] GroupSelect
+  - [ ] 整體禁用
 - [-] DependencySelect
   - [ ] 寫進Select 不需要額外一個組件
 - [x] EmailAutoComplete
 - [ ] Slider
 - [x] AutoInput
+- [ ] Markdown Editor
+  - [ ] 封裝 @kangc/v-md-editor
 ### feedback
 - [x] Modal
 - [x] Drawer

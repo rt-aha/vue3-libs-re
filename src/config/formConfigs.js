@@ -158,6 +158,15 @@ export const basicFormConfig = [
       hint: '(InputList)',
     },
   },
+  {
+    compName: 'MdEditor',
+    formKey: 'mdEditor',
+    formItem: {
+      label: 'Markdown 編輯器',
+      hint: '(MdEditor)',
+    },
+  },
+
 ];
 
 export const dependencyFormConfig = [

@@ -134,6 +134,14 @@ const children = [
     },
   },
   {
+    path: 'md-editor',
+    name: 'md-editor',
+    component: () => import(/* webpackChunkName: "ReMdEditor" */ '@/views/dataInput/ReMdEditor.vue'),
+    meta: {
+      title: 'ReMdEditor Markdown 編輯器',
+    },
+  },
+  {
     path: 'easy-form',
     name: 'easy-form',
     component: () => import(/* webpackChunkName: "Easyform" */ '@/views/dataInput/Easyform.vue'),
@@ -141,6 +149,7 @@ const children = [
       title: 'Easyform 表單',
     },
   },
+
 ];
 
 const routes = [
