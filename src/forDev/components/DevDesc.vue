@@ -1,8 +1,6 @@
 <template>
   <p class="dev-desc" :class="{ 'dev-desc--mt': mt }">
-    <span class="dev-desc__api"> {{ api }} </span>
-    <span v-if="type" class="dev-desc__type"> &lt{{ type }}&gt</span>
-    <span class="dev-desc__slot"> - <slot /> </span>
+    - {{ text }}
   </p>
 </template>
 
@@ -13,15 +11,7 @@ export default defineComponent({
   name: 'DevDesc',
 
   props: {
-    desc: {
-      type: String,
-      default: '',
-    },
-    api: {
-      type: String,
-      default: 'props',
-    },
-    type: {
+    text: {
       type: String,
       default: '',
     },
@@ -37,20 +27,11 @@ export default defineComponent({
 .dev-desc {
   margin-bottom: 10px;
 
+  @include font-style(#555, 14, 400, 0.5px);
+
   &--mt {
     margin-top: 20px;
   }
 
-  &__api {
-    @include font-style(#555, 14, 400, 0.5px);
-  }
-
-  &__type {
-    @include font-style(#555, 14, 400, 0.5px);
-  }
-
-  &__slot {
-    @include font-style(#555, 14, 400, 0.5px);
-  }
 }
 </style>
