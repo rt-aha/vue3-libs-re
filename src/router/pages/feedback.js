@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 'countdown',
+    name: 'countdown',
+    component: () => import(/* webpackChunkName: "ReDrawer" */ '@/views/feedback/ReCountdown.vue'),
+    meta: {
+      title: 'ReCountdown 倒數',
+    },
+  },
+  {
     path: 'drawer',
     name: 'drawer',
     component: () => import(/* webpackChunkName: "ReDrawer" */ '@/views/feedback/ReDrawer.vue'),
