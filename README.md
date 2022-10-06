@@ -69,8 +69,8 @@
 - [x] EmailAutoComplete
 - [ ] Slider
 - [x] AutoInput
-- [ ] Markdown Editor
-  - [ ] 封裝 @kangc/v-md-editor
+- [x] Markdown Editor
+  - 封裝 @kangc/v-md-editor
 ### feedback
 - [x] Modal
 - [x] Drawer
