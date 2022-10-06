@@ -6,35 +6,25 @@
 
     <dev-section title="禁用">
       <div class="wrap">
-        <dev-desc type="boolean">
-          disabled：禁用
-        </dev-desc>
+        <dev-props type="Boolean" prop-name="disabled" text="禁用" />
         <ReInput v-model="value2" disabled />
       </div>
     </dev-section>
 
     <dev-section title="密碼">
       <div class="wrap">
-        <dev-desc type="boolean">
-          disabled：禁用
-        </dev-desc>
+        <dev-props type="String" prop-name="type=password" text="密碼格式" />
         <ReInput v-model="value3" type="password" />
 
-        <dev-desc mt>
-          密碼禁用效果
-        </dev-desc>
+        <dev-desc mt text="密碼禁用效果" />
         <ReInput v-model="value3" type="password" disabled />
       </div>
     </dev-section>
 
-    <dev-section title="前後固定">
+    <dev-section title="左右固定">
       <div class="wrap">
-        <dev-desc api="slot">
-          left
-        </dev-desc>
-        <dev-desc api="slot">
-          right
-        </dev-desc>
+        <dev-slots slot-name="left" text="左固定內容" />
+        <dev-slots slot-name="right" text="右固定內容" />
         <ReInput v-model="value4">
           <template #left>
             http://
@@ -46,20 +36,17 @@
       </div>
     </dev-section>
 
-    <dev-section title="前綴與後綴 ">
+    <dev-section title="前綴與後綴">
       <div class="wrap">
-        <dev-desc api="slot">
-          prefix
-        </dev-desc>
+        <dev-slots slot-name="prefix" text="前綴" />
+
         <ReInput v-model="value5">
           <template #prefix>
             <img class="user-icon" src="@/assets/icon/user.svg">
           </template>
         </ReInput>
 
-        <dev-desc api="slot" mt>
-          suffix
-        </dev-desc>
+        <dev-slots slot-name="suffix" text="後綴" mt />
         <ReInput v-model="value5">
           <template #suffix>
             <img class="dollar-icon" src="@/assets/icon/dollar.svg">
