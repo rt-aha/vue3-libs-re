@@ -2,36 +2,28 @@
   <div class="v-re-checkbox">
     <dev-section title="單選項">
       <div>
-        <dev-desc api="props" type="String">
-          label: 選項名字
-        </dev-desc>
+        <dev-props type="String" prop-name="label" text="選項名字" />
         <ReCheckbox v-model="value1" label="我同意協議書內容" />
       </div>
     </dev-section>
 
     <dev-section title="單選項，自定義內容">
       <div>
-        <dev-desc api="props" type="Function">
-          render: .vue 組件/渲染函式
-        </dev-desc>
+        <dev-props type="Function" prop-name="render" text="render 可為一個 .vue 檔" />
         <ReCheckbox v-model="value2" :render="CheckboxContent" />
       </div>
     </dev-section>
 
     <dev-section title="禁用">
       <div>
-        <dev-desc api="props" type="Boolean">
-          disabled: 是否禁用
-        </dev-desc>
+        <dev-props type="Boolean" prop-name="disabled" text="禁用" />
         <ReCheckbox v-model="value3" label="是否啟用" :options="phoneOptions3" disabled />
       </div>
     </dev-section>
 
     <dev-section title="checkbox被點擊時">
       <div>
-        <dev-desc api="event">
-          change 事件：點擊時觸發
-        </dev-desc>
+        <dev-events type="Function" event-name="onChange" text="點擊時觸發" />
         <ReCheckbox v-model="value1" label="我同意協議書內容" @onChange="onCheckboxChange" />
       </div>
     </dev-section>

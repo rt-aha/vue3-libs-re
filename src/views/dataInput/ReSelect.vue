@@ -2,6 +2,7 @@
   <div class="v-re-select">
     <dev-section title="基本使用">
       <div class="wrap">
+        <dev-props type="{label: String: value: String}[]" prop-name="options" text="基本設定" />
         <ReSelect v-model="value1" :options="basicOptions" />
       </div>
     </dev-section>
@@ -13,7 +14,7 @@
     </dev-section>
     <dev-section title="自定義內容">
       <div class="wrap">
-        <dev-props type="Array<{...args, render: h()}>" prop-name="options" text="render 可為一個 .vue 檔" />
+        <dev-props type="{...args, render: h()}[]" prop-name="options" text="render 可為一個 .vue 檔" />
         <ReSelect v-model="value3" :options="renderOptions" />
       </div>
     </dev-section>

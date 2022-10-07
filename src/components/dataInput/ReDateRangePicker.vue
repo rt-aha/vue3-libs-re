@@ -20,7 +20,7 @@
               {{ p.label }}
             </ReButton>
           </div>
-          <DatePicker v-model="date" is-range popover-align="center" />
+          <DatePicker v-model="middleDate" is-range popover-align="center" />
         </div>
       </ReCollapseTransition>
     </div>
@@ -60,6 +60,77 @@ export default defineComponent({
       end: dayjs().$d,
     });
 
+    const middleDate = computed({
+      set: (val) => {
+        date.value = val;
+      },
+      get: () => {
+        return props.modelValue;
+      },
+    });
+
+    const toggleExpand = () => {
+      console.log('111');
+      isExpand.value = !isExpand.value;
+    };
+
+    const openSelect = () => {
+      isExpand.value = true;
+    };
+
+    const closeSelect = () => {
+      isExpand.value = false;
+    };
+
+    const handleShortcut = (val) => {
+      console.log('opt', val);
+      const d = new Date();
+
+      switch (val) {
+        case 'yesterday':
+          date.value = {
+            // start: dayjs().subtract(1, 'day').$d.valueOf(),
+            start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1)).$d.valueOf(),
+            end: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(1, 'second').$d.valueOf(),
+          };
+          break;
+        case 'week':
+          date.value = {
+            start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(6, 'day').$d.valueOf(),
+            end: dayjs().$d.valueOf(),
+          };
+          break;
+        case 'currMonth':
+          date.value = {
+            start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(1, 'month').add(1, 'day').$d.valueOf(),
+            end: dayjs().$d.valueOf(),
+          };
+          break;
+        default:
+          date.value = {
+            start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).$d.valueOf(),
+            end: dayjs().$d.valueOf(),
+          };
+      }
+
+      emit('update:modelValue', date.value);
+    };
+
+    const inputValue = computed(() => {
+      return `${dayjs(date.value.start).format('YYYY/MM/DD')} ~ ${dayjs(date.value.end).format('YYYY/MM/DD')}`;
+    });
+
+    watch(() => date.value,
+      (newValue) => {
+        const newDateValue = {
+          start: dayjs(newValue.start).$d.valueOf(),
+          end: dayjs(newValue.end).$d.valueOf(),
+        };
+
+        // date.value = newDateValue;
+        emit('update:modelValue', newDateValue);
+      });
+
     const periodOptions = [
       {
         label: '今日',
@@ -79,57 +150,6 @@ export default defineComponent({
       },
     ];
 
-    const toggleExpand = () => {
-      isExpand.value = !isExpand.value;
-    };
-
-    const openSelect = () => {
-      isExpand.value = true;
-    };
-
-    const closeSelect = () => {
-      isExpand.value = false;
-    };
-
-    const handleShortcut = (val) => {
-      console.log('opt', val);
-      const d = new Date();
-
-      switch (val) {
-        case 'yesterday':
-          date.value = {
-            start: dayjs().subtract(1, 'day').$d.valueOf(),
-            end: dayjs().subtract(1, 'day').$d.valueOf(),
-          };
-          break;
-        case 'week':
-          date.value = {
-            start: dayjs().subtract(6, 'day').$d.valueOf(),
-            end: dayjs().$d.valueOf(),
-          };
-          break;
-        case 'currMonth':
-          date.value = {
-            start: dayjs(new Date(d.getFullYear(), d.getMonth(), 1)).$d.valueOf(),
-            end: dayjs().$d.valueOf(),
-          };
-          break;
-        default:
-          date.value = {
-            start: dayjs().$d.valueOf(),
-            end: dayjs().$d.valueOf(),
-          };
-      }
-
-      console.log('date.value', date.value);
-
-      emit('update:modelValue', date.value);
-    };
-
-    const inputValue = computed(() => {
-      return `${dayjs(date.value.start).format('YYYY/MM/DD')} ~ ${dayjs(date.value.end).format('YYYY/MM/DD')}`;
-    });
-
     return {
       isExpand,
       toggleExpand,
@@ -140,6 +160,7 @@ export default defineComponent({
       periodOptions,
       handleShortcut,
       inputValue,
+      middleDate,
     };
   },
 });
