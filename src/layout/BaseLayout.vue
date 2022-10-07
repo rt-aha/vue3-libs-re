@@ -34,6 +34,8 @@ import { useRoute } from 'vue-router';
 import LyHeader from '@/layout/LyHeader.vue';
 import LySidebar from '@/layout/LySidebar.vue';
 import EasyForm from '@/views/dataInput/EasyForm.vue';
+import ReBreadcrumb from '@/components/navigation/ReBreadcrumb.vue';
+// import fds from '@/router/index'
 
 export default defineComponent({
   components: {
@@ -43,6 +45,7 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
+    const breadcrumbConfig = ref();
 
     // const routeMatchedLasteIndex = route.matched.length - 1;
     const isFormViewExist = computed(() => {
@@ -60,6 +63,22 @@ export default defineComponent({
 
       return false;
     });
+
+    const setNewBreadcrumb = () => {
+      const routeNames = window.location.pathname.split('/').filter(item => item);
+
+      console.log('routeNames', routeNames);
+
+      // breadcrumbConfig.value = [{
+
+      // }];
+    };
+
+    const routeName = computed(() => route.name);
+
+    watch(() => routeName.value, () => {
+      setNewBreadcrumb();
+    }, { immediate: true });
 
     // const showForm = ['group'].includes(route.meta.extraView);
 
