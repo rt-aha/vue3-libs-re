@@ -46,7 +46,6 @@
 <script>
 import { defineComponent, ref, shallowRef, watch } from 'vue';
 
-
 import useValidate from '@/hooks/useValidate';
 import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
 

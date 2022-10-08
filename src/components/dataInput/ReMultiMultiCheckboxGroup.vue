@@ -49,7 +49,6 @@
 <script>
 import { defineComponent, reactive, ref, shallowRef, watch } from 'vue';
 
-
 import useValidate from '@/hooks/useValidate';
 import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
 import useModal from '@/hooks/useModal';

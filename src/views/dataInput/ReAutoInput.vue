@@ -24,14 +24,14 @@
 
     <dev-section title="每次變動時 onChange callback">
       <div class="wrap">
-        <dev-events type="Function" event-name="onChange" text="每次輸入有更新時觸發" />
+        <dev-events type="Function" event-name="on-change" text="每次輸入有更新時觸發" />
         <ReAutoInput v-model="val4" @onChange="onChange" />
       </div>
     </dev-section>
 
     <dev-section title="填完最後一個後 callback">
       <div class="wrap">
-        <dev-events type="Function" event-name="onCompleted" text="格子輸入滿格子時的觸發" />
+        <dev-events type="Function" event-name="on-completed" text="格子輸入滿格子時的觸發" />
         <ReAutoInput v-model="val5" @onCompleted="onCompleted" />
       </div>
     </dev-section>
