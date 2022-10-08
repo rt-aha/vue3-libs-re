@@ -1,26 +1,17 @@
 <template>
   <div class="v-re-time-picker">
-    <ReTimePicker v-model="time" />
+    <dev-section title="基本使用">
+      <div class="wrap">
+        <ReTimePicker v-model="time" />
+      </div>
+    </dev-section>
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script setup>
 import ReTimePicker from '@/components/dataInput//timePicker/ReTimePickerIndex.vue';
 
-export default defineComponent({
-  name: 'ViewReTimePicker',
-  components: {
-    ReTimePicker,
-  },
-  setup() {
-    const time = ref(new Date());
-
-    return {
-      time,
-    };
-  },
-});
+const time = ref(new Date());
 </script>
 
 <style lang="scss" scoped></style>

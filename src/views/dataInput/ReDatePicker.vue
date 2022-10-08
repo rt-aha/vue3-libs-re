@@ -6,23 +6,10 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script setup>
 import ReDatePicker from '@/components/dataInput/ReDatePicker.vue';
 
-export default defineComponent({
-  name: 'ViewReDatePicker',
-  components: {
-    ReDatePicker,
-  },
-  setup() {
-    const value = ref(new Date());
-
-    return {
-      value,
-    };
-  },
-});
+const value = ref(new Date());
 </script>
 
 <style lang="scss" scoped></style>

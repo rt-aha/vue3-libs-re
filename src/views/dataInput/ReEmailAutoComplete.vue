@@ -6,23 +6,10 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script setup>
 import ReEmailAutoComplete from '@/components/dataInput/ReEmailAutoComplete.vue';
 
-export default defineComponent({
-  name: 'ViewReEmailAutoComplete',
-  components: {
-    ReEmailAutoComplete,
-  },
-  setup() {
-    const value = ref('123');
-
-    return {
-      value,
-    };
-  },
-});
+const value = ref('');
 </script>
 
 <style lang="scss" scoped></style>

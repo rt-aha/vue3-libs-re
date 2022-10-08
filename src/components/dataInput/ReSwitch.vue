@@ -70,6 +70,7 @@ export default defineComponent({
       }),
     },
   },
+  emits: ['update:modelValue'],
   setup(props, { emit }) {
     // 這裡設定的是高度
     const sizeMapping = {

@@ -1,8 +1,10 @@
 <template>
   <div class="v-message">
-    <ReButton @click="showMessage">
-      message
-    </ReButton>
+    <dev-section title="基本使用">
+      <ReButton @click="showMessage">
+        message
+      </ReButton>
+    </dev-section>
 
     <Teleport to="#message-target">
       <ReMessage v-if="visible" :content="content" @close="close" />

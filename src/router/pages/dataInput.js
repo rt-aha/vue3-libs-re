@@ -117,15 +117,6 @@ const children = [
     },
   },
   {
-    path: 'input-timer',
-    name: 'input-timer',
-    component: () => import(/* webpackChunkName: "ReInputTimer" */ '@/views/dataInput/ReInputTimer.vue'),
-    meta: {
-      title: 'InputTimer 倒數時器輸入框',
-    },
-  },
-
-  {
     path: 'upload',
     name: 'upload',
     component: () => import(/* webpackChunkName: "ReUpload" */ '@/views/dataInput/ReUpload.vue'),

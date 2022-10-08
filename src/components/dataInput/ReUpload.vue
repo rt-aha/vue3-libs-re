@@ -71,7 +71,7 @@ export default defineComponent({
     compress: {
       type: Object,
       default: () => ({
-        use: true,
+        use: false,
         limitWidth: 1000,
         limitHeight: 1000,
         defaultExt: '', // 設定圖片壓縮格副檔名
@@ -100,8 +100,8 @@ export default defineComponent({
     preview: {
       type: Object,
       default: () => ({
-        use: true,
-        type: 'row', // default: 一行一行的圖片、圖片名稱、圖片大小
+        use: false,
+        type: '', // default: 一行一行的圖片、圖片名稱、圖片大小
       }),
     },
   },

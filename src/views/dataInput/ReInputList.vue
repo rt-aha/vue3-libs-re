@@ -6,23 +6,10 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script setup>
 import ReInputList from '@/components/dataInput/ReInputList.vue';
 
-export default defineComponent({
-  name: 'ViewInputList',
-  components: {
-    ReInputList,
-  },
-  setup() {
-    const value = ref([]);
-
-    return {
-      value,
-    };
-  },
-});
+const value = ref([]);
 </script>
 
 <style lang="scss" scoped></style>
