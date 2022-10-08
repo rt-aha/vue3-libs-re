@@ -13,7 +13,7 @@ const props = defineProps({
     default: 'gradient',
   },
 });
-const emit = defineExpose(['click']);
+const emit = defineEmits(['click']);
 
 const onClick = () => {
   emit('click');
