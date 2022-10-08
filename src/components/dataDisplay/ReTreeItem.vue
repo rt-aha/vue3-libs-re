@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 
 const props = defineProps({

@@ -9,16 +9,11 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ReEmpty',
-  props: {
-    emptyText: {
-      type: String,
-      default: '',
-    },
+<script setup>
+const props = defineProps({
+  emptyText: {
+    type: String,
+    default: '',
   },
 });
 </script>

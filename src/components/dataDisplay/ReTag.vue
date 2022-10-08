@@ -53,121 +53,96 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, nextTick, onMounted, ref } from 'vue';
-// import ReInput from '@/components/ReInput.vue';
-
-export default defineComponent({
-  name: 'ReTag',
-  components: {
-    // ReInput,
+<script setup>
+const props = defineProps({
+  modelValue: {
+    type: Array,
+    default: () => [],
   },
-  props: {
-    modelValue: {
-      type: Array,
-      default: () => [],
-    },
-    editable: {
-      type: Boolean,
-      default: false,
-    },
-    limit: {
-      type: [String, Number, undefined],
-      default: undefined,
-    },
+  editable: {
+    type: Boolean,
+    default: false,
   },
-  emits: ['update:modelValue', 'onClickItem', 'onRemoveItem', 'onAddTagWarning'],
-  setup(props, { emit }) {
-    const labelItemRef = ref(null);
-    const inputRef = ref(null);
-    const labelItemHeight = ref('');
-    const addValue = ref();
-    const isAddStatus = ref(false);
-    const innerValue = ref([]);
-    const handleClickItem = (tag) => {
-      emit('onClickItem', tag);
-    };
-
-    const handleRemoveItem = (tag) => {
-      if (tag.disabled) { return; }
-
-      const findIndex = innerValue.value.findIndex(item => item.value === tag.value);
-
-      console.log('findIndex', findIndex);
-
-      const targetTag = innerValue.value.splice(findIndex, 1);
-
-      emit('onRemoveItem', targetTag[0]);
-      emit('update:modelValue', innerValue.value);
-    };
-
-    const toggleAddTagStatus = async () => {
-      isAddStatus.value = !isAddStatus.value;
-      if (isAddStatus.value) {
-        await nextTick();
-        inputRef.value.focus();
-      }
-    };
-
-    const addTag = () => {
-      console.log('add tag!');
-      const isExist = innerValue.value.find(item => item.label === addValue.value);
-      if (isExist) {
-        console.warn('標籤名重複！');
-        emit('onAddTagWarning', 'repeat');
-
-        return;
-      }
-
-      if (props.limit) {
-        const isReachLimitation = innerValue.value.length >= Number(props.limit);
-
-        if (isReachLimitation) {
-          console.warn(`已達所設定${props.limit}上限`);
-          emit('onAddTagWarning', 'limit');
-
-          return;
-        }
-      }
-
-      const addLabelItem = {
-        value: addValue.value,
-        label: addValue.value,
-      };
-
-      innerValue.value.push(addLabelItem);
-      emit('update:modelValue', innerValue.value);
-      addValue.value = '';
-    };
-
-    const init = () => {
-      innerValue.value = props.modelValue;
-    };
-
-    const getLabelHeight = () => {
-      const lastLabelItem = labelItemRef.value[labelItemRef.value.length - 1];
-      labelItemHeight.value = `${lastLabelItem.clientHeight + 2}px`;
-    };
-
-    init();
-
-    onMounted(() => {
-      getLabelHeight();
-    });
-
-    return {
-      labelItemRef,
-      inputRef,
-      innerValue,
-      addValue,
-      labelItemHeight,
-      isAddStatus,
-      handleClickItem,
-      handleRemoveItem,
-      toggleAddTagStatus,
-      addTag,
-    };
+  limit: {
+    type: [String, Number, undefined],
+    default: undefined,
   },
+});
+
+const emit = defineEmits(['update:modelValue', 'onClickItem', 'onRemoveItem', 'onAddTagWarning']);
+
+const labelItemRef = ref(null);
+const inputRef = ref(null);
+const labelItemHeight = ref('');
+const addValue = ref();
+const isAddStatus = ref(false);
+const innerValue = ref([]);
+const handleClickItem = (tag) => {
+  emit('onClickItem', tag);
+};
+
+const handleRemoveItem = (tag) => {
+  if (tag.disabled) { return; }
+
+  const findIndex = innerValue.value.findIndex(item => item.value === tag.value);
+  const targetTag = innerValue.value.splice(findIndex, 1);
+
+  emit('onRemoveItem', targetTag[0]);
+  emit('update:modelValue', innerValue.value);
+};
+
+const toggleAddTagStatus = async () => {
+  isAddStatus.value = !isAddStatus.value;
+  if (isAddStatus.value) {
+    await nextTick();
+    inputRef.value.focus();
+  }
+};
+
+const addTag = () => {
+  console.log('add tag!');
+  const isExist = innerValue.value.find(item => item.label === addValue.value);
+  if (isExist) {
+    console.warn('標籤名重複！');
+    emit('onAddTagWarning', 'repeat');
+
+    return;
+  }
+
+  if (props.limit) {
+    const isReachLimitation = innerValue.value.length >= Number(props.limit);
+
+    if (isReachLimitation) {
+      console.warn(`已達所設定${props.limit}上限`);
+      emit('onAddTagWarning', 'limit');
+
+      return;
+    }
+  }
+
+  const addLabelItem = {
+    value: addValue.value,
+    label: addValue.value,
+  };
+
+  innerValue.value.push(addLabelItem);
+  emit('update:modelValue', innerValue.value);
+  addValue.value = '';
+};
+
+const init = () => {
+  innerValue.value = props.modelValue;
+};
+
+const getLabelHeight = () => {
+  const lastLabelItem = labelItemRef.value[labelItemRef.value.length - 1];
+  labelItemHeight.value = `${lastLabelItem.clientHeight + 2}px`;
+};
+
+init();
+
+onMounted(() => {
+  getLabelHeight();
 });
 </script>
 

@@ -22,123 +22,109 @@
   </div>
 </template>
 
-<script>
-import { computed, defineComponent } from 'vue';
+<script setup>
 import imagePlaceholder from '@/assets/image/image-placeholder.jpeg';
 
-export default defineComponent({
-  name: 'ReImage',
-  props: {
-    src: {
-      props: [String, Object],
-      default: '',
-    },
-    alt: {
-      props: String,
-      default: '圖片',
-    },
-    ariaLabel: {
-      props: String,
-      default: '圖片',
-    },
-    srcPlaceholder: {
-      props: [String, Object],
-      default: '',
-    },
-    width: {
-      props: String,
-      default: '100%',
-    },
-    height: {
-      props: String,
-      default: 'auto',
-    },
-    contain: {
-      type: Boolean,
-      default: false,
-    },
-    containBg: {
-      type: String,
-      default: 'transparent',
-    },
-    containBorder: {
-      type: String,
-      default: '',
-    },
-    // 以下用於設定背景圖
-    bg: {
-      type: Boolean,
-      default: false,
-    },
-    bgSetting: {
-      width: '100%',
-      height: '100%',
-      position: 'center',
-      repeat: 'no-repeat',
-      size: 'cover',
-    },
+const props = defineProps({
+  src: {
+    props: [String, Object],
+    default: '',
   },
-  setup(props) {
-    const imgSrc = computed(() => {
-      return props.src || props.srcPlaceholder || imagePlaceholder;
-    });
+  alt: {
+    props: String,
+    default: '圖片',
+  },
+  ariaLabel: {
+    props: String,
+    default: '圖片',
+  },
+  srcPlaceholder: {
+    props: [String, Object],
+    default: '',
+  },
+  width: {
+    props: String,
+    default: '100%',
+  },
+  height: {
+    props: String,
+    default: 'auto',
+  },
+  contain: {
+    type: Boolean,
+    default: false,
+  },
+  containBg: {
+    type: String,
+    default: 'transparent',
+  },
+  containBorder: {
+    type: String,
+    default: '',
+  },
+  // 以下用於設定背景圖
+  bg: {
+    type: Boolean,
+    default: false,
+  },
+  bgSetting: {
+    width: '100%',
+    height: '100%',
+    position: 'center',
+    repeat: 'no-repeat',
+    size: 'cover',
+  },
+});
 
-    const arialLabelValue = computed(() => {
-      return props.ariaLabel || props.alt;
-    });
+const imgSrc = computed(() => {
+  return props.src || props.srcPlaceholder || imagePlaceholder;
+});
 
-    const imgStyle = computed(() => {
-      if (props.contain) {
-        return {
-          width: props.width,
-          height: props.height,
-        };
-      }
+const arialLabelValue = computed(() => {
+  return props.ariaLabel || props.alt;
+});
 
-      return {
-        height: props.height,
-      };
-    });
-
-    const imgContainerStyle = computed(() => {
-      if (props.contain) {
-        const tempStyle = {
-          'width': props.width,
-          'height': props.height,
-          'background-color': props.containBg,
-        };
-
-        if (props.containBorder) {
-          tempStyle.outline = props.containBorder;
-        }
-
-        return tempStyle;
-      }
-
-      return {
-        width: props.width,
-      };
-    });
-
-    const bgStyle = computed(() => {
-      return {
-        'width': props.bgSetting.width,
-        'height': props.bgSetting.height,
-        'background-position': props.bgSetting.position || 'center',
-        'background-repeat': props.bgSetting.repeat || 'no-repeat',
-        'background-size': props.bgSetting.size || 'cover',
-      };
-    });
-
+const imgStyle = computed(() => {
+  if (props.contain) {
     return {
-      imagePlaceholder,
-      imgSrc,
-      arialLabelValue,
-      imgStyle,
-      imgContainerStyle,
-      bgStyle,
+      width: props.width,
+      height: props.height,
     };
-  },
+  }
+
+  return {
+    height: props.height,
+  };
+});
+
+const imgContainerStyle = computed(() => {
+  if (props.contain) {
+    const tempStyle = {
+      'width': props.width,
+      'height': props.height,
+      'background-color': props.containBg,
+    };
+
+    if (props.containBorder) {
+      tempStyle.outline = props.containBorder;
+    }
+
+    return tempStyle;
+  }
+
+  return {
+    width: props.width,
+  };
+});
+
+const bgStyle = computed(() => {
+  return {
+    'width': props.bgSetting.width,
+    'height': props.bgSetting.height,
+    'background-position': props.bgSetting.position || 'center',
+    'background-repeat': props.bgSetting.repeat || 'no-repeat',
+    'background-size': props.bgSetting.size || 'cover',
+  };
 });
 </script>
 

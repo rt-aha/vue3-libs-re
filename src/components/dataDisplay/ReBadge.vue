@@ -16,66 +16,55 @@
   </div>
 </template>
 
-<script>
-import { computed, defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ReBadge',
-  props: {
-    value: {
-      type: [String, Number],
-      default: '12',
-    },
-    color: {
-      type: String,
-      default: '#032f60',
-    },
-    position: {
-      type: String,
-      default: '',
-      validator(val) {
-        return ['', 'left', 'right'].includes(val);
-      },
-    },
-    dot: {
-      type: Boolean,
-      default: false,
-    },
-    limit: {
-      type: [String, Number, undefined],
-      default: undefined,
-    },
-    showZero: {
-      type: Boolean,
-      default: true,
+<script setup>
+const props = defineProps({
+  value: {
+    type: [String, Number],
+    default: '12',
+  },
+  color: {
+    type: String,
+    default: '#032f60',
+  },
+  position: {
+    type: String,
+    default: '',
+    validator(val) {
+      return ['', 'left', 'right'].includes(val);
     },
   },
-  setup(props) {
-    const calcValue = computed(() => {
-      if (props.limit) {
-        if (Number(props.value) > Number(props.limit)) {
-          return `${props.limit}+`;
-        }
-      }
-
-      return props.value;
-    });
-
-    const isShowZero = computed(() => {
-      if (!props.showZero) {
-        if (props.value <= 0) {
-          return false;
-        }
-      }
-
-      return true;
-    });
-
-    return {
-      calcValue,
-      isShowZero,
-    };
+  dot: {
+    type: Boolean,
+    default: false,
   },
+  limit: {
+    type: [String, Number, undefined],
+    default: undefined,
+  },
+  showZero: {
+    type: Boolean,
+    default: true,
+  },
+});
+
+const calcValue = computed(() => {
+  if (props.limit) {
+    if (Number(props.value) > Number(props.limit)) {
+      return `${props.limit}+`;
+    }
+  }
+
+  return props.value;
+});
+
+const isShowZero = computed(() => {
+  if (!props.showZero) {
+    if (props.value <= 0) {
+      return false;
+    }
+  }
+
+  return true;
 });
 </script>
 

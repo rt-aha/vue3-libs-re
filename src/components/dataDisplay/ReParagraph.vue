@@ -18,16 +18,11 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ReParagraph',
-  props: {
-    wording: {
-      type: Array,
-      default: () => [],
-    },
+<script setup>
+const props = defineProps({
+  wording: {
+    type: Array,
+    default: () => [],
   },
 });
 </script>

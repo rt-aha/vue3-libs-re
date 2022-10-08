@@ -31,39 +31,27 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
-
-export default defineComponent({
-  name: 'ReTabs',
-
-  props: {
-    modelValue: {
-      type: String,
-      defualt: '',
-    },
-    tabsConfig: {
-      type: Array,
-      default: () => [],
-    },
-    currTab: {
-      default: '',
-    },
+<script setup>
+const props = defineProps({
+  modelValue: {
+    type: String,
+    defualt: '',
   },
-  setup(props, { emit }) {
-    const tabWidth = ref({});
-
-    const handleClick = (tab) => {
-      if (tab.disabled) { return; }
-      emit('change', tab);
-    };
-
-    return {
-      tabWidth,
-      handleClick,
-    };
+  tabsConfig: {
+    type: Array,
+    default: () => [],
+  },
+  currTab: {
+    default: '',
   },
 });
+
+const tabWidth = ref({});
+
+const handleClick = (tab) => {
+  if (tab.disabled) { return; }
+  emit('change', tab);
+};
 </script>
 
 <style lang="scss" scoped>

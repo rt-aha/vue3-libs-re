@@ -37,86 +37,74 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+<script setup>
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 
-export default defineComponent({
-  name: 'ReAccordion',
-  components: {
-    ReCollapseTransition,
+const props = defineProps({
+  data: {
+    type: Array,
+    default: () => [],
   },
-  props: {
-    data: {
-      type: Array,
-      default: () => [],
-    },
-    mt: {
-      type: Boolean,
-      default: false,
-    },
-    vhtml: {
-      type: Boolean,
-      default: false,
-    },
+  mt: {
+    type: Boolean,
+    default: false,
   },
-  setup(props) {
-    const route = useRoute();
-    const expandStatus = ref({});
-    const initExpandStatus = () => {
-      const keysObj = props.data.reduce((obj, item) => {
-        obj[item.key] = false;
-        return obj;
-      }, {});
-      expandStatus.value = keysObj;
-      let currExpandKey = '';
-
-      return (key) => {
-        if (key === currExpandKey) {
-          expandStatus.value[currExpandKey] = false;
-          currExpandKey = '';
-          return;
-        }
-
-        if (currExpandKey) {
-          expandStatus.value[currExpandKey] = false;
-        }
-
-        currExpandKey = key;
-        expandStatus.value[key] = true;
-      };
-    };
-
-    // 閉包初始化
-    let handleExpandStatus = initExpandStatus();
-
-    // 若有預設要打開的
-    const defaultExpand = () => {
-      const expandKey = route.query.expand || '';
-      if (expandKey) {
-        console.log('expandKey', expandKey);
-        handleExpandStatus(expandKey);
-      }
-    };
-
-    onMounted(() => {
-      defaultExpand();
-    });
-
-    watch(
-      () => props.data,
-      () => {
-        handleExpandStatus = initExpandStatus();
-      },
-    );
-
-    return {
-      expandStatus,
-      handleExpandStatus,
-    };
+  vhtml: {
+    type: Boolean,
+    default: false,
   },
 });
+
+const route = useRoute();
+
+const expandStatus = ref({});
+
+const initExpandStatus = () => {
+  const keysObj = props.data.reduce((obj, item) => {
+    obj[item.key] = false;
+    return obj;
+  }, {});
+  expandStatus.value = keysObj;
+  let currExpandKey = '';
+
+  return (key) => {
+    if (key === currExpandKey) {
+      expandStatus.value[currExpandKey] = false;
+      currExpandKey = '';
+      return;
+    }
+
+    if (currExpandKey) {
+      expandStatus.value[currExpandKey] = false;
+    }
+
+    currExpandKey = key;
+    expandStatus.value[key] = true;
+  };
+};
+
+// 閉包初始化
+let handleExpandStatus = initExpandStatus();
+
+// 若有預設要打開的
+const defaultExpand = () => {
+  const expandKey = route.query.expand || '';
+  if (expandKey) {
+    console.log('expandKey', expandKey);
+    handleExpandStatus(expandKey);
+  }
+};
+
+onMounted(() => {
+  defaultExpand();
+});
+
+watch(
+  () => props.data,
+  () => {
+    handleExpandStatus = initExpandStatus();
+  },
+);
 </script>
 
 <style lang="scss" scoped>

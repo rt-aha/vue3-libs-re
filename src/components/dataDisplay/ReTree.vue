@@ -4,14 +4,11 @@
   </ul>
 </template>
 
-<script>
-export default {
-  name: 'ReTree',
-  props: {
-    config: {
-      type: Array,
-      default: () => [],
-    },
+<script setup>
+const props = defineProps({
+  config: {
+    type: Array,
+    default: () => [],
   },
-};
+});
 </script>
