@@ -4,48 +4,35 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref, watch } from 'vue';
+<script setup>
 import useValidate from '@/hooks/useValidate';
 
-export default defineComponent({
-  name: 'ReInput',
-  props: {
-    modelValue: {
-      type: String,
-      default: '',
-    },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const mdTexts = ref('');
-    const { validFn } = useValidate();
-    const updateValue = (value) => {
-      emit('update:modelValue', value);
-
-      // validFn(event);
-    };
-
-    watch(
-      () => mdTexts.value,
-      (newValue) => {
-        // console.log('input', 'newValue',newValue)
-        updateValue(newValue);
-      },
-    );
-
-    const init = () => {
-      mdTexts.value = props.modelValue;
-    };
-
-    init();
-
-    return {
-      updateValue,
-      mdTexts,
-    };
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: '',
   },
 });
+const emit = defineEmits(['update:modelValue']);
+
+const mdTexts = ref('');
+const { validFn } = useValidate();
+const updateValue = (value) => {
+  emit('update:modelValue', value);
+};
+
+watch(
+  () => mdTexts.value,
+  (newValue) => {
+    updateValue(newValue);
+  },
+);
+
+const init = () => {
+  mdTexts.value = props.modelValue;
+};
+
+init();
 </script>
 
 <style lang="scss"></style>

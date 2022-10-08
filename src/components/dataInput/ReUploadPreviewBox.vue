@@ -37,122 +37,103 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, ref } from 'vue';
+<script setup>
 import useModal from '@/hooks/useModal';
 import ReUploadPreviewVideoModalContent from '@/components/dataInput/ReUploadPreviewVideoModalContent.vue';
+const props = defineProps({
+  attachment: {
+    type: Object,
+    default: () => ({
+      file: '',
+      name: '',
+      size: '',
+      id: '',
+      type: 'image', // image, video, other
+    }),
+  },
+});
+
 const { modal } = useModal();
 
-export default defineComponent({
-  name: 'RePreviewBox',
-  props: {
-    attachment: {
-      type: Object,
-      default: () => ({
-        file: '',
-        name: '',
-        size: '',
-        id: '',
-        type: 'image', // image, video, other
-      }),
+const file = ref({});
+const snapImage = ref('');
+const isLoading = ref(false);
+
+const removeFile = () => {
+  emit('removeFile', props.attachment.id);
+};
+
+const handlePreview = () => {
+  isLoading.value = true;
+  if (!props.attachment.file) {
+    return;
+  }
+
+  const fileReader = new FileReader();
+  fileReader.onload = () => {
+    const blob = new Blob([fileReader.result], { type: props.attachment.file.type });
+
+    const videoTempUrl = URL.createObjectURL(blob);
+
+    const video = document.createElement('video');
+
+    const snapImageFn = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      const image = canvas.toDataURL();
+
+      snapImage.value = image;
+      isLoading.value = false;
+
+      canvas.toBlob(async (blobFile) => {
+        const formData = new FormData();
+        formData.append('file', blobFile, 'image.png');
+      }, 'image/png');
+
+      const success = image.length > 100000;
+      if (success) {
+        URL.revokeObjectURL(videoTempUrl);
+      }
+
+      return success;
+    };
+
+    const timeupdate = () => {
+      if (snapImageFn()) {
+        video.removeEventListener('timeupdate', timeupdate);
+        video.pause();
+      }
+    };
+
+    video.addEventListener('timeupdate', timeupdate);
+    video.preload = 'metadata';
+    video.src = videoTempUrl;
+    video.muted = true;
+    video.playsInline = true;
+    video.play();
+  };
+
+  fileReader.readAsArrayBuffer(props.attachment.file);
+};
+
+const openPreviewModal = () => {
+  modal({
+    data: {
+      videoSource: props.attachment.file || '',
+      imageSource: props.attachment.file || '',
+      type: props.attachment.type,
     },
-  },
-  setup(props, { emit }) {
-    const file = ref({});
-    const snapImage = ref('');
-    // const videoSource = ref('');
-    // const videoDom = ref(null);
-    const isLoading = ref(false);
+    render: ReUploadPreviewVideoModalContent,
+  });
+};
 
-    const removeFile = () => {
-      emit('removeFile', props.attachment.id);
-    };
-
-    const handlePreview = () => {
-      isLoading.value = true;
-      if (!props.attachment.file) {
-        return;
-      }
-
-      const fileReader = new FileReader();
-      fileReader.onload = () => {
-        const blob = new Blob([fileReader.result], { type: props.attachment.file.type });
-
-        const videoTempUrl = URL.createObjectURL(blob);
-
-        const video = document.createElement('video');
-
-        const snapImageFn = () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = video.videoWidth;
-          canvas.height = video.videoHeight;
-          canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-          const image = canvas.toDataURL();
-
-          snapImage.value = image;
-          isLoading.value = false;
-
-          canvas.toBlob(async (blobFile) => {
-            const formData = new FormData();
-            formData.append('file', blobFile, 'image.png');
-          }, 'image/png');
-
-          const success = image.length > 100000;
-          if (success) {
-            URL.revokeObjectURL(videoTempUrl);
-          }
-
-          return success;
-        };
-
-        const timeupdate = () => {
-          if (snapImageFn()) {
-            video.removeEventListener('timeupdate', timeupdate);
-            video.pause();
-          }
-        };
-
-        video.addEventListener('timeupdate', timeupdate);
-        video.preload = 'metadata';
-        video.src = videoTempUrl;
-        video.muted = true;
-        video.playsInline = true;
-        video.play();
-      };
-
-      fileReader.readAsArrayBuffer(props.attachment.file);
-    };
-
-    const openPreviewModal = () => {
-      modal({
-        data: {
-          videoSource: props.attachment.file || '',
-          imageSource: props.attachment.file || '',
-          type: props.attachment.type,
-        },
-        render: ReUploadPreviewVideoModalContent,
-      });
-    };
-
-    onMounted(() => {
-      console.log('props.attachment', props.attachment);
-      console.log(props.attachment.type === 'video');
-      if (props.attachment.type === 'video') {
-        handlePreview();
-        // createTempVideoSource();
-      }
-    });
-
-    return {
-      file,
-      snapImage,
-      removeFile,
-      // videoSource,
-      // videoDom,
-      isLoading,
-      openPreviewModal,
-    };
-  },
+onMounted(() => {
+  if (props.attachment.type === 'video') {
+    handlePreview();
+    // createTempVideoSource();
+  }
 });
 </script>
 

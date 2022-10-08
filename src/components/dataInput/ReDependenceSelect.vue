@@ -51,201 +51,168 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, nextTick, ref, watch } from 'vue';
+<script setup>
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
 import ReSelectMultiTag from '@/components/dataInput/ReSelectMultiTag.vue';
 import ReEmpty from '@/components/dataDisplay/ReEmpty.vue';
 
-export default defineComponent({
-  name: 'ReDependenceSelect',
-  components: {
-    ReCollapseTransition,
-    ReSelectMultiTag,
-    ReEmpty,
+const props = defineProps({
+  modelValue: {
+    default: '',
   },
-  props: {
-    modelValue: {
-      default: '',
-    },
-    options: {
-      type: Array,
-      default: () => [],
-    },
-    multiple: {
-      type: Boolean,
-      defualt: false,
-    },
-    prefix: {
-      type: String,
-      defualt: '',
-    },
-    extraValue: {
-      defualt: '',
-    },
-    dependenceOptions: {
-      type: Array,
-      default: () => [],
-    },
+  options: {
+    type: Array,
+    default: () => [],
   },
-  emits: ['update:modelValue', 'onChange'],
-  setup(props, { emit }) {
-    const innerMulti = ref([]);
-    const innerSingle = ref('');
-    const innerOptions = ref([]);
-    const validDependenceKeys = ref([]);
-
-    // const tagOpts = ref([
-    //   {
-    //     label: 'opt1',
-    //     value: 'opt1',
-    //   },
-    // ]);
-
-    const { validFn } = useValidate();
-    const isExpand = ref(false);
-
-    const setInitValue = () => {
-      if (props.multiple) {
-        innerMulti.value = props.modelValue;
-      }
-      else {
-        innerSingle.value = props.modelValue;
-      }
-    };
-
-    const toggleExpand = () => {
-      isExpand.value = !isExpand.value;
-    };
-
-    // const openSelect = () => {
-    //   isExpand.value = true;
-    // };
-
-    const closeSelect = () => {
-      isExpand.value = false;
-    };
-
-    const setInnerMulti = () => {
-      const tempValue = props.options.filter(item => props.modelValue.includes(item.value));
-
-      innerMulti.value = tempValue;
-    };
-
-    const setInnerSingle = () => {
-      const valueObj = props.options.find((item) => {
-        return item.value === props.modelValue;
-      });
-
-      innerSingle.value = valueObj?.label || '';
-    };
-
-    const handleOption = async (opt) => {
-      if (opt.disabled) { return; }
-
-      if (props.multiple) {
-        let newValue = [];
-        let actionType = '';
-
-        if (props.modelValue.includes(opt.value)) {
-          newValue = props.modelValue.filter(item => item !== opt.value);
-          actionType = 'remove';
-        }
-        else {
-          newValue = [...props.modelValue, opt.value];
-          actionType = 'add';
-        }
-
-        emit('update:modelValue', newValue);
-        await nextTick();
-        setInnerMulti();
-        emit('onChange', actionType, opt, newValue);
-      }
-      else {
-        emit('update:modelValue', opt.value);
-        await nextTick();
-        setInnerSingle();
-        emit('onChange', opt);
-      }
-      validFn('change');
-      isExpand.value = false;
-    };
-
-    const isActive = (opt) => {
-      console.log('opt', opt);
-      if (props.multiple) {
-        console.log(1);
-        return props.modelValue.includes(opt.value);
-      }
-
-      console.log(2, opt.value, props.modelValue, opt.value === props.modelValue);
-
-      return opt.value === props.modelValue;
-    };
-
-    const onRemoveItem = (opt) => {
-      handleOption(opt);
-    };
-
-    // const innerValue = computed(() => {
-    //   const valueObj = props.options.find((item) => {
-    //     return item.value === props.modelValue;
-    //   });
-
-    //   return valueObj?.label || '';
-    // });
-
-    const handleInnerOptions = () => {
-      if (validDependenceKeys.value.includes(props.extraValue)) {
-        const matchList = props.dependenceOptions.find((item) => {
-          return item.key === props.extraValue;
-        });
-
-        console.log('matchList', matchList);
-        innerOptions.value = matchList.options;
-      }
-    };
-
-    const init = () => {
-      validDependenceKeys.value = props.dependenceOptions.map(item => item.key);
-    };
-
-    init();
-
-    watch(
-      () => props.modelValue,
-      () => {
-        setInitValue();
-      },
-      { immediate: true },
-    );
-
-    watch(
-      () => props.extraValue,
-      (newValue) => {
-        emit('update:modelValue', '');
-        handleInnerOptions();
-        console.log('newValue', newValue);
-      },
-    );
-
-    return {
-      // innerValue,
-      toggleExpand,
-      isExpand,
-      handleOption,
-      // openSelect,
-      closeSelect,
-      innerMulti,
-      innerSingle,
-      // tagOpts,
-      isActive,
-      onRemoveItem,
-      innerOptions,
-    };
+  multiple: {
+    type: Boolean,
+    defualt: false,
+  },
+  prefix: {
+    type: String,
+    defualt: '',
+  },
+  extraValue: {
+    defualt: '',
+  },
+  dependenceOptions: {
+    type: Array,
+    default: () => [],
   },
 });
+const emit = defineEmits(['update:modelValue', 'onChange']);
+const innerMulti = ref([]);
+const innerSingle = ref('');
+const innerOptions = ref([]);
+const validDependenceKeys = ref([]);
+
+const { validFn } = useValidate();
+const isExpand = ref(false);
+
+const setInitValue = () => {
+  if (props.multiple) {
+    innerMulti.value = props.modelValue;
+  }
+  else {
+    innerSingle.value = props.modelValue;
+  }
+};
+
+const toggleExpand = () => {
+  isExpand.value = !isExpand.value;
+};
+
+// const openSelect = () => {
+//   isExpand.value = true;
+// };
+
+const closeSelect = () => {
+  isExpand.value = false;
+};
+
+const setInnerMulti = () => {
+  const tempValue = props.options.filter(item => props.modelValue.includes(item.value));
+
+  innerMulti.value = tempValue;
+};
+
+const setInnerSingle = () => {
+  const valueObj = props.options.find((item) => {
+    return item.value === props.modelValue;
+  });
+
+  innerSingle.value = valueObj?.label || '';
+};
+
+const handleOption = async (opt) => {
+  if (opt.disabled) { return; }
+
+  if (props.multiple) {
+    let newValue = [];
+    let actionType = '';
+
+    if (props.modelValue.includes(opt.value)) {
+      newValue = props.modelValue.filter(item => item !== opt.value);
+      actionType = 'remove';
+    }
+    else {
+      newValue = [...props.modelValue, opt.value];
+      actionType = 'add';
+    }
+
+    emit('update:modelValue', newValue);
+    await nextTick();
+    setInnerMulti();
+    emit('onChange', actionType, opt, newValue);
+  }
+  else {
+    emit('update:modelValue', opt.value);
+    await nextTick();
+    setInnerSingle();
+    emit('onChange', opt);
+  }
+  validFn('change');
+  isExpand.value = false;
+};
+
+const isActive = (opt) => {
+  console.log('opt', opt);
+  if (props.multiple) {
+    console.log(1);
+    return props.modelValue.includes(opt.value);
+  }
+
+  console.log(2, opt.value, props.modelValue, opt.value === props.modelValue);
+
+  return opt.value === props.modelValue;
+};
+
+const onRemoveItem = (opt) => {
+  handleOption(opt);
+};
+
+// const innerValue = computed(() => {
+//   const valueObj = props.options.find((item) => {
+//     return item.value === props.modelValue;
+//   });
+
+//   return valueObj?.label || '';
+// });
+
+const handleInnerOptions = () => {
+  if (validDependenceKeys.value.includes(props.extraValue)) {
+    const matchList = props.dependenceOptions.find((item) => {
+      return item.key === props.extraValue;
+    });
+
+    console.log('matchList', matchList);
+    innerOptions.value = matchList.options;
+  }
+};
+
+const init = () => {
+  validDependenceKeys.value = props.dependenceOptions.map(item => item.key);
+};
+
+init();
+
+watch(
+  () => props.modelValue,
+  () => {
+    setInitValue();
+  },
+  { immediate: true },
+);
+
+watch(
+  () => props.extraValue,
+  (newValue) => {
+    emit('update:modelValue', '');
+    handleInnerOptions();
+    console.log('newValue', newValue);
+  },
+);
 </script>
 
 <style lang="scss" scoped>

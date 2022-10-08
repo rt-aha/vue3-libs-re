@@ -12,82 +12,66 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, inject, ref } from 'vue';
+<script setup>
 import ReFormMessage from '@/components/dataInput/ReFormMessage.vue';
 
-export default defineComponent({
-  name: 'ReFormItem',
-  components: {
-    ReFormMessage,
+const props = defineProps({
+  formKey: {
+    type: String,
+    default: '',
   },
-  props: {
-    formKey: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    hint: {
-      type: String,
-      default: '',
-    },
-    required: {
-      default: false,
-    },
+  label: {
+    type: String,
+    default: '',
   },
-  setup(props) {
-    const formErrorMessage = ref('');
-    const formValue = inject('formValue');
-    const formRules = inject('formRules');
-
-    const validate = async (event) => {
-      const rule = formRules[props.formKey];
-
-      if (rule) {
-        const triggerEvents = rule.trigger || [];
-
-        if (triggerEvents.includes(event) || event === 'enforceValidate') {
-          // 這個 validator 就是是外面設定的
-          const result = await rule.validator({
-            value: formValue()[props.formKey],
-            label: props.label,
-            trigger: triggerEvents,
-          });
-
-          if (!result.isPass) {
-            return result.errorMessage;
-          }
-        }
-      }
-
-      return null;
-    };
-
-    const validateFields = async (event) => {
-      if (formRules[props.formKey]) {
-        const errorMessage = await validate(event);
-
-        if (errorMessage) {
-          formErrorMessage.value = errorMessage;
-          return false;
-        }
-
-        formErrorMessage.value = '';
-        return true;
-      }
-    };
-
-    return {
-      formValue,
-      formRules,
-      formErrorMessage,
-      validateFields,
-    };
+  hint: {
+    type: String,
+    default: '',
+  },
+  required: {
+    default: false,
   },
 });
+const formErrorMessage = ref('');
+const formValue = inject('formValue');
+const formRules = inject('formRules');
+
+const validate = async (event) => {
+  const rule = formRules[props.formKey];
+
+  if (rule) {
+    const triggerEvents = rule.trigger || [];
+
+    if (triggerEvents.includes(event) || event === 'enforceValidate') {
+      // 這個 validator 就是是外面設定的
+      const result = await rule.validator({
+        value: formValue()[props.formKey],
+        label: props.label,
+        trigger: triggerEvents,
+      });
+
+      if (!result.isPass) {
+        return result.errorMessage;
+      }
+    }
+  }
+
+  return null;
+};
+
+const validateFields = async (event) => {
+  if (formRules[props.formKey]) {
+    const errorMessage = await validate(event);
+
+    if (errorMessage) {
+      formErrorMessage.value = errorMessage;
+      return false;
+    }
+
+    formErrorMessage.value = '';
+    return true;
+  }
+};
 </script>
 
 <style lang="scss" scoped>

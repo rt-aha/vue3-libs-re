@@ -34,44 +34,33 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
+<script setup>
 import useValidate from '@/hooks/useValidate';
 
-export default defineComponent({
-  name: 'ReRadio',
-  props: {
-    modelValue: {
-      default: null,
-    },
-    options: {
-      type: Array,
-      default: () => [],
-    },
-    direction: {
-      type: String,
-      default: 'horizontal',
-    },
+const props = defineProps({
+  modelValue: {
+    default: null,
   },
-  emits: ['update:modelValue', 'onChange'],
-  setup(props, { emit }) {
-    const { validFn } = useValidate();
-
-    const handleChange = (opt) => {
-      if (opt.disabled) { return; }
-
-      emit('update:modelValue', opt.value);
-      emit('onChange', opt);
-      validFn('change');
-    };
-
-    return {
-      handleChange,
-      uuid: nanoid(),
-    };
+  options: {
+    type: Array,
+    default: () => [],
+  },
+  direction: {
+    type: String,
+    default: 'horizontal',
   },
 });
+const emit = defineEmits(['update:modelValue', 'onChange']);
+
+const { validFn } = useValidate();
+
+const handleChange = (opt) => {
+  if (opt.disabled) { return; }
+
+  emit('update:modelValue', opt.value);
+  emit('onChange', opt);
+  validFn('change');
+};
 </script>
 
 <style lang="scss" scoped>

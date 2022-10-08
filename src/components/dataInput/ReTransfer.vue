@@ -54,171 +54,148 @@
   </div>
 </template>
 
-<script>
-import { computed, defineComponent, ref, shallowRef } from 'vue';
+<script setup>
 import ReCheckboxGroup from '@/components/ReCheckboxGroup.vue';
 import ReCheckbox from '@/components/ReCheckbox.vue';
 import ReDivider from '@/components/ReDivider.vue';
 
-export default defineComponent({
-  name: 'ReTransfer',
-  components: {
-    ReCheckboxGroup,
-    ReCheckbox,
-    ReDivider,
+const props = defineProps({
+  modelValue: {
+    type: Array,
+    defualt: () => [],
   },
-  props: {
-    modelValue: {
-      type: Array,
-      defualt: () => [],
-    },
-    options: {
-      type: Array,
-      defualt: () => [],
-    },
-    sourceFilter: {
-      type: Boolean,
-      default: false,
-    },
-    targetFilter: {
-      type: Boolean,
-      default: false,
-    },
+  options: {
+    type: Array,
+    defualt: () => [],
   },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const optFilterKeyword = ref('');
-    const isAll = ref(false);
-    const innerValue = ref(['option1']);
-    // 紀錄初始即為 disabled 狀態的選項，避免移除選時變為可選
-    const recordOriginDisabledItems = shallowRef([]);
-    // 紀錄初始即已被選擇的選項，避免移除選時變為可選
-    const recordOriginCheckedValue = shallowRef([]);
-    const filterOptions = ref(props.options);
-
-    const optionLength = computed(() => props.options.length);
-    const checkedOptions = computed(() => {
-      return props.options.filter((item) => {
-        return innerValue.value.find(item2 => item2 === item.value);
-      });
-    });
-    const checkedOptionLength = computed(() => checkedOptions.value.length);
-
-    const updateModelValue = (val) => {
-      innerValue.value = val;
-      emit('update:modelValue', innerValue.value);
-    };
-
-    const removeOption = (opt) => {
-      if (opt.disabled) { return; }
-      const tempOpt = innerValue.value.filter(item => item !== opt.value);
-
-      // 更新組件內與外部 v-model 值
-      updateModelValue(tempOpt);
-    };
-
-    const onChange = (val) => {
-      if (val) {
-        const tempOpt = props.options.reduce((list, item) => {
-          if (item.disabled) {
-            const isInclude = innerValue.value.includes(item.value);
-            if (isInclude) {
-              list.push(item.value);
-            }
-          }
-          else {
-            list.push(item.value);
-          }
-
-          return list;
-        }, []);
-
-        updateModelValue(tempOpt);
-        return;
-      }
-
-      const temptOpt = props.options.reduce((list, item) => {
-        const isDisabledItem = recordOriginDisabledItems.value.includes(item.value);
-        const isOriginCheckedItem = recordOriginCheckedValue.value.includes(item.value);
-
-        if (isDisabledItem && isOriginCheckedItem) {
-          list.push(item.value);
-        }
-
-        return list;
-      }, []);
-
-      updateModelValue(temptOpt);
-    };
-
-    const handleInput = (e) => {
-      const keyword = e.target.value;
-      console.log('keyword', keyword);
-
-      filterOptions.value = props.options.filter((item) => {
-        console.log(item.value, keyword.toLowerCase());
-        console.log('22', item.value.includes(keyword.toLowerCase()));
-        return item.value.includes(keyword.toLowerCase());
-      });
-
-      console.log('filterOptions', filterOptions.value);
-    };
-
-    const checkIsAll = () => {
-      // 把 disabled 拔掉比較
-      const filterNonDisabledOptions = props.options.filter(item => !item.disabled);
-      const filterNonDisabledCheckedItem = innerValue.value.reduce((list, item) => {
-        if (!recordOriginDisabledItems.value.includes(item)) {
-          list.push(item);
-        }
-
-        return list;
-      }, []);
-
-      if (filterNonDisabledOptions.length === filterNonDisabledCheckedItem.length) {
-        isAll.value = true;
-      }
-    };
-
-    const init = () => {
-      innerValue.value = props.modelValue;
-
-      recordOriginDisabledItems.value = props.options.reduce((list, item) => {
-        if (item.disabled) {
-          list.push(item.value);
-        }
-        return list;
-      }, []);
-
-      recordOriginCheckedValue.value = props.options.reduce((list, item) => {
-        const isChecked = innerValue.value.includes(item.value);
-
-        if (isChecked) {
-          list.push(item.value);
-        }
-
-        return list;
-      }, []);
-
-      checkIsAll();
-    };
-
-    init();
-
-    return {
-      innerValue,
-      optionLength,
-      checkedOptions,
-      checkedOptionLength,
-      removeOption,
-      isAll,
-      onChange,
-      optFilterKeyword,
-      handleInput,
-      filterOptions,
-    };
+  sourceFilter: {
+    type: Boolean,
+    default: false,
+  },
+  targetFilter: {
+    type: Boolean,
+    default: false,
   },
 });
+const emit = defineEmits(['update:modelValue']);
+
+const optFilterKeyword = ref('');
+const isAll = ref(false);
+const innerValue = ref(['option1']);
+// 紀錄初始即為 disabled 狀態的選項，避免移除選時變為可選
+const recordOriginDisabledItems = shallowRef([]);
+// 紀錄初始即已被選擇的選項，避免移除選時變為可選
+const recordOriginCheckedValue = shallowRef([]);
+const filterOptions = ref(props.options);
+
+const optionLength = computed(() => props.options.length);
+const checkedOptions = computed(() => {
+  return props.options.filter((item) => {
+    return innerValue.value.find(item2 => item2 === item.value);
+  });
+});
+const checkedOptionLength = computed(() => checkedOptions.value.length);
+
+const updateModelValue = (val) => {
+  innerValue.value = val;
+  emit('update:modelValue', innerValue.value);
+};
+
+const removeOption = (opt) => {
+  if (opt.disabled) { return; }
+  const tempOpt = innerValue.value.filter(item => item !== opt.value);
+
+  // 更新組件內與外部 v-model 值
+  updateModelValue(tempOpt);
+};
+
+const onChange = (val) => {
+  if (val) {
+    const tempOpt = props.options.reduce((list, item) => {
+      if (item.disabled) {
+        const isInclude = innerValue.value.includes(item.value);
+        if (isInclude) {
+          list.push(item.value);
+        }
+      }
+      else {
+        list.push(item.value);
+      }
+
+      return list;
+    }, []);
+
+    updateModelValue(tempOpt);
+    return;
+  }
+
+  const temptOpt = props.options.reduce((list, item) => {
+    const isDisabledItem = recordOriginDisabledItems.value.includes(item.value);
+    const isOriginCheckedItem = recordOriginCheckedValue.value.includes(item.value);
+
+    if (isDisabledItem && isOriginCheckedItem) {
+      list.push(item.value);
+    }
+
+    return list;
+  }, []);
+
+  updateModelValue(temptOpt);
+};
+
+const handleInput = (e) => {
+  const keyword = e.target.value;
+  console.log('keyword', keyword);
+
+  filterOptions.value = props.options.filter((item) => {
+    console.log(item.value, keyword.toLowerCase());
+    console.log('22', item.value.includes(keyword.toLowerCase()));
+    return item.value.includes(keyword.toLowerCase());
+  });
+
+  console.log('filterOptions', filterOptions.value);
+};
+
+const checkIsAll = () => {
+  // 把 disabled 拔掉比較
+  const filterNonDisabledOptions = props.options.filter(item => !item.disabled);
+  const filterNonDisabledCheckedItem = innerValue.value.reduce((list, item) => {
+    if (!recordOriginDisabledItems.value.includes(item)) {
+      list.push(item);
+    }
+
+    return list;
+  }, []);
+
+  if (filterNonDisabledOptions.length === filterNonDisabledCheckedItem.length) {
+    isAll.value = true;
+  }
+};
+
+const init = () => {
+  innerValue.value = props.modelValue;
+
+  recordOriginDisabledItems.value = props.options.reduce((list, item) => {
+    if (item.disabled) {
+      list.push(item.value);
+    }
+    return list;
+  }, []);
+
+  recordOriginCheckedValue.value = props.options.reduce((list, item) => {
+    const isChecked = innerValue.value.includes(item.value);
+
+    if (isChecked) {
+      list.push(item.value);
+    }
+
+    return list;
+  }, []);
+
+  checkIsAll();
+};
+
+init();
 </script>
 
 <style lang="scss" scoped>

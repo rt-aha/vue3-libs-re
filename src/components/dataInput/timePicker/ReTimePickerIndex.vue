@@ -9,76 +9,53 @@
   </div>
 </template>
 
-<script>
-import { ref, watch } from 'vue';
+<script setup>
 import dayjs from 'dayjs';
 import ReTimeList from '@/components/dataInput/timePicker/ReTimeList.vue';
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import ReInput from '@/components/dataInput/ReInput.vue';
 
-export default {
-  name: 'ReTimePicker',
-  components: {
-    ReTimeList,
-    ReCollapseTransition,
-    ReInput,
+const props = defineProps({
+  modelValue: {
+    type: Date,
+    default: () => new Date(),
   },
-  // mixins: [triggerValidate],
-  props: {
-    modelValue: {
-      type: Date,
-      default: () => new Date(),
-    },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const innerValue = ref(new Date());
-    const timeString = ref('');
-    const visible = ref(false);
-    const timelistRef = ref(null);
+});
+const emit = defineEmits(['update:modelValue']);
 
-    const handleInput = (value) => {
-      emit('update:modelValue', value);
-      // this.triggerValidate('change', value);
-    };
-    const closeTimeList = () => {
-      visible.value = false;
-    };
-    const openTimeList = () => {
-      visible.value = true;
-      timelistRef.value.splitTime();
-    };
-    const setInnerValue = () => {
-      innerValue.value = props.modelValue;
-    };
-    const setTimeString = () => {
-      timeString.value = dayjs(innerValue.value).format('HH:mm:ss');
-    };
+const innerValue = ref(new Date());
+const timeString = ref('');
+const visible = ref(false);
+const timelistRef = ref(null);
 
+const handleInput = (value) => {
+  emit('update:modelValue', value);
+  // this.triggerValidate('change', value);
+};
+const closeTimeList = () => {
+  visible.value = false;
+};
+const openTimeList = () => {
+  visible.value = true;
+  timelistRef.value.splitTime();
+};
+const setInnerValue = () => {
+  innerValue.value = props.modelValue;
+};
+const setTimeString = () => {
+  timeString.value = dayjs(innerValue.value).format('HH:mm:ss');
+};
+
+setInnerValue();
+setTimeString();
+
+watch(
+  () => props.modelValue,
+  () => {
     setInnerValue();
     setTimeString();
-
-    watch(
-      () => props.modelValue,
-      () => {
-        setInnerValue();
-        setTimeString();
-      },
-    );
-
-    return {
-      innerValue,
-      timeString,
-      visible,
-      timelistRef,
-      handleInput,
-      closeTimeList,
-      openTimeList,
-      setInnerValue,
-      setTimeString,
-    };
   },
-};
+);
 </script>
 
 <style lang="scss" scoped>

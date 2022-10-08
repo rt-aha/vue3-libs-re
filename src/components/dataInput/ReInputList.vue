@@ -26,102 +26,86 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
-
+<script setup>
 import useValidate from '@/hooks/useValidate';
 
-export default defineComponent({
-  name: 'ReInputList',
-  props: {
-    modelValue: {
-      type: Array,
-      default: () => [],
-    },
-    type: {
-      type: String,
-      default: 'input',
-    },
-    step: {
-      type: [String, Number],
-      default: 1,
-    },
-    max: {
-      type: [String, Number, undefined],
-      default: undefined,
-    },
-    min: {
-      type: [String, Number, undefined],
-      default: undefined,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    prefix: {
-      type: String,
-      default: '',
-    },
+const props = defineProps({
+  modelValue: {
+    type: Array,
+    default: () => [],
   },
-  emits: ['update:modelValue'],
-  setup(props, { emit, slots }) {
-    const { validFn } = useValidate();
-    const inputType = ref('');
-    const innerValue = ref([]);
-    // const validFn = getCurrentInstance().parent.ctx.validateFields;
-    const inputField = ref(null);
-    // const formRules = inject('formRules', {});
-
-    const updateValue = (e, v, event) => {
-      if (v.disabled) { return; }
-      innerValue.value = innerValue.value.map((item) => {
-        if (item.id === v.id) {
-          item.value = e.target.value;
-        }
-
-        return item;
-      });
-
-      emit('update:modelValue', innerValue.value);
-      validFn(event);
-    };
-
-    const addNewItem = () => {
-      innerValue.value.push({
-        value: '',
-        id: nanoid(),
-      });
-      emit('update:modelValue', innerValue.value);
-    };
-
-    const removeItem = (v) => {
-      console.log('removeItem', v);
-
-      innerValue.value = innerValue.value.filter((item) => {
-        console.log('...', item.id, v.id);
-        return item.id !== v.id;
-      });
-
-      emit('update:modelValue', innerValue.value);
-    };
-
-    const init = () => {
-      innerValue.value = props.modelValue;
-    };
-
-    init();
-
-    return {
-      innerValue,
-      inputField,
-      updateValue,
-      slots,
-      inputType,
-      addNewItem,
-      removeItem,
-    };
+  type: {
+    type: String,
+    default: 'input',
+  },
+  step: {
+    type: [String, Number],
+    default: 1,
+  },
+  max: {
+    type: [String, Number, undefined],
+    default: undefined,
+  },
+  min: {
+    type: [String, Number, undefined],
+    default: undefined,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  prefix: {
+    type: String,
+    default: '',
   },
 });
+const emit = defineEmits(['update:modelValue']);
+
+const { validFn } = useValidate();
+const inputType = ref('');
+const innerValue = ref([]);
+// const validFn = getCurrentInstance().parent.ctx.validateFields;
+const inputField = ref(null);
+// const formRules = inject('formRules', {});
+
+const updateValue = (e, v, event) => {
+  if (v.disabled) { return; }
+  innerValue.value = innerValue.value.map((item) => {
+    if (item.id === v.id) {
+      item.value = e.target.value;
+    }
+
+    return item;
+  });
+
+  emit('update:modelValue', innerValue.value);
+  validFn(event);
+};
+
+const addNewItem = () => {
+  innerValue.value.push({
+    value: '',
+    id: nanoid(),
+  });
+  emit('update:modelValue', innerValue.value);
+};
+
+const removeItem = (v) => {
+  console.log('removeItem', v);
+
+  innerValue.value = innerValue.value.filter((item) => {
+    console.log('...', item.id, v.id);
+    return item.id !== v.id;
+  });
+
+  emit('update:modelValue', innerValue.value);
+};
+
+const init = () => {
+  innerValue.value = props.modelValue;
+};
+
+init();
 </script>
 
 <style lang="scss" scoped>

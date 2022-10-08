@@ -35,51 +35,40 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
+<script setup>
 import useValidate from '@/hooks/useValidate';
 
-export default defineComponent({
-  name: 'ReCheckbox',
-  props: {
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    direction: {
-      type: String,
-      default: 'horizontal',
-    },
-    render: {
-      default: null,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false,
   },
-  emits: ['update:modelValue', 'onChange'],
-  setup(props, { emit }) {
-    const { validFn } = useValidate();
-
-    const handleChange = () => {
-      if (props.disabled) { return; }
-      emit('update:modelValue', !props.modelValue);
-      emit('onChange', !props.modelValue);
-      validFn('change');
-    };
-
-    return {
-      uuid: nanoid(),
-      handleChange,
-    };
+  label: {
+    type: String,
+    default: '',
+  },
+  direction: {
+    type: String,
+    default: 'horizontal',
+  },
+  render: {
+    default: null,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
+const emit = defineEmits(['update:modelValue', 'onChange']);
+
+const { validFn } = useValidate();
+
+const handleChange = () => {
+  if (props.disabled) { return; }
+  emit('update:modelValue', !props.modelValue);
+  emit('onChange', !props.modelValue);
+  validFn('change');
+};
 </script>
 
 <style lang="scss" scoped>

@@ -51,160 +51,129 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, nextTick, ref, watch } from 'vue';
+<script setup>
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
 import ReSelectMultiTag from '@/components/dataInput/ReSelectMultiTag.vue';
 
-export default defineComponent({
-  name: 'ReSelect',
-  components: {
-    ReCollapseTransition,
-    ReSelectMultiTag,
+const props = defineProps({
+  modelValue: {
+    default: '',
   },
-  props: {
-    modelValue: {
-      default: '',
-    },
-    options: {
-      type: Array,
-      default: () => [],
-    },
-    multiple: {
-      type: Boolean,
-      defualt: false,
-    },
+  options: {
+    type: Array,
+    default: () => [],
   },
-  emits: ['update:modelValue', 'onChange'],
-  setup(props, { emit }) {
-    const innerMulti = ref([]);
-
-    const innerSingle = ref('');
-
-    // const tagOpts = ref([
-    //   {
-    //     label: 'opt1',
-    //     value: 'opt1',
-    //   },
-    // ]);
-
-    const { validFn } = useValidate();
-    const isExpand = ref(false);
-
-    const setInitValue = () => {
-      if (props.multiple) {
-        innerMulti.value = props.modelValue;
-      }
-      else {
-        innerSingle.value = props.modelValue;
-      }
-    };
-
-    const toggleExpand = () => {
-      isExpand.value = !isExpand.value;
-    };
-
-    const openSelect = () => {
-      isExpand.value = true;
-    };
-
-    const closeSelect = () => {
-      isExpand.value = false;
-    };
-
-    const setInnerMulti = () => {
-      const tempValue = props.options.filter(item => props.modelValue.includes(item.value));
-
-      innerMulti.value = tempValue;
-    };
-
-    const setInnerSingle = () => {
-      const valueObj = props.options.find((item) => {
-        return item.value === props.modelValue;
-      });
-
-      innerSingle.value = valueObj?.label || '';
-    };
-
-    const handleOption = async (opt) => {
-      if (opt.disabled) { return; }
-
-      if (props.multiple) {
-        let newValue = [];
-        let actionType = '';
-
-        if (props.modelValue.includes(opt.value)) {
-          newValue = props.modelValue.filter(item => item !== opt.value);
-          actionType = 'remove';
-        }
-        else {
-          newValue = [...props.modelValue, opt.value];
-          actionType = 'add';
-        }
-
-        emit('update:modelValue', newValue);
-        await nextTick();
-        setInnerMulti();
-        emit('onChange', actionType, opt, newValue);
-      }
-      else {
-        emit('update:modelValue', opt.value);
-        await nextTick();
-        setInnerSingle();
-        emit('onChange', opt);
-      }
-      validFn('change');
-      isExpand.value = false;
-    };
-
-    const isActive = (opt) => {
-      if (props.multiple) {
-        const isMatch = props.modelValue.includes(opt.value);
-        return isMatch;
-      }
-      else {
-        const isMatch = opt.value === props.modelValue;
-
-        return isMatch;
-      }
-    };
-
-    const onRemoveItem = (opt) => {
-      handleOption(opt);
-    };
-
-    // const innerValue = computed(() => {
-    //   const valueObj = props.options.find((item) => {
-    //     return item.value === props.modelValue;
-    //   });
-
-    //   return valueObj?.label || '';
-    // });
-
-    watch(
-      () => props.modelValue,
-      () => {
-        setInitValue();
-      },
-      { immediate: true },
-    );
-
-    return {
-      // innerValue,
-      toggleExpand,
-      isExpand,
-      handleOption,
-      openSelect,
-      closeSelect,
-      innerMulti,
-      innerSingle,
-      // tagOpts,
-      isActive,
-      onRemoveItem,
-    };
+  multiple: {
+    type: Boolean,
+    defualt: false,
   },
 });
+const emits = defineEmits(['update:modelValue', 'onChange']);
+
+const innerMulti = ref([]);
+
+const innerSingle = ref('');
+
+// const tagOpts = ref([
+//   {
+//     label: 'opt1',
+//     value: 'opt1',
+//   },
+// ]);
+
+const { validFn } = useValidate();
+const isExpand = ref(false);
+
+const setInitValue = () => {
+  if (props.multiple) {
+    innerMulti.value = props.modelValue;
+  }
+  else {
+    innerSingle.value = props.modelValue;
+  }
+};
+
+const toggleExpand = () => {
+  isExpand.value = !isExpand.value;
+};
+
+const openSelect = () => {
+  isExpand.value = true;
+};
+
+const closeSelect = () => {
+  isExpand.value = false;
+};
+
+const setInnerMulti = () => {
+  const tempValue = props.options.filter(item => props.modelValue.includes(item.value));
+
+  innerMulti.value = tempValue;
+};
+
+const setInnerSingle = () => {
+  const valueObj = props.options.find((item) => {
+    return item.value === props.modelValue;
+  });
+
+  innerSingle.value = valueObj?.label || '';
+};
+
+const handleOption = async (opt) => {
+  if (opt.disabled) { return; }
+
+  if (props.multiple) {
+    let newValue = [];
+    let actionType = '';
+
+    if (props.modelValue.includes(opt.value)) {
+      newValue = props.modelValue.filter(item => item !== opt.value);
+      actionType = 'remove';
+    }
+    else {
+      newValue = [...props.modelValue, opt.value];
+      actionType = 'add';
+    }
+
+    emit('update:modelValue', newValue);
+    await nextTick();
+    setInnerMulti();
+    emit('onChange', actionType, opt, newValue);
+  }
+  else {
+    emit('update:modelValue', opt.value);
+    await nextTick();
+    setInnerSingle();
+    emit('onChange', opt);
+  }
+  validFn('change');
+  isExpand.value = false;
+};
+
+const isActive = (opt) => {
+  if (props.multiple) {
+    const isMatch = props.modelValue.includes(opt.value);
+    return isMatch;
+  }
+  else {
+    const isMatch = opt.value === props.modelValue;
+
+    return isMatch;
+  }
+};
+
+const onRemoveItem = (opt) => {
+  handleOption(opt);
+};
+
+watch(
+  () => props.modelValue,
+  () => {
+    setInitValue();
+  },
+  { immediate: true },
+);
 </script>
 
 <style lang="scss" scoped>

@@ -30,8 +30,7 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref, watch } from 'vue';
+<script setup>
 import ReForm from '@/components/dataInput/ReForm.vue';
 import ReFormItem from '@/components/dataInput/ReFormItem.vue';
 import ReFormGrid from '@/components/dataInput/ReFormGrid.vue';
@@ -53,76 +52,45 @@ import ReMultiMultiCheckboxGroup from '@/components/dataInput/ReMultiMultiCheckb
 import ReTextarea from '@/components/dataInput/ReTextarea.vue';
 import ReMdEditor from '@/components/dataInput/ReMdEditor.vue';
 
-export default defineComponent({
-  name: 'ReEasyForm',
-  components: {
-    ReForm,
-    ReFormGrid,
-    ReFormItem,
-    ReInput,
-    ReInputNumber,
-    ReSelect,
-    ReRadio,
-    ReCheckbox,
-    ReSwitch,
-    ReTimePicker,
-    ReDatePicker,
-    ReDateRangePicker,
-    ReCheckboxGroup,
-    ReEmailAutoComplete,
-    ReDependenceSelect,
-    ReMultiMultiCheckboxGroup,
-    ReTextarea,
-    ReUpload,
-    ReInputList,
-    ReMdEditor,
+const props = defineProps({
+  formValue: {
+    type: Object,
+    default: () => ({}),
   },
-  props: {
-    formValue: {
-      type: Object,
-      default: () => ({}),
-    },
-    formConfig: {
-      type: Object,
-      deafult: () => ({}),
-    },
-    formRules: {
-      type: Object,
-      deafult: () => ({}),
-    },
+  formConfig: {
+    type: Object,
+    deafult: () => ({}),
   },
-  emits: ['update:formValue'],
-  setup(props, { emit }) {
-    const innerForm = ref(props.formValue);
-    const formItemRef = ref(null);
-
-    watch(
-      innerForm,
-      () => {
-        emit('update:formValue', innerForm.value);
-      },
-      { deep: true },
-    );
-
-    const validateAll = async () => {
-      const resultList = [];
-
-      for (const refEle of formItemRef.value) {
-        const result = await refEle.validateFields('enforceValidate');
-
-        resultList.push(result);
-      }
-
-      return !resultList.includes(false);
-    };
-
-    return {
-      innerForm,
-      formItemRef,
-      validateAll,
-    };
+  formRules: {
+    type: Object,
+    deafult: () => ({}),
   },
 });
+
+const emit = defineEmits(['update:formValue']);
+
+const innerForm = ref(props.formValue);
+const formItemRef = ref(null);
+
+watch(
+  innerForm,
+  () => {
+    emit('update:formValue', innerForm.value);
+  },
+  { deep: true },
+);
+
+const validateAll = async () => {
+  const resultList = [];
+
+  for (const refEle of formItemRef.value) {
+    const result = await refEle.validateFields('enforceValidate');
+
+    resultList.push(result);
+  }
+
+  return !resultList.includes(false);
+};
 </script>
 
 <style lang="scss" scoped></style>

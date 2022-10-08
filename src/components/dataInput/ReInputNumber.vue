@@ -29,126 +29,95 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, ref } from 'vue';
+<script setup>
 import useValidate from '@/hooks/useValidate';
 
-export default defineComponent({
-  name: 'ReInput',
-  props: {
-    modelValue: {
-      type: [String, Number],
-      default: '',
-    },
-    type: {
-      type: String,
-      default: 'input',
-    },
-    step: {
-      type: [String, Number],
-      default: 1,
-    },
-    max: {
-      type: [String, Number, undefined],
-      default: undefined,
-    },
-    min: {
-      type: [String, Number, undefined],
-      default: undefined,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+const props = defineProps({
+  modelValue: {
+    type: [String, Number],
+    default: '',
   },
-  emits: ['update:modelValue'],
-  setup(props, { emit, slots }) {
-    const { validFn } = useValidate();
-    const inputType = ref('');
-    // const validFn = getCurrentInstance().parent.ctx.validateFields;
-    const inputField = ref(null);
-    // const formRules = inject('formRules', {});
-
-    const updateValue = (e, event) => {
-      if (props.disabled) { return; }
-      emit('update:modelValue', e.target.value);
-      validFn(event);
-    };
-
-    const toggleEyeStatus = () => {
-      if (props.disabled) { return; }
-      inputType.value = inputType.value === 'password' ? 'text' : 'password';
-    };
-
-    // const handleInput = () => {
-    //   updateValue();
-    // }
-
-    // const handleChange = () => {
-    //   updateValue();
-    //   validFn('change')
-    // }
-    // const handleBlur = () => {
-    //   updateValue();
-    //   validFn('blur')
-    // }
-
-    const setInitInputFieldValue = () => {
-      inputField.value.value = props.modelValue;
-    };
-
-    const add = () => {
-      if (props.disabled) { return; }
-
-      let val = Number(props.modelValue) + Number(props.step);
-      if (props.max) {
-        if (val > props.max) {
-          val = props.max;
-        }
-      }
-
-      emit('update:modelValue', val);
-    };
-
-    const minus = () => {
-      if (props.disabled) { return; }
-      let val = Number(props.modelValue) - Number(props.step);
-
-      if (props.min) {
-        if (val < props.min) {
-          val = props.min;
-        }
-      }
-
-      emit('update:modelValue', val);
-    };
-
-    const init = () => {
-      if (!props.modelValue) {
-        emit('update:modelValue', 0);
-      }
-    };
-
-    onMounted(() => {
-      setInitInputFieldValue();
-    });
-
-    init();
-
-    return {
-      inputField,
-      updateValue,
-      slots,
-      toggleEyeStatus,
-      inputType,
-      add,
-      minus,
-      // handleInput,
-      // handleChange,
-      // handleBlur,
-    };
+  type: {
+    type: String,
+    default: 'input',
+  },
+  step: {
+    type: [String, Number],
+    default: 1,
+  },
+  max: {
+    type: [String, Number, undefined],
+    default: undefined,
+  },
+  min: {
+    type: [String, Number, undefined],
+    default: undefined,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
+const emits = defineEmits(['update:modelValue']);
+
+const { validFn } = useValidate();
+const inputType = ref('');
+// const validFn = getCurrentInstance().parent.ctx.validateFields;
+const inputField = ref(null);
+// const formRules = inject('formRules', {});
+
+const updateValue = (e, event) => {
+  if (props.disabled) { return; }
+  emit('update:modelValue', e.target.value);
+  validFn(event);
+};
+
+const toggleEyeStatus = () => {
+  if (props.disabled) { return; }
+  inputType.value = inputType.value === 'password' ? 'text' : 'password';
+};
+
+const setInitInputFieldValue = () => {
+  inputField.value.value = props.modelValue;
+};
+
+const add = () => {
+  if (props.disabled) { return; }
+
+  let val = Number(props.modelValue) + Number(props.step);
+  if (props.max) {
+    if (val > props.max) {
+      val = props.max;
+    }
+  }
+
+  emit('update:modelValue', val);
+};
+
+const minus = () => {
+  if (props.disabled) { return; }
+  let val = Number(props.modelValue) - Number(props.step);
+
+  if (props.min) {
+    if (val < props.min) {
+      val = props.min;
+    }
+  }
+
+  emit('update:modelValue', val);
+};
+
+const init = () => {
+  if (!props.modelValue) {
+    emit('update:modelValue', 0);
+  }
+};
+
+onMounted(() => {
+  setInitInputFieldValue();
+});
+
+init();
 </script>
 
 <style lang="scss" scoped>

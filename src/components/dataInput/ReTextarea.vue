@@ -35,100 +35,83 @@
   </div>
 </template>
 
-<script>
-import { computed, defineComponent, onMounted, ref } from 'vue';
-
+<script setup>
 import useValidate from '@/hooks/useValidate';
 
-export default defineComponent({
-  name: 'ReTextarea',
-  props: {
-    modelValue: {
-      type: String,
-      default: '',
-    },
-    autosize: {
-      type: [Boolean, String],
-      default: false,
-      validator: val => ['none', 'vertical', 'horizontal', true, false].includes(val),
-    },
-    rows: {
-      type: [String, Number],
-      default: '3',
-    },
-    width: {
-      type: [Number, String],
-      default: '100%',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    textLimit: {
-      type: [String, Number],
-      default: '',
-      validator: val => isNumber(Number(val)),
-    },
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: '',
   },
-  setup(props, { emit }) {
-    const { validFn } = useValidate();
+  autosize: {
+    type: [Boolean, String],
+    default: false,
+    validator: val => ['none', 'vertical', 'horizontal', true, false].includes(val),
+  },
+  rows: {
+    type: [String, Number],
+    default: '3',
+  },
+  width: {
+    type: [Number, String],
+    default: '100%',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  textLimit: {
+    type: [String, Number],
+    default: '',
+    validator: val => isNumber(Number(val)),
+  },
+});
 
-    const textareaRef = ref(null);
+const { validFn } = useValidate();
 
-    const nativeTextareaValue = computed(() => {
-      if (!props.modelValue) { return ''; }
-      return String(props.modelValue);
-    });
-    const currTextCount = computed(() => {
-      return props.modelValue.length;
-    });
-    const isOverTextLimit = computed(() => {
-      return Number(currTextCount.value) > Number(props.textLimit);
-    });
-    const textAreaRows = computed(() => {
-      return String(props.rows);
-    });
-    const resizeValue = computed(() => {
-      if (typeof props.autosize === 'boolean' && props.autosize) { return true; }
-      return props.autosize;
-    });
-    const cssStyle = computed(() => {
-      if (props.width === '100%') {
-        return {
-          width: '100%',
-        };
-      }
+const textareaRef = ref(null);
 
-      return {
-        width: `${props.width}px`,
-      };
-    });
-
-    const updateValue = (e, event) => {
-      if (props.disabled) { return; }
-      emit('update:modelValue', e.target.value);
-      validFn(event);
-    };
-
-    const setInitInputFieldValue = () => {
-      textareaRef.value.value = props.modelValue;
-    };
-
-    onMounted(() => {
-      setInitInputFieldValue();
-    });
-
+const nativeTextareaValue = computed(() => {
+  if (!props.modelValue) { return ''; }
+  return String(props.modelValue);
+});
+const currTextCount = computed(() => {
+  return props.modelValue.length;
+});
+const isOverTextLimit = computed(() => {
+  return Number(currTextCount.value) > Number(props.textLimit);
+});
+const textAreaRows = computed(() => {
+  return String(props.rows);
+});
+const resizeValue = computed(() => {
+  if (typeof props.autosize === 'boolean' && props.autosize) { return true; }
+  return props.autosize;
+});
+const cssStyle = computed(() => {
+  if (props.width === '100%') {
     return {
-      currTextCount,
-      nativeTextareaValue,
-      isOverTextLimit,
-      textAreaRows,
-      resizeValue,
-      cssStyle,
-      textareaRef,
-      updateValue,
+      width: '100%',
     };
-  },
+  }
+
+  return {
+    width: `${props.width}px`,
+  };
+});
+
+const updateValue = (e, event) => {
+  if (props.disabled) { return; }
+  emit('update:modelValue', e.target.value);
+  validFn(event);
+};
+
+const setInitInputFieldValue = () => {
+  textareaRef.value.value = props.modelValue;
+};
+
+onMounted(() => {
+  setInitInputFieldValue();
 });
 </script>
 

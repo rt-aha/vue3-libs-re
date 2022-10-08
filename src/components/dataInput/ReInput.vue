@@ -43,86 +43,55 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, ref } from 'vue';
+<script setup>
 import useValidate from '@/hooks/useValidate';
 
-export default defineComponent({
-  name: 'ReInput',
-  props: {
-    modelValue: {
-      type: String,
-      default: '',
-    },
-    type: {
-      type: String,
-      default: 'input',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: '',
   },
-  emits: ['update:modelValue', 'onChange'],
-  setup(props, { emit, slots }) {
-    const { validFn } = useValidate();
-    const inputType = ref('');
-    // const validFn = getCurrentInstance().parent.ctx.validateFields;
-    const inputRef = ref(null);
-    // const formRules = inject('formRules', {});
-
-    const updateValue = (e, event) => {
-      if (props.disabled) { return; }
-      emit('update:modelValue', e.target.value);
-      emit('onChange', e.target.value, event);
-
-      validFn(event);
-    };
-
-    const toggleEyeStatus = () => {
-      if (props.disabled) { return; }
-      inputType.value = inputType.value === 'password' ? 'text' : 'password';
-    };
-
-    // const handleInput = () => {
-    //   updateValue();
-    // }
-
-    // const handleChange = () => {
-    //   updateValue();
-    //   validFn('change')
-    // }
-    // const handleBlur = () => {
-    //   updateValue();
-    //   validFn('blur')
-    // }
-
-    const setInitInputFieldValue = () => {
-      inputRef.value.value = props.modelValue;
-    };
-
-    const init = () => {
-      inputType.value = props.type || 'input';
-    };
-
-    onMounted(() => {
-      setInitInputFieldValue();
-    });
-
-    init();
-
-    return {
-      inputRef,
-      updateValue,
-      slots,
-      toggleEyeStatus,
-      inputType,
-      // handleInput,
-      // handleChange,
-      // handleBlur,
-    };
+  type: {
+    type: String,
+    default: 'input',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
+const emit = defineEmits(['update:modelValue', 'onChange']);
+
+const { validFn } = useValidate();
+const inputType = ref('');
+const inputRef = ref(null);
+
+const updateValue = (e, event) => {
+  if (props.disabled) { return; }
+  emit('update:modelValue', e.target.value);
+  emit('onChange', e.target.value, event);
+
+  validFn(event);
+};
+
+const toggleEyeStatus = () => {
+  if (props.disabled) { return; }
+  inputType.value = inputType.value === 'password' ? 'text' : 'password';
+};
+
+const setInitInputFieldValue = () => {
+  inputRef.value.value = props.modelValue;
+};
+
+const init = () => {
+  inputType.value = props.type || 'input';
+};
+
+onMounted(() => {
+  setInitInputFieldValue();
+});
+
+init();
 </script>
 
 <style lang="scss" scoped>

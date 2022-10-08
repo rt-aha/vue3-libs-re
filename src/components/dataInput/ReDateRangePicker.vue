@@ -27,143 +27,121 @@
   </div>
 </template>
 
-<script>
-import { computed, defineComponent, ref } from 'vue';
+<script setup>
 import dayjs from 'dayjs';
 import { DatePicker } from 'v-calendar';
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import ReButton from '@/components/common/ReButton.vue';
 import 'v-calendar/dist/style.css';
 
-export default defineComponent({
-  name: 'RePeriodPicker',
-  components: {
-    ReCollapseTransition,
-    DatePicker,
-    ReButton,
-  },
-  props: {
-    modelValue: {
-      type: Object,
-      default: () => ({
-        start: dayjs().subtract(6, 'day').$d,
-        end: dayjs().$d,
-      }),
-    },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const isExpand = ref(false);
-    const shortcut = ref('');
-    const date = ref({
+const props = defineProps({
+  modelValue: {
+    type: Object,
+    default: () => ({
       start: dayjs().subtract(6, 'day').$d,
       end: dayjs().$d,
-    });
-
-    const middleDate = computed({
-      set: (val) => {
-        date.value = val;
-      },
-      get: () => {
-        return props.modelValue;
-      },
-    });
-
-    const toggleExpand = () => {
-      console.log('111');
-      isExpand.value = !isExpand.value;
-    };
-
-    const openSelect = () => {
-      isExpand.value = true;
-    };
-
-    const closeSelect = () => {
-      isExpand.value = false;
-    };
-
-    const handleShortcut = (val) => {
-      console.log('opt', val);
-      const d = new Date();
-
-      switch (val) {
-        case 'yesterday':
-          date.value = {
-            // start: dayjs().subtract(1, 'day').$d.valueOf(),
-            start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1)).$d.valueOf(),
-            end: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(1, 'second').$d.valueOf(),
-          };
-          break;
-        case 'week':
-          date.value = {
-            start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(6, 'day').$d.valueOf(),
-            end: dayjs().$d.valueOf(),
-          };
-          break;
-        case 'currMonth':
-          date.value = {
-            start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(1, 'month').add(1, 'day').$d.valueOf(),
-            end: dayjs().$d.valueOf(),
-          };
-          break;
-        default:
-          date.value = {
-            start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).$d.valueOf(),
-            end: dayjs().$d.valueOf(),
-          };
-      }
-
-      emit('update:modelValue', date.value);
-    };
-
-    const inputValue = computed(() => {
-      return `${dayjs(date.value.start).format('YYYY/MM/DD')} ~ ${dayjs(date.value.end).format('YYYY/MM/DD')}`;
-    });
-
-    watch(() => date.value,
-      (newValue) => {
-        const newDateValue = {
-          start: dayjs(newValue.start).$d.valueOf(),
-          end: dayjs(newValue.end).$d.valueOf(),
-        };
-
-        // date.value = newDateValue;
-        emit('update:modelValue', newDateValue);
-      });
-
-    const periodOptions = [
-      {
-        label: '今日',
-        value: 'today',
-      },
-      {
-        label: '昨日',
-        value: 'yesterday',
-      },
-      {
-        label: '過去7天',
-        value: 'week',
-      },
-      {
-        label: '近一個月',
-        value: 'currMonth',
-      },
-    ];
-
-    return {
-      isExpand,
-      toggleExpand,
-      openSelect,
-      closeSelect,
-      date,
-      shortcut,
-      periodOptions,
-      handleShortcut,
-      inputValue,
-      middleDate,
-    };
+    }),
   },
 });
+
+const emit = defineEmits(['update:modelValue']);
+
+const isExpand = ref(false);
+const shortcut = ref('');
+const date = ref({
+  start: dayjs().subtract(6, 'day').$d,
+  end: dayjs().$d,
+});
+
+const middleDate = computed({
+  set: (val) => {
+    date.value = val;
+  },
+  get: () => {
+    return props.modelValue;
+  },
+});
+
+const toggleExpand = () => {
+  console.log('111');
+  isExpand.value = !isExpand.value;
+};
+
+const openSelect = () => {
+  isExpand.value = true;
+};
+
+const closeSelect = () => {
+  isExpand.value = false;
+};
+
+const handleShortcut = (val) => {
+  console.log('opt', val);
+  const d = new Date();
+
+  switch (val) {
+    case 'yesterday':
+      date.value = {
+        // start: dayjs().subtract(1, 'day').$d.valueOf(),
+        start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1)).$d.valueOf(),
+        end: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(1, 'second').$d.valueOf(),
+      };
+      break;
+    case 'week':
+      date.value = {
+        start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(6, 'day').$d.valueOf(),
+        end: dayjs().$d.valueOf(),
+      };
+      break;
+    case 'currMonth':
+      date.value = {
+        start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).subtract(1, 'month').add(1, 'day').$d.valueOf(),
+        end: dayjs().$d.valueOf(),
+      };
+      break;
+    default:
+      date.value = {
+        start: dayjs(new Date(d.getFullYear(), d.getMonth(), d.getDate())).$d.valueOf(),
+        end: dayjs().$d.valueOf(),
+      };
+  }
+
+  emit('update:modelValue', date.value);
+};
+
+const inputValue = computed(() => {
+  return `${dayjs(date.value.start).format('YYYY/MM/DD')} ~ ${dayjs(date.value.end).format('YYYY/MM/DD')}`;
+});
+
+watch(() => date.value,
+  (newValue) => {
+    const newDateValue = {
+      start: dayjs(newValue.start).$d.valueOf(),
+      end: dayjs(newValue.end).$d.valueOf(),
+    };
+
+    // date.value = newDateValue;
+    emit('update:modelValue', newDateValue);
+  });
+
+const periodOptions = [
+  {
+    label: '今日',
+    value: 'today',
+  },
+  {
+    label: '昨日',
+    value: 'yesterday',
+  },
+  {
+    label: '過去7天',
+    value: 'week',
+  },
+  {
+    label: '近一個月',
+    value: 'currMonth',
+  },
+];
 </script>
 
 <style lang="scss" scoped>

@@ -11,39 +11,28 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, ref } from 'vue';
-
-export default defineComponent({
-  name: 'ReUploadPreviewVideoModalContent',
-  props: {
-    data: {
-      type: Object,
-      default: () => ({}),
-    },
+<script setup>
+const props = defineProps({
+  data: {
+    type: Object,
+    default: () => ({}),
   },
-  setup(props) {
-    // props
-    const videoDom = ref(null);
-    const videoSrc = ref('');
+});
 
-    const createTempVideoSource = () => {
-      const { videoSource } = props.data;
-      videoSrc.value = URL.createObjectURL(videoSource);
-      videoDom.value.load();
-    };
+// props
+const videoDom = ref(null);
+const videoSrc = ref('');
 
-    onMounted(() => {
-      if (props.data.type === 'video') {
-        createTempVideoSource();
-      }
-    });
+const createTempVideoSource = () => {
+  const { videoSource } = props.data;
+  videoSrc.value = URL.createObjectURL(videoSource);
+  videoDom.value.load();
+};
 
-    return {
-      videoDom,
-      videoSrc,
-    };
-  },
+onMounted(() => {
+  if (props.data.type === 'video') {
+    createTempVideoSource();
+  }
 });
 </script>
 

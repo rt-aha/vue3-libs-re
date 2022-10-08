@@ -4,16 +4,13 @@
   </p>
 </template>
 
-<script>
-export default {
-  name: 'CusSelectOption',
-  props: {
-    title: {
-      type: String,
-      default: 'Cus Title',
-    },
+<script setup>
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'Cus Title',
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

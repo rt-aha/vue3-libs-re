@@ -22,81 +22,57 @@
   </div>
 </template>
 
-<script>
-import { computed, defineComponent, ref, watch } from 'vue';
-// import ReButton from '@/components/ReButton.vue';
+<script setup>
 import { DatePicker } from 'v-calendar';
 import dayjs from 'dayjs';
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import 'v-calendar/dist/style.css';
 
-// console.log(dayjs());
-
-export default defineComponent({
-  name: 'RePeriodPicker',
-  components: {
-    ReCollapseTransition,
-    DatePicker,
-    // ReButton,
-  },
-  props: {
-    modelValue: {
-      type: Date,
-      default: new Date(),
-    },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const isExpand = ref(false);
-    const shortcut = ref('');
-    const date = ref('');
-
-    const toggleExpand = () => {
-      isExpand.value = !isExpand.value;
-    };
-
-    const openSelect = () => {
-      isExpand.value = true;
-    };
-
-    const closeSelect = () => {
-      isExpand.value = false;
-    };
-
-    const inputValue = computed(() => {
-      return dayjs(props.modelValue).format('YYYY/MM/DD');
-    });
-
-    const handleChange = (v) => {
-
-    };
-
-    const init = () => {
-      date.value = props.modelValue;
-    };
-
-    init();
-
-    // 看有沒有辦法不要用 watch
-    watch(
-      () => date.value,
-      () => {
-        emit('update:modelValue', date.value);
-      },
-    );
-
-    return {
-      isExpand,
-      toggleExpand,
-      openSelect,
-      closeSelect,
-      date,
-      shortcut,
-      inputValue,
-      handleChange,
-    };
+const props = defineProps({
+  modelValue: {
+    type: Date,
+    default: new Date(),
   },
 });
+const emit = defineEmits(['update:modelValue']);
+
+const isExpand = ref(false);
+const shortcut = ref('');
+const date = ref('');
+
+const toggleExpand = () => {
+  isExpand.value = !isExpand.value;
+};
+
+const openSelect = () => {
+  isExpand.value = true;
+};
+
+const closeSelect = () => {
+  isExpand.value = false;
+};
+
+const inputValue = computed(() => {
+  return dayjs(props.modelValue).format('YYYY/MM/DD');
+});
+
+const handleChange = (v) => {
+
+};
+
+const init = () => {
+  date.value = props.modelValue;
+};
+
+init();
+
+// 看有沒有辦法不要用 watch
+watch(
+  () => date.value,
+  () => {
+    emit('update:modelValue', date.value);
+  },
+);
 </script>
 
 <style lang="scss" scoped>

@@ -4,41 +4,33 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, provide, ref, watch } from 'vue';
-
-export default defineComponent({
-  name: 'ReReForm',
-  props: {
-    formValue: {
-      type: Object,
-      default: () => ({}),
-    },
-    formRules: {
-      type: Object,
-      default: () => ({}),
-    },
+<script setup>
+const props = defineProps({
+  formValue: {
+    type: Object,
+    default: () => ({}),
   },
-  setup(props) {
-    const innerFormValue = ref({});
-    const formErrorMessage = ref({});
-
-    watch(
-      () => props.formValue,
-      () => {
-        innerFormValue.value = props.formValue;
-      },
-      { deep: true, immediate: true },
-    );
-
-    provide('formValue', () => innerFormValue.value);
-    provide('formErrorMessage', () => formErrorMessage.value);
-    provide('formRules', props.formRules);
-    provide('formSetting', props.setting);
-
-    return {};
+  formRules: {
+    type: Object,
+    default: () => ({}),
   },
 });
+
+const innerFormValue = ref({});
+const formErrorMessage = ref({});
+
+watch(
+  () => props.formValue,
+  () => {
+    innerFormValue.value = props.formValue;
+  },
+  { deep: true, immediate: true },
+);
+
+provide('formValue', () => innerFormValue.value);
+provide('formErrorMessage', () => formErrorMessage.value);
+provide('formRules', props.formRules);
+provide('formSetting', props.setting);
 </script>
 
 <style lang="scss" scoped>

@@ -6,15 +6,10 @@
   </p>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ReReFormMessage',
-  props: {
-    errorMessage: {
-      default: '',
-    },
+<script setup>
+const props = defineProps({
+  errorMessage: {
+    default: '',
   },
 });
 </script>

@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-import cloneRegExp from 'lodash-es/_cloneRegExp';
-
 const props = defineProps({
   modelValue: {
     type: String,
