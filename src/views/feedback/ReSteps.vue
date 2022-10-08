@@ -9,6 +9,9 @@
 
         <dev-desc text="e.g. v-model={type: 'current', index: 2}" mt />
         <ReSteps v-model="val2" :config="config1" />
+
+        <dev-desc text="e.g. v-model={type: 'current', index: 4}" />
+        <ReSteps v-model="val22" :config="config1" />
       </div>
     </dev-section>
 
@@ -48,6 +51,11 @@ const val1 = ref({
 const val2 = ref({
   type: 'current',
   index: 2,
+});
+
+const val22 = ref({
+  type: 'current',
+  index: 4,
 });
 
 const val3 = ref({
