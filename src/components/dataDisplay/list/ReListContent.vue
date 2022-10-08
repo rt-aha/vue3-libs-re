@@ -10,38 +10,28 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup>
 import ListContentRow from '@/components/dataDisplay/list/ReListContentRow.vue';
 
-export default defineComponent({
-  name: 'ReListContentRow',
-  components: {
-    ListContentRow,
+const props = defineProps({
+  columns: {
+    type: Array,
+    default: () => [],
   },
-  props: {
-    columns: {
-      type: Array,
-      default: () => [],
-    },
-    contentData: {
-      type: Array,
-      default: () => [],
-    },
-    onExpand: {},
+  contentData: {
+    type: Array,
+    default: () => [],
+  },
+  onExpand: {},
 
-    // albumsInfo, playlistsInfo 使用
-    padding: {
-      type: Boolean,
-      default: true,
-    },
-    max100: {
-      type: Boolean,
-      default: false,
-    },
+  // albumsInfo, playlistsInfo 使用
+  padding: {
+    type: Boolean,
+    default: true,
   },
-  setup() {
-    return {};
+  max100: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

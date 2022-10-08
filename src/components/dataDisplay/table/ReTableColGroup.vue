@@ -4,14 +4,11 @@
   </colgroup>
 </template>
 
-<script>
-export default {
-  name: 'ReTableColGroup',
-  props: {
-    columns: {
-      type: Array,
-      default: () => [],
-    },
+<script setup>
+const props = defineRrops({
+  columns: {
+    type: Array,
+    default: () => [],
   },
-};
+});
 </script>

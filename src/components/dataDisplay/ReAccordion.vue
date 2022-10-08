@@ -90,7 +90,6 @@ let handleExpandStatus = initExpandStatus();
 const defaultExpand = () => {
   const expandKey = route.query.expand || '';
   if (expandKey) {
-    console.log('expandKey', expandKey);
     handleExpandStatus(expandKey);
   }
 };

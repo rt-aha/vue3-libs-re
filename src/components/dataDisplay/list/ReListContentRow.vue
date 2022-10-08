@@ -22,27 +22,18 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ListContentRow',
-  components: {},
-  props: {
-    data: {
-      type: Object,
-      default: () => ({}),
-    },
-    columns: {
-      type: Object,
-      default: () => ({}),
-    },
-    idx1: {
-      type: Number,
-    },
+<script setup>
+const props = defineProps({
+  data: {
+    type: Object,
+    default: () => ({}),
   },
-  setup() {
-    return {};
+  columns: {
+    type: Object,
+    default: () => ({}),
+  },
+  idx1: {
+    type: Number,
   },
 });
 </script>

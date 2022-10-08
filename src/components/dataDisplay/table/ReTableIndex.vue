@@ -15,79 +15,64 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, ref } from 'vue';
+<script setup>
 import ReTableColGroup from '@/components/dataDisplay/table/ReTableColGroup.vue';
 import ReTableHeader from '@/components/dataDisplay/table/ReTableHeader.vue';
 import ReTableBody from '@/components/dataDisplay/table/ReTableBody.vue';
 
-export default defineComponent({
-  name: 'ReTableIndex',
-  components: {
-    ReTableColGroup,
-    ReTableHeader,
-    ReTableBody,
+const props = defineProps({
+  config: {
+    type: Object,
+    default: () => ({}),
   },
-  props: {
-    config: {
-      type: Object,
-      default: () => ({}),
-    },
-    contentData: {
-      type: Array,
-      default: () => [],
-    },
-    notice: {
-      type: String,
-      default: '',
-    },
-    padding: {
-      type: Boolean,
-      default: true,
-    },
-    max100: {
-      type: Boolean,
-      default: false,
-    },
-    showHeader: {
-      type: Boolean,
-      default: true,
-    },
-    gContent: {
-      type: Boolean,
-      default: false,
-    },
+  contentData: {
+    type: Array,
+    default: () => [],
   },
-  setup(props) {
-    const tableContentWidth = ref('');
-    const reTableRef = ref(null);
-    const calcTableWidth = () => {
-      const wrapWidth = reTableRef.value.clientWidth;
-
-      const colFullWidth = props.config.columns
-        .map(ele => ele.width || '150')
-        .reduce((acc, ele) => {
-          acc += Number(ele);
-          return acc;
-        }, 0);
-
-      if (colFullWidth > wrapWidth) {
-        tableContentWidth.value = `${colFullWidth}px`;
-        return;
-      }
-
-      tableContentWidth.value = '100%';
-    };
-
-    onMounted(() => {
-      calcTableWidth();
-    });
-
-    return {
-      tableContentWidth,
-      reTableRef,
-    };
+  notice: {
+    type: String,
+    default: '',
   },
+  padding: {
+    type: Boolean,
+    default: true,
+  },
+  max100: {
+    type: Boolean,
+    default: false,
+  },
+  showHeader: {
+    type: Boolean,
+    default: true,
+  },
+  gContent: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const tableContentWidth = ref('');
+const reTableRef = ref(null);
+const calcTableWidth = () => {
+  const wrapWidth = reTableRef.value.clientWidth;
+
+  const colFullWidth = props.config.columns
+    .map(ele => ele.width || '150')
+    .reduce((acc, ele) => {
+      acc += Number(ele);
+      return acc;
+    }, 0);
+
+  if (colFullWidth > wrapWidth) {
+    tableContentWidth.value = `${colFullWidth}px`;
+    return;
+  }
+
+  tableContentWidth.value = '100%';
+};
+
+onMounted(() => {
+  calcTableWidth();
 });
 </script>
 

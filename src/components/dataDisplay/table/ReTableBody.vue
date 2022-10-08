@@ -17,35 +17,26 @@
   </tbody>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ReTableBody',
-  components: {},
-  props: {
-    columns: {
-      type: Array,
-      default: () => [],
-    },
-    contentData: {
-      type: Array,
-      default: () => [],
-    },
-    onExpand: {},
-
-    // albumsInfo, playlistsInfo 使用
-    padding: {
-      type: Boolean,
-      default: true,
-    },
-    max100: {
-      type: Boolean,
-      default: false,
-    },
+<script setup>
+const props = defineProps({
+  columns: {
+    type: Array,
+    default: () => [],
   },
-  setup() {
-    return {};
+  contentData: {
+    type: Array,
+    default: () => [],
+  },
+  onExpand: {},
+
+  // albumsInfo, playlistsInfo 使用
+  padding: {
+    type: Boolean,
+    default: true,
+  },
+  max100: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

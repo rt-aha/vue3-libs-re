@@ -4,17 +4,11 @@
   </colgroup>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'SimpleTableColGroup',
-  props: {
-    columnsConfig: {
-      type: Array,
-      default: () => [],
-    },
+<script setup>
+const props = defineProps({
+  columnsConfig: {
+    type: Array,
+    default: () => [],
   },
-
 });
 </script>

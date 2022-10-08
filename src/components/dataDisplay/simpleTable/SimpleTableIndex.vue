@@ -77,38 +77,32 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup>
 import TableColGroup from '@/components/dataDisplay/simpleTable/TableColGroup.vue';
 
-export default defineComponent({
-  name: 'SimpleTableIndex',
-  components: {
-    TableColGroup,
+const props = defineProps({
+  content: {
+    type: Object,
+    default: () => ({
+      colGroup: [],
+      head: [],
+      body: [],
+    }),
   },
-  props: {
-    content: {
-      type: Object,
-      default: () => ({
-        colGroup: [],
-        head: [],
-        body: [],
-      }),
-    },
-    style: {
-      type: Object,
-      default: () => ({}),
-    },
-    mt: {
-      type: Boolean,
-      default: true,
-    },
-    mb: {
-      type: Boolean,
-      default: true,
-    },
+  style: {
+    type: Object,
+    default: () => ({}),
   },
-});
+  mt: {
+    type: Boolean,
+    default: true,
+  },
+  mb: {
+    type: Boolean,
+    default: true,
+  },
+},
+);
 </script>
 
 <style lang="scss" scoped>

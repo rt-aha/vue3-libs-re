@@ -15,80 +15,66 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted, ref } from 'vue';
+<script setup>
 import ListHeader from '@/components/dataDisplay/list/ReListHeader.vue';
 import ListContent from '@/components/dataDisplay/list/ReListContent.vue';
 
-export default defineComponent({
-  name: 'ReListIndex',
-  components: {
-    ListHeader,
-    ListContent,
+const props = defineProps({
+  config: {
+    type: Object,
+    default: () => ({}),
   },
-  props: {
-    config: {
-      type: Object,
-      default: () => ({}),
-    },
-    contentData: {
-      type: Array,
-      default: () => [],
-    },
-    notice: {
-      type: String,
-      default: '',
-    },
-    padding: {
-      type: Boolean,
-      default: true,
-    },
-    max100: {
-      type: Boolean,
-      default: false,
-    },
-    showHeader: {
-      type: Boolean,
-      default: true,
-    },
-    gContent: {
-      type: Boolean,
-      default: false,
-    },
+  contentData: {
+    type: Array,
+    default: () => [],
   },
-  setup(props) {
-    const listContentWidth = ref('');
-    const reListRef = ref(null);
-    const calcListWidth = () => {
-      const wrapWidth = reListRef.value.clientWidth;
-
-      const colFullWidth = props.config.columns
-        .map(ele => ele.width || '100')
-        .reduce((acc, ele) => {
-          acc += Number(ele);
-          return acc;
-        }, 0);
-
-      console.log('colFullWidth', colFullWidth);
-
-      if (colFullWidth > wrapWidth) {
-        listContentWidth.value = `${colFullWidth}px`;
-        return;
-      }
-
-      listContentWidth.value = `${wrapWidth}px`;
-      listContentWidth.value = '100%';
-    };
-
-    onMounted(() => {
-      calcListWidth();
-    });
-
-    return {
-      listContentWidth,
-      reListRef,
-    };
+  notice: {
+    type: String,
+    default: '',
   },
+  padding: {
+    type: Boolean,
+    default: true,
+  },
+  max100: {
+    type: Boolean,
+    default: false,
+  },
+  showHeader: {
+    type: Boolean,
+    default: true,
+  },
+  gContent: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const listContentWidth = ref('');
+const reListRef = ref(null);
+const calcListWidth = () => {
+  const wrapWidth = reListRef.value.clientWidth;
+
+  const colFullWidth = props.config.columns
+    .map(ele => ele.width || '100')
+    .reduce((acc, ele) => {
+      acc += Number(ele);
+      return acc;
+    }, 0);
+
+  console.log('colFullWidth', colFullWidth);
+
+  if (colFullWidth > wrapWidth) {
+    listContentWidth.value = `${colFullWidth}px`;
+    return;
+  }
+
+  listContentWidth.value = `${wrapWidth}px`;
+  listContentWidth.value = '100%';
+};
+
+onMounted(() => {
+  calcListWidth();
 });
 </script>
 

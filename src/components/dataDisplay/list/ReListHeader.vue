@@ -21,20 +21,11 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'MyMusicListHeader',
-
-  props: {
-    columns: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  setup() {
-    return {};
+<script setup>
+const props = defineProps({
+  columns: {
+    type: Array,
+    default: () => [],
   },
 });
 </script>
