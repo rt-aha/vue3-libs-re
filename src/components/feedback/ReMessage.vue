@@ -1,30 +1,22 @@
 <template>
   <div
-    class="re-modal"
+    class="re-message"
     :class="[
       {
-        're-modal--animate-in': modalActive,
-        're-modal--animate-out': !modalActive,
+        're-message--animate-in': modalActive,
+        're-message--animate-out': !modalActive,
       },
     ]"
     @animationend="handleAniamtionEnd"
     @click.self="close"
   >
-    <div class="re-modal__box">
-      <div class="re-modal__box__body">
+    <div class="re-message__box">
+      <div class="re-message__box__body">
         <template v-if="render">
           <component :is="render" v-bind="$props" @close="close" />
         </template>
         <template v-else>
-          <div v-html="content" />
-
-          <div v-if="btns && btns.length" class="btn-wrap">
-            <div v-for="btn of btns" :key="btn.label" class="btn-wrap__btn">
-              <ReButton @click="() => handleBtn(btn.cb)">
-                {{ btn.label }}
-              </ReButton>
-            </div>
-          </div>
+          <ReMessageItem :content="content" @hide="hide" />
         </template>
       </div>
     </div>
@@ -33,6 +25,7 @@
 
 <script setup>
 import ReButton from '@/components/common/ReButton.vue';
+import ReMessageItem from '@/components/feedback/ReMessageItem.vue';
 
 const props = defineProps({
   visible: {
@@ -67,7 +60,7 @@ const modalActive = ref(true);
 const fulfillContent = ref(null);
 
 const handleAniamtionEnd = (e) => {
-  if (e.animationName.includes('fadeOut')) {
+  if (e.animationName.includes('slideOut')) {
     emit('closeModal', fulfillContent.value);
   }
 };
@@ -84,84 +77,85 @@ const handleBtn = async (cb) => {
   }
   close();
 };
+
+const hide = () => {
+  close();
+};
 </script>
 
 <style lang="scss" scoped>
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+// @keyframes fadeIn {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
+// @keyframes fadeOut {
+//   from {
+//     opacity: 1;
+//   }
+//   to {
+//     opacity: 0;
+//   }
+// }
 
 @keyframes slideIn {
   from {
-    transform: translate(-50%, -50%) translateY(-30px);
+    transform: translate(-50%, 0px);
   }
   to {
-    transform: translate(-50%, -50%) translateY(0);
+    transform: translate(-50%, 20px);
   }
 }
 
 @keyframes slideOut {
   from {
-    transform: translate(-50%, -50%) translateY(0);
+    transform: translate(-50%, 20px);
   }
   to {
-    transform: translate(-50%, -50%) translateY(-30px);
+    transform: translate(-50%, -100%)
   }
 }
 
-.freeze-body {
-  overflow: hidden;
-}
+// .freeze-body {
+//   overflow: hidden;
+// }
 
-.re-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: $zi-modal;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(#333, 0.5);
-  animation: fadeIn 0.3s;
+.re-message {
+  @include position(tl, 0, 50%);
+  transform: translate(-50%, -200%);
+  z-index: $zi-message;
+  background-color: $c-white;
+  border-radius: 4px;
+  box-shadow: 3px 3px 6px rgba($c-black, 0.2);
+  // animation: fadeIn 0.3s;
 
   &--animate-in {
-    animation: fadeIn 0.3s;
-    .re-modal__box {
-      animation: slideIn 0.2s forwards;
+    // animation: fadeIn 0.3s;
+    animation: slideIn 0.2s forwards;
+    .re-message__box {
     }
   }
 
   &--animate-out {
-    animation: fadeOut 0.3s;
+    // animation: fadeOut 0.3s;
+    animation: slideOut 0.2s;
     .re-modal__box {
-      animation: slideOut 0.2s forwards;
     }
   }
 
   &__box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 320px;
-    transform: translate(-50%, -50%);
-    background-color: $c-white;
-    border-radius: 12px;
+    // min-width: 320px;
+    // @include position(tl, 0, 50%);
+    // transform: translate(100%, -50%);
+    // background-color: rgba($c-green, .8);
+    // border-radius: 4px;
 
     &__body {
-      @include padding(50px 40px);
+      @include padding(10px 20px);
     }
   }
 }
@@ -177,23 +171,7 @@ const handleBtn = async (cb) => {
   }
 }
 
-@keyframes slideTopIn {
-  from {
-    transform: translate(-50%, calc(-50% - 30px));
-  }
-
-  to {
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes slideTopOut {
-  from {
-    transform: translate(-50%, -50%);
-  }
-
-  to {
-    transform: translate(-50%, calc(-50% - 30px));
-  }
+.message-text {
+  color: #333;
 }
 </style>

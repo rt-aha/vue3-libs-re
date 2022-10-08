@@ -33,6 +33,7 @@ export default () => {
             visible.value = false;
             resolve(fulfillContent);
             app.unmount();
+            console.log('?!?!');
           };
           return () =>
             h(ReMessage, {
