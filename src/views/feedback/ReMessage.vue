@@ -1,33 +1,23 @@
 <template>
   <div class="v-message">
-    <ReButton @click="onError">
-      Error
+    <ReButton @click="showMessage">
+      message
     </ReButton>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-import ReMessage from '@/components/feedback/message/index';
+<script setup>
+import ReMessage from '@/components/feedback/ReMessage.vue';
 import ReButton from '@/components/common/ReButton.vue';
+import useMessage from '@/hooks/useMessage';
 
-export default defineComponent({
-  name: 'ViewMessage',
-  components: {
-    ReButton,
-  },
-  setup() {
-    const onError = () => {
-      ReMessage({ text: '登录失败', type: 'error' });
-      ReMessage({ text: '登录失败', type: 'error' });
-      ReMessage({ text: '登录失败', type: 'error' });
-    };
+const { message } = useMessage();
 
-    return {
-      onError,
-    };
-  },
-});
+const showMessage = () => {
+  message({
+    content: 'message',
+  });
+};
 </script>
 
 <style lang="scss" scoped></style>
