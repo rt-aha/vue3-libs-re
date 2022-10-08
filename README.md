@@ -80,6 +80,9 @@
   - [ ] 只做一個圈圈而已
 - [x] Tooltip(PopOver)
 - [ ] Message
+  - 先做一版基本的
+  - [ ] 待優化：目前用 watch 判斷新推入字串，若有一樣字串，會失效
+  - [ ] 可用 render
 - [ ] Notification
 - [x] Steps
   - [ ] 有空補個直的
