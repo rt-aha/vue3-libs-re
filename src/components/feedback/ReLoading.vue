@@ -33,16 +33,11 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'Loading',
-  props: {
-    color: {
-      type: String,
-      default: '',
-    },
+<script setup>
+const props = defineProps({
+  color: {
+    type: String,
+    default: '',
   },
 });
 </script>

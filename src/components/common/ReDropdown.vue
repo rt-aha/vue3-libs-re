@@ -36,100 +36,79 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, nextTick, ref, watch } from 'vue';
+<script setup>
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
 
-export default defineComponent({
-  name: 'ReDropdown',
-  components: {
-    ReCollapseTransition,
+const props = defineProps({
+  modelValue: {
+    default: '',
   },
-  props: {
-    modelValue: {
-      default: '',
-    },
-    options: {
-      type: Array,
-      default: () => [],
-    },
-    align: {
-      type: String,
-      default: 'center',
-    },
+  options: {
+    type: Array,
+    default: () => [],
   },
-  emits: ['update:modelValue', 'onChange'],
-  setup(props, { emit }) {
-    const innerSingle = ref('');
-    const { validFn } = useValidate();
-    const isExpand = ref(false);
-
-    const setInitValue = () => {
-      innerSingle.value = props.modelValue;
-    };
-
-    const toggleExpand = () => {
-      isExpand.value = !isExpand.value;
-    };
-
-    const openSelect = () => {
-      isExpand.value = true;
-    };
-
-    const closeSelect = () => {
-      isExpand.value = false;
-    };
-
-    const setInnerSingle = () => {
-      const valueObj = props.options.find((item) => {
-        return item.value === props.modelValue;
-      });
-
-      innerSingle.value = valueObj?.label || '';
-    };
-
-    const handleOption = async (opt) => {
-      if (opt.disabled) { return; }
-
-      emit('update:modelValue', opt.value);
-      await nextTick();
-      setInnerSingle();
-      emit('onChange', opt);
-      validFn('change');
-      isExpand.value = false;
-    };
-
-    const isActive = (opt) => {
-      return opt.value === props.modelValue;
-    };
-
-    const onRemoveItem = (opt) => {
-      handleOption(opt);
-    };
-
-    watch(
-      () => props.modelValue,
-      () => {
-        setInitValue();
-      },
-      { immediate: true },
-    );
-
-    return {
-      // innerValue,
-      toggleExpand,
-      isExpand,
-      handleOption,
-      openSelect,
-      closeSelect,
-      innerSingle,
-      // tagOpts,
-      isActive,
-      onRemoveItem,
-    };
+  align: {
+    type: String,
+    default: 'center',
   },
 });
+const emit = defineExpose(['update:modelValue', 'onChange']);
+
+const innerSingle = ref('');
+const { validFn } = useValidate();
+const isExpand = ref(false);
+
+const setInitValue = () => {
+  innerSingle.value = props.modelValue;
+};
+
+const toggleExpand = () => {
+  isExpand.value = !isExpand.value;
+};
+
+const openSelect = () => {
+  isExpand.value = true;
+};
+
+const closeSelect = () => {
+  isExpand.value = false;
+};
+
+const setInnerSingle = () => {
+  const valueObj = props.options.find((item) => {
+    return item.value === props.modelValue;
+  });
+
+  innerSingle.value = valueObj?.label || '';
+};
+
+const handleOption = async (opt) => {
+  if (opt.disabled) { return; }
+
+  emit('update:modelValue', opt.value);
+  await nextTick();
+  setInnerSingle();
+  emit('onChange', opt);
+  validFn('change');
+  isExpand.value = false;
+};
+
+const isActive = (opt) => {
+  return opt.value === props.modelValue;
+};
+
+const onRemoveItem = (opt) => {
+  handleOption(opt);
+};
+
+watch(
+  () => props.modelValue,
+  () => {
+    setInitValue();
+  },
+  { immediate: true },
+);
 </script>
 
 <style lang="scss" scoped>

@@ -19,111 +19,97 @@
   />
 </template>
 
-<script>
-import { computed, defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ReDivider',
-  props: {
-    margin: {
-      type: Object,
-      default: () => ({
-        top: '10px',
-        bottom: '10px',
-        left: '10px',
-        right: '10px',
-      }),
-    },
-    verticle: {
-      type: Boolean,
-      default: false,
-    },
-    length: {
-      type: String,
-      default: '',
-    },
-    color: {
-      type: String,
-      default: '',
-    },
-    bold: {
-      type: String,
-      default: '',
-    },
-    type: {
-      type: String,
-      default: '',
-    },
+<script setup>
+const props = defineProps({
+  margin: {
+    type: Object,
+    default: () => ({
+      top: '10px',
+      bottom: '10px',
+      left: '10px',
+      right: '10px',
+    }),
   },
-  setup(props) {
-    const m = computed(() => {
-      const { top, bottom, left, right } = props.margin;
+  verticle: {
+    type: Boolean,
+    default: false,
+  },
+  length: {
+    type: String,
+    default: '',
+  },
+  color: {
+    type: String,
+    default: '',
+  },
+  bold: {
+    type: String,
+    default: '',
+  },
+  type: {
+    type: String,
+    default: '',
+  },
+});
 
-      if (props.verticle) {
-        return {
-          top: 0,
-          bottom: 0,
-          left,
-          right,
-        };
-      }
+const m = computed(() => {
+  const { top, bottom, left, right } = props.margin;
 
-      return {
-        top,
-        bottom,
-        left: 0,
-        right: 0,
-      };
-    });
-
-    const wh = computed(() => {
-      if (props.verticle) {
-        return {
-          w: props.bold || '1px',
-          h: props.length || '14px',
-        };
-      }
-
-      return {
-        w: props.length || '100%',
-        h: props.bold || '1px',
-      };
-    });
-
-    const c = computed(() => {
-      return props.color || '#eee';
-    });
-
-    const bs = computed(() => {
-      return props.type || 'solid';
-    });
-
-    const setting = computed(() => {
-      if (props.verticle) {
-        return {
-          bt: 0,
-          bl: wh.value.w,
-          w: 0,
-          h: wh.value.h,
-        };
-      }
-
-      return {
-        bt: wh.value.h,
-        bl: 0,
-        w: wh.value.w,
-        h: 0,
-      };
-    });
-
+  if (props.verticle) {
     return {
-      m,
-      wh,
-      c,
-      bs,
-      setting,
+      top: 0,
+      bottom: 0,
+      left,
+      right,
     };
-  },
+  }
+
+  return {
+    top,
+    bottom,
+    left: 0,
+    right: 0,
+  };
+});
+
+const wh = computed(() => {
+  if (props.verticle) {
+    return {
+      w: props.bold || '1px',
+      h: props.length || '14px',
+    };
+  }
+
+  return {
+    w: props.length || '100%',
+    h: props.bold || '1px',
+  };
+});
+
+const c = computed(() => {
+  return props.color || '#eee';
+});
+
+const bs = computed(() => {
+  return props.type || 'solid';
+});
+
+const setting = computed(() => {
+  if (props.verticle) {
+    return {
+      bt: 0,
+      bl: wh.value.w,
+      w: 0,
+      h: wh.value.h,
+    };
+  }
+
+  return {
+    bt: wh.value.h,
+    bl: 0,
+    w: wh.value.w,
+    h: 0,
+  };
 });
 </script>
 

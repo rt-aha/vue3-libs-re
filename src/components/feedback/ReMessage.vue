@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
 import ReMessageItem from '@/components/feedback/ReMessageItem.vue';
 
 const props = defineProps({

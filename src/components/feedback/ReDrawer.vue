@@ -36,77 +36,62 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script setup>
 import ReButton from '@/components/common/ReButton.vue';
 
-export default defineComponent({
-  name: 'ReDrawer',
-  components: {
-    ReButton,
+const props = defineProps({
+  visible: {
+    type: Boolean,
+    default: false,
   },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-    render: {
-      default: null,
-    },
-    data: {
-      dafeult: () => ({}),
-    },
-    btns: {
-      type: Array,
-      default: () => [],
-    },
-    content: {
-      type: String,
-      default: '',
-    },
-    renderType: {
-      type: String,
-      default: '',
-    },
-    width: {
-      type: String,
-      default: '220px',
-    },
+  render: {
+    default: null,
   },
-  emits: ['closeModal'],
-  setup(props, { emit }) {
-    // const internalInstance = getCurrentInstance();
-    const drawerActive = ref(true);
-    // 傳給外層使用這個 hook 的內容;
-    const fulfillContent = ref(null);
-
-    const handleAniamtionEnd = (e) => {
-      if (e.animationName.includes('fadeOut')) {
-        emit('closeModal', fulfillContent.value);
-      }
-    };
-
-    const close = (content) => {
-      fulfillContent.value = content;
-      // 觸發動畫
-      drawerActive.value = false;
-    };
-
-    const handleBtn = async (cb) => {
-      if (cb) {
-        await cb();
-      }
-      close();
-    };
-
-    return {
-      close,
-      handleBtn,
-      drawerActive,
-      handleAniamtionEnd,
-    };
+  data: {
+    dafeult: () => ({}),
+  },
+  btns: {
+    type: Array,
+    default: () => [],
+  },
+  content: {
+    type: String,
+    default: '',
+  },
+  renderType: {
+    type: String,
+    default: '',
+  },
+  width: {
+    type: String,
+    default: '220px',
   },
 });
+const emit = defineEmits(['closeModal']);
+
+// const internalInstance = getCurrentInstance();
+const drawerActive = ref(true);
+// 傳給外層使用這個 hook 的內容;
+const fulfillContent = ref(null);
+
+const handleAniamtionEnd = (e) => {
+  if (e.animationName.includes('fadeOut')) {
+    emit('closeModal', fulfillContent.value);
+  }
+};
+
+const close = (content) => {
+  fulfillContent.value = content;
+  // 觸發動畫
+  drawerActive.value = false;
+};
+
+const handleBtn = async (cb) => {
+  if (cb) {
+    await cb();
+  }
+  close();
+};
 </script>
 
 <style lang="scss" scoped>

@@ -19,6 +19,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close']);
+
 const timer = ref(null);
 const slideOut = ref(false);
 

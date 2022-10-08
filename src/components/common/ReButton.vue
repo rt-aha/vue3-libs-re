@@ -6,28 +6,18 @@
   </button>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ReButton',
-  props: {
-    type: {
-      type: String,
-      default: 'gradient',
-    },
-  },
-  emits: ['click'],
-  setup(props, { emit }) {
-    const onClick = () => {
-      emit('click');
-    };
-
-    return {
-      onClick,
-    };
+<script setup>
+const props = defineProps({
+  type: {
+    type: String,
+    default: 'gradient',
   },
 });
+const emit = defineExpose(['click']);
+
+const onClick = () => {
+  emit('click');
+};
 </script>
 
 <style lang="scss" scoped>

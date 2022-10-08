@@ -10,24 +10,19 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ReTooltip',
-  props: {
-    label: {
-      type: String,
-      default: 'tooltip',
-    },
-    placement: {
-      type: String,
-      default: 'center',
-    },
-    cusPlacementType: {
-      type: String,
-      default: '',
-    },
+<script setup>
+const props = defineProps({
+  label: {
+    type: String,
+    default: 'tooltip',
+  },
+  placement: {
+    type: String,
+    default: 'center',
+  },
+  cusPlacementType: {
+    type: String,
+    default: '',
   },
 });
 </script>

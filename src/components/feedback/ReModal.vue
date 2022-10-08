@@ -31,73 +31,58 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script setup>
 import ReButton from '@/components/common/ReButton.vue';
 
-export default defineComponent({
-  name: 'ReModal',
-  components: {
-    ReButton,
+const props = defineProps({
+  visible: {
+    type: Boolean,
+    default: false,
   },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-    render: {
-      default: null,
-    },
-    data: {
-      dafeult: () => ({}),
-    },
-    btns: {
-      type: Array,
-      default: () => [],
-    },
-    content: {
-      type: String,
-      default: '',
-    },
-    renderType: {
-      type: String,
-      default: '',
-    },
+  render: {
+    default: null,
   },
-  emits: ['closeModal'],
-  setup(props, { emit }) {
-    // const internalInstance = getCurrentInstance();
-    const modalActive = ref(true);
-    // 傳給外層使用這個 hook 的內容;
-    const fulfillContent = ref(null);
-
-    const handleAniamtionEnd = (e) => {
-      if (e.animationName.includes('fadeOut')) {
-        emit('closeModal', fulfillContent.value);
-      }
-    };
-
-    const close = (content) => {
-      fulfillContent.value = content;
-      // 觸發動畫
-      modalActive.value = false;
-    };
-
-    const handleBtn = async (cb) => {
-      if (cb) {
-        await cb();
-      }
-      close();
-    };
-
-    return {
-      close,
-      handleBtn,
-      modalActive,
-      handleAniamtionEnd,
-    };
+  data: {
+    dafeult: () => ({}),
+  },
+  btns: {
+    type: Array,
+    default: () => [],
+  },
+  content: {
+    type: String,
+    default: '',
+  },
+  renderType: {
+    type: String,
+    default: '',
   },
 });
+
+const emit = defineEmits(['closeModal']);
+
+const modalActive = ref(true);
+// 傳給外層使用這個 hook 的內容;
+const fulfillContent = ref(null);
+
+const handleAniamtionEnd = (e) => {
+  if (e.animationName.includes('fadeOut')) {
+    emit('closeModal', fulfillContent.value);
+  }
+};
+
+const close = (content) => {
+  fulfillContent.value = content;
+  // 觸發動畫
+  modalActive.value = false;
+};
+
+const handleBtn = async (cb) => {
+  if (cb) {
+    await cb();
+  }
+  close();
+};
 </script>
 
 <style lang="scss" scoped>
