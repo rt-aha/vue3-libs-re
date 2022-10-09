@@ -5,6 +5,7 @@
         <ReSlider v-model="val1" />
       </div>
     </dev-section>
+
     <dev-section title="顯示數值">
       <div class="wrap">
         <dev-props type="Boolean" prop-name="tooltip" text="hover 圓點可看到數值" />
@@ -24,8 +25,38 @@
     <dev-section title="限制可選值">
       <div class="wrap">
         <dev-props type="Boolean" prop-name="limit-marks" text="限制可選數值，需搭配 marks 使用，預設 false" />
+        <dev-desc text="若預設值不在限制值上，初始化會自動校正至最靠近的限制點" />
+        <dev-desc text="e.g. v-model=37" />
         <div :style="{ 'margin-top': '30px' }">
           <ReSlider v-model="val4" :marks="limitMarks" limit-marks />
+        </div>
+
+        <dev-desc text="e.g. v-model=38" />
+        <div :style="{ 'margin-top': '30px' }">
+          <ReSlider v-model="val5" :marks="limitMarks" limit-marks />
+        </div>
+      </div>
+    </dev-section>
+
+    <dev-section title="範圍">
+      <div class="wrap">
+        <dev-props type="Boolean" prop-name="range" text="可選範圍" />
+        <ReSlider v-model="val6" range />
+      </div>
+    </dev-section>
+
+    <dev-section title="範圍，顯示數值">
+      <div class="wrap">
+        <dev-props type="Boolean" prop-name="tooltip" text="hover 圓點可看到數值" />
+        <ReSlider v-model="val7" range tooltip />
+      </div>
+    </dev-section>
+
+    <dev-section title="範圍，限制可選值">
+      <div class="wrap">
+        <dev-props type="Boolean" prop-name="limit-marks" text="標記數值, 若不在校正點上，會直接校正為最靠近的點" />
+        <div :style="{ 'margin-top': '30px' }">
+          <ReSlider v-model="val8" range tooltip :marks="limitMarks" limit-marks />
         </div>
       </div>
     </dev-section>
@@ -36,9 +67,14 @@
 import ReSlider from '@/components/dataInput/ReSlider.vue';
 
 const val1 = ref(10);
+const val11 = ref([40, 60]);
 const val2 = ref(20);
-const val3 = ref(30);
-const val4 = ref(40);
+const val3 = ref(23);
+const val4 = ref(37);
+const val5 = ref(38);
+const val6 = ref([40, 60]);
+const val7 = ref([33, 91]);
+const val8 = ref([30, 70]);
 
 const marks = {
   10: '10',

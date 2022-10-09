@@ -1,25 +1,39 @@
 <template>
   <div class="re-slider">
     <div
-      ref="volumeProgressBarEle"
+      ref="sliderBarRef"
       class="slider-wrap"
-      @click="calcProgressBarOffset"
-      @mousedown="handleMouseDown"
       @mouseover="handleMouseOver"
-      @mouseup="handelMouseUp"
+      @mouseup="handleMouseLeaveSlider"
+      @mouseleave="handleMouseLeaveSlider"
+      @click="handleClick"
     >
       <div class="slider-static" />
-      <div class="slider-line" :style="{ width: `${positionPersentage}%` }" />
 
-      <div class="slider-dot" :style="{ left: `${positionPersentage}%` }">
-        <ReTooltip v-if="tooltip" :label="positionPersentage.toString()">
+      <template v-if="marks">
+        <div v-for="m of markList" :key="m.position" class="slider-mark" :style="{ left: `${m.position}%` }" :data-label="m.label" :data-position="m.position" @click.stop="setToMarkPosition(m.position)" />
+      </template>
+
+      <div v-if="range" class="slider-line" :style="{ 'clip-path': `polygon(${positionPersentage[0]}% 0%, ${positionPersentage[1]}% 0%, ${positionPersentage[1]}% 100%, ${positionPersentage[0]}% 100%)` }" />
+      <div v-else class="slider-line" :style="{ 'clip-path': `polygon(0% 0%, ${positionPersentage}% 0%, ${positionPersentage}% 100%, 0% 100%)` }" />
+      <div
+        class="slider-dot" :style="{ left: `${range ? positionPersentage[0] : positionPersentage}%` }"
+        @mousedown.stop="(e) => handleMouseDown(e, 'dot1')"
+      >
+        <ReTooltip v-if="tooltip" :label="range ? positionPersentage[0] : positionPersentage">
           <div class="slider-dot__real" />
         </ReTooltip>
         <div v-else class="slider-dot__real" />
       </div>
-      <template v-if="marks">
-        <div v-for="m of markList" :key="m.position" class="slider-mark" :style="{ left: `${m.position}%` }" :data-label="m.label" :data-position="m.position" @click.stop="toMark(m.position)" />
-      </template>
+      <div
+        v-if="range" class="slider-dot"
+        :style="{ left: `${positionPersentage[1]}%` }" @mousedown.stop="(e) => handleMouseDown(e, 'dot2')"
+      >
+        <ReTooltip v-if="tooltip" :label="range ? positionPersentage[1] : positionPersentage">
+          <div class="slider-dot__real" />
+        </ReTooltip>
+        <div v-else class="slider-dot__real" />
+      </div>
     </div>
   </div>
 </template>
@@ -30,7 +44,7 @@ import ReTooltip from '@/components/feedback/ReTooltip.vue';
 
 const props = defineProps({
   modelValue: {
-    type: Number,
+    type: [Number, Array],
     default: 0,
   },
   tooltip: {
@@ -45,21 +59,22 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  range: {
+    type: Boolean,
+    default: false,
+  },
 });
 const emit = defineEmits(['update:modelValue']);
 const { validFn } = useValidate();
 
-const isMouseDown = ref(false);
-const volumeProgressBarEle = ref(null);
+const isMouseDown1 = ref(false);
+const isMouseDown2 = ref(false);
+const currDot = ref('');
+const sliderBarRef = ref(null);
+const innerValue = ref(props.modelValue);
 
 const positionPersentage = computed(() => {
-  return props.modelValue;
-});
-
-const innerValue = computed({
-  get: () => {
-    return props.modelValue;
-  },
+  return innerValue.value;
 });
 
 const markList = computed(() => {
@@ -79,50 +94,200 @@ const markList = computed(() => {
   return mappingMarksToList;
 });
 
-const updateValue = (val) => {
-  console.log(val);
-  emit('update:modelValue', Number(val));
+const updateValue = () => {
+  //
+  if (props.range) {
+    const sortValue = innerValue.value.sort();
+    emit('update:modelValue', sortValue);
+  }
+  else {
+    emit('update:modelValue', Number(innerValue.value));
+  }
   validFn('change');
 };
 
-const calcProgressBarOffset = (e) => {
-  if (props.limitMarks) { return; }
+const proofreadMarkOnCorrectPosition = () => {
+  const markKeys = Object.keys(props.marks);
+  const isOnMarkPosition = markKeys.includes(String(innerValue.value));
+
+  if (isOnMarkPosition) {
+    return;
+  }
+
+  let min = 101;
+  const numValue = innerValue.value;
+  for (const key of markKeys) {
+    const absNum = Math.abs(numValue - Number(key));
+    if (absNum < min) {
+      min = absNum;
+      innerValue.value = Number(key);
+    }
+  }
+
+  updateValue();
+};
+
+const proofreadRangeMarkOnCorrectPosition = () => {
+  const markKeys = Object.keys(props.marks);
+  let [startPoint, endPoint] = innerValue.value;
+  const isOnMarkPosition0 = markKeys.includes(String(startPoint));
+  const isOnMarkPosition1 = markKeys.includes(String(endPoint));
+
+  if (isOnMarkPosition0 && isOnMarkPosition1) {
+    return;
+  }
+
+  if (!isOnMarkPosition0) {
+    let min = 101;
+    const numValue = startPoint;
+    for (const key of markKeys) {
+      const absNum = Math.abs(numValue - Number(key));
+
+      if (absNum < min) {
+        min = absNum;
+        startPoint = Number(key);
+        innerValue.value = [startPoint, endPoint];
+      }
+    }
+  }
+
+  if (!isOnMarkPosition1) {
+    let min = 101;
+    const numValue = endPoint;
+    for (const key of markKeys) {
+      const absNum = Math.abs(numValue - Number(key));
+      if (absNum < min) {
+        min = absNum;
+        innerValue.value = [startPoint, Number(key)];
+      }
+    }
+  }
+
+  updateValue();
+};
+
+const proofreadPoint = () => {
+  if (props.limitMarks) {
+    if (props.range) {
+      proofreadRangeMarkOnCorrectPosition();
+    }
+    else {
+      proofreadMarkOnCorrectPosition();
+    }
+  }
+
+  // updateValue();
+};
+
+const formatValueAndUpdate = (postiveInteger) => {
+  if (props.range) {
+    if (currDot.value === 'dot1') {
+      const [, b] = innerValue.value;
+      innerValue.value = [postiveInteger, b];
+    }
+    if (currDot.value === 'dot2') {
+      const [a] = innerValue.value;
+      innerValue.value = [a, postiveInteger];
+    }
+  }
+  else {
+    innerValue.value = postiveInteger;
+    updateValue();
+  }
+};
+
+const calcSliderBarOffset = (e, action) => {
   // 點擊位置與左邊界的 x 距離
   const { clientX } = e;
   // progressBar 資訊
-  const eleInfoBox = volumeProgressBarEle.value.getBoundingClientRect();
+  const eleInfoBox = sliderBarRef.value.getBoundingClientRect();
   // 進度條與左邊界的距離
-  const leftOffset = volumeProgressBarEle.value.getBoundingClientRect().left;
+  const leftOffset = sliderBarRef.value.getBoundingClientRect().left;
   // 進度條的長度
   const progressBarLength = eleInfoBox.width;
   // 點擊位置在進度條的百分比
   const clickPersentage = (clientX - leftOffset) / progressBarLength;
 
-  // musicVolume.value = clickPersentage;
-
   const postiveInteger = Math.round(clickPersentage * 100);
-  updateValue(postiveInteger);
+
+  if (action === 'move') {
+    formatValueAndUpdate(postiveInteger);
+  }
+
+  return postiveInteger;
 };
 
-const toMark = (position) => {
-  updateValue(position);
-};
+const handleMouseDown = (e, dot) => {
+  currDot.value = dot;
+  if (currDot.value === 'dot1') {
+    isMouseDown1.value = true;
+  }
 
-const handleMouseDown = (e) => {
-  isMouseDown.value = true;
-  calcProgressBarOffset(e);
+  if (currDot.value === 'dot2') {
+    isMouseDown2.value = true;
+  }
+  calcSliderBarOffset(e, 'move');
 };
 
 const handleMouseOver = (e) => {
   // 滑鼠壓著的情況下移動
-  if (isMouseDown.value) {
-    calcProgressBarOffset(e);
+  if (isMouseDown1.value || isMouseDown2.value) {
+    calcSliderBarOffset(e, 'move');
   }
 };
 
-const handelMouseUp = () => {
-  isMouseDown.value = false;
+const setToMarkPosition = (position) => {
+  if (props.range) {
+    const startPointDiff = Math.abs(position - innerValue.value[0]);
+    const endPointDiff = Math.abs(position - innerValue.value[1]);
+
+    if (endPointDiff > startPointDiff) {
+      innerValue.value = [position, innerValue.value[1]];
+    }
+    else {
+      innerValue.value = [innerValue.value[0], position];
+    }
+
+    return;
+  }
+
+  innerValue.value = position;
+  proofreadPoint();
 };
+
+const handleMouseLeaveSlider = () => {
+  //
+  if (currDot.value === 'dot1') {
+    isMouseDown1.value = false;
+  }
+
+  if (currDot.value === 'dot2') {
+    isMouseDown2.value = false;
+  }
+
+  proofreadPoint();
+};
+
+const handleClick = (e) => {
+  // if (props.range) {
+  const clickPosition = calcSliderBarOffset(e, 'click');
+
+  setToMarkPosition(clickPosition);
+  // }
+
+  if (props.limitMarks) {
+    proofreadPoint();
+  }
+
+  // handleMouseLeaveSlider();
+};
+
+const init = () => {
+  innerValue.value = props.modelValue;
+  proofreadPoint();
+};
+
+init();
 </script>
 
 <style lang="scss" scoped>
@@ -153,14 +318,14 @@ const handelMouseUp = () => {
   width: 100%;
   @include position(tl, 50%, 0);
   transform: translateY(-50%);
-  transition: 0.3s;
+  // transition: 0.3s;
 
 }
 
 .slider-dot {
   @include position(tl, 50%, 50%);
   transform: translate(-50%, -50%);
-  transition: 0.3s;
+  // transition: 0.3s;
 
   &__real {
     @include circle(10px);
