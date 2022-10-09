@@ -30,7 +30,9 @@
   </div>
 </template>
 
-<script setup>
+<script>
+import { defineComponent } from 'vue';
+
 import ReForm from '@/components/dataInput/ReForm.vue';
 import ReFormItem from '@/components/dataInput/ReFormItem.vue';
 import ReFormGrid from '@/components/dataInput/ReFormGrid.vue';
@@ -47,50 +49,85 @@ import ReDateRangePicker from '@/components/dataInput/ReDateRangePicker.vue';
 import ReEmailAutoComplete from '@/components/dataInput/ReEmailAutoComplete.vue';
 import ReUpload from '@/components/dataInput/ReUpload.vue';
 import ReInputList from '@/components/dataInput/ReInputList.vue';
+import ReSlider from '@/components/dataInput/ReSlider.vue';
 import ReDependenceSelect from '@/components/dataInput/ReDependenceSelect.vue';
 import ReMultiMultiCheckboxGroup from '@/components/dataInput/ReMultiMultiCheckboxGroup.vue';
 import ReTextarea from '@/components/dataInput/ReTextarea.vue';
 import ReMdEditor from '@/components/dataInput/ReMdEditor.vue';
 
-const props = defineProps({
-  formValue: {
-    type: Object,
-    default: () => ({}),
+export default defineComponent({
+  components: {
+    ReForm,
+    ReFormItem,
+    ReFormGrid,
+    ReInput,
+    ReInputNumber,
+    ReSelect,
+    ReRadio,
+    ReCheckbox,
+    ReCheckboxGroup,
+    ReSwitch,
+    ReTimePicker,
+    ReDatePicker,
+    ReDateRangePicker,
+    ReEmailAutoComplete,
+    ReUpload,
+    ReInputList,
+    ReDependenceSelect,
+    ReMultiMultiCheckboxGroup,
+    ReTextarea,
+    ReMdEditor,
+    ReSlider,
   },
-  formConfig: {
-    type: Object,
-    deafult: () => ({}),
+  props: {
+    formValue: {
+      type: Object,
+      default: () => ({}),
+    },
+    formConfig: {
+      type: Object,
+      deafult: () => ({}),
+    },
+    formRules: {
+      type: Object,
+      deafult: () => ({}),
+    },
   },
-  formRules: {
-    type: Object,
-    deafult: () => ({}),
+  emits: ['update:formValue'],
+  setup(props, { emit, expose }) {
+    const innerForm = ref(props.formValue);
+    const formItemRef = ref(null);
+
+    watch(
+      innerForm,
+      () => {
+        emit('update:formValue', innerForm.value);
+      },
+      { deep: true },
+    );
+
+    const validateAll = async () => {
+      const resultList = [];
+
+      for (const refEle of formItemRef.value) {
+        const result = await refEle.validateFields('enforceValidate');
+
+        resultList.push(result);
+      }
+
+      return !resultList.includes(false);
+    };
+
+    expose({ validateAll });
+
+    return {
+      innerForm,
+      formItemRef,
+
+    };
   },
+
 });
-
-const emit = defineEmits(['update:formValue']);
-
-const innerForm = ref(props.formValue);
-const formItemRef = ref(null);
-
-watch(
-  innerForm,
-  () => {
-    emit('update:formValue', innerForm.value);
-  },
-  { deep: true },
-);
-
-const validateAll = async () => {
-  const resultList = [];
-
-  for (const refEle of formItemRef.value) {
-    const result = await refEle.validateFields('enforceValidate');
-
-    resultList.push(result);
-  }
-
-  return !resultList.includes(false);
-};
 </script>
 
 <style lang="scss" scoped></style>

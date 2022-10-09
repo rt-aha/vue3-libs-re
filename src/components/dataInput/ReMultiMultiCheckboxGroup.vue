@@ -96,6 +96,7 @@ const purchaseCityCount = reactive({
   台南市: [],
   高雄市: [],
 });
+const uuid = nanoid();
 
 const handleChange = (e, opt) => {
   if (opt.disabled) { return; }

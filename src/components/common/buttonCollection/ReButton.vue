@@ -13,13 +13,13 @@
     :style="setExtraStyle"
     @click="handleClick"
   >
-    <span v-if="$slots.prefix" class="re-button__prefix">
+    <span v-if="slots.prefix" class="re-button__prefix">
       <slot name="prefix" />
     </span>
     <span class="re-button__content" :class="[{ 're-button__content--circle': extra === 'circle' }]">
       <slot />
     </span>
-    <span v-if="$slots.suffix" class="re-button__suffix">
+    <span v-if="slots.suffix" class="re-button__suffix">
       <slot name="suffix" />
     </span>
     <span v-if="isLoading" class="re-button__loading">
@@ -33,101 +33,93 @@
   </button>
 </template>
 
-<script>
-import { computed, defineComponent } from 'vue';
+<script setup>
+import { useSlots } from 'vue';
 
-export default defineComponent({
-  name: 'ReButton',
-  props: {
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    type: {
-      type: String,
-      default: 'default',
-      validator(val) {
-        return ['default', 'border', 'plain', 'circle'].includes(val);
-      },
-    },
-    size: {
-      type: String,
-      default: 'default',
-      validator(val) {
-        return ['small', 'default', 'large'].includes(val);
-      },
-    },
-    round: {
-      type: String,
-      default: 'default',
-      validator(val) {
-        return ['none', 'default', 'round'].includes(val);
-      },
-    },
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
-    extra: {
-      type: String,
-      default: '',
-    },
-    bgColor: {
-      default: '',
-      validator: (val) => {
-        if (val) {
-          const colorCodeRegExp = /^#[A-F0-9]{6}$/;
-          return colorCodeRegExp.test(val);
-        }
-
-        return true;
-      },
+const props = defineProps({
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  type: {
+    type: String,
+    default: 'default',
+    validator(val) {
+      return ['default', 'border', 'plain', 'circle'].includes(val);
     },
   },
-  emits: ['click'],
-  setup(props, { emit }) {
-    const setExtraStyle = computed(() => {
-      let extraStyles = {};
-
-      if (props.bgColor) {
-        extraStyles['background-color'] = props.bgColor;
+  size: {
+    type: String,
+    default: 'default',
+    validator(val) {
+      return ['small', 'default', 'large'].includes(val);
+    },
+  },
+  round: {
+    type: String,
+    default: 'default',
+    validator(val) {
+      return ['none', 'default', 'round'].includes(val);
+    },
+  },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
+  extra: {
+    type: String,
+    default: '',
+  },
+  bgColor: {
+    default: '',
+    validator: (val) => {
+      if (val) {
+        const colorCodeRegExp = /^#[A-F0-9]{6}$/;
+        return colorCodeRegExp.test(val);
       }
 
-      if (props.extra === 'circle') {
-        let wh = 36;
-        switch (props.size) {
-          case 'small':
-            wh = 32;
-            break;
-          case 'large':
-            wh = 40;
-            break;
-          default:
-            wh = 36;
-            break;
-        }
-
-        extraStyles = {
-          ...extraStyles,
-          'width': `${wh}px`,
-          'height': `${wh}px`,
-          'border-radius': `${wh / 2}px`,
-        };
-      }
-
-      return extraStyles;
-    });
-
-    const handleClick = (e) => {
-      emit('click', e);
-    };
-
-    return {
-      setExtraStyle,
-      handleClick,
-    };
+      return true;
+    },
   },
 });
+const emit = defineEmits(['click']);
+const slots = useSlots();
+
+const setExtraStyle = computed(() => {
+  let extraStyles = {};
+
+  if (props.bgColor) {
+    extraStyles['background-color'] = props.bgColor;
+  }
+
+  if (props.extra === 'circle') {
+    let wh = 36;
+    switch (props.size) {
+      case 'small':
+        wh = 32;
+        break;
+      case 'large':
+        wh = 40;
+        break;
+      default:
+        wh = 36;
+        break;
+    }
+
+    extraStyles = {
+      ...extraStyles,
+      'width': `${wh}px`,
+      'height': `${wh}px`,
+      'border-radius': `${wh / 2}px`,
+    };
+  }
+
+  return extraStyles;
+});
+
+const handleClick = (e) => {
+  emit('click', e);
+};
 </script>
 
 <style lang="scss" scoped>

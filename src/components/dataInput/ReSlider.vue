@@ -10,8 +10,12 @@
     >
       <div class="slider-static" />
 
-      <template v-if="marks">
-        <div v-for="m of markList" :key="m.position" class="slider-mark" :style="{ left: `${m.position}%` }" :data-label="m.label" :data-position="m.position" @click.stop="setToMarkPosition(m.position)" />
+      <template v-if="markList">
+        <div
+          v-for="m of markList" :key="m.position" class="slider-mark"
+          :class="{ 'slider-mark--is-limit': m.isLimit }"
+          :style="{ left: `${m.position}%` }" :data-label="m.label" :data-value="m.value" @click.stop="setToMarkPosition(m.position)"
+        />
       </template>
 
       <div v-if="range" class="slider-line" :style="{ 'clip-path': `polygon(${positionPersentage[0]}% 0%, ${positionPersentage[1]}% 0%, ${positionPersentage[1]}% 100%, ${positionPersentage[0]}% 100%)` }" />
@@ -20,7 +24,7 @@
         class="slider-dot" :style="{ left: `${range ? positionPersentage[0] : positionPersentage}%` }"
         @mousedown.stop="(e) => handleMouseDown(e, 'dot1')"
       >
-        <ReTooltip v-if="tooltip" :label="range ? positionPersentage[0] : positionPersentage">
+        <ReTooltip v-if="tooltip" :label="getLabel(0)">
           <div class="slider-dot__real" />
         </ReTooltip>
         <div v-else class="slider-dot__real" />
@@ -29,7 +33,7 @@
         v-if="range" class="slider-dot"
         :style="{ left: `${positionPersentage[1]}%` }" @mousedown.stop="(e) => handleMouseDown(e, 'dot2')"
       >
-        <ReTooltip v-if="tooltip" :label="range ? positionPersentage[1] : positionPersentage">
+        <ReTooltip v-if="tooltip" :label="getLabel(1)">
           <div class="slider-dot__real" />
         </ReTooltip>
         <div v-else class="slider-dot__real" />
@@ -55,6 +59,10 @@ const props = defineProps({
     type: [Object, null],
     default: null,
   },
+  showLimit: {
+    type: Boolean,
+    default: false,
+  },
   limitMarks: {
     type: Boolean,
     default: false,
@@ -62,6 +70,10 @@ const props = defineProps({
   range: {
     type: Boolean,
     default: false,
+  },
+  formatShowValue: {
+    type: Function,
+    default: val => val,
   },
 });
 const emit = defineEmits(['update:modelValue']);
@@ -77,21 +89,48 @@ const positionPersentage = computed(() => {
   return innerValue.value;
 });
 
+const getLabel = (index) => {
+  if (props.range) {
+    return props.formatShowValue(positionPersentage.value[index]);
+  }
+
+  return props.formatShowValue(positionPersentage.value);
+};
+
 const markList = computed(() => {
-  if (!props.marks) {
+  if (!props.marks && !props.showLimit) {
     return null;
   }
 
-  const keys = Object.keys(props.marks);
+  const mappingMarksToList = (setting, isLimit = true) => {
+    const keys = Object.keys(setting);
 
-  const mappingMarksToList = keys.map((key) => {
-    return {
-      position: key,
-      label: props.marks[key],
-    };
-  });
+    const list = keys.map((key) => {
+      return {
+        position: key,
+        value: props.formatShowValue(key),
+        label: setting[key],
+        isLimit,
+      };
+    });
 
-  return mappingMarksToList;
+    return list;
+  };
+
+  const defaultLimit = {
+    0: '',
+    100: '',
+  };
+
+  if (props.showLimit && props.marks) {
+    return [...mappingMarksToList(defaultLimit), ...mappingMarksToList(props.marks, false)];
+  }
+
+  if (props.showLimit) {
+    return mappingMarksToList(defaultLimit);
+  }
+
+  return mappingMarksToList(props.marks, false);
 });
 
 const updateValue = () => {
@@ -348,7 +387,7 @@ init();
   }
 
   &::before {
-    content: attr(data-position);
+    content: attr(data-value);
     @include position(tl, -20px, 50%);
     transform: translateX(-50%);
     @include font-style($c-black, 14);
@@ -360,6 +399,17 @@ init();
     transform: translateX(-50%);
     @include font-style($c-grey, 12);
     white-space: nowrap;
+  }
+
+  &--is-limit {
+    // visibility: hidden;
+    background-color: transparent;
+
+    &:hover {
+      transform: translate(-50%, -50%) scale(1);
+      background-color: transparent;
+      border: 0;
+    }
   }
 
 }

@@ -69,6 +69,8 @@ const handleChange = () => {
   emit('onChange', !props.modelValue);
   validFn('change');
 };
+
+const uuid = nanoid();
 </script>
 
 <style lang="scss" scoped>

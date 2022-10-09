@@ -159,6 +159,14 @@ export const basicFormConfig = [
     },
   },
   {
+    compName: 'Slider',
+    formKey: 'slider',
+    formItem: {
+      label: '滑塊',
+      hint: '(Slider)',
+    },
+  },
+  {
     compName: 'MdEditor',
     formKey: 'mdEditor',
     formItem: {

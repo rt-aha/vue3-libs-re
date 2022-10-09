@@ -62,6 +62,7 @@ const multiMultiForm = ref({
 const basicForm = ref({
   city: '',
   region: '',
+  slider: 32,
 });
 
 const dependencyForm = ref({

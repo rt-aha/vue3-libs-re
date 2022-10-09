@@ -25,8 +25,7 @@
 <script setup>
 import useValidate from '@/hooks/useValidate';
 
-const emit = defineEmits(['update:modelValue']);
-const props = ({
+const props = defineProps({
   modelValue: {
     type: Boolean,
     default: false,
@@ -67,6 +66,8 @@ const props = ({
     }),
   },
 });
+const emit = defineEmits(['update:modelValue']);
+const uuid = nanoid();
 // 這裡設定的是高度
 const sizeMapping = {
   small: '20px',

@@ -67,8 +67,7 @@
 - [-] DependencySelect
   - [ ] 寫進Select 不需要額外一個組件
 - [x] EmailAutoComplete
-- [-] Slider
-  - 顯示文字
+- [x] Slider
 - [x] AutoInput
 - [x] Markdown Editor
   - 封裝 @kangc/v-md-editor

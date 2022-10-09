@@ -46,7 +46,6 @@
 <script setup>
 import useValidate from '@/hooks/useValidate';
 import ReCheckbox from '@/components/dataInput/ReCheckbox.vue';
-
 const props = defineProps({
   modelValue: {
     type: Array,
@@ -75,6 +74,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['update:modelValue', 'onChange']);
+
+const uuid = nanoid();
 
 const isAll = ref(false);
 const { validFn } = useValidate();

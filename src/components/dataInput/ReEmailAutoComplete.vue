@@ -51,24 +51,7 @@ import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue'
 import ReCategoryTitle from '@/components/dataInput/ReCategoryTitle.vue';
 import useValidate from '@/hooks/useValidate';
 
-const emit = defineEmits(['update:modelValue']);
-
-const domainList = [
-  {
-    value: 'gmail.com',
-    label: 'gmail.com',
-  },
-  {
-    value: 'yahoo.com.tw',
-    label: 'yahoo.com.tw',
-  },
-  {
-    value: 'hotmail.com',
-    label: 'hotmail.com',
-  },
-];
-
-props = defineProps({
+const props = defineProps({
   disabled: {
     type: Boolean,
     default: false,
@@ -79,13 +62,29 @@ props = defineProps({
   },
   options: {
     type: Array,
-    default: domainList,
+    default: () => [
+      {
+        value: 'gmail.com',
+        label: 'gmail.com',
+      },
+      {
+        value: 'yahoo.com.tw',
+        label: 'yahoo.com.tw',
+      },
+      {
+        value: 'hotmail.com',
+        label: 'hotmail.com',
+      },
+    ],
   },
   storageKey: {
     type: String,
     default: '',
   },
 });
+
+const emit = defineEmits(['update:modelValue']);
+
 const { validFn } = useValidate();
 const isExpand = ref(false);
 const visible = ref(false);

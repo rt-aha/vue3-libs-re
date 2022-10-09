@@ -58,7 +58,8 @@ const props = defineProps({
     default: false,
   },
 });
-const emits = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue']);
+const slots = useSlots();
 
 const { validFn } = useValidate();
 const inputType = ref('');
