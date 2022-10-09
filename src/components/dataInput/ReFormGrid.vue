@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-props = defineProps({
+const props = defineProps({
   layout: {
     type: [Object, null],
     default: null,

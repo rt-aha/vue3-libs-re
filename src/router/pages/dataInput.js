@@ -2,6 +2,14 @@ import addMeta from '@/router/addMeta';
 
 const children = [
   {
+    path: 'slider',
+    name: 'slider',
+    component: () => import(/* webpackChunkName: "ReSlider" */ '@/views/dataInput/ReSlider.vue'),
+    meta: {
+      title: 'Slider 滑塊',
+    },
+  },
+  {
     path: 'input',
     name: 'input',
     component: () => import(/* webpackChunkName: "ReInput" */ '@/views/dataInput/ReInput.vue'),
