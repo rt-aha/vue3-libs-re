@@ -53,7 +53,7 @@ const props = defineProps({
     default: 'center',
   },
 });
-const emit = defineExpose(['update:modelValue', 'onChange']);
+const emit = defineEmits(['update:modelValue', 'onChange']);
 
 const innerSingle = ref('');
 const { validFn } = useValidate();

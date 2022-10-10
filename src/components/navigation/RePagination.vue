@@ -101,7 +101,7 @@ const props = defineProps({
     default: () => [],
   },
 });
-const emit = defineEmits['handlePageIndex', 'handlePageSize', 'handlePageJump'];
+const emit = defineEmits(['handlePageIndex', 'handlePageSize', 'handlePageJump']);
 
 const pageSize = ref(null);
 const pageJump = ref('1');

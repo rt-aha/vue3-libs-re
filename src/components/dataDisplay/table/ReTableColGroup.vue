@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const props = defineRrops({
+const props = defineProps({
   columns: {
     type: Array,
     default: () => [],

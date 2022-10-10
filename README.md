@@ -79,7 +79,7 @@
 - [x] Loading
   - [ ] 只做一個圈圈而已
 - [x] Tooltip(PopOver)
-- [ ] Message
+- [-] Message
   - 先做一版基本的
   - [ ] 待優化：目前用 watch 判斷新推入字串，若有一樣字串，會失效
   - [ ] 可用 render
@@ -92,3 +92,10 @@
   - [ ] 先只做最基本的
 - [x] Pagination
 
+
+### 其他
+- [ ] common 說明
+- [ ] dataDisplay 說明
+- [ ] navigation 說明
+- [ ] feedback 說明
+- [ ] 
