@@ -33,7 +33,7 @@
         >
           <div class="sub-list__item__box">
             <p class="sub-list__item__box__text">
-              {{ sl.label }}
+              {{ sl.label }} {{ sl.manualTesting && '(v)' }}
             </p>
           </div>
         </li>
@@ -83,30 +83,35 @@ export default defineComponent({
         return {
           label: toCamel(item.name),
           name: item.name,
+          manualTesting: item.meta.manualTesting,
         };
       }),
       dataDisplay: dataDisplay.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
+          manualTesting: item.meta.manualTesting,
         };
       }),
       dataInput: dataInput.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
+          manualTesting: item.meta.manualTesting,
         };
       }),
       navigation: navigation.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
+          manualTesting: item.meta.manualTesting,
         };
       }),
       feedback: feedback.map((item) => {
         return {
           label: toCamel(item.name),
           name: item.name,
+          manualTesting: item.meta.manualTesting,
         };
       }),
       // dataInput: dataInput.map((item) => {

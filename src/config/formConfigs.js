@@ -18,9 +18,24 @@ const cityOptions = taiwanCitiesRegions.map((city) => {
 export const basicFormConfig = [
   {
     compName: 'Input',
-    formKey: 'account',
+    formKey: 'inputVal',
     formItem: {
-      label: '帳號',
+      label: '一般輸入框',
+      hint: '(Input)',
+      required: true,
+    },
+    layout: {
+      768: 12,
+    },
+  },
+  {
+    compName: 'Input',
+    compProps: {
+      disabled: true,
+    },
+    formKey: 'inputValDisabled',
+    formItem: {
+      label: '輸入框禁用',
       hint: '(Input)',
       required: true,
     },
@@ -33,23 +48,69 @@ export const basicFormConfig = [
     compProps: {
       type: 'password',
     },
+    formKey: 'inputValPassword',
     formItem: {
-      label: '密碼',
+      label: '密碼輸入框',
       hint: '(Input)',
-    },
-    formKey: 'password',
-    layout: {
-      768: 12,
+      required: true,
     },
   },
   {
     compName: 'InputNumber',
     formItem: {
-      label: '身高',
+      label: '數字輸入框',
       hint: '(InputNumber)',
     },
-    formKey: 'height',
+    formKey: 'inputNumberVal',
   },
+  {
+    compName: 'InputNumber',
+    compProps: {
+      disabled: true,
+    },
+    formItem: {
+      label: '數字輸入框，禁用',
+      hint: '(InputNumber)',
+    },
+    formKey: 'inputNumberValDisabled',
+  },
+  {
+    compName: 'InputNumber',
+    compProps: {
+      step: 2,
+    },
+    formItem: {
+      label: '數字輸入框，階層',
+      hint: '(InputNumber)',
+    },
+    formKey: 'inputNumberValStep',
+  },
+  {
+    compName: 'InputNumber',
+    compProps: {
+      min: 0,
+      max: 5,
+    },
+    formItem: {
+      label: '數字輸入框，最大值最小值(0~5)',
+      hint: '(InputNumber)',
+    },
+    formKey: 'inputNumberMinMax',
+  },
+  {
+    compName: 'InputNumber',
+    compProps: {
+      min: 0,
+      max: 5,
+      step: 2,
+    },
+    formItem: {
+      label: '數字輸入框，階層(2)與最大值最小值(0~5)',
+      hint: '(InputNumber)',
+    },
+    formKey: 'inputNumberStepMinMax',
+  },
+
   {
     compName: 'Select',
     compProps: {

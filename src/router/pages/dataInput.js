@@ -15,6 +15,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReInput" */ '@/views/dataInput/ReInput.vue'),
     meta: {
       title: 'Input 輸入框',
+      manualTesting: true,
     },
   },
   {
@@ -23,6 +24,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReInputNumber" */ '@/views/dataInput/ReInputNumber.vue'),
     meta: {
       title: 'Input Number 數字輸入框',
+      manualTesting: true,
     },
   },
   {

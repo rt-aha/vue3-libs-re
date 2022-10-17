@@ -6,7 +6,7 @@
       </div>
     </dev-section>
 
-    <dev-section title="基本使用">
+    <dev-section title="禁用">
       <div class="wrap">
         <dev-props type="Boolean" prop-name="disabled" text="禁用" />
         <ReInputNumber v-model="value1" disabled />
@@ -15,7 +15,7 @@
 
     <dev-section title="階層">
       <div class="wrap">
-        <dev-props type="Number, String" prop-name="step" text="間隔" />
+        <dev-props type="Number, String" prop-name="step" text="設定增減幅度" />
         <dev-desc text="e.g. 2" />
         <ReInputNumber v-model="value2" step="2" />
 

@@ -67,12 +67,6 @@ const inputType = ref('');
 const inputField = ref(null);
 // const formRules = inject('formRules', {});
 
-const updateValue = (e, event) => {
-  if (props.disabled) { return; }
-  emit('update:modelValue', e.target.value);
-  validFn(event);
-};
-
 const toggleEyeStatus = () => {
   if (props.disabled) { return; }
   inputType.value = inputType.value === 'password' ? 'text' : 'password';
@@ -82,22 +76,13 @@ const setInitInputFieldValue = () => {
   inputField.value.value = props.modelValue;
 };
 
-const add = () => {
-  if (props.disabled) { return; }
-
-  let val = Number(props.modelValue) + Number(props.step);
+const checkMinMax = (num) => {
+  let val = num;
   if (props.max) {
     if (val > props.max) {
       val = props.max;
     }
   }
-
-  emit('update:modelValue', val);
-};
-
-const minus = () => {
-  if (props.disabled) { return; }
-  let val = Number(props.modelValue) - Number(props.step);
 
   if (props.min) {
     if (val < props.min) {
@@ -106,6 +91,24 @@ const minus = () => {
   }
 
   emit('update:modelValue', val);
+};
+
+const updateValue = (e, event) => {
+  if (props.disabled) { return; }
+  checkMinMax(Number(e.target.value));
+  validFn(event);
+};
+
+const add = () => {
+  if (props.disabled) { return; }
+  const val = Number(props.modelValue) + Number(props.step);
+  checkMinMax(val);
+};
+
+const minus = () => {
+  if (props.disabled) { return; }
+  const val = Number(props.modelValue) - Number(props.step);
+  checkMinMax(val);
 };
 
 const init = () => {

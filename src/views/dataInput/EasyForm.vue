@@ -60,6 +60,17 @@ const multiMultiForm = ref({
 });
 
 const basicForm = ref({
+  // input
+  inputVal: '',
+  inputValDisabled: '',
+  inputValPassword: '',
+  // inputNumber
+  inputNumberVal: 0,
+  inputNumberValDisabled: 0,
+  inputNumberValStep: 0,
+  inputNumberMinMax: 0,
+  inputNumberStepMinMax: 0,
+
   city: '',
   region: '',
   slider: 32,
@@ -77,6 +88,12 @@ const dependencyForm = ref({
   timePicker: new Date(),
   mdEditor: '',
 });
+
+setTimeout(() => {
+  basicForm.value.inputVal = 'after3000ms';
+  basicForm.value.inputValDisabled = 'after3000ms';
+  basicForm.value.inputValPassword = 'after3000ms';
+}, 3000);
 
 const basicFormSubmit = () => {
   const validResult = basicFormRef.value.validateAll();
