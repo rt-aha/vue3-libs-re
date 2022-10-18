@@ -146,34 +146,33 @@ const periodOptions = [
 
 <style lang="scss" scoped>
 .re-period-picker {
-  // width: 200px;
-  cursor: pointer;
-
   /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
+  // width: 200px;
+  cursor: pointer;
 }
 
 .select {
   &__field {
     @include font-style($c-black, 16, 400, 1px, 14px);
+    width: 100%;
+    cursor: pointer;
     background-color: transparent;
     border: 0;
     outline: 0;
-    cursor: pointer;
-    width: 100%;
   }
 }
 
 .select {
-  display: inline-block;
-  border: 1px solid $c-form-border;
-  min-height: 36px;
-  height: auto;
-  border-radius: 4px;
   @include padding(0 10px);
   @include flex();
   // width: 200px;
   position: relative;
+  display: inline-block;
+  height: auto;
+  min-height: 36px;
+  border: 1px solid $c-form-border;
+  border-radius: 4px;
 
   &__active-wrap {
     flex: 1;
@@ -181,22 +180,22 @@ const periodOptions = [
 
   &__field {
     @include font-style($c-black, 14, 400, 1px, 14px);
+    cursor: pointer;
     background-color: transparent;
     border: 0;
     outline: 0;
-    cursor: pointer;
   }
 
   &__drop-icon {
     flex: none;
     width: 15px;
+    margin-left: 10px;
+    transition: 0.4s;
 
     /* @include position(tr, 50%, 10px); */
 
     /* transform: translateY(-50%) rotate(0deg); */
     transform: rotate(0deg);
-    transition: 0.4s;
-    margin-left: 10px;
 
     &--active {
       /* transform: translateY(-50%) rotate(180deg); */
@@ -207,9 +206,9 @@ const periodOptions = [
 
 .select-options-wrap {
   @include position(tl, calc(100% + 5px), 0);
-  background-color: $c-white;
-  width: 100%;
   z-index: 100;
+  width: 100%;
+  background-color: $c-white;
   border-radius: 5px;
   // border: 1px solid $c-input-bg;
 }
@@ -221,9 +220,9 @@ const periodOptions = [
 
 <style lang="scss">
 .vc-container {
+  width: 100%;
   // background-color: transparent;
   background-color: $c-white;
   border: 0;
-  width: 100%;
 }
 </style>

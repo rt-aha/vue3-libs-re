@@ -74,40 +74,40 @@ const innerTimelineData = computed(() => {
     z-index: 10;
 
     &__text {
-      margin-left: 20px;
       @include font-style($c-deepblue, 20, 700, 0.4px);
       position: relative;
+      margin-left: 20px;
 
       &::before {
-        content: "";
-        background-color: $c-deepblue;
-        margin-right: 10px;
         @include circle(10px);
         @include position(tl, 50%, -20px);
+        margin-right: 10px;
+        content: "";
+        background-color: $c-deepblue;
         transform: translateY(-50%);
       }
     }
   }
 
   &__desc {
-    margin-top: 4px;
     height: 100%;
+    margin-top: 4px;
 
     &__line {
     }
 
     &__text {
-      margin-left: 20px;
-      height: 100%;
       position: relative;
+      height: 100%;
+      margin-left: 20px;
 
       &::before {
-        content: "";
+        @include position(tl, 0, -16px);
+        display: inline-block;
         width: 1px;
         height: 100%;
-        display: inline-block;
+        content: "";
         background-color: $c-grey;
-        @include position(tl, 0, -16px);
       }
     }
   }

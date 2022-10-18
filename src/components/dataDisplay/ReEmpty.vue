@@ -31,8 +31,8 @@ const props = defineProps({
     }
 
     &__text {
-      margin-top: 5px;
       @include font-style($c-text1, 14);
+      margin-top: 5px;
     }
   }
 }

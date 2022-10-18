@@ -33,7 +33,7 @@
 }
 
 .phone-color {
-  margin-top: 6px;
   @include font-style($c-text1, 14);
+  margin-top: 6px;
 }
 </style>

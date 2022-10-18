@@ -65,30 +65,30 @@ const handleClick = (tab) => {
 
     &::before {
       @include position(tl, 0, 0);
-      content: "";
-      display: inline-block;
       z-index: 500;
+      display: inline-block;
       width: 10px;
       height: calc(100% - 1px);
+      content: "";
       background: linear-gradient(90deg, $c-white 0%, transparent 90%, transparent 100%);
     }
 
     &::after {
       @include position(tr, 0, 0);
-      content: "";
-      display: inline-block;
       z-index: 500;
+      display: inline-block;
       width: 10px;
       height: calc(100% - 1px);
+      content: "";
       background: linear-gradient(270deg, $c-white 0%, transparent 90%, transparent 100%);
     }
 
     &__list {
+      @include flex();
       position: relative;
       width: 100%;
-      white-space: nowrap;
       overflow-x: auto;
-      @include flex();
+      white-space: nowrap;
 
       &::-webkit-scrollbar {
         height: 0;
@@ -96,28 +96,28 @@ const handleClick = (tab) => {
 
       &::after {
         @include position(tl, calc(100% - 1px), 0);
-        content: "";
         display: inline-block;
         width: 100%;
         height: 1px;
+        content: "";
         background: $c-grey;
       }
 
       &__item {
         @include padding(10px 0 20px);
-        display: inline-block;
-        position: relative;
-        cursor: pointer;
-        flex: 1;
         @include flex(center);
         @include font-style($c-grey, 18);
+        position: relative;
+        display: inline-block;
+        flex: 1;
+        cursor: pointer;
 
         &::after {
           @include position(tl, calc(100% - 2px), 0);
-          content: "";
           display: inline-block;
           width: 100%;
           height: 2px;
+          content: "";
           background-color: $c-grey;
         }
 
@@ -126,8 +126,8 @@ const handleClick = (tab) => {
           color: $c-deepblue;
 
           &::after {
-            display: inline-block;
             z-index: 300;
+            display: inline-block;
             background-color: $c-deepblue;
           }
         }

@@ -159,15 +159,15 @@ onMounted(() => {
   position: relative;
 
   &__frame {
+    position: relative;
+    box-sizing: border-box;
     width: 30px;
     height: 30px;
     border: 1px solid $c-grey;
-    box-sizing: border-box;
-    position: relative;
 
     &__loading {
-      width: 20px;
       @include position(center);
+      width: 20px;
     }
 
     &__image {
@@ -181,16 +181,16 @@ onMounted(() => {
       @include position(tl, 0, 0);
       width: 100%;
       height: 100%;
-      transition: 0.4s;
       cursor: pointer;
+      transition: 0.4s;
 
       &:hover {
         background-color: rgba($c-black, 0.5);
       }
 
       &__play-icon {
-        width: 20px;
         @include position(center);
+        width: 20px;
       }
     }
   }
@@ -199,10 +199,10 @@ onMounted(() => {
     display: inline-block;
     width: 30px;
     height: 30px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 
   &__info {
@@ -215,8 +215,8 @@ onMounted(() => {
     /* @include position(tr, 5px, 5px); */
     @include circle(20px);
     @include flex(center);
-    background-color: $c-red;
     margin-left: 10px;
+    background-color: $c-red;
 
     &__delete {
       width: 16px;

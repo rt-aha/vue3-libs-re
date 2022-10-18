@@ -31,8 +31,8 @@ const props = defineProps({
 // }
 
 .re-table-header {
-  border-radius: 4px;
   overflow: auto;
+  border-radius: 4px;
 }
 
 .header-tr {

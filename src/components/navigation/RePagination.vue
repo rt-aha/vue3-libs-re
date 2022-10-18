@@ -233,8 +233,8 @@ const isActive = (pageNumber, isWhite) => {
 
   &__item {
     @include flex(center);
-    width: 20px;
     position: relative;
+    width: 20px;
     cursor: pointer;
 
     &--number {
@@ -260,8 +260,8 @@ const isActive = (pageNumber, isWhite) => {
       position: relative;
 
       &--active {
-        transition: 0.3s;
         color: $c-black;
+        transition: 0.3s;
 
         &--white {
           color: $c-white;
@@ -272,14 +272,14 @@ const isActive = (pageNumber, isWhite) => {
 }
 
 .page-size {
-  margin-left: 16px;
   flex: none;
   width: 100px;
+  margin-left: 16px;
 }
 
 .page-jump {
-  margin-left: 16px;
   flex: none;
   width: 50px;
+  margin-left: 16px;
 }
 </style>

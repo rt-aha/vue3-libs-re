@@ -73,7 +73,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .re-form-grid {
   @include padding(0 8px);
-  width: 33.333333%;
   flex: none;
+  width: 33.333333%;
 }
 </style>

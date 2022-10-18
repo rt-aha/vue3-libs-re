@@ -31,11 +31,11 @@ export default defineComponent({
   cursor: pointer;
 
   &__label {
-    display: inline-block;
     @include font-normal();
+    display: inline-block;
+    line-height: 30px;
     text-decoration: underline;
     cursor: pointer;
-    line-height: 30px;
   }
 
   &__icon {

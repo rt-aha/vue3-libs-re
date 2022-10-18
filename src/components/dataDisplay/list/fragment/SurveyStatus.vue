@@ -44,8 +44,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .c-survey-status {
-  display: inline-block;
   @include padding(5px 12px);
+  display: inline-block;
   border-radius: 4px;
 
   &--type {

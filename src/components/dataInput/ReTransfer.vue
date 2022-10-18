@@ -207,31 +207,31 @@ init();
 
 .transfer {
   @include flex(flex-start, flex-start);
+  position: relative;
   width: 500px;
+  height: 200px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  position: relative;
-  height: 200px;
 
   &::before {
-    content: "";
+    @include position(tl, 0, 50%);
     width: 1px;
     height: 100%;
-    @include position(tl, 0, 50%);
+    content: "";
     background-color: #ccc;
   }
 
   &__options {
+    @include padding(5px 10px 10px);
+    @include flex(flex-start, flex-start, column);
     flex: none;
     width: 50%;
-    @include padding(5px 10px 10px);
     height: 100%;
-    @include flex(flex-start, flex-start, column);
 
     &__header {
-      width: 100%;
       // margin-bottom: 10px;
       @include flex(flex-start, center);
+      width: 100%;
       // border-bottom: 1px solid #ccc;
     }
 
@@ -243,17 +243,17 @@ init();
   }
 
   &__select {
+    @include padding(10px);
+    @include flex(flex-start, flex-start, column);
     flex: none;
     width: 50%;
-    @include padding(10px);
     height: 100%;
     overflow: auto;
-    @include flex(flex-start, flex-start, column);
 
     &__header {
+      @include padding(0 0 12px 0);
       width: 100%;
       margin-bottom: 5px;
-      @include padding(0 0 12px 0);
       // border-bottom: 1px solid #ccc;
 
       /* @include padding(10px); */
@@ -279,11 +279,11 @@ init();
 
 .checked-list {
   &__item {
-    min-height: 20px;
     @include padding(5px);
-    transition: 0.2s;
+    min-height: 20px;
     cursor: pointer;
     border-radius: 2px;
+    transition: 0.2s;
 
     &:hover {
       background-color: rgba($c-deepblue, 0.5);
@@ -295,8 +295,8 @@ init();
 
     // 為了蓋過 hover 的優先度，放 hover 下面
     &--disabled {
-      opacity: 0.5;
       cursor: not-allowed;
+      opacity: 0.5;
 
       .checked-list__item__box__delete {
         cursor: not-allowed;
@@ -311,15 +311,15 @@ init();
       @include flex(space-between);
 
       &__label {
-        flex: 1;
         @include font-style($c-black, 14, 400, 1px 14px);
+        flex: 1;
       }
 
       &__delete {
-        flex: none;
-        width: 24px;
         @include flex(center);
         display: none;
+        flex: none;
+        width: 24px;
         cursor: pointer;
 
         &__icon {
@@ -332,16 +332,16 @@ init();
 }
 
 .filter-wrap {
-  margin: 5px 0;
-  width: 100%;
-  border: 1px solid #ccc;
   @include padding(5px);
+  width: 100%;
+  margin: 5px 0;
+  border: 1px solid #ccc;
 
   &__input {
-    outline: 0;
-    border: 0;
     width: 100%;
+    border: 0;
     border-radius: 2px;
+    outline: 0;
   }
 }
 </style>

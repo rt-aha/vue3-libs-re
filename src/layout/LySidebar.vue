@@ -157,8 +157,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .ly-sidebar {
-  height: 100%;
   position: relative;
+  height: 100%;
   background-color: rgba($c-grey, 0.1);
 }
 
@@ -167,8 +167,8 @@ export default defineComponent({
 }
 
 .main-list {
-  height: 100%;
   @include flex(flex-start, flex-start, column);
+  height: 100%;
 
   &__item {
     cursor: pointer;
@@ -182,8 +182,8 @@ export default defineComponent({
       box-shadow: -4px -4px 10px $c-grey;
 
       &__text {
-        writing-mode: vertical-lr;
         @include font-style($c-black, 14, 400, 1.5px);
+        writing-mode: vertical-lr;
       }
     }
   }
@@ -197,8 +197,8 @@ export default defineComponent({
 }
 
 .sub-list {
-  height: 100%;
   @include flex(flex-start, flex-start, column);
+  height: 100%;
 
   &__item {
     &--actived {
@@ -206,10 +206,10 @@ export default defineComponent({
         font-weight: 700;
 
         &::before {
-          content: "";
+          @include position(bl, 3px, 5px);
           width: 100%;
           height: 5px;
-          @include position(bl, 3px, 5px);
+          content: "";
           background-color: $c-main-pink;
           opacity: 0.4;
         }
@@ -221,18 +221,18 @@ export default defineComponent({
 
       &__text {
         @include font-style($c-black, 14, 400, 1.5px);
-        cursor: pointer;
         position: relative;
+        cursor: pointer;
 
         &::before {
-          content: "";
+          @include position(bl, 3px, 5px);
+          z-index: -1;
           width: 0%;
           height: 5px;
-          @include position(bl, 3px, 5px);
+          content: "";
           background-color: $c-main-pink;
           opacity: 0;
           transition: 0.4s;
-          z-index: -1;
         }
 
         &:hover {

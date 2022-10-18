@@ -158,9 +158,9 @@ const handleBtn = async (cb) => {
     top: 50%;
     left: 50%;
     min-width: 320px;
-    transform: translate(-50%, -50%);
     background-color: $c-white;
     border-radius: 12px;
+    transform: translate(-50%, -50%);
 
     &__body {
       @include padding(50px 40px);
@@ -169,8 +169,8 @@ const handleBtn = async (cb) => {
 }
 
 .btn-wrap {
-  margin-top: 30px;
   @include flex(center);
+  margin-top: 30px;
 
   &__btn {
     & + & {

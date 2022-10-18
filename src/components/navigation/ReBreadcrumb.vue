@@ -45,16 +45,16 @@ const handleClick = (item) => {
 
 <style lang="scss" scoped>
 .c-breadcrumb {
-  height: 40px;
   @include flex();
   @include max-width(1700);
   position: relative;
   z-index: 10;
+  height: 40px;
 }
 
 .breadcrumb-list {
-  width: 100%;
   @include flex();
+  width: 100%;
 
   &__item {
     @include flex();
@@ -69,8 +69,8 @@ const handleClick = (item) => {
     }
 
     &__arrow {
-      width: 20px;
       display: inline-block;
+      width: 20px;
       margin: 0 10px;
     }
   }

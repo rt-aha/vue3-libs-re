@@ -52,8 +52,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .btn-wrap {
-  margin-top: 30px;
   @include flex(center);
+  margin-top: 30px;
 
   &__btn {
     & + & {

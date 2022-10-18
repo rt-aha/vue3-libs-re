@@ -130,8 +130,8 @@ const bgStyle = computed(() => {
 
 <style lang="scss" scoped>
 .c-image {
-  width: 100%;
   box-sizing: border-box;
+  width: 100%;
 
   &__img {
     width: 100%;

@@ -251,8 +251,8 @@ watch(
     }
 
     &__label {
-      cursor: pointer;
       @include flex(flex-start, flex-start);
+      cursor: pointer;
 
       &__option {
         flex: none;
@@ -265,13 +265,13 @@ watch(
           position: relative;
 
           &::after {
-            content: "";
-            display: block;
             @include position(center);
+            display: block;
             width: 10px;
             height: 10px;
-            border: 1px solid $c-deepblue;
+            content: "";
             background-color: $c-deepblue;
+            border: 1px solid $c-deepblue;
             border-radius: 2px;
           }
         }
@@ -282,8 +282,8 @@ watch(
         margin-left: 5px;
 
         &__label {
-          flex: 1;
           @include font-style($c-black, 14, 400, 1px 14px);
+          flex: 1;
         }
       }
     }

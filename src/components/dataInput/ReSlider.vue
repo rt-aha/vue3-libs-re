@@ -336,26 +336,26 @@ init();
 
 .slider-wrap {
   @include flex(center);
+  position: relative;
+  width: 100%;
   height: 18px;
   cursor: pointer;
-  width: 100%;
-  position: relative;
 
   // outline: 1px solid #00f;
 }
 
 .slider-static {
-  background-color: $c-text1;
-  height: 1px;
-  width: 100%;
   @include position(center);
+  width: 100%;
+  height: 1px;
+  background-color: $c-text1;
 }
 
 .slider-line {
-  background-color: $c-deepblue;
-  height: 2px;
-  width: 100%;
   @include position(tl, 50%, 0);
+  width: 100%;
+  height: 2px;
+  background-color: $c-deepblue;
   transform: translateY(-50%);
   // transition: 0.3s;
 }
@@ -373,30 +373,30 @@ init();
 
 .slider-mark {
   @include position(tl, 50%, 50%);
-  transform: translate(-50%, -50%);
-  transition: 0.3s;
   @include circle(4px);
   background-color: $c-deepblue;
+  transition: 0.3s;
+  transform: translate(-50%, -50%);
 
   &:hover {
-    transform: translate(-50%, -50%) scale(1.2);
     background-color: $c-white;
     border: 2px solid $c-deepblue;
+    transform: translate(-50%, -50%) scale(1.2);
   }
 
   &::before {
-    content: attr(data-value);
     @include position(tl, -20px, 50%);
-    transform: translateX(-50%);
     @include font-style($c-black, 14);
+    content: attr(data-value);
+    transform: translateX(-50%);
   }
 
   &::after {
-    content: attr(data-label);
     @include position(tl, calc(100% + 10px), 50%);
-    transform: translateX(-50%);
     @include font-style($c-grey, 12);
     white-space: nowrap;
+    content: attr(data-label);
+    transform: translateX(-50%);
   }
 
   &--is-limit {
@@ -404,9 +404,9 @@ init();
     background-color: transparent;
 
     &:hover {
-      transform: translate(-50%, -50%) scale(1);
       background-color: transparent;
       border: 0;
+      transform: translate(-50%, -50%) scale(1);
     }
   }
 }

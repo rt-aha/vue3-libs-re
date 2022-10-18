@@ -217,24 +217,24 @@ watch(
 
 <style lang="scss" scoped>
 .re-select {
-  // width: 200px;
-  cursor: pointer;
-
   /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
+  // width: 200px;
+  cursor: pointer;
 }
 
 .select {
-  /* background-color: #eee; */
-  display: inline-block;
-  min-height: 36px;
-  height: auto;
-  border: 1px solid $c-form-border;
-  border-radius: 4px;
   @include padding(0 10px);
   @include flex();
   // width: 200px;
   position: relative;
+
+  /* background-color: #eee; */
+  display: inline-block;
+  height: auto;
+  min-height: 36px;
+  border: 1px solid $c-form-border;
+  border-radius: 4px;
 
   &__active-wrap {
     flex: 1;
@@ -242,23 +242,23 @@ watch(
 
   &__field {
     @include font-style($c-black, 14, 400, 1px, 14px);
+    width: 100%;
+    cursor: pointer;
     background-color: transparent;
     border: 0;
     outline: 0;
-    cursor: pointer;
-    width: 100%;
   }
 
   &__drop-icon {
     flex: none;
     width: 15px;
+    margin-left: 10px;
+    transition: 0.4s;
 
     /* @include position(tr, 50%, 10px); */
 
     /* transform: translateY(-50%) rotate(0deg); */
     transform: rotate(0deg);
-    transition: 0.4s;
-    margin-left: 10px;
 
     &--active {
       /* transform: translateY(-50%) rotate(180deg); */
@@ -269,16 +269,16 @@ watch(
 
 .select-options-wrap {
   @include position(tl, calc(100% + 5px), 0);
-  background-color: $c-white;
-  width: 100%;
   z-index: 100;
+  width: 100%;
+  background-color: $c-white;
 }
 
 .select-option-list {
-  background-color: $c-white;
   height: auto;
   max-height: 200px;
   overflow: auto;
+  background-color: $c-white;
 
   &__item {
     @include padding(0 10px);
@@ -298,8 +298,8 @@ watch(
     }
 
     &--disabled {
-      opacity: 0.5;
       cursor: not-allowed;
+      opacity: 0.5;
     }
 
     &:hover {

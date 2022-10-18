@@ -150,41 +150,41 @@ init();
     width: 100%;
 
     &__prefix {
-      flex: none;
-      width: auto;
       @include padding(0 0 0 8px);
       @include form-font();
       @include flex(center);
+      flex: none;
+      width: auto;
     }
 
     &__main {
-      flex: 1;
       @include padding(0 8px);
+      flex: 1;
     }
 
     &__suffix {
-      flex: none;
-      width: auto;
       @include padding(0 8px 0 0);
       @include form-font();
       @include flex(center);
+      flex: none;
+      width: auto;
     }
 
     &__control {
-      flex: none;
-      width: auto;
       @include padding(0 8px);
       @include form-font();
       @include flex(center);
       position: relative;
+      flex: none;
+      width: auto;
 
       &::before {
-        content: "";
+        @include position(tl, 50%, 0);
+        display: inline-block;
         width: 1px;
         height: 14px;
+        content: "";
         background-color: $c-form-border;
-        display: inline-block;
-        @include position(tl, 50%, 0);
         transform: translateY(-50%);
       }
 
@@ -198,10 +198,10 @@ init();
 
 .re-input-native-field {
   @include form-font();
+  width: 100%;
   background-color: transparent;
   border: 0;
   outline: 0;
-  width: 100%;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

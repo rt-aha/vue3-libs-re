@@ -165,15 +165,16 @@ const activeStatus = computed(() => {
 
 <style lang="scss" scoped>
 .re-switch {
+  @include padding(2px);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
   /* width: 50px;
   height: 24px;
   border-radius: 50%; */
   background-color: $c-switch--off;
-  @include padding(2px);
-  cursor: pointer;
   transition: 0.3s;
-  position: relative;
-  overflow: hidden;
 
   &--active {
     background-color: $c-switch--active;
@@ -204,26 +205,25 @@ const activeStatus = computed(() => {
 }
 
 .re-switch-box {
-  width: 100%;
-
   /* height: 20px; */
   position: relative;
+  width: 100%;
   cursor: pointer;
 
   &__bar {
-    border-radius: 10px;
-    background-color: $c-white;
-    transition: 0.3s;
     position: relative;
-    z-index: 10;
     left: 0;
+    z-index: 10;
+    background-color: $c-white;
+    border-radius: 10px;
+    transition: 0.3s;
   }
 }
 
 .label-text {
   display: inline-block;
-  text-align: center;
   color: $c-white;
+  text-align: center;
 
   &--on {
     @include position(tl, 50%, 0);
@@ -237,26 +237,26 @@ const activeStatus = computed(() => {
 }
 
 .on-label {
-  width: 24px;
-  text-align: center;
-  display: inline-block;
+  @include font-style($c-white, 12px);
   position: absolute;
   top: 50%;
   left: 2px;
-  transform: translateY(-50%) scale(0.8);
-  @include font-style($c-white, 12px);
   z-index: 5;
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+  transform: translateY(-50%) scale(0.8);
 }
 
 .off-label {
-  width: 24px;
-  text-align: center;
-  display: inline-block;
+  @include font-style($c-white, 12px);
   position: absolute;
   top: 50%;
   right: 2px;
-  transform: translateY(-50%) scale(0.8);
-  @include font-style($c-white, 12px);
   z-index: 5;
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+  transform: translateY(-50%) scale(0.8);
 }
 </style>

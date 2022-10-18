@@ -108,9 +108,9 @@ watch(
 
 <style lang="scss" scoped>
 .re-accordion {
+  width: 100%;
   background-color: rgba($c-deepblue, 0.1);
   border-radius: 20px;
-  width: 100%;
 
   &--mt {
     margin-top: 110px;
@@ -134,19 +134,19 @@ watch(
   }
 
   &__expand {
+    @include flex(center);
+    position: relative;
     flex: none;
     width: 40px;
     height: 40px;
-    position: relative;
+    margin-left: 15px;
     background-color: rgba($c-deepblue, 0.3);
     border-radius: 20px;
-    @include flex(center);
-    margin-left: 15px;
 
     &__icon {
+      width: 20px;
       transition: 0.3s;
       transform: rotate(0deg);
-      width: 20px;
 
       &--active {
         transform: rotate(180deg);
@@ -156,9 +156,9 @@ watch(
 }
 
 .desc {
-  border-top: 1px solid rgba($c-deepblue, 0.5);
   @include padding(24px 0 0 0);
   margin-top: 20px;
+  border-top: 1px solid rgba($c-deepblue, 0.5);
 
   &__text {
     @include font-style($c-deepblue, 16, 400, 4px);
@@ -166,8 +166,8 @@ watch(
 }
 
 .text-loop {
-  text-align: justify;
   @include font-normal();
+  text-align: justify;
 }
 
 .vhtml-content {

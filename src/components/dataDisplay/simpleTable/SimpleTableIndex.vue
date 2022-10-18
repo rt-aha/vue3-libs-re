@@ -128,18 +128,18 @@ const props = defineProps({
 .table {
   // border: 1px solid $c-deepblue;
   width: 100%;
-  table-layout: fixed;
   word-break: break-all;
+  table-layout: fixed;
   border-collapse: collapse;
 
   &__thead {
     tr {
       td {
+        @include padding(10px);
+        @include font-normal();
         border: 1px solid rgba($c-deepblue, 0.5);
         border-top: transparent;
         border-bottom: transparent;
-        @include padding(10px);
-        @include font-normal();
 
         p {
           text-align: justify;
@@ -162,17 +162,17 @@ const props = defineProps({
     tr {
       &:first-child {
         td.no-top-border {
-          border-top: transparent;
           vertical-align: top;
+          border-top: transparent;
         }
       }
 
       td {
-        border: 1px solid rgba($c-deepblue, 0.5);
-        border-bottom: transparent;
         @include padding(10px);
         @include font-normal();
         vertical-align: top;
+        border: 1px solid rgba($c-deepblue, 0.5);
+        border-bottom: transparent;
 
         p {
           text-align: justify;

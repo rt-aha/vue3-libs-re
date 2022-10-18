@@ -96,16 +96,16 @@ const uuid = nanoid();
 
     &--actived {
       .radio-list__item__label__selected {
-        border: 1px solid $c-deepblue;
         position: relative;
+        border: 1px solid $c-deepblue;
 
         &::before {
-          content: "";
           @include circle(10px);
           @include position(center);
-          transform: translate(-50%, -50%);
           display: inline-block;
+          content: "";
           background-color: $c-deepblue;
+          transform: translate(-50%, -50%);
         }
       }
     }
@@ -123,8 +123,8 @@ const uuid = nanoid();
     }
 
     &__label {
-      display: inline-block;
       @include flex(flex-start, flex-start);
+      display: inline-block;
       cursor: pointer;
 
       &__selected {

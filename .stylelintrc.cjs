@@ -17,5 +17,36 @@ module.exports = {
     "at-rule-empty-line-before": ["never"],
     "declaration-empty-line-before": ["never"],
     "selector-class-pattern": ".*",
+		"no-descending-specificity": null,
+    "order/order": [
+			"custom-properties",
+			"dollar-variables",
+			{
+				"type": "at-rule",
+				"name": "extend"
+			},
+			{
+				"type": "at-rule",
+				"name": "include",
+				"hasBlock": false
+			},
+			{
+				"type": "at-rule",
+				"name": "mixin",
+				"hasBlock": false
+			},
+			"declarations",
+			{
+				"type": "at-rule",
+				"name": "include",
+				"hasBlock": true
+			},
+			{
+				"type": "at-rule",
+				"name": "mixin",
+				"hasBlock": true
+			},
+			"rules"
+		]
   }
 }

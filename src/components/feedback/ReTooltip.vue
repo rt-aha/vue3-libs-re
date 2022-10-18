@@ -38,12 +38,12 @@ const props = defineProps({
   }
 
   &__desc {
-    background-color: rgba($c-black, 0.8);
-    border-radius: 4px;
     @include padding(4px 6px);
+    @include font-style($c-white, 12);
     display: none;
     white-space: nowrap;
-    @include font-style($c-white, 12);
+    background-color: rgba($c-black, 0.8);
+    border-radius: 4px;
 
     &--left {
       @include position(tl, -100%, 0);

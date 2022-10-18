@@ -19,12 +19,12 @@ const props = defineProps({
   position: relative;
 
   &::after {
-    content: "";
-    display: inline-block;
-    background-color: $c-deepblue;
-    height: 1px;
-    width: 100%;
     @include position(tl, calc(100% + 10px), 0);
+    display: inline-block;
+    width: 100%;
+    height: 1px;
+    content: "";
+    background-color: $c-deepblue;
   }
 }
 </style>

@@ -117,24 +117,24 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .re-textarea {
-  width: 100%;
-  display: inline-block;
   position: relative;
+  display: inline-block;
+  width: 100%;
 
   &__native {
     // @include padding(10px);
     box-sizing: border-box;
-    padding: 10px;
     width: 200px;
+    padding: 10px;
     background-color: transparent;
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: 0 transparent;
 
     &--disabled {
+      cursor: not-allowed;
       // @include disabled;
       background-color: #efefef;
-      cursor: not-allowed;
       opacity: 0.5;
     }
 
@@ -156,10 +156,10 @@ onMounted(() => {
 
 .count-limit {
   position: absolute;
-  bottom: 10px;
   right: 10px;
-  color: #ccc;
+  bottom: 10px;
   font-size: 14px;
+  color: #ccc;
 
   &--warning {
     color: $c-red;

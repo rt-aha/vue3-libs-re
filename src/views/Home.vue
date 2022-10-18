@@ -25,9 +25,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .v-home {
+  @include flex(center, center);
   width: 100%;
   height: 100%;
-  @include flex(center, center);
   text-align: center;
 }
 

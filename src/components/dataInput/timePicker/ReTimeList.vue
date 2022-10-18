@@ -143,59 +143,59 @@ $item-height: 30px;
 }
 
 .time-list {
-  display: inline-flex;
   position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
   width: 100%;
   height: $item-height * 7;
-  box-sizing: border-box;
 
   &::before {
-    content: "";
     position: absolute;
     top: $item-height * 3;
     left: 50%;
     width: 100%;
     height: 1px;
+    content: "";
     background-color: #ccc;
     transform: translateX(-50%);
   }
 
   &::after {
-    content: "";
     position: absolute;
     top: $item-height * 4 - 1;
     left: 50%;
     width: 100%;
     height: 1px;
+    content: "";
     background-color: #ccc;
     transform: translateX(-50%);
   }
 
   &__col {
     display: inline-block;
-    vertical-align: top;
     flex: 1;
     height: 100%;
-    font-size: 0;
     overflow-y: auto;
+    font-size: 0;
+    vertical-align: top;
 
     &__item {
       @include font-style($c-deepblue, 14);
+      box-sizing: border-box;
       display: inline-flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: 100%;
       height: $item-height;
       text-align: center;
-      box-sizing: border-box;
     }
   }
 
   &__minute {
     box-sizing: border-box;
     width: $item-height * 2;
-    border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
   }
 }
 </style>

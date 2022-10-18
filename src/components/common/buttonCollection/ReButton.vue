@@ -127,8 +127,8 @@ const handleClick = (e) => {
   @include padding(0 16px);
   @include set-btn-default();
   @include font-style($c-white, 14px);
-  display: inline-block;
   position: relative;
+  display: inline-block;
   border: 0;
 
   &:hover {
@@ -183,8 +183,8 @@ const handleClick = (e) => {
   }
 
   &--disabled {
-    opacity: 0.5;
     cursor: not-allowed;
+    opacity: 0.5;
   }
 
   &__prefix {
@@ -194,8 +194,8 @@ const handleClick = (e) => {
 
   &__content {
     display: inline-flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     &--circle {
       @include position(center);
@@ -209,8 +209,8 @@ const handleClick = (e) => {
 
   &__loading {
     &__icon {
-      display: inline-block;
       box-sizing: border-box;
+      display: inline-block;
       width: 10px;
       height: 10px;
       margin-left: 4px;
@@ -231,7 +231,7 @@ const handleClick = (e) => {
     transform: rotate(0deg);
   }
 
-  from {
+  to {
     transform: rotate(360deg);
   }
 }

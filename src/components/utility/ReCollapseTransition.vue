@@ -47,9 +47,9 @@ const listeners = {
 <style lang="scss">
 .re-collapse-transition {
   overflow: hidden;
-  transition: height 0.22s ease-in-out;
-  border-radius: 4px;
   background-color: $c-white;
+  border-radius: 4px;
+  transition: height 0.22s ease-in-out;
 
   &--border {
     border: 1px solid $c-grey;

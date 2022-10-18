@@ -47,8 +47,8 @@ const toggleExpand = () => {
 
   &__content {
     @include font-style($c-black, 14px);
-    position: relative;
     @include flex();
+    position: relative;
 
     &__arrow {
       /* position: absolute; */
@@ -65,26 +65,26 @@ const toggleExpand = () => {
 
         &::before,
         &::after {
-          content: "";
-          width: 6px;
-          height: 2px;
-          border-radius: 1px;
-          background-color: $c-black;
-          display: inline-block;
           position: absolute;
           top: 50%;
+          display: inline-block;
+          width: 6px;
+          height: 2px;
+          content: "";
+          background-color: $c-black;
+          border-radius: 1px;
           transform: translateY(-50%);
           // transform-origin: 50% 50%;
         }
 
         &::before {
-          transform: rotate(45deg) translateY(-50%);
           left: -2px;
+          transform: rotate(45deg) translateY(-50%);
         }
 
         &::after {
-          transform: rotate(-45deg) translateY(-50%);
           right: -2px;
+          transform: rotate(-45deg) translateY(-50%);
         }
       }
 

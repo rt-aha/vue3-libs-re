@@ -97,19 +97,19 @@ export default defineComponent({
   margin-bottom: 20px;
 
   &__text {
-    display: inline-block;
     @include font-style($c-grey, 20, 400, 1.6px, 20px);
+    display: inline-block;
   }
 
   &__hint {
-    display: inline-block;
     @include font-style($c-input-hint, 16, 400, 1.4px, 24px);
+    display: inline-block;
     margin-right: 5px;
   }
 }
 
 .btns-wrap {
-  margin-top: 50px;
   @include flex(center);
+  margin-top: 50px;
 }
 </style>

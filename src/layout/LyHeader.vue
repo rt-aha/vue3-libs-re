@@ -23,14 +23,14 @@ export default defineComponent({
 
 .ly-header {
   height: 50px;
-  background-color: $c-deepblue;
   background: linear-gradient(225deg, #ff3cac 0%, #784ba0 20%, #2b86c5 100%);
+  background-color: $c-deepblue;
   box-shadow: 0 0 10px #aaa;
 
   &__content {
-    height: 100%;
     @include flex();
     @include padding(0 10px);
+    height: 100%;
   }
 }
 

@@ -56,8 +56,8 @@ export default {
     }
 
     .re-button {
-      border-radius: 0;
       border-right-width: 0;
+      border-radius: 0;
 
       &:hover {
         opacity: 1;

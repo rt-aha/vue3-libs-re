@@ -70,8 +70,8 @@ const isShowZero = computed(() => {
 
 <style lang="scss" scoped>
 .re-badge {
-  display: inline-block;
   position: relative;
+  display: inline-block;
 
   // position === left or position === right
   &--position {
@@ -90,16 +90,16 @@ const isShowZero = computed(() => {
 
 .badge-box {
   @include position(tr, -10px, 0);
-  transform: translateX(50%);
   min-width: 20px;
   height: 20px;
   border-radius: 10px;
+  transform: translateX(50%);
 
   &--dot {
     @include circle(8px);
     top: 0;
-    transform: translate(50%, -50%);
     min-width: 8px;
+    transform: translate(50%, -50%);
   }
 
   /* &--color-type {
@@ -123,24 +123,24 @@ const isShowZero = computed(() => {
   &--position {
     &--right {
       position: static;
-      transform: translateX(0);
       width: auto;
       margin-left: 10px;
+      transform: translateX(0);
     }
 
     &--left {
-      order: 1;
       position: static;
-      transform: translateX(0);
+      order: 1;
       margin-right: 10px;
+      transform: translateX(0);
     }
   }
 
   &__value-cell {
     @include padding(5px);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     height: 100%;
 
     &--dot {

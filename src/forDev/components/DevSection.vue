@@ -40,8 +40,8 @@ export default defineComponent({
   }
 
   &__content {
-    margin-top: 20px;
     @include flex(flex-start, flex-start);
+    margin-top: 20px;
 
     &--verticle {
       @include flex(flex-start, flex-start, column);

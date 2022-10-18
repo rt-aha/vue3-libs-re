@@ -36,7 +36,7 @@ provide('formSetting', props.setting);
 <style lang="scss" scoped>
 .re-form {
   @include flex(flex-start, flex-start);
-  margin: 0 -8px;
   flex-wrap: wrap;
+  margin: 0 -8px;
 }
 </style>

@@ -280,10 +280,10 @@ watch(emailValue, (newVal, oldVal) => {
     @include position(tl, 100%, 0);
     z-index: 100;
     margin-top: 5px;
+    overflow: hidden;
     background-color: $c-white;
     border: 1px solid $c-deepblue;
     border-radius: 4px;
-    overflow: hidden;
 
     &__content {
       position: relative;
@@ -296,18 +296,18 @@ watch(emailValue, (newVal, oldVal) => {
 
 .re-email-auto-complete-expand {
   @include position(tl, calc(100% + 5px), 0);
-  background-color: $c-white;
-  width: 100%;
   z-index: 100;
+  width: 100%;
+  background-color: $c-white;
 }
 
 .re-email-auto-complete-option {
-  display: inline-block;
-  width: 100%;
-  cursor: pointer;
   @include font-style($c-black, 14px);
   @include padding(10px);
   position: relative;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
 
   &:not([data-disabled-status="true"]) {
     &:hover {
@@ -324,12 +324,12 @@ watch(emailValue, (newVal, oldVal) => {
   }
 
   &__remove {
+    @include font-style($c-error, 14px);
     position: absolute;
     top: 50%;
     right: 10px;
-    transform: translateY(-50%);
-    @include font-style($c-error, 14px);
     cursor: pointer;
+    transform: translateY(-50%);
   }
 }
 </style>

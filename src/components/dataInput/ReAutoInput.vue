@@ -117,11 +117,11 @@ setValue();
 
 <style lang="scss" scoped>
 .input-field-box {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
   position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 60px;
   height: 60px;
   border: 2px solid $c-deepblue;
@@ -150,8 +150,8 @@ setValue();
     display: inline-block;
     width: 40px;
     height: 40px;
-    border: 0 transparent;
     text-align: center;
+    border: 0 transparent;
     outline: 0 transparent;
 
     &::-webkit-inner-spin-button {

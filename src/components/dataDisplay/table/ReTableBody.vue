@@ -58,8 +58,8 @@ const props = defineProps({
 }
 
 .cell {
-  height: 100%;
   @include padding(10px);
+  height: 100%;
   // @include flex(fle);
   &__text {
   }

@@ -50,10 +50,10 @@ const props = defineProps({
 .header-list {
   // width: 100%;
   @include flex(flex-start);
-  border-radius: 5px;
-  background-color: rgba($c-deepblue, 0.5);
-  box-shadow: 3px 3px 6px rgba($c-black, 0.1);
   @include padding(0 10px);
+  background-color: rgba($c-deepblue, 0.5);
+  border-radius: 5px;
+  box-shadow: 3px 3px 6px rgba($c-black, 0.1);
 
   &__item {
     @include font-style($c-black, 16, 400, 0.18px, 24px);

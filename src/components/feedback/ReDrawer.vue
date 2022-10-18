@@ -163,28 +163,28 @@ const handleBtn = async (cb) => {
   }
 
   &__box {
+    @include padding(30px 0);
     position: absolute;
     top: 0;
     right: 0;
     min-width: 320px;
-    transform: translateX(0%);
+    height: 100%;
     background-color: $c-white;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
-    height: 100%;
-    @include padding(30px 0);
+    transform: translateX(0%);
 
     &__body {
+      @include padding(0 40px);
       height: 100%;
       overflow-y: auto;
-      @include padding(0 40px);
     }
   }
 }
 
 .btn-wrap {
-  margin-top: 30px;
   @include flex(center);
+  margin-top: 30px;
 
   &__btn {
     & + & {

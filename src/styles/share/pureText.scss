@@ -1,8 +1,8 @@
 .normal-text {
+  @include font-normal();
   text-align: justify;
   text-align-last: left;
   word-break: break-all;
-  @include font-normal();
 
   &--flex {
     @include flex();

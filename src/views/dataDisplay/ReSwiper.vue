@@ -61,8 +61,8 @@ const onSlideChange = (val) => {};
 }
 
 .img-box {
+  @include normalBg();
   width: 100%;
   height: 500px;
-  @include normalBg();
 }
 </style>

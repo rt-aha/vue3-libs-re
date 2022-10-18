@@ -101,65 +101,65 @@ export default defineComponent({
 }
 
 .ly-base-layout {
-  width: 100%;
-  height: 100%;
   // min-height: 100%;
   @include flex(flex-start, flex-start, column);
+  width: 100%;
+  height: 100%;
 
   &__header {
-    width: 100%;
-    height: auto;
-    flex: none;
     position: relative;
     z-index: $zi-header;
+    flex: none;
+    width: 100%;
+    height: auto;
   }
 
   &__body {
+    @include flex(flex-start, flex-start);
+    flex: 1;
     width: 100%;
     height: 100%;
-    flex: 1;
-    @include flex(flex-start, flex-start);
     overflow: hidden;
 
     &__sidebar {
-      flex: none;
       // width: 220px;
       display: inline-block;
+      flex: none;
       height: 100%;
     }
 
     &__container {
+      @include padding(25px);
       flex: 1;
       height: 100%;
       overflow-y: auto;
-      @include padding(25px);
     }
   }
 
   &__footer {
     position: relative;
     z-index: 10;
+    flex: none;
     width: 100%;
     height: auto;
-    flex: none;
   }
 }
 
 .router-view-wrap {
-  width: 100%;
   @include flex(flex-start, flex-start);
+  width: 100%;
 
   &__view {
-    width: 100%;
     // flex: none;
     // width: ;
     flex: 1;
+    width: 100%;
   }
 
   &__extra-view {
+    @include padding(0 0 0 30px);
     flex: none;
     width: 50%;
-    @include padding(0 0 0 30px);
   }
 }
 </style>

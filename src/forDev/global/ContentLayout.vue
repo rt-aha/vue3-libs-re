@@ -33,15 +33,15 @@ export default defineComponent({
     margin: 0 -10px;
 
     &__first {
-      width: 50%;
-      flex: none;
       @include padding(0 10px);
+      flex: none;
+      width: 50%;
     }
 
     &__second {
-      width: 50%;
-      flex: none;
       @include padding(0 10px);
+      flex: none;
+      width: 50%;
     }
   }
 }

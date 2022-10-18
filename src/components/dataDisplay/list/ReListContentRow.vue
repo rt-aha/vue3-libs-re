@@ -46,10 +46,10 @@ const props = defineProps({
 
 .content-row {
   @include flex();
+  @include padding(0 10px);
   // width: 100%;
   // height: 52px;
   height: 100%;
-  @include padding(0 10px);
   cursor: pointer;
 
   &__item {
@@ -64,14 +64,14 @@ const props = defineProps({
       width: 100%;
 
       &--padding-left {
-        margin-left: 0;
         width: 100%;
+        margin-left: 0;
       }
     }
 
     &__checkbox {
-      width: 100%;
       @include flex(center);
+      width: 100%;
     }
   }
 }

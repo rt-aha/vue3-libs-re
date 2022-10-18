@@ -117,20 +117,20 @@ init();
   }
 
   &__left {
+    @include padding(0 8px);
+    @include form-font();
     position: relative;
     flex: none;
     width: auto;
-    @include padding(0 8px);
-    @include form-font();
 
     &::after {
+      @include position(tr, 50%, 0);
       display: inline-block;
       width: 1px;
       height: 14px;
       content: "";
       background-color: $c-form-border;
       transform: translateY(-50%);
-      @include position(tr, 50%, 0);
     }
   }
 
@@ -139,24 +139,24 @@ init();
     width: 100%;
 
     &__prefix {
-      flex: none;
-      width: auto;
       @include padding(0 0 0 8px);
       @include form-font();
       @include flex(center);
+      flex: none;
+      width: auto;
     }
 
     &__main {
-      flex: 1;
       @include padding(0 8px);
+      flex: 1;
     }
 
     &__eye {
-      flex: none;
-      width: auto;
       @include padding(0 8px);
       @include form-font();
       @include flex(center);
+      flex: none;
+      width: auto;
 
       &__icon {
         width: 20px;
@@ -165,29 +165,29 @@ init();
     }
 
     &__suffix {
-      flex: none;
-      width: auto;
       @include padding(0 8px 0 0);
       @include form-font();
       @include flex(center);
+      flex: none;
+      width: auto;
     }
   }
 
   &__right {
+    @include padding(0 8px);
+    @include form-font();
     position: relative;
     flex: none;
     width: auto;
-    @include padding(0 8px);
-    @include form-font();
 
     &::before {
+      @include position(tl, 50%, 0);
       display: inline-block;
       width: 1px;
       height: 14px;
       content: "";
       background-color: $c-form-border;
       transform: translateY(-50%);
-      @include position(tl, 50%, 0);
     }
   }
 }

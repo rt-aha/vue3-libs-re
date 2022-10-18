@@ -101,16 +101,16 @@ export default defineComponent({
 .pbf-btn {
   @include flex(center);
   @include font-style($c-deepblue, 16, 500, 1.6px);
-  // width: auto;
-  transition: 0.4s;
+  width: 100%;
   height: 40px;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: $c-assist-yellow;
+  border: 2px solid $c-assist-yellow;
   border-radius: 20px;
   outline: 0 transparent;
-  background-color: $c-assist-yellow;
-  cursor: pointer;
-  border: 2px solid $c-assist-yellow;
-  width: 100%;
-  white-space: nowrap;
+  // width: auto;
+  transition: 0.4s;
 
   & + & {
     margin-left: 20px;
@@ -139,35 +139,35 @@ export default defineComponent({
 
   &--color {
     &--pink {
-      border: 2px solid $c-assist-pink;
-      background-color: $c-assist-pink;
       color: $c-white;
+      background-color: $c-assist-pink;
+      border: 2px solid $c-assist-pink;
 
       &:hover {
-        background-color: $c-white;
         color: $c-assist-pink;
+        background-color: $c-white;
       }
     }
 
     &--purple {
-      background-color: #d3a9e0;
       color: $c-white;
+      background-color: #d3a9e0;
     }
 
     &--green {
-      border: 2px solid $c-assist-green;
-      background-color: $c-assist-green;
       color: $c-white;
+      background-color: $c-assist-green;
+      border: 2px solid $c-assist-green;
 
       &:hover {
-        background-color: $c-white;
         color: $c-assist-green;
+        background-color: $c-white;
       }
     }
 
     &--blue {
-      background-color: #83d0e6;
       color: $c-white;
+      background-color: #83d0e6;
     }
   }
 

@@ -127,9 +127,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .modal {
   position: fixed;
-  z-index: 999;
   top: 20%;
   left: 50%;
+  z-index: 999;
   width: 300px;
   margin-left: -150px;
   background-color: #ccc;

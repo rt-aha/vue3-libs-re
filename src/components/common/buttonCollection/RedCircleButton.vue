@@ -41,41 +41,67 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .c-red-circle-button {
-  cursor: pointer;
-  height: 52px;
   @include flex();
+  position: relative;
+  height: 52px;
+  cursor: pointer;
+
+  &:hover {
+    .red-circle {
+      width: 0;
+      height: 0;
+      border: 6px solid $c-deepblue;
+    }
+
+    svg {
+      .cls-1 {
+        opacity: 0;
+        transition-delay: 0s;
+        d: path("M70.55,37.5a33.05,33.05,0,1,1-33-33A33.05,33.05,0,0,1,70.55,37.5");
+      }
+
+      .cls-2 {
+        opacity: 1;
+        stroke-width: 8px;
+        transition-timing-function: ease-in-out;
+        transition-duration: 0.2s;
+        transition-property: d, stroke-width;
+        d: path("M41.5,37.5a4,4,0,1,1-4-4,4,4,0,0,1,4,4");
+      }
+    }
+  }
 }
 
 .red-circle-wrap {
   position: absolute;
-  left: -28px;
   top: 50%;
+  left: -28px;
   transform: translateY(-50%);
 }
 
 .red-circle {
   @include circle(52px);
   @include position(center);
-  transition: 0.3s;
-  border: 3px solid $c-deepblue;
   pointer-events: none;
+  border: 3px solid $c-deepblue;
+  transition: 0.3s;
 }
 
 .label-text-wrap {
+  position: relative;
+  z-index: 10;
   display: inline-block;
   // padding: 8px 10px 12px 0px;
   margin-bottom: 5px;
   margin-left: -4px;
-  position: relative;
-  z-index: 10;
-  border-radius: 4px;
   white-space: nowrap;
+  border-radius: 4px;
 }
 
 .label-text {
   @include font-size();
-  letter-spacing: 0.8px;
   font-weight: bold;
+  letter-spacing: 0.8px;
 }
 
 svg {
@@ -95,38 +121,9 @@ svg {
 
   .cls-2 {
     opacity: 0;
-    transition-property: d, stroke-width, opacity;
-    transition-duration: 0.2s;
     transition-timing-function: ease-in-out;
-  }
-}
-
-.c-red-circle-button {
-  position: relative;
-
-  &:hover {
-    .red-circle {
-      width: 0;
-      height: 0;
-      border: 6px solid $c-deepblue;
-    }
-
-    svg {
-      .cls-1 {
-        transition-delay: 0s;
-        opacity: 0;
-        d: path("M70.55,37.5a33.05,33.05,0,1,1-33-33A33.05,33.05,0,0,1,70.55,37.5");
-      }
-
-      .cls-2 {
-        d: path("M41.5,37.5a4,4,0,1,1-4-4,4,4,0,0,1,4,4");
-        transition-property: d, stroke-width;
-        transition-duration: 0.2s;
-        transition-timing-function: ease-in-out;
-        stroke-width: 8px;
-        opacity: 1;
-      }
-    }
+    transition-duration: 0.2s;
+    transition-property: d, stroke-width, opacity;
   }
 }
 </style>

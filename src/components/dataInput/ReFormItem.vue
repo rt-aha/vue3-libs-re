@@ -86,22 +86,22 @@ const validateFields = async (event) => {
     margin-bottom: 5px;
 
     &__text {
-      display: inline-block;
       @include font-style($c-deepblue, 14, 400, 1.6px, 20px);
+      display: inline-block;
     }
 
     &__required {
       @include circle(4px);
-      background-color: $c-red;
       position: relative;
       top: -4px;
       display: inline-block;
       margin-right: 5px;
+      background-color: $c-red;
     }
 
     &__hint {
-      display: inline-block;
       @include font-style($c-input-hint, 12, 400, 1.4px, 24px);
+      display: inline-block;
     }
   }
 

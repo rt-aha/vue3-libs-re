@@ -122,19 +122,19 @@ init();
     }
 
     &__text {
-      margin-left: 5px;
       @include font-style($c-deepblue, 14);
+      margin-left: 5px;
     }
   }
 }
 
 .re-input {
+  @include padding(5px 0);
+  @include flex();
   width: 100%;
   height: 36px;
   border: 1px solid $c-form-border;
-  @include padding(5px 0);
   border-radius: 4px;
-  @include flex();
 
   & + & {
     margin-top: 10px;
@@ -152,46 +152,46 @@ init();
   }
 
   &__center {
-    position: relative;
     @include flex();
+    position: relative;
     width: 100%;
 
     &__prefix {
-      flex: none;
-      width: auto;
       @include padding(0 0 0 8px);
       @include form-font();
       @include flex(center);
+      flex: none;
+      width: auto;
       color: $c-grey;
     }
 
     &__main {
-      flex: 1;
       @include padding(0 8px);
+      flex: 1;
     }
 
     &__suffix {
-      flex: none;
-      width: auto;
       @include padding(0 8px 0 0);
       @include form-font();
       @include flex(center);
+      flex: none;
+      width: auto;
     }
 
     &__control {
-      flex: none;
-      width: auto;
       @include padding(0 8px);
       @include form-font();
       @include flex(center);
       position: relative;
+      flex: none;
+      width: auto;
 
       &::before {
-        content: "";
+        @include position(tl, 50%, 0);
+        display: inline-block;
         width: 1px;
         height: 14px;
-        display: inline-block;
-        @include position(tl, 50%, 0);
+        content: "";
         transform: translateY(-50%);
       }
 
@@ -203,9 +203,9 @@ init();
 
     &__remove {
       @include position(tr, 50%, 10px);
-      transform: translateY(-50%);
-      cursor: pointer;
       @include flex(center);
+      cursor: pointer;
+      transform: translateY(-50%);
 
       &__icon {
         width: 20px;
@@ -216,10 +216,10 @@ init();
 
 .re-input-native-field {
   @include form-font();
+  width: 100%;
   background-color: transparent;
   border: 0;
   outline: 0;
-  width: 100%;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

@@ -68,7 +68,7 @@ const props = defineProps({
 }
 
 .loader {
-  text-align: center;
   display: inline-block;
+  text-align: center;
 }
 </style>

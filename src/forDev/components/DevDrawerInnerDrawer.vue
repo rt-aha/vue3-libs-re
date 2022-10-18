@@ -154,8 +154,8 @@ export default {
 
 <style lang="scss" scoped>
 .btn-wrap {
-  margin-top: 20px;
   @include flex(center);
+  margin-top: 20px;
 }
 
 .mock-text {

@@ -139,27 +139,26 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .re-upload-preview {
-  width: 150px;
-
   /* height: 210px; */
   @include flex(flex-start, flex-start);
-  margin-bottom: 10px;
+  width: 150px;
   margin-right: 5px;
+  margin-bottom: 10px;
 
   &__content {
   }
 }
 
 .preview-box {
-  width: 100%;
   position: relative;
+  width: 100%;
 
   &__frame {
+    position: relative;
+    box-sizing: border-box;
     width: 150px;
     height: 150px;
     border: 1px solid $c-grey;
-    box-sizing: border-box;
-    position: relative;
 
     &__loading {
       @include position(center);
@@ -176,8 +175,8 @@ onMounted(() => {
       @include position(tl, 0, 0);
       width: 100%;
       height: 100%;
-      transition: 0.4s;
       cursor: pointer;
+      transition: 0.4s;
 
       &:hover {
         background-color: rgba($c-black, 0.5);
@@ -190,14 +189,14 @@ onMounted(() => {
   }
 
   &__info {
-    width: 100%;
     @include font-style($c-grey, 14, 300);
     display: inline-block;
+    width: 100%;
 
     &__name {
-      width: 100%;
       @include font-style($c-black, 14);
       @include word-ellipsis(2);
+      width: 100%;
       word-break: break-all;
     }
 

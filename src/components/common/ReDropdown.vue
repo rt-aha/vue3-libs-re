@@ -113,25 +113,25 @@ watch(
 
 <style lang="scss" scoped>
 .re-dropdown {
-  // width: 200px;
-  cursor: pointer;
-
   /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
   display: inline-block;
+  // width: 200px;
+  cursor: pointer;
 }
 
 .dropdown {
-  /* background-color: #eee; */
-  // display: inline-block;
-  min-height: 36px;
-  height: auto;
-  border: 1px solid $c-form-border;
-  border-radius: 4px;
   @include padding(0 10px);
   @include inline-flex();
   // width: 200px;
   position: relative;
+  height: auto;
+
+  /* background-color: #eee; */
+  // display: inline-block;
+  min-height: 36px;
+  border: 1px solid $c-form-border;
+  border-radius: 4px;
 
   &__active-wrap {
     flex: 1;
@@ -139,22 +139,22 @@ watch(
 
   &__field {
     @include font-style($c-black, 14, 400, 1px, 14px);
+    cursor: pointer;
     background-color: transparent;
     border: 0;
     outline: 0;
-    cursor: pointer;
   }
 
   &__drop-icon {
     flex: none;
     width: 15px;
+    margin-left: 10px;
+    transition: 0.4s;
 
     /* @include position(tr, 50%, 10px); */
 
     /* transform: translateY(-50%) rotate(0deg); */
     transform: rotate(0deg);
-    transition: 0.4s;
-    margin-left: 10px;
 
     &--active {
       /* transform: translateY(-50%) rotate(180deg); */
@@ -164,10 +164,10 @@ watch(
 }
 
 .dropdown-options-wrap {
+  z-index: 100;
   display: inline-block;
   width: auto;
   background-color: $c-white;
-  z-index: 100;
 
   &--align {
     &--center {
@@ -186,10 +186,10 @@ watch(
 }
 
 .dropdown-option-list {
-  background-color: $c-white;
   height: auto;
   max-height: 200px;
   overflow: auto;
+  background-color: $c-white;
 
   &__item {
     @include padding(0 10px);
@@ -209,8 +209,8 @@ watch(
     }
 
     &--disabled {
-      opacity: 0.5;
       cursor: not-allowed;
+      opacity: 0.5;
     }
 
     &:hover {

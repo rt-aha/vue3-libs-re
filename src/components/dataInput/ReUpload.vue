@@ -311,20 +311,20 @@ handleMessage({});
 
 <style lang="scss" scoped>
 .upload-desc {
-  color: $c-black;
-  font-size: 12px;
   margin-bottom: 5px;
+  font-size: 12px;
+  color: $c-black;
 }
 
 .video-box {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   width: 100px;
   height: 100px;
   margin-top: 10px;
   margin-right: 10px;
-  border-radius: 6px;
   overflow: hidden;
+  border-radius: 6px;
 }
 
 .vidoe-cover {
@@ -355,11 +355,11 @@ handleMessage({});
   bottom: 5px;
   left: 50%;
   z-index: 120;
-  transform: translateX(-50%);
   width: 92px;
   height: 3px;
   background-color: rgba($c-black, 0.3);
   border-radius: 1.5px;
+  transform: translateX(-50%);
 }
 
 .ing-persent {
@@ -370,32 +370,32 @@ handleMessage({});
 }
 
 .re-upload {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   bottom: 0;
   left: 50%;
   z-index: 120;
-  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 36px;
   background-color: rgba($c-black, 0.5);
+  transform: translateX(-50%);
 
   &__box {
   }
 
   &__icon {
     display: inline-block;
-    vertical-align: middle;
     color: $c-white;
+    vertical-align: middle;
   }
 
   &__text {
     display: inline-block;
-    vertical-align: middle;
-    color: $c-white;
     font-size: 12px;
+    color: $c-white;
+    vertical-align: middle;
   }
 }
 
@@ -407,27 +407,27 @@ handleMessage({});
   text-align: center;
 
   &__icon {
-    display: inline-block;
     position: relative;
+    display: inline-block;
     width: 40px;
     height: 40px;
 
     &::before {
       @include position(center);
-      content: "";
       display: inline-block;
       width: 20px;
       height: 2px;
+      content: "";
       background-color: $c-grey;
       border-radius: 1px;
     }
 
     &::after {
       @include position(center);
-      content: "";
       display: inline-block;
       width: 2px;
       height: 20px;
+      content: "";
       background-color: $c-grey;
       border-radius: 1px;
     }
@@ -450,11 +450,11 @@ handleMessage({});
 .photo-box {
   width: 100px;
   height: 100px;
-  background-position: center;
+  overflow: hidden;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   border-radius: 6px;
-  overflow: hidden;
 }
 
 .error-wrapper {
@@ -463,8 +463,8 @@ handleMessage({});
   line-height: 16px;
 
   &__text {
-    color: #f00;
     font-size: 12px;
+    color: #f00;
   }
 }
 
@@ -474,9 +474,9 @@ handleMessage({});
 }
 
 .preview-box-wrapper {
-  width: 100%;
-  margin-top: 10px;
   @include flex(flex-start, flex-start);
   flex-wrap: wrap;
+  width: 100%;
+  margin-top: 10px;
 }
 </style>

@@ -163,32 +163,32 @@ const calcOffset = (idx) => {
   &__group {
     @include position(tl, 0, 0);
     box-sizing: border-box;
-    border: 3px solid $c-white;
-    background-color: $c-lightgrey;
     overflow: hidden;
+    background-color: $c-lightgrey;
+    border: 3px solid $c-white;
     border-radius: 50%;
   }
 
   &__item {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     overflow: hidden;
+    border-radius: 50%;
   }
 
   &__bg-img {
-    background-position: center;
+    overflow: auto;
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
     border-radius: 50%;
-    overflow: auto;
   }
 
   &__bg-name {
     position: relative;
+    overflow: hidden;
     background-color: #ccc;
     border-radius: 50%;
-    overflow: hidden;
 
     &__text {
       @include position(center);
@@ -197,9 +197,9 @@ const calcOffset = (idx) => {
 
   &__remaining {
     position: relative;
+    overflow: hidden;
     background-color: #ccc;
     border-radius: 50%;
-    overflow: hidden;
 
     &__text {
       @include position(center);
@@ -207,8 +207,8 @@ const calcOffset = (idx) => {
       @include padding(0 0 0 10px);
 
       &::before {
-        content: "+";
         @include position(tl, 50%, 0);
+        content: "+";
         transform: translateY(-50%);
       }
     }

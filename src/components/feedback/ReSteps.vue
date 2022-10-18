@@ -72,8 +72,8 @@ const currentStatus = (currIndex) => {
 }
 
 .step-list {
-  width: 100%;
   @include flex(flex-start, flex-start);
+  width: 100%;
 
   &__item {
     @include flex(flex-start, flex-start);
@@ -81,8 +81,8 @@ const currentStatus = (currIndex) => {
 
     &--current {
       .current {
-        border-color: $c-deepblue;
         background-color: $c-deepblue;
+        border-color: $c-deepblue;
 
         &__index {
           &__text {
@@ -108,8 +108,8 @@ const currentStatus = (currIndex) => {
 
     &--pending {
       .current {
-        border-color: $c-brown;
         background-color: $c-brown;
+        border-color: $c-brown;
 
         &__index {
           &__text {
@@ -135,8 +135,8 @@ const currentStatus = (currIndex) => {
 
     &--error {
       .current {
-        border-color: $c-red;
         background-color: $c-red;
+        border-color: $c-red;
 
         &__index {
           &__text {
@@ -191,25 +191,25 @@ const currentStatus = (currIndex) => {
 .current {
   @include circle(24px);
   position: relative;
-  border: 1px solid $c-grey;
   flex: none;
   width: 24px;
+  border: 1px solid $c-grey;
 
   &__index {
     @include position(center);
 
     &__finish {
-      width: 16px;
       position: relative;
       top: 1px;
+      width: 16px;
       // @include font-style($c-green, 14);
     }
 
     &__error {
-      // width: 100%;
-      width: 20px;
       position: relative;
       top: 1px;
+      // width: 100%;
+      width: 20px;
       // @include font-style($c-green, 14);
     }
 
@@ -220,14 +220,14 @@ const currentStatus = (currIndex) => {
 }
 
 .content {
-  margin-left: 10px;
   width: 100%;
+  margin-left: 10px;
 
   &__title {
-    margin-top: 2px;
     @include font-style($c-grey, 16, 500, normal);
     @include flex();
     width: 100%;
+    margin-top: 2px;
 
     &__text {
       flex: none;
@@ -236,14 +236,14 @@ const currentStatus = (currIndex) => {
     &__deco-line {
       flex: 1;
       height: 1px;
-      background-color: $c-grey;
       margin: 0 20px 0 10px;
+      background-color: $c-grey;
     }
   }
 
   &__desc {
-    margin-top: 5px;
     @include font-style($c-grey, 16, 400);
+    margin-top: 5px;
   }
 }
 </style>

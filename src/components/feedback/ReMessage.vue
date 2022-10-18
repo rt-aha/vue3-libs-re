@@ -98,8 +98,8 @@ watch(() => props.content, (newValue) => {
 
 .re-message {
   @include position(tl, 0, 50%);
-  transform: translate(-50%, -200%);
   z-index: $zi-message;
+  transform: translate(-50%, -200%);
 
   &--animate-in {
     animation: slideIn 0.2s forwards;
@@ -117,8 +117,8 @@ watch(() => props.content, (newValue) => {
 }
 
 .btn-wrap {
-  margin-top: 30px;
   @include flex(center);
+  margin-top: 30px;
 
   &__btn {
     & + & {

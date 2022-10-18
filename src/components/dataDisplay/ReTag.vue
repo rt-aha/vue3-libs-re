@@ -165,25 +165,25 @@ onMounted(() => {
   width: 100%;
 
   &__item {
-    display: inline-block;
-    vertical-align: bottom;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    border: 1px solid $c-deepblue;
-    border-radius: 4px;
     @include padding(2px 5px);
     @include inline-flex();
-    cursor: pointer;
     position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    vertical-align: bottom;
+    cursor: pointer;
+    border: 1px solid $c-deepblue;
+    border-radius: 4px;
 
     &--add {
-      border: 1px dashed $c-deepblue;
       padding: 2px 5px !important;
+      border: 1px dashed $c-deepblue;
     }
 
     &--add-input {
-      border: 1px dashed $c-deepblue;
       padding: 2px !important;
+      border: 1px dashed $c-deepblue;
     }
 
     &__label {
@@ -195,8 +195,8 @@ onMounted(() => {
       transform: translateY(-50%);
 
       &--disabled {
-        opacity: 0.2;
         cursor: not-allowed;
+        opacity: 0.2;
       }
 
       &__icon {
@@ -216,10 +216,11 @@ onMounted(() => {
     }
 
     &__add-input {
+      width: 100px;
+      border: 0;
+
       /* height: 100%; */
       outline: 0;
-      border: 0;
-      width: 100px;
     }
   }
 }
