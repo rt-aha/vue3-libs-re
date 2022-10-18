@@ -11,7 +11,7 @@ const cityRegionForSelectOptions = taiwanCitiesRegions.map((city) => {
 const cityOptions = taiwanCitiesRegions.map((city) => {
   return {
     label: city.name,
-    value: city.name,
+    value: city.code,
   };
 });
 
@@ -28,6 +28,7 @@ export const basicFormConfig = [
       768: 12,
     },
   },
+
   {
     compName: 'Input',
     compProps: {
@@ -116,127 +117,151 @@ export const basicFormConfig = [
     compProps: {
       options: genderOptions,
     },
-    formKey: 'gender',
+    formKey: 'selectVal',
     formItem: {
-      label: '性別',
+      label: '選擇器',
       hint: '(Select)',
     },
   },
   {
-    compName: 'Radio',
+    compName: 'Select',
     compProps: {
-      options: incomeOptions,
+      options: cityOptions,
+      multiple: true,
+      disabled: true,
     },
-    formKey: 'income',
+    formKey: 'selectDisabled',
     formItem: {
-      label: '收入',
-      hint: '(Radio)',
+      label: '選擇器，禁用',
+      hint: '(Select)',
     },
   },
   {
-    compName: 'Checkbox',
+    compName: 'Select',
     compProps: {
-      label: '我同意',
+      options: cityOptions,
+      multiple: true,
     },
-    formKey: 'agree',
+    formKey: 'selectValMultiple',
     formItem: {
-      label: '同意書',
-      hint: '(Checkbox)',
+      label: '選擇器，多選',
+      hint: '(Select)',
     },
   },
-  {
-    compName: 'CheckboxGroup',
-    compProps: {
-      options: occupationOptions,
-    },
-    formKey: 'occupation',
-    formItem: {
-      label: '職業',
-      hint: '(CheckboxGroup)',
-    },
-  },
-  {
-    compName: 'Switch',
-    formKey: 'enable',
-    formItem: {
-      label: '啟用',
-      hint: '(Switch)',
-    },
-  },
-  {
-    compName: 'Textarea',
-    formKey: 'remark',
-    formItem: {
-      label: '備註',
-      hint: '(Textarea)',
-    },
-  },
-  {
-    compName: 'TimePicker',
-    formKey: 'time',
-    formItem: {
-      label: '時間',
-      hint: '(TimePicker)',
-    },
-  },
-  {
-    compName: 'DatePicker',
-    formKey: 'date',
-    formItem: {
-      label: '日期選擇',
-      hint: '(DatePicker)',
-    },
-  },
-  {
-    compName: 'DateRangePicker',
-    formKey: 'dateRange',
-    formItem: {
-      label: '時間範圍選擇',
-      hint: '(DateRangePicker)',
-    },
-  },
-  {
-    compName: 'EmailAutoComplete',
-    formKey: 'email',
-    formItem: {
-      label: 'Email',
-      hint: '(EmailAutoComplete)',
-    },
-  },
-  {
-    compName: 'Upload',
-    formKey: 'upload',
-    formItem: {
-      label: '圖片',
-      hint: '(Upload)',
-    },
-  },
-  {
-    compName: 'InputList',
-    formKey: 'multipleInput',
-    formItem: {
-      label: '多輸入框',
-      hint: '(InputList)',
-    },
-  },
-  {
-    compName: 'Slider',
-    formKey: 'slider',
-    formItem: {
-      label: '滑塊',
-      hint: '(Slider)',
-    },
-  },
-  {
-    compName: 'MdEditor',
-    formKey: 'mdEditor',
-    formItem: {
-      label: 'Markdown 編輯器',
-      hint: '(MdEditor)',
-    },
-  },
-
-];
+  // {
+  //   compName: 'Radio',
+  //   compProps: {
+  //     options: incomeOptions,
+  //   },
+  //   formKey: 'income',
+  //   formItem: {
+  //     label: '收入',
+  //     hint: '(Radio)',
+  //   },
+  // },
+  // {
+  //   compName: 'Checkbox',
+  //   compProps: {
+  //     label: '我同意',
+  //   },
+  //   formKey: 'agree',
+  //   formItem: {
+  //     label: '同意書',
+  //     hint: '(Checkbox)',
+  //   },
+  // },
+  // {
+  //   compName: 'CheckboxGroup',
+  //   compProps: {
+  //     options: occupationOptions,
+  //   },
+  //   formKey: 'occupation',
+  //   formItem: {
+  //     label: '職業',
+  //     hint: '(CheckboxGroup)',
+  //   },
+  // },
+  // {
+  //   compName: 'Switch',
+  //   formKey: 'enable',
+  //   formItem: {
+  //     label: '啟用',
+  //     hint: '(Switch)',
+  //   },
+  // },
+  // {
+  //   compName: 'Textarea',
+  //   formKey: 'remark',
+  //   formItem: {
+  //     label: '備註',
+  //     hint: '(Textarea)',
+  //   },
+  // },
+  // {
+  //   compName: 'TimePicker',
+  //   formKey: 'time',
+  //   formItem: {
+  //     label: '時間',
+  //     hint: '(TimePicker)',
+  //   },
+  // },
+  // {
+  //   compName: 'DatePicker',
+  //   formKey: 'date',
+  //   formItem: {
+  //     label: '日期選擇',
+  //     hint: '(DatePicker)',
+  //   },
+  // },
+  // {
+  //   compName: 'DateRangePicker',
+  //   formKey: 'dateRange',
+  //   formItem: {
+  //     label: '時間範圍選擇',
+  //     hint: '(DateRangePicker)',
+  //   },
+  // },
+  // {
+  //   compName: 'EmailAutoComplete',
+  //   formKey: 'email',
+  //   formItem: {
+  //     label: 'Email',
+  //     hint: '(EmailAutoComplete)',
+  //   },
+  // },
+  // {
+  //   compName: 'Upload',
+  //   formKey: 'upload',
+  //   formItem: {
+  //     label: '圖片',
+  //     hint: '(Upload)',
+  //   },
+  // },
+  // {
+  //   compName: 'InputList',
+  //   formKey: 'multipleInput',
+  //   formItem: {
+  //     label: '多輸入框',
+  //     hint: '(InputList)',
+  //   },
+  // },
+  // {
+  //   compName: 'Slider',
+  //   formKey: 'slider',
+  //   formItem: {
+  //     label: '滑塊',
+  //     hint: '(Slider)',
+  //   },
+  // },
+  // {
+  //   compName: 'MdEditor',
+  //   formKey: 'mdEditor',
+  //   formItem: {
+  //     label: 'Markdown 編輯器',
+  //     hint: '(MdEditor)',
+  //   },
+  // },
+].reverse();
 
 export const dependencyFormConfig = [
   {

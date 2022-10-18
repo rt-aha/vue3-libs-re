@@ -33,6 +33,9 @@
         <dev-props type="Number, String" prop-name="min" text="最小值" mt />
         <dev-desc text="e.g. -5" />
         <ReInputNumber v-model="value5" min="-5" />
+
+        <dev-desc text="e.g. -2 ~ 4" mt />
+        <ReInputNumber v-model="value55" min="-2" max="4" />
       </div>
     </dev-section>
 
@@ -56,35 +59,18 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue';
+<script setup>
+// import { defineComponent, ref } from 'vue';
 import ReInputNumber from '@/components/dataInput/ReInputNumber.vue';
 
-export default defineComponent({
-  name: 'ViewInputNumber',
-  components: {
-    ReInputNumber,
-  },
-  setup() {
-    const value1 = ref('');
-    const value2 = ref('');
-    const value3 = ref('');
-    const value4 = ref('');
-    const value5 = ref('');
-    const value6 = ref('');
-    const value7 = ref('');
-
-    return {
-      value1,
-      value2,
-      value3,
-      value4,
-      value5,
-      value6,
-      value7,
-    };
-  },
-});
+const value1 = ref(0);
+const value2 = ref(0);
+const value3 = ref(0);
+const value4 = ref(0);
+const value5 = ref(0);
+const value55 = ref(0);
+const value6 = ref(0);
+const value7 = ref(0);
 </script>
 
 <style lang="scss" scoped>

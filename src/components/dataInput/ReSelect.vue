@@ -1,7 +1,14 @@
 <template>
-  <div class="re-select">
+  <div
+    class="re-select"
+    :class="{
+      're-select--disabled': disabled,
+    }"
+  >
     <div v-click-away="closeSelect" class="select" @click="toggleExpand">
-      <div class="select__active-wrap">
+      <div
+        class="select__active-wrap"
+      >
         <template v-if="multiple">
           <input v-show="innerMulti.length === 0" class="select__field" readonly placeholder="請選擇">
           <ReSelectMultiTag v-show="innerMulti.length > 0" v-model="innerMulti" @onRemoveItem="onRemoveItem" />
@@ -73,25 +80,16 @@ const props = defineProps({
     defualt: false,
   },
 });
-const emits = defineEmits(['update:modelValue', 'onChange']);
-
-const innerMulti = ref([]);
-
-const innerSingle = ref('');
-
-// const tagOpts = ref([
-//   {
-//     label: 'opt1',
-//     value: 'opt1',
-//   },
-// ]);
+const emit = defineEmits(['update:modelValue', 'onChange']);
 
 const { validFn } = useValidate();
+const innerMulti = ref([]);
+const innerSingle = ref('');
 const isExpand = ref(false);
 
 const setInitValue = () => {
   if (props.multiple) {
-    innerMulti.value = props.modelValue;
+    innerMulti.value = props.options.filter(item => props.modelValue.includes(item.value));
   }
   else {
     innerSingle.value = props.modelValue;
@@ -99,6 +97,8 @@ const setInitValue = () => {
 };
 
 const toggleExpand = () => {
+  if (props.disabled) { return; }
+
   isExpand.value = !isExpand.value;
 };
 
@@ -182,23 +182,21 @@ watch(
 
 <style lang="scss" scoped>
 .re-select {
-  /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
-  // width: 200px;
   cursor: pointer;
+
+  &--disabled {
+    @include disabled();
+  }
 }
 
 .select {
   @include padding(0 10px);
   @include flex();
-  // width: 200px;
   position: relative;
-
-  /* background-color: #eee; */
-  display: inline-block;
   height: auto;
   min-height: 36px;
-  border: 1px solid $c-form-border;
+  border: 1px solid $c-form-assist;
   border-radius: 4px;
 
   &__active-wrap {
@@ -208,7 +206,7 @@ watch(
   &__field {
     @include font-style($c-black, 14, 400, 1px, 14px);
     width: 100%;
-    cursor: pointer;
+    cursor: inherit;
     background-color: transparent;
     border: 0;
     outline: 0;
@@ -219,14 +217,9 @@ watch(
     width: 15px;
     margin-left: 10px;
     transition: 0.4s;
-
-    /* @include position(tr, 50%, 10px); */
-
-    /* transform: translateY(-50%) rotate(0deg); */
     transform: rotate(0deg);
 
     &--active {
-      /* transform: translateY(-50%) rotate(180deg); */
       transform: rotate(180deg);
     }
   }
@@ -252,12 +245,16 @@ watch(
     cursor: pointer;
 
     &:hover {
-      background-color: rgba($c-deepblue, 0.2);
+      background-color: rgba($c-form-hover-bg, 0.2);
+
+      .select-option-list__item__label {
+        color: $c-form-active;
+      }
     }
 
     &--active {
       .select-option-list__item__label {
-        @include font-style($c-deepblue--active, 14, 400, 1px, 14px);
+        @include font-style($c-form-active, 14, 400, 1px, 14px);
       }
 
       .select-option-list__item__check-icon {
@@ -267,12 +264,11 @@ watch(
     }
 
     &--disabled {
-      cursor: not-allowed;
-      opacity: 0.5;
+      @include disabled();
     }
 
     &__label {
-      @include font-style($c-black, 14, 400, 1px, 14px);
+      @include font-style($c-form-main, 14, 400, 1px, 14px);
     }
 
     &__check-icon {

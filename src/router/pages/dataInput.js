@@ -36,6 +36,7 @@ const children = [
     },
     meta: {
       title: 'Select 選擇器',
+      manualTesting: true,
     },
   },
   {

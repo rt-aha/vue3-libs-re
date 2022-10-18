@@ -2,6 +2,9 @@
   <div class="v-re-form">
     <dev-section title="基本使用">
       <div class="wrap">
+        <ReButton @click="basicFormSubmit">
+          basic form
+        </ReButton>
         <ReEasyForm
           ref="basicFormRef"
           v-model:formValue="basicForm"
@@ -70,10 +73,14 @@ const basicForm = ref({
   inputNumberValStep: 0,
   inputNumberMinMax: 0,
   inputNumberStepMinMax: 0,
+  // select
+  selectVal: '',
+  selectDisabled: '',
+  selectValMultiple: [],
 
-  city: '',
-  region: '',
-  slider: 32,
+  // city: '',
+  // region: '',
+  // slider: 32,
 });
 
 const dependencyForm = ref({
@@ -91,12 +98,13 @@ const dependencyForm = ref({
 
 setTimeout(() => {
   basicForm.value.inputVal = 'after3000ms';
-  basicForm.value.inputValDisabled = 'after3000ms';
-  basicForm.value.inputValPassword = 'after3000ms';
+  basicForm.value.inputNumberVal = 30;
+  basicForm.value.selectVal = 'female';
+  basicForm.value.selectValMultiple = [100, 207];
 }, 3000);
 
-const basicFormSubmit = () => {
-  const validResult = basicFormRef.value.validateAll();
+const basicFormSubmit = async () => {
+  const validResult = await basicFormRef.value.validateAll();
   console.log('basicForm--result', validResult, basicForm.value);
 };
 

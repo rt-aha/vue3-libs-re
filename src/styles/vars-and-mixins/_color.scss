@@ -36,10 +36,14 @@ $c-badge--green: $c-green;
 $c-badge--red: $c-red;
 
 // form 相關
-$c-form-label: #333; // 用於 label
+$c-form-label: #555; // 用於 label
 $c-form-label-hint: #333; // 用於 label 上的 hint
 $c-form-main: #333; // 用於可以輸入框或選擇到的值
 $c-form-assist: #ccc; // 用於邊框
+$c-form-selected: #032f60; // 用於選擇到的主色，預設放入 active 和 hover 中
+$c-form-active: $c-form-selected;
+$c-form-hover: $c-form-selected;
+$c-form-hover-bg: rgba($c-form-selected, 0.2);
 
 $c-form-basic: #333;
 $c-form-border: #ccc;

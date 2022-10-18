@@ -56,6 +56,7 @@ import ReTextarea from '@/components/dataInput/ReTextarea.vue';
 import ReMdEditor from '@/components/dataInput/ReMdEditor.vue';
 
 export default defineComponent({
+  name: 'ReEasyForm',
   components: {
     ReForm,
     ReFormItem,

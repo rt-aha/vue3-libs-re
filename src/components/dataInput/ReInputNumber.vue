@@ -79,13 +79,14 @@ const setInitInputFieldValue = () => {
 
 const checkMinMax = (num) => {
   let val = num;
-  if (props.max) {
+
+  if (isNumber(props.max)) {
     if (val > props.max) {
       val = props.max;
     }
   }
 
-  if (props.min) {
+  if (isNumber(props.min)) {
     if (val < props.min) {
       val = props.min;
     }
@@ -131,7 +132,7 @@ init();
   @include padding(5px 0);
   width: 100%;
   height: 36px;
-  border: 1px solid $c-form-border;
+  border: 1px solid $c-form-assist;
   border-radius: 4px;
 
   &--disabled {
@@ -184,7 +185,7 @@ init();
         width: 1px;
         height: 14px;
         content: "";
-        background-color: $c-form-border;
+        background-color: $c-form-assist;
         transform: translateY(-50%);
       }
 

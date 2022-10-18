@@ -18,35 +18,9 @@
           }"
           @click.stop="handleRemoveItem(tag)"
         >
-          <img class="tag-list__item__remove__icon" src="@/assets/icon/close.svg">
+          <img class="tag-list__item__remove__icon" src="@/assets/icon/close_form.svg">
         </div>
       </li>
-      <!-- <li
-        class="tag-list__item tag-list__item--add"
-        :style="{
-          height: labelItemHeight,
-        }"
-        @click="toggleAddTagStatus"
-      >
-        <div class="tag-list__item__add">
-          <img class="tag-list__item__add__icon" src="@/assets/icon/add.svg" />
-        </div>
-      </li> -->
-      <!-- <li
-        class="tag-list__item tag-list__item--add-input"
-        :style="{
-          height: labelItemHeight,
-        }"
-        v-show="editable && isAddStatus"
-      >
-        <input
-          class="tag-list__item__add-input"
-          v-model="addValue"
-          @blur="toggleAddTagStatus"
-          @keydown.enter="addTag"
-          ref="inputRef"
-        />
-      </li> -->
     </ul>
   </div>
 </template>
@@ -72,8 +46,6 @@ const emit = defineEmits(['update:modelValue', 'onClickItem', 'onRemoveItem', 'o
 
 const labelItemRef = ref(null);
 const inputRef = ref(null);
-const labelItemHeight = ref('');
-const addValue = ref();
 const isAddStatus = ref(false);
 const innerValue = ref([]);
 const handleClickItem = (tag) => {
@@ -96,53 +68,11 @@ const toggleAddTagStatus = async () => {
   }
 };
 
-const addTag = () => {
-  console.log('add tag!');
-  const isExist = innerValue.value.find(item => item.label === addValue.value);
-  if (isExist) {
-    console.warn('標籤名重複！');
-    emit('onAddTagWarning', 'repeat');
-
-    return;
-  }
-
-  if (props.limit) {
-    const isReachLimitation = innerValue.value.length >= Number(props.limit);
-
-    if (isReachLimitation) {
-      console.warn(`已達所設定${props.limit}上限`);
-      emit('onAddTagWarning', 'limit');
-
-      return;
-    }
-  }
-
-  const addLabelItem = {
-    value: addValue.value,
-    label: addValue.value,
-  };
-
-  innerValue.value.push(addLabelItem);
-  emit('update:modelValue', innerValue.value);
-  addValue.value = '';
-};
-
 const init = () => {
   innerValue.value = props.modelValue;
 };
 
-// const getLabelHeight = () => {
-//   console.log('labelItemRef.value', labelItemRef.value);
-
-//   const lastLabelItem = labelItemRef.value[labelItemRef.value.length - 1];
-//   labelItemHeight.value = `${lastLabelItem.clientHeight + 2}px`;
-// };
-
 init();
-
-onMounted(() => {
-  // getLabelHeight();
-});
 
 watch(
   () => props.modelValue,
@@ -153,18 +83,9 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-/* * {
-  outline: 1px solid #f00;
-} */
-
 .re-tag {
   @include padding(5px 0 0 0);
   width: 100%;
-
-  &--editable {
-    .tag-list__item {
-    }
-  }
 }
 
 .tag-list {
@@ -179,23 +100,21 @@ watch(
     margin-bottom: 5px;
     vertical-align: bottom;
     cursor: pointer;
-
-    /* margin-bottom: 10px; */
-    border: 1px solid $c-deepblue;
+    background-color: $c-form-assist;
     border-radius: 4px;
 
     &--add {
       padding: 2px 5px !important;
-      border: 1px dashed $c-deepblue;
+      border: 1px dashed $c-form-assist;
     }
 
     &--add-input {
       padding: 2px !important;
-      border: 1px dashed $c-deepblue;
+      border: 1px dashed $c-form-assist;
     }
 
     &__label {
-      @include font-style($c-deepblue, 14);
+      @include font-style($c-form-main, 14);
     }
 
     &__remove {
@@ -203,8 +122,7 @@ watch(
       transform: translateY(-50%);
 
       &--disabled {
-        cursor: not-allowed;
-        opacity: 0.2;
+        @include disabled;
       }
 
       &__icon {

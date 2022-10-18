@@ -179,3 +179,9 @@ background-image: linear-gradient($c-grey8, 1px, transparent 0),
   background-position: center;
   background-repeat: no-repeat;
 }
+
+@mixin disabled() {
+  cursor: not-allowed;
+      opacity: 0.5;
+
+}

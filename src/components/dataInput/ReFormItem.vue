@@ -72,6 +72,10 @@ const validateFields = async (event) => {
     return true;
   }
 };
+
+defineExpose({
+  validateFields,
+});
 </script>
 
 <style lang="scss" scoped>
