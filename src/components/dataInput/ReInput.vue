@@ -158,18 +158,6 @@ init();
       @include form-font();
       @include flex(center);
 
-      /* position: relative;
-
-      &::before {
-        content: '';
-        width: 1px;
-        height: 14px;
-        background-color: $c-form-border;
-        display: inline-block;
-        @include position(tl, 50%, 0);
-        transform: translateY(-50%);
-      } */
-
       &__icon {
         width: 20px;
         cursor: pointer;
