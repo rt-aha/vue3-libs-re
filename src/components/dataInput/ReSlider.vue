@@ -333,6 +333,7 @@ init();
 .re-slider {
   width: auto;
 }
+
 .slider-wrap {
   @include flex(center);
   height: 18px;
@@ -341,7 +342,6 @@ init();
   position: relative;
 
   // outline: 1px solid #00f;
-
 }
 
 .slider-static {
@@ -358,7 +358,6 @@ init();
   @include position(tl, 50%, 0);
   transform: translateY(-50%);
   // transition: 0.3s;
-
 }
 
 .slider-dot {
@@ -368,8 +367,7 @@ init();
 
   &__real {
     @include circle(10px);
-  background-color: $c-deepblue;
-
+    background-color: $c-deepblue;
   }
 }
 
@@ -411,7 +409,6 @@ init();
       border: 0;
     }
   }
-
 }
 
 // *{

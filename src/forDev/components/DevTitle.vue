@@ -29,7 +29,7 @@ export default defineComponent({
       @include font-style(#999, 14, 400, 0.5px);
 
       &::before {
-        content: '';
+        content: "";
         width: 2px;
         height: 15px;
         background-color: #999;
@@ -38,11 +38,12 @@ export default defineComponent({
         transform: translateY(-50%);
       }
     }
+
     &--main {
       @include font-style(#555, 18, 400, 0.5px);
 
       &::before {
-        content: '';
+        content: "";
         width: 4px;
         height: 20px;
         background-color: #555;

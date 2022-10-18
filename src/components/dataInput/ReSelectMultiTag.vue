@@ -166,6 +166,7 @@ watch(
     }
   }
 }
+
 .tag-list {
   width: 100%;
 
@@ -174,11 +175,11 @@ watch(
     vertical-align: bottom;
     margin-right: 5px;
     margin-bottom: 5px;
+
     /* margin-bottom: 10px; */
     border: 1px solid $c-deepblue;
     border-radius: 4px;
     @include padding(2px 24px 2px 5px);
-
     @include inline-flex();
     cursor: pointer;
     position: relative;

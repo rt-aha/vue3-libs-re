@@ -204,6 +204,7 @@ init();
 } */
 .re-transfer {
 }
+
 .transfer {
   @include flex(flex-start, flex-start);
   width: 500px;
@@ -213,7 +214,7 @@ init();
   height: 200px;
 
   &::before {
-    content: '';
+    content: "";
     width: 1px;
     height: 100%;
     @include position(tl, 0, 50%);
@@ -337,8 +338,8 @@ init();
   @include padding(5px);
 
   &__input {
-    outline: 0px;
-    border: 0px;
+    outline: 0;
+    border: 0;
     width: 100%;
     border-radius: 2px;
   }

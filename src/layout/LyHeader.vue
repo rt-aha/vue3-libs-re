@@ -19,13 +19,13 @@ export default defineComponent({
 <style lang="scss" scoped></style>
 
 <style lang="scss" scoped>
-@import '@/styles/utils/_rwd.scss';
+@import "@/styles/utils/_rwd";
 
 .ly-header {
   height: 50px;
   background-color: $c-deepblue;
   background: linear-gradient(225deg, #ff3cac 0%, #784ba0 20%, #2b86c5 100%);
-  box-shadow: 0 0px 10px #aaa;
+  box-shadow: 0 0 10px #aaa;
 
   &__content {
     height: 100%;

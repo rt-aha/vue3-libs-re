@@ -12,6 +12,7 @@
           :value="modelValue"
           :disabled="disabled"
           inputmode="numeric"
+          v-bind="$attrs"
           @input="(e) => updateValue(e, 'input')"
           @change="(e) => updateValue(e, 'change')"
           @blur="(e) => updateValue(e, 'blur')"
@@ -126,12 +127,12 @@ init();
 
 <style lang="scss" scoped>
 .re-input {
+  @include flex();
+  @include padding(5px 0);
   width: 100%;
   height: 36px;
   border: 1px solid $c-form-border;
-  @include padding(5px 0px);
   border-radius: 4px;
-  @include flex();
 
   &--disabled {
     cursor: not-allowed;
@@ -158,7 +159,7 @@ init();
 
     &__main {
       flex: 1;
-      @include padding(0px 8px);
+      @include padding(0 8px);
     }
 
     &__suffix {
@@ -172,13 +173,13 @@ init();
     &__control {
       flex: none;
       width: auto;
-      @include padding(0px 8px);
+      @include padding(0 8px);
       @include form-font();
       @include flex(center);
       position: relative;
 
       &::before {
-        content: '';
+        content: "";
         width: 1px;
         height: 14px;
         background-color: $c-form-border;
@@ -198,13 +199,13 @@ init();
 .re-input-native-field {
   @include form-font();
   background-color: transparent;
-  border: 0px;
-  outline: 0px;
+  border: 0;
+  outline: 0;
   width: 100%;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
-    -webkit-appearance: none !important;
+    appearance: none !important;
     margin: 0;
   }
 }

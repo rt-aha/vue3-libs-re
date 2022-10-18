@@ -207,8 +207,8 @@ const calcOffset = (idx) => {
       @include padding(0 0 0 10px);
 
       &::before {
-        content: '+';
-        @include position(tl, 50%, 0px);
+        content: "+";
+        @include position(tl, 50%, 0);
         transform: translateY(-50%);
       }
     }

@@ -198,6 +198,7 @@ watch(
   &--direction {
     &--horizontal {
       color: blue;
+
       .chk-list__item {
         display: inline-block;
       }
@@ -220,6 +221,7 @@ watch(
   &--direction {
     &--horizontal {
       @include flex(flex-start, flex-start);
+
       .chk-all {
         flex: none;
         width: auto;
@@ -233,6 +235,7 @@ watch(
     /* &--vertical {} */
   }
 }
+
 .chk-list {
   width: 100%;
 
@@ -262,7 +265,7 @@ watch(
           position: relative;
 
           &::after {
-            content: '';
+            content: "";
             display: block;
             @include position(center);
             width: 10px;

@@ -414,7 +414,7 @@ handleMessage({});
 
     &::before {
       @include position(center);
-      content: '';
+      content: "";
       display: inline-block;
       width: 20px;
       height: 2px;
@@ -424,7 +424,7 @@ handleMessage({});
 
     &::after {
       @include position(center);
-      content: '';
+      content: "";
       display: inline-block;
       width: 2px;
       height: 20px;

@@ -309,7 +309,7 @@ watch(emailValue, (newVal, oldVal) => {
   @include padding(10px);
   position: relative;
 
-  &:not([data-disabled-status='true']) {
+  &:not([data-disabled-status="true"]) {
     &:hover {
       background-color: rgba($c-deepblue, 0.2);
     }

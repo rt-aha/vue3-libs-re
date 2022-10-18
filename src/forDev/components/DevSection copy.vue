@@ -74,10 +74,11 @@ export default defineComponent({
     &--verticle {
       * {
         /* margin-top: 10px; */
-        margin-left: 0px;
+        margin-left: 0;
 
         &:first-child {
           margin-left: 0;
+
           /* margin-top: 0; */
         }
       }

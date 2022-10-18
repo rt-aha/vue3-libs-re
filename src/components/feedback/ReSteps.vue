@@ -68,8 +68,9 @@ const currentStatus = (currIndex) => {
 
 <style lang="scss" scoped>
 .re-steps {
-    width: 100%;
-  }
+  width: 100%;
+}
+
 .step-list {
   width: 100%;
   @include flex(flex-start, flex-start);
@@ -162,6 +163,7 @@ const currentStatus = (currIndex) => {
     &--finish {
       .current {
         border-color: $c-green;
+
         &__index {
           &__text {
             color: $c-green;

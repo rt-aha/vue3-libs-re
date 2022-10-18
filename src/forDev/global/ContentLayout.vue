@@ -18,7 +18,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/utils/_rwd.scss';
+@import "@/styles/utils/_rwd";
 
 .c-content-layout {
   &__first {
@@ -27,7 +27,6 @@ export default defineComponent({
   &__second {
   }
 }
-
 @media screen and (min-width: $tablet) {
   .c-content-layout {
     @include flex(flex-start, flex-start);

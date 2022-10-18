@@ -19,7 +19,7 @@ const props = defineProps({
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     display: inline-block;
     background-color: $c-deepblue;
     height: 1px;

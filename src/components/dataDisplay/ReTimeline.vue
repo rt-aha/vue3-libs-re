@@ -47,7 +47,8 @@ const innerTimelineData = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/utils/_rwd.scss";
+@import "@/styles/utils/_rwd";
+
 .timeline {
   &__content {
     position: relative;
@@ -78,14 +79,13 @@ const innerTimelineData = computed(() => {
       position: relative;
 
       &::before {
-        content: '';
+        content: "";
         background-color: $c-deepblue;
         margin-right: 10px;
         @include circle(10px);
         @include position(tl, 50%, -20px);
         transform: translateY(-50%);
       }
-
     }
   }
 
@@ -106,8 +106,8 @@ const innerTimelineData = computed(() => {
         width: 1px;
         height: 100%;
         display: inline-block;
-        background-color: $c-grey;;
-        @include position(tl, 0px, -16px);
+        background-color: $c-grey;
+        @include position(tl, 0, -16px);
       }
     }
   }

@@ -26,12 +26,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .dev-desc {
   margin-bottom: 10px;
-
   @include font-style(#555, 14, 400, 0.5px);
 
   &--mt {
     margin-top: 20px;
   }
-
 }
 </style>

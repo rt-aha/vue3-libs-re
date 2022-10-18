@@ -44,8 +44,9 @@ onUnmounted(() => {
   from {
     transform: translateY(0);
   }
+
   to {
-    transform: translateY(-100%)
+    transform: translateY(-100%);
   }
 }
 
@@ -60,7 +61,7 @@ onUnmounted(() => {
     animation: slideOut 0.2s linear;
   }
 
-  &+& {
+  & + & {
     margin-top: 12px;
   }
 }

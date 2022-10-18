@@ -15,6 +15,7 @@
           :type="inputType"
           :value="modelValue"
           :disabled="disabled"
+          v-bind="$attrs"
           @input="(e) => updateValue(e, 'input')"
           @change="(e) => updateValue(e, 'change')"
           @blur="(e) => updateValue(e, 'blur')"
@@ -97,12 +98,12 @@ init();
 
 <style lang="scss" scoped>
 .re-input {
+  @include padding(5px 0);
+  @include flex();
   width: 100%;
   height: 36px;
-  border: 1px solid $c-form-border;
-  @include padding(5px 0px);
+  border: 1px solid $c-form-assist;
   border-radius: 4px;
-  @include flex();
 
   &--disabled {
     cursor: not-allowed;
@@ -116,20 +117,20 @@ init();
   }
 
   &__left {
+    position: relative;
     flex: none;
     width: auto;
     @include padding(0 8px);
     @include form-font();
-    position: relative;
 
     &::after {
-      content: '';
+      display: inline-block;
       width: 1px;
       height: 14px;
+      content: "";
       background-color: $c-form-border;
-      display: inline-block;
-      @include position(tr, 50%, 0);
       transform: translateY(-50%);
+      @include position(tr, 50%, 0);
     }
   }
 
@@ -144,17 +145,19 @@ init();
       @include form-font();
       @include flex(center);
     }
+
     &__main {
       flex: 1;
-      @include padding(0px 8px);
+      @include padding(0 8px);
     }
 
     &__eye {
       flex: none;
       width: auto;
-      @include padding(0px 8px);
+      @include padding(0 8px);
       @include form-font();
       @include flex(center);
+
       /* position: relative;
 
       &::before {
@@ -181,30 +184,31 @@ init();
       @include flex(center);
     }
   }
+
   &__right {
+    position: relative;
     flex: none;
     width: auto;
     @include padding(0 8px);
     @include form-font();
-    position: relative;
 
     &::before {
-      content: '';
+      display: inline-block;
       width: 1px;
       height: 14px;
+      content: "";
       background-color: $c-form-border;
-      display: inline-block;
-      @include position(tl, 50%, 0);
       transform: translateY(-50%);
+      @include position(tl, 50%, 0);
     }
   }
 }
 
 .re-input-native-field {
   @include form-font();
-  background-color: transparent;
-  border: 0px;
-  outline: 0px;
   width: 100%;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
 }
 </style>

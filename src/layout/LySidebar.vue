@@ -163,8 +163,9 @@ export default defineComponent({
 }
 
 .main-list-wrap {
-           @include position(tl, 0, 0);
+  @include position(tl, 0, 0);
 }
+
 .main-list {
   height: 100%;
   @include flex(flex-start, flex-start, column);
@@ -205,13 +206,12 @@ export default defineComponent({
         font-weight: 700;
 
         &::before {
-          content: '';
+          content: "";
           width: 100%;
-             height: 5px;
+          height: 5px;
           @include position(bl, 3px, 5px);
           background-color: $c-main-pink;
           opacity: 0.4;
-
         }
       }
     }
@@ -224,8 +224,8 @@ export default defineComponent({
         cursor: pointer;
         position: relative;
 
-        &:before {
-          content: '';
+        &::before {
+          content: "";
           width: 0%;
           height: 5px;
           @include position(bl, 3px, 5px);

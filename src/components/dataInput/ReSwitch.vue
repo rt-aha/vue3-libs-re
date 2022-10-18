@@ -183,6 +183,7 @@ const activeStatus = computed(() => {
 
       &__bar {
         /* left: 26px; */
+
         /* transform: translateX(26px); */
       }
     }
@@ -204,6 +205,7 @@ const activeStatus = computed(() => {
 
 .re-switch-box {
   width: 100%;
+
   /* height: 20px; */
   position: relative;
   cursor: pointer;
@@ -214,7 +216,7 @@ const activeStatus = computed(() => {
     transition: 0.3s;
     position: relative;
     z-index: 10;
-    left: 0px;
+    left: 0;
   }
 }
 
@@ -224,12 +226,12 @@ const activeStatus = computed(() => {
   color: $c-white;
 
   &--on {
-    @include position(tl, 50%, 0px);
+    @include position(tl, 50%, 0);
     transform: translate(calc(-100% - 2px), -50%);
   }
 
   &--off {
-    @include position(tr, 50%, 0px);
+    @include position(tr, 50%, 0);
     transform: translate(calc(100% + 2px), -50%);
   }
 }

@@ -92,6 +92,7 @@ export default defineComponent({
 .c-select-cities {
   width: 600px;
 }
+
 .title {
   margin-bottom: 20px;
 
@@ -106,6 +107,7 @@ export default defineComponent({
     margin-right: 5px;
   }
 }
+
 .btns-wrap {
   margin-top: 50px;
   @include flex(center);

@@ -90,33 +90,34 @@ const handleBtn = async (cb) => {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
-
 @keyframes fadeOut {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
 }
-
 @keyframes slideIn {
   from {
     transform: translate(-50%, -50%) translateY(-30px);
   }
+
   to {
     transform: translate(-50%, -50%) translateY(0);
   }
 }
-
 @keyframes slideOut {
   from {
     transform: translate(-50%, -50%) translateY(0);
   }
+
   to {
     transform: translate(-50%, -50%) translateY(-30px);
   }
@@ -138,6 +139,7 @@ const handleBtn = async (cb) => {
 
   &--animate-in {
     animation: fadeIn 0.3s;
+
     .re-modal__box {
       animation: slideIn 0.2s forwards;
     }
@@ -145,6 +147,7 @@ const handleBtn = async (cb) => {
 
   &--animate-out {
     animation: fadeOut 0.3s;
+
     .re-modal__box {
       animation: slideOut 0.2s forwards;
     }
@@ -175,7 +178,6 @@ const handleBtn = async (cb) => {
     }
   }
 }
-
 @keyframes slideTopIn {
   from {
     transform: translate(-50%, calc(-50% - 30px));
@@ -185,7 +187,6 @@ const handleBtn = async (cb) => {
     transform: translate(-50%, -50%);
   }
 }
-
 @keyframes slideTopOut {
   from {
     transform: translate(-50%, -50%);

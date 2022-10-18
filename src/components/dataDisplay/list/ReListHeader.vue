@@ -33,11 +33,12 @@ const props = defineProps({
 <style lang="scss" scoped>
 .re-header {
   // background-color: $c-white;
+
   /* box-shadow: 3px 3px 6px rgba($c-black, 0.1); */
 
   &--search {
     background-color: transparent;
-    box-shadow: 0px 0 0 transparent;
+    box-shadow: 0 0 0 transparent;
   }
 
   &__content {
@@ -45,6 +46,7 @@ const props = defineProps({
     // border-top: 1px solid $c-assist2;
   }
 }
+
 .header-list {
   // width: 100%;
   @include flex(flex-start);
@@ -58,6 +60,7 @@ const props = defineProps({
     @include padding(7px 10px);
   }
 }
+
 .center {
   @include flex(center);
 }

@@ -38,7 +38,7 @@ export default {
     }
 
     .re-button {
-      border-radius: 0px;
+      border-radius: 0;
 
       &:first-child {
         @include cus-radius(4px, 0, 0, 4px);
@@ -52,12 +52,12 @@ export default {
 
   &--border {
     .re-button + .re-button {
-      margin-left: 0px;
+      margin-left: 0;
     }
 
     .re-button {
-      border-radius: 0px;
-      border-right-width: 0px;
+      border-radius: 0;
+      border-right-width: 0;
 
       &:hover {
         opacity: 1;

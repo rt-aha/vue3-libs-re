@@ -18,7 +18,7 @@ const val = ref('');
 
 <style lang="scss" scoped>
 .view-md-editor {
-  width: 100%
+  width: 100%;
 }
 </style>
 

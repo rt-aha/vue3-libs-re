@@ -35,6 +35,12 @@ $c-badge--brown: $c-brown;
 $c-badge--green: $c-green;
 $c-badge--red: $c-red;
 
+// form 相關的都放這
+$c-form-label: #333; // 用於 label
+$c-form-label-hint: #333; // 用於 label 上的 hint
+$c-form-main: #333; // 用於可以輸入框或選擇到的值
+$c-form-assist: #ccc; // 用於邊框
+
 $c-form-basic: #333;
 $c-form-border: #ccc;
 
@@ -43,3 +49,4 @@ $c-assist-yellow: #F9DB4A;
 $c-assist-pink: #FF9FA6;
 $c-assist-green: #7FD3B6;
 $c-assist-blue: #83D0E6;
+

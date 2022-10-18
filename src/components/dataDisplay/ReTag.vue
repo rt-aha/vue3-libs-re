@@ -160,6 +160,7 @@ onMounted(() => {
     }
   }
 }
+
 .tag-list {
   width: 100%;
 

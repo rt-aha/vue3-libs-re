@@ -6,9 +6,15 @@
         <ReSelect v-model="value1" :options="basicOptions" />
       </div>
     </dev-section>
-    <dev-section title="禁用">
+    <dev-section title="禁用，整個select">
       <div class="wrap">
-        <dev-props type="Boolean" prop-name="disabled" text="禁用" />
+        <dev-props type="Boolean" prop-name="disabled" text="禁用，整個select" />
+        <ReSelect v-model="value2" :options="basicWithDisabledOptions" disabled />
+      </div>
+    </dev-section>
+    <dev-section title="禁用選項">
+      <div class="wrap">
+        <dev-props type="Boolean" prop-name="disabled" text="禁用選項" />
         <ReSelect v-model="value2" :options="basicWithDisabledOptions" />
       </div>
     </dev-section>

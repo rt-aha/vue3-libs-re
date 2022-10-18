@@ -140,6 +140,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .re-upload-preview {
   width: 150px;
+
   /* height: 210px; */
   @include flex(flex-start, flex-start);
   margin-bottom: 10px;

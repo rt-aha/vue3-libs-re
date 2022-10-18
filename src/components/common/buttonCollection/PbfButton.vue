@@ -105,7 +105,7 @@ export default defineComponent({
   transition: 0.4s;
   height: 40px;
   border-radius: 20px;
-  outline: 0px transparent;
+  outline: 0 transparent;
   background-color: $c-assist-yellow;
   cursor: pointer;
   border: 2px solid $c-assist-yellow;
@@ -125,7 +125,7 @@ export default defineComponent({
   }
 
   &--shadow {
-    box-shadow: 0px 3px 10px #0000001a;
+    box-shadow: 0 3px 10px #0000001a;
   }
 
   &--disabled {
@@ -148,10 +148,12 @@ export default defineComponent({
         color: $c-assist-pink;
       }
     }
+
     &--purple {
       background-color: #d3a9e0;
       color: $c-white;
     }
+
     &--green {
       border: 2px solid $c-assist-green;
       background-color: $c-assist-green;
@@ -162,6 +164,7 @@ export default defineComponent({
         color: $c-assist-green;
       }
     }
+
     &--blue {
       background-color: #83d0e6;
       color: $c-white;

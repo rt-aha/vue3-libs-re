@@ -52,6 +52,7 @@ export default defineComponent({
   top: 50%;
   transform: translateY(-50%);
 }
+
 .red-circle {
   @include circle(52px);
   @include position(center);
@@ -79,6 +80,7 @@ export default defineComponent({
 
 svg {
   width: 52px;
+
   .cls-1,
   .cls-2 {
     fill: none;
@@ -86,9 +88,11 @@ svg {
     stroke-miterlimit: 10;
     stroke-width: 3px;
   }
+
   .cls-1 {
     transition-delay: 0.17s;
   }
+
   .cls-2 {
     opacity: 0;
     transition-property: d, stroke-width, opacity;
@@ -102,18 +106,20 @@ svg {
 
   &:hover {
     .red-circle {
-      width: 0px;
-      height: 0px;
+      width: 0;
+      height: 0;
       border: 6px solid $c-deepblue;
     }
+
     svg {
       .cls-1 {
         transition-delay: 0s;
         opacity: 0;
-        d: path('M70.55,37.5a33.05,33.05,0,1,1-33-33A33.05,33.05,0,0,1,70.55,37.5');
+        d: path("M70.55,37.5a33.05,33.05,0,1,1-33-33A33.05,33.05,0,0,1,70.55,37.5");
       }
+
       .cls-2 {
-        d: path('M41.5,37.5a4,4,0,1,1-4-4,4,4,0,0,1,4,4');
+        d: path("M41.5,37.5a4,4,0,1,1-4-4,4,4,0,0,1,4,4");
         transition-property: d, stroke-width;
         transition-duration: 0.2s;
         transition-timing-function: ease-in-out;

@@ -65,7 +65,7 @@ const handleClick = (tab) => {
 
     &::before {
       @include position(tl, 0, 0);
-      content: '';
+      content: "";
       display: inline-block;
       z-index: 500;
       width: 10px;
@@ -75,7 +75,7 @@ const handleClick = (tab) => {
 
     &::after {
       @include position(tr, 0, 0);
-      content: '';
+      content: "";
       display: inline-block;
       z-index: 500;
       width: 10px;
@@ -96,7 +96,7 @@ const handleClick = (tab) => {
 
       &::after {
         @include position(tl, calc(100% - 1px), 0);
-        content: '';
+        content: "";
         display: inline-block;
         width: 100%;
         height: 1px;
@@ -114,7 +114,7 @@ const handleClick = (tab) => {
 
         &::after {
           @include position(tl, calc(100% - 2px), 0);
-          content: '';
+          content: "";
           display: inline-block;
           width: 100%;
           height: 2px;
@@ -149,6 +149,7 @@ const handleClick = (tab) => {
 .fade-leave-active {
   transition: all 0.5s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

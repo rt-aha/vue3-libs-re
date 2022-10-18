@@ -87,5 +87,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '@/styles/libs/atom-one-dark.scss';
+@import "@/styles/libs/atom-one-dark";
 </style>

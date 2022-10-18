@@ -114,21 +114,21 @@ export default defineComponent({
     // margin-right: 8px;
 
     &--email {
-      background-image: url('~@/assets/searchResults/icon_popup_share_email.svg');
+      background-image: url("~@/assets/searchResults/icon_popup_share_email.svg");
     }
 
     &--link {
       width: 20px;
       height: 20px;
       background-size: 20px 20px;
-      background-image: url('~@/assets/searchResults/icon_popup_share_link.svg');
+      background-image: url("~@/assets/searchResults/icon_popup_share_link.svg");
     }
 
     &--download {
       width: 16px;
       height: 16px;
       background-size: 16px 16px;
-      background-image: url('~@/assets/feedbackImg/icon_download.svg');
+      background-image: url("~@/assets/feedbackImg/icon_download.svg");
       // background-image: url('~@/assets/icon/icon_download.svg');
     }
 
@@ -136,7 +136,7 @@ export default defineComponent({
       width: 16px;
       height: 16px;
       background-size: 16px 16px;
-      background-image: url('~@/assets/feedbackImg/icon_add.svg');
+      background-image: url("~@/assets/feedbackImg/icon_add.svg");
       // background-image: url('~@/assets/icon/icon_add.svg');
     }
 
@@ -144,63 +144,65 @@ export default defineComponent({
       width: 20px;
       height: 20px;
       background-size: 20px 20px;
-      background-image: url('~@/assets/myMusic/icon_video_upload_white.svg');
+      background-image: url("~@/assets/myMusic/icon_video_upload_white.svg");
     }
 
     &--sync-preview-play {
       width: 16px;
       height: 16px;
       background-size: 16px 16px;
-      background-image: url('~@/assets/myMusic/icon_video_play_white.svg');
+      background-image: url("~@/assets/myMusic/icon_video_play_white.svg");
     }
 
     &--sync-preview-pause {
       width: 16px;
       height: 16px;
       background-size: 16px 16px;
-      background-image: url('~@/assets/icon/playbar_pause_white.svg');
+      background-image: url("~@/assets/icon/playbar_pause_white.svg");
     }
   }
 
   &:hover {
     .c-mi-button__icon {
       &--email {
-        background-image: url('~@/assets/searchResults/icon_popup_share_email_active.svg');
+        background-image: url("~@/assets/searchResults/icon_popup_share_email_active.svg");
       }
 
       &--link {
-        background-image: url('~@/assets/searchResults/icon_popup_share_link_active.svg');
+        background-image: url("~@/assets/searchResults/icon_popup_share_link_active.svg");
       }
+
       &--download {
-        background-image: url('~@/assets/feedbackImg/icon_download_active.svg');
+        background-image: url("~@/assets/feedbackImg/icon_download_active.svg");
         // background-image: url('~@/assets/icon/icon_download_active.svg');
       }
 
       &--add {
-        background-image: url('~@/assets/feedbackImg/icon_add_active.svg');
+        background-image: url("~@/assets/feedbackImg/icon_add_active.svg");
         // background-image: url('~@/assets/icon/icon_add.svg');
       }
 
       &--upload-video {
-        background-image: url('~@/assets/myMusic/icon_video_upload_red.svg');
+        background-image: url("~@/assets/myMusic/icon_video_upload_red.svg");
       }
 
       &--sync-preview-play {
-        background-image: url('~@/assets/myMusic/icon_video_play_red.svg');
+        background-image: url("~@/assets/myMusic/icon_video_play_red.svg");
       }
 
       &--sync-preview-pause {
-        background-image: url('~@/assets/icon/playbar_pause_red.svg');
+        background-image: url("~@/assets/icon/playbar_pause_red.svg");
       }
     }
   }
 }
+
 .mi-button {
   width: auto;
   height: 40px;
   @include padding(0 15px);
   border-radius: 20px;
-  outline: 0px transparent;
+  outline: 0 transparent;
   @include font-style($c-white, 14, 400, 0.7px);
   cursor: pointer;
   @include inline-flex(center, center);

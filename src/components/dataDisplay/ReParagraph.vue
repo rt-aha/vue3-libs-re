@@ -30,6 +30,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 .c-paragraph {
   width: 100%;
+
   .text {
     &:first-child {
       margin-top: 0;

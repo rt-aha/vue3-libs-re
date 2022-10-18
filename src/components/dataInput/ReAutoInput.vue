@@ -155,7 +155,7 @@ setValue();
     outline: 0 transparent;
 
     &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
+      appearance: none;
     }
 
     &--size {

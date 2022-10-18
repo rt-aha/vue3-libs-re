@@ -99,6 +99,7 @@ export default defineComponent({
     @include font-size(20);
   }
 }
+
 .ly-base-layout {
   width: 100%;
   height: 100%;

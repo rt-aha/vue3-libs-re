@@ -3,7 +3,6 @@
   text-align-last: left;
   word-break: break-all;
   @include font-normal();
-  
 
   &--flex {
     @include flex();
@@ -21,16 +20,13 @@
     text-align: center;
   }
 
-
   &__underline {
     text-decoration: underline;
-    
   }
 
   &__pointer {
     cursor: pointer;
   }
-
 
   // temp
   &__margin-top {
@@ -43,10 +39,7 @@
 
   &__important {
     @include font-important();
-
   }
-
-  
 }
 
 .normal-text-small {

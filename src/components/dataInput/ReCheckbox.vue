@@ -84,6 +84,7 @@ const uuid = nanoid();
   &--direction {
     &--horizontal {
       color: blue;
+
       .chk-list__item {
         display: inline-block;
         // margin-right: 10px;
@@ -103,6 +104,7 @@ const uuid = nanoid();
     display: none;
   }
 }
+
 .chk-list {
   width: 100%;
 
@@ -136,7 +138,7 @@ const uuid = nanoid();
           position: relative;
 
           &::after {
-            content: '';
+            content: "";
             display: block;
             @include position(center);
             width: 10px;

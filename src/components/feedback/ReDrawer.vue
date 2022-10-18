@@ -99,33 +99,34 @@ const handleBtn = async (cb) => {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
-
 @keyframes fadeOut {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
 }
-
 @keyframes slideIn {
   from {
     transform: translateX(100%);
   }
+
   to {
     transform: translateX(0%);
   }
 }
-
 @keyframes slideOut {
   from {
     transform: translateX(0%);
   }
+
   to {
     transform: translateX(100%);
   }
@@ -147,6 +148,7 @@ const handleBtn = async (cb) => {
 
   &--animate-in {
     animation: fadeIn 0.3s;
+
     .re-drawer__box {
       animation: slideIn 0.2s forwards;
     }
@@ -154,6 +156,7 @@ const handleBtn = async (cb) => {
 
   &--animate-out {
     animation: fadeOut 0.3s;
+
     .re-drawer__box {
       animation: slideOut 0.2s forwards;
     }

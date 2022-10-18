@@ -70,6 +70,7 @@ const props = defineProps({
     // background-color: $c-white;
     box-shadow: 3px 3px 6px rgba($c-black, 0.1);
     // border-radius: 5px;
+
     /* border-bottom: 1px solid $c-grey; */
     height: 70px;
 

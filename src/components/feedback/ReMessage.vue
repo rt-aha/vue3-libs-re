@@ -79,19 +79,20 @@ watch(() => props.content, (newValue) => {
 <style lang="scss" scoped>
 @keyframes slideIn {
   from {
-    transform: translate(-50%, 0px);
+    transform: translate(-50%, 0);
   }
+
   to {
     transform: translate(-50%, 20px);
   }
 }
-
 @keyframes slideOut {
   from {
     transform: translate(-50%, 20px);
   }
+
   to {
-    transform: translate(-50%, -100%)
+    transform: translate(-50%, -100%);
   }
 }
 
@@ -102,16 +103,17 @@ watch(() => props.content, (newValue) => {
 
   &--animate-in {
     animation: slideIn 0.2s forwards;
+
     .re-message__box {
     }
   }
 
   &--animate-out {
     animation: slideOut 0.2s;
+
     .re-modal__box {
     }
   }
-
 }
 
 .btn-wrap {

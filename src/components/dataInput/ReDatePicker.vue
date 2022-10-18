@@ -80,6 +80,7 @@ watch(
   width: 100%;
   // width: 200px;
   cursor: pointer;
+
   /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
 }
@@ -88,8 +89,8 @@ watch(
   &__field {
     @include font-style($c-black, 14, 400, 1px, 14px);
     background-color: transparent;
-    border: 0px;
-    outline: 0px;
+    border: 0;
+    outline: 0;
     cursor: pointer;
     width: 100%;
   }
@@ -97,13 +98,15 @@ watch(
 
 .select {
   border: 1px solid $c-grey;
+
   /* background-color: #eee; */
   display: inline-block;
   min-height: 36px;
   height: auto;
+
   /* background: $c-input-bg; */
   border-radius: 4px;
-  @include padding(0px 10px);
+  @include padding(0 10px);
   @include flex();
   // width: 200px;
   position: relative;
@@ -115,15 +118,17 @@ watch(
   &__field {
     @include font-style($c-black, 14, 400, 1px, 14px);
     background-color: transparent;
-    border: 0px;
-    outline: 0px;
+    border: 0;
+    outline: 0;
     cursor: pointer;
   }
 
   &__drop-icon {
     flex: none;
     width: 15px;
+
     /* @include position(tr, 50%, 10px); */
+
     /* transform: translateY(-50%) rotate(0deg); */
     transform: rotate(0deg);
     transition: 0.4s;
@@ -138,6 +143,7 @@ watch(
 
 .select-options-wrap {
   @include position(tl, calc(100% + 5px), 0);
+
   /* background-color: $c-input-bg; */
   background-color: $c-white;
   width: 100%;
@@ -155,7 +161,7 @@ watch(
 .vc-container {
   // background-color: transparent;
   background-color: $c-white;
-  border: 0px;
+  border: 0;
   width: 100%;
 }
 </style>

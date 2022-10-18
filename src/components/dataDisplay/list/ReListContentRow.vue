@@ -64,7 +64,7 @@ const props = defineProps({
       width: 100%;
 
       &--padding-left {
-        margin-left: 0px;
+        margin-left: 0;
         width: 100%;
       }
     }

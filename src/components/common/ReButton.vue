@@ -68,7 +68,7 @@ const onClick = () => {
     }
 
     &--small-plain {
-      width: 'auto';
+      width: "auto";
       height: 20px;
       border: 1px solid $c-grey;
       border-radius: 2px;

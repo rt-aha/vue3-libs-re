@@ -1,7 +1,7 @@
 <template>
   <div class="v-re-input">
     <dev-section title="基本用法">
-      <ReInput v-model="value1" />
+      <ReInput v-model="value1" placeholder="輸入框" />
     </dev-section>
 
     <dev-section title="禁用">
@@ -67,7 +67,7 @@ export default defineComponent({
     ReInput,
   },
   setup() {
-    const value1 = ref('abc');
+    const value1 = ref('');
     const value2 = ref('efb');
     const value3 = ref('hij');
     const value4 = ref('klm');

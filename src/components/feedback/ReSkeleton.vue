@@ -86,7 +86,6 @@ const marginSetting = computed(() => {
     }
   }
 }
-
 @keyframes fadeInOut {
   0% {
     opacity: 0.4;

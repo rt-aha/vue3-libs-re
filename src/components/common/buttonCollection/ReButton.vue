@@ -124,7 +124,7 @@ const handleClick = (e) => {
 
 <style lang="scss" scoped>
 .re-button {
-  @include padding(0px 16px);
+  @include padding(0 16px);
   @include set-btn-default();
   @include font-style($c-white, 14px);
   display: inline-block;
@@ -226,7 +226,6 @@ const handleClick = (e) => {
     }
   }
 }
-
 @keyframes btn-loading {
   from {
     transform: rotate(0deg);

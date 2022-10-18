@@ -194,6 +194,5 @@ const props = defineProps({
 .td-cell {
   height: 100%;
 }
-
-@import '@/styles/share/pureText.scss';
+@import "@/styles/share/pureText";
 </style>

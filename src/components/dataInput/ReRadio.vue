@@ -70,6 +70,7 @@ const uuid = nanoid();
   &--direction {
     &--horizontal {
       color: blue;
+
       .radio-list__item {
         display: inline-block;
         margin-right: 10px;
@@ -85,8 +86,10 @@ const uuid = nanoid();
     }
   }
 }
+
 .radio-list {
   width: 100%;
+
   &__item {
     /* width: 100%; */
     cursor: pointer;
@@ -97,7 +100,7 @@ const uuid = nanoid();
         position: relative;
 
         &::before {
-          content: '';
+          content: "";
           @include circle(10px);
           @include position(center);
           transform: translate(-50%, -50%);

@@ -52,6 +52,7 @@ const toggleExpand = () => {
 
     &__arrow {
       /* position: absolute; */
+
       /* bottom: 0;
     left: 0; */
       width: 20px;
@@ -72,7 +73,6 @@ const toggleExpand = () => {
           display: inline-block;
           position: absolute;
           top: 50%;
-
           transform: translateY(-50%);
           // transform-origin: 50% 50%;
         }
@@ -92,7 +92,6 @@ const toggleExpand = () => {
         transform: rotate(180deg);
       }
     }
-
   }
 }
 </style>

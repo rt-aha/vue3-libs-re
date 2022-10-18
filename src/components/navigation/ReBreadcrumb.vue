@@ -51,6 +51,7 @@ const handleClick = (item) => {
   position: relative;
   z-index: 10;
 }
+
 .breadcrumb-list {
   width: 100%;
   @include flex();
@@ -65,7 +66,6 @@ const handleClick = (item) => {
       &--clarify {
         opacity: 0.5;
       }
-
     }
 
     &__arrow {

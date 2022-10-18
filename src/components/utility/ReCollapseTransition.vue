@@ -53,7 +53,6 @@ const listeners = {
 
   &--border {
     border: 1px solid $c-grey;
-
   }
 }
 </style>

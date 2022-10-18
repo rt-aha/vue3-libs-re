@@ -34,6 +34,7 @@ const props = defineProps({
   border-radius: 4px;
   overflow: auto;
 }
+
 .header-tr {
   // border-radius: 5px;
   background-color: $c-deepblue;

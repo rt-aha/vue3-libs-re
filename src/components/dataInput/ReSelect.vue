@@ -68,6 +68,10 @@ const props = defineProps({
     type: Boolean,
     defualt: false,
   },
+  disabled: {
+    type: Boolean,
+    defualt: false,
+  },
 });
 const emits = defineEmits(['update:modelValue', 'onChange']);
 
@@ -180,6 +184,7 @@ watch(
 .re-select {
   // width: 200px;
   cursor: pointer;
+
   /* box-shadow: 0 0 10px 3px $c-shadow; */
   position: relative;
 }
@@ -191,7 +196,7 @@ watch(
   height: auto;
   border: 1px solid $c-form-border;
   border-radius: 4px;
-  @include padding(0px 10px);
+  @include padding(0 10px);
   @include flex();
   // width: 200px;
   position: relative;
@@ -203,8 +208,8 @@ watch(
   &__field {
     @include font-style($c-black, 14, 400, 1px, 14px);
     background-color: transparent;
-    border: 0px;
-    outline: 0px;
+    border: 0;
+    outline: 0;
     cursor: pointer;
     width: 100%;
   }
@@ -212,7 +217,9 @@ watch(
   &__drop-icon {
     flex: none;
     width: 15px;
+
     /* @include position(tr, 50%, 10px); */
+
     /* transform: translateY(-50%) rotate(0deg); */
     transform: rotate(0deg);
     transition: 0.4s;
@@ -239,10 +246,14 @@ watch(
   overflow: auto;
 
   &__item {
-    @include padding(0px 10px);
+    @include padding(0 10px);
     @include flex(space-between);
     min-height: 36px;
     cursor: pointer;
+
+    &:hover {
+      background-color: rgba($c-deepblue, 0.2);
+    }
 
     &--active {
       .select-option-list__item__label {
@@ -258,10 +269,6 @@ watch(
     &--disabled {
       opacity: 0.5;
       cursor: not-allowed;
-    }
-
-    &:hover {
-      background-color: rgba($c-deepblue, 0.2);
     }
 
     &__label {

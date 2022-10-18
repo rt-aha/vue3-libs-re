@@ -150,7 +150,7 @@ $item-height: 30px;
   box-sizing: border-box;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: $item-height * 3;
     left: 50%;
@@ -161,7 +161,7 @@ $item-height: 30px;
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: $item-height * 4 - 1;
     left: 50%;

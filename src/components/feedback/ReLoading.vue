@@ -11,7 +11,7 @@
         width="20px"
         height="20px"
         viewBox="0 0 50 50"
-        style="enable-background: new 0 0 50 50"
+        style="enable-background: new 0 0 50 50;"
         xml:space="preserve"
       >
         <path
@@ -66,6 +66,7 @@ const props = defineProps({
     }
   }
 }
+
 .loader {
   text-align: center;
   display: inline-block;
