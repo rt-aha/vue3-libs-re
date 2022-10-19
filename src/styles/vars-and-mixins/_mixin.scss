@@ -182,6 +182,5 @@ background-image: linear-gradient($c-grey8, 1px, transparent 0),
 
 @mixin disabled() {
   cursor: not-allowed;
-      opacity: 0.5;
-
+  opacity: 0.5;
 }

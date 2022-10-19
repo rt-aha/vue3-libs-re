@@ -1,5 +1,11 @@
 <template>
-  <div class="re-checkbox-group" :class="[`re-checkbox-group--direction--${direction}`]">
+  <div
+    class="re-checkbox-group"
+    :class="[`re-checkbox-group--direction--${direction}`,
+             {
+               're-checkbox-group--disabled': disabled,
+             }]"
+  >
     <template v-for="(opt, idx) of innerOptions" :key="opt.value">
       <input
         :id="uuid + opt.value + idx"
@@ -63,6 +69,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   checkAllDirection: {
     type: String,
     default: 'horizontal',
@@ -84,6 +94,7 @@ const innerOptions = shallowRef([]);
 const recordOriginDisabledItems = shallowRef([]);
 
 const handleChange = (e, opt) => {
+  if (props.disabled) { return; }
   if (opt.disabled) { return; }
   let newValue = [];
   let actionType = '';
@@ -212,6 +223,12 @@ watch(
     }
   }
 
+  &--disabled {
+    .chk-list__item__label {
+      @include disabled();
+    }
+  }
+
   &__field {
     display: none;
   }
@@ -255,10 +272,11 @@ watch(
       cursor: pointer;
 
       &__option {
+        box-sizing: border-box;
         flex: none;
         width: 18px;
         height: 18px;
-        border: 1px solid $c-deepblue;
+        border: 1px solid $c-form-main;
         border-radius: 2px;
 
         &--actived {
@@ -267,11 +285,11 @@ watch(
           &::after {
             @include position(center);
             display: block;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             content: "";
-            background-color: $c-deepblue;
-            border: 1px solid $c-deepblue;
+            background-color: $c-form-selected;
+            border: 1px solid $c-form-selected;
             border-radius: 2px;
           }
         }
@@ -282,7 +300,7 @@ watch(
         margin-left: 5px;
 
         &__label {
-          @include font-style($c-black, 14, 400, 1px 14px);
+          @include font-style($c-form-main, 14, 400, 1px 14px);
           flex: 1;
         }
       }

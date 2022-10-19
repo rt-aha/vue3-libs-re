@@ -6,6 +6,12 @@
         <ReCheckboxGroup v-model="value4" :options="phoneOptions" />
       </div>
     </dev-section>
+    <dev-section title="禁用，整個 checkbo-group">
+      <div>
+        <dev-props type="Boolean" prop-name="disabled" text="禁用" />
+        <ReCheckboxGroup v-model="value7" :options="phoneOptions" disabled />
+      </div>
+    </dev-section>
 
     <dev-section title="直的排列">
       <div>
@@ -20,7 +26,7 @@
       </div>
     </dev-section>
 
-    <dev-section title="禁用">
+    <dev-section title="禁用，選項">
       <div>
         <dev-props type="{...args, disabled: true}[]" prop-name="options" text="禁用選項" />
         <ReCheckboxGroup v-model="value7" :options="phoneOptions3" />

@@ -173,11 +173,11 @@ const activeStatus = computed(() => {
   /* width: 50px;
   height: 24px;
   border-radius: 50%; */
-  background-color: $c-switch--off;
+  background-color: $c-form-switch--off;
   transition: 0.3s;
 
   &--active {
-    background-color: $c-switch--active;
+    background-color: $c-form-active;
 
     .re-switch-box {
       display: inline-block;

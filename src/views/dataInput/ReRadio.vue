@@ -7,6 +7,13 @@
       </div>
     </dev-section>
 
+    <dev-section title="禁用，整個 select">
+      <div class="wrap">
+        <dev-props type="Boolean" prop-name="disabled" text="禁用" />
+        <ReRadio v-model="value1" :options="phoneOptions" disabled />
+      </div>
+    </dev-section>
+
     <dev-section title="直的排列">
       <div class="wrap">
         <dev-props type="String" prop-name="direction" text="vertical: 排列直的方向, horizontal: 橫的排列方向" />

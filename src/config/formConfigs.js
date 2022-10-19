@@ -148,17 +148,95 @@ export const basicFormConfig = [
       hint: '(Select)',
     },
   },
-  // {
-  //   compName: 'Radio',
-  //   compProps: {
-  //     options: incomeOptions,
-  //   },
-  //   formKey: 'income',
-  //   formItem: {
-  //     label: '收入',
-  //     hint: '(Radio)',
-  //   },
-  // },
+  {
+    compName: 'Radio',
+    compProps: {
+      options: genderOptions,
+    },
+    formKey: 'radioVal',
+    formItem: {
+      label: '單選',
+      hint: '(Radio)',
+    },
+  },
+  {
+    compName: 'Radio',
+    compProps: {
+      options: genderOptions,
+      disabled: true,
+    },
+    formKey: 'radioValDisabled',
+    formItem: {
+      label: '單選，禁用',
+      hint: '(Radio)',
+    },
+  },
+  {
+    compName: 'Checkbox',
+    compProps: {
+      label: '同意',
+    },
+    formKey: 'checkboxVal',
+    formItem: {
+      label: '選取器',
+      hint: '(Checkbox)',
+    },
+  },
+  {
+    compName: 'Checkbox',
+    compProps: {
+      label: '同意',
+      disabled: true,
+    },
+    formKey: 'checkboxValDisabled',
+    formItem: {
+      label: '選取器，禁用',
+      hint: '(Checkbox)',
+    },
+  },
+
+  {
+    compName: 'CheckboxGroup',
+    compProps: {
+      options: occupationOptions,
+    },
+    formKey: 'checkboxGroupVal',
+    formItem: {
+      label: '職業',
+      hint: '(CheckboxGroup)',
+    },
+  },
+  {
+    compName: 'CheckboxGroup',
+    compProps: {
+      options: occupationOptions,
+      disabled: true,
+    },
+    formKey: 'checkboxGroupValDisabled',
+    formItem: {
+      label: '職業，禁用',
+      hint: '(CheckboxGroup)',
+    },
+  },
+  {
+    compName: 'Switch',
+    formKey: 'switchVal',
+    formItem: {
+      label: '啟用',
+      hint: '(Switch)',
+    },
+  },
+  {
+    compName: 'Switch',
+    compProps: {
+      disabled: true,
+    },
+    formKey: 'switchValueDisabled',
+    formItem: {
+      label: '啟用，禁用',
+      hint: '(Switch)',
+    },
+  },
   // {
   //   compName: 'Checkbox',
   //   compProps: {

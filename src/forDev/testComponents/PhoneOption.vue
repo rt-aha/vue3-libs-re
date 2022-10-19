@@ -19,7 +19,7 @@
 <style lang="scss" scoped>
 .comp-phone-option {
   @include flex(flex-start, flex-start, column);
-  @include padding(5px 0);
+  // @include padding(5px 0);
 }
 
 .phone-name-desc {

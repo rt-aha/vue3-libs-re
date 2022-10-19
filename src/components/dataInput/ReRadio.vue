@@ -1,5 +1,12 @@
 <template>
-  <div class="re-radio" :class="[`re-radio--direction--${direction}`]">
+  <div
+    class="re-radio" :class="[
+      `re-radio--direction--${direction}`,
+      {
+        're-radio--disabled': disabled,
+      },
+    ]"
+  >
     <ul class="radio-list">
       <li
         v-for="(opt, idx) of options"
@@ -49,12 +56,17 @@ const props = defineProps({
     type: String,
     default: 'horizontal',
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 const emit = defineEmits(['update:modelValue', 'onChange']);
 
 const { validFn } = useValidate();
 
 const handleChange = (opt) => {
+  if (props.disabled) { return; }
   if (opt.disabled) { return; }
 
   emit('update:modelValue', opt.value);
@@ -85,6 +97,12 @@ const uuid = nanoid();
       }
     }
   }
+
+  &--disabled {
+    .radio-list__item__label {
+      @include disabled();
+    }
+  }
 }
 
 .radio-list {
@@ -92,19 +110,19 @@ const uuid = nanoid();
 
   &__item {
     /* width: 100%; */
-    cursor: pointer;
+    cursor: inherit;
 
     &--actived {
       .radio-list__item__label__selected {
         position: relative;
-        border: 1px solid $c-deepblue;
+        border: 1px solid $c-form-selected;
 
         &::before {
           @include circle(10px);
           @include position(center);
           display: inline-block;
           content: "";
-          background-color: $c-deepblue;
+          background-color: $c-form-selected;
           transform: translate(-50%, -50%);
         }
       }
@@ -124,19 +142,18 @@ const uuid = nanoid();
 
     &__label {
       @include flex(flex-start, flex-start);
-      display: inline-block;
       cursor: pointer;
 
       &__selected {
         @include circle(16px);
-        border: 1px solid $c-grey;
+        border: 1px solid $c-form-main;
       }
 
       &__text-box {
         margin-left: 5px;
 
         &__label {
-          @include font-style($c-input-label, 14, 400, 1px, 18px);
+          @include font-style($c-form-main, 14, 400, 1px, 18px);
         }
       }
 

@@ -128,10 +128,11 @@ const uuid = nanoid();
       cursor: pointer;
 
       &__option {
+        box-sizing: border-box;
         flex: none;
         width: 18px;
         height: 18px;
-        border: 1px solid $c-deepblue;
+        border: 1px solid $c-form-main;
         border-radius: 2px;
 
         &--actived {
@@ -140,11 +141,11 @@ const uuid = nanoid();
           &::after {
             @include position(center);
             display: block;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             content: "";
-            background-color: $c-deepblue;
-            border: 1px solid $c-deepblue;
+            background-color: $c-form-selected;
+            border: 1px solid $c-form-selected;
             border-radius: 2px;
           }
         }
@@ -155,7 +156,7 @@ const uuid = nanoid();
         margin-left: 5px;
 
         &__label {
-          @include font-style($c-black, 14, 400, 1px 14px);
+          @include font-style($c-form-main, 14, 400, 1px 14px);
           flex: 1;
         }
       }

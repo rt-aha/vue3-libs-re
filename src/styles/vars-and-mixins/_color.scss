@@ -27,8 +27,7 @@ $c-input-hint: #aaaaaa;
 
 
 $c-shadow: rgba($c-grey, 0.2);
-$c-switch--off: #ccc;
-$c-switch--active: #32CD32;
+
 
 $c-badge--default: $c-deepblue;
 $c-badge--brown: $c-brown;
@@ -44,6 +43,7 @@ $c-form-selected: #032f60; // 用於選擇到的主色，預設放入 active 和
 $c-form-active: $c-form-selected;
 $c-form-hover: $c-form-selected;
 $c-form-hover-bg: rgba($c-form-selected, 0.2);
+$c-form-switch--off: $c-form-assist;
 
 $c-form-basic: #333;
 $c-form-border: #ccc;

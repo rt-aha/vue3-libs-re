@@ -77,7 +77,18 @@ const basicForm = ref({
   selectVal: '',
   selectDisabled: '',
   selectValMultiple: [],
-
+  // radio
+  radioVal: '',
+  radioValDisabled: '',
+  // checkbox
+  checkboxVal: false,
+  checkboxValDisabled: '',
+  // checkboxGroup
+  checkboxGroupVal: [],
+  checkboxGroupValDisabled: [],
+  // switch
+  switchVal: false,
+  switchValDisabled: false,
   // city: '',
   // region: '',
   // slider: 32,
@@ -101,6 +112,10 @@ setTimeout(() => {
   basicForm.value.inputNumberVal = 30;
   basicForm.value.selectVal = 'female';
   basicForm.value.selectValMultiple = [100, 207];
+  basicForm.value.radioVal = 'female';
+  basicForm.value.checkboxVal = true;
+  basicForm.value.checkboxGroupVal = ['retire'];
+  basicForm.value.switchVal = true;
 }, 3000);
 
 const basicFormSubmit = async () => {
