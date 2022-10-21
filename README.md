@@ -41,6 +41,9 @@
 - [x] Switch
 - [x] Textarea
 - [x] TimePicker
+  - [ ] timelist 不用抽成組件
+  - [ ] 處理 console.log 跳的錯誤
+  - [ ] 顯示 UI 應該和時間同步
 - [x] DatePicker
 - [x] DateRangePicker
 - [x] Checkbox

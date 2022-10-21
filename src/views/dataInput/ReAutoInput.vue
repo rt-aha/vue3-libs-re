@@ -8,9 +8,9 @@
 
     <dev-section title="自行決定個數">
       <div class="wrap">
-        <dev-props type="String" prop-name="count" text="決定有幾個格子" />
+        <dev-props type="String" prop-name="amount" text="決定有幾個格子" />
         <dev-desc text="e.g. 4" />
-        <ReAutoInput v-model="val2" count="4" />
+        <ReAutoInput v-model="val2" amount="4" />
       </div>
     </dev-section>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="re-period-picker">
-    <div v-click-away="closeSelect" class="select" @click.stop="toggleExpand">
+    <div class="select" @click.stop="toggleExpand">
       <div class="select__active-wrap">
         <input class="select__field" readonly placeholder="請選擇" :value="inputValue">
       </div>
@@ -14,11 +14,11 @@
     </div>
     <div class="select-options-wrap">
       <ReCollapseTransition :show="isExpand">
-        <div class="select-options">
+        <div v-click-away="closeSelect" class="select-options">
           <div class="radio-wrap">
-            <ReButton v-for="p of periodOptions" :key="p.value" type="small-plain" @click="handleShortcut(p.value)">
-              {{ p.label }}
-            </ReButton>
+            <button v-for="p of periodOptions" :key="p.value" class="shortcut-btn" @click="handleShortcut(p.value)">
+              <span class="shortcut-btn__text">{{ p.label }}</span>
+            </button>
           </div>
           <DatePicker v-model="middleDate" is-range popover-align="center" />
         </div>
@@ -166,9 +166,7 @@ const periodOptions = [
 .select {
   @include padding(0 10px);
   @include flex();
-  // width: 200px;
   position: relative;
-  display: inline-block;
   height: auto;
   min-height: 36px;
   border: 1px solid $c-form-border;
@@ -215,6 +213,31 @@ const periodOptions = [
 
 .radio-wrap {
   @include padding(10px);
+}
+
+.shortcut-btn {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid $c-form-assist;
+  border-radius: 2px;
+  outline: transparent 0;
+  transition: 0.4s;
+
+  &:hover {
+    border: 1px solid $c-form-active;
+
+    .shortcut-btn {
+      &__text {
+        @include font-style($c-form-active, 12);
+      }
+    }
+  }
+
+  &__text {
+    @include font-style($c-form-assist, 12);
+  }
 }
 </style>
 

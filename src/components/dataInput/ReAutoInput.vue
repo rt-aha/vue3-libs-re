@@ -11,7 +11,7 @@
         max="9"
         maxlength="1"
         type="number"
-        @input="handleInput"
+        @input="(e) => handleInput(e, idx)"
         @keydown="(e) => handleKeydown(e, idx)"
       >
     </div>
@@ -24,7 +24,7 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  count: {
+  amount: {
     type: [String, Number],
     default: 6,
   },
@@ -43,7 +43,7 @@ const handleChange = () => {
   const value = innerValue.value.map(item => item.value).join('');
   emit('onChange', value);
 
-  if (value.length === props.count) {
+  if (value.length === Number(props.amount)) {
     emit('onCompleted', value);
   }
 };
@@ -84,7 +84,14 @@ const handleKeydown = async (e, refIndex) => {
   }
 };
 
-const handleInput = async () => {
+const handleInput = async (e, refIndex) => {
+  if (refIndex === Number(props.amount - 1) && String(innerValue.value[refIndex].value)) {
+    const latestVal = innerValue.value[refIndex];
+    latestVal.value = Number(String(latestVal.value).substring(0, 1));
+
+    innerValue.value.splice(refIndex, 1, latestVal);
+  }
+
   handleChange();
   const nextIndex = innerValue.value.findIndex(item => item.value === '');
 
@@ -98,7 +105,7 @@ const handleInput = async () => {
 const setValue = async () => {
   const val = [];
 
-  for (let i = 0; i < Number(props.count); i += 1) {
+  for (let i = 0; i < Number(props.amount); i += 1) {
     val.push('');
   }
 
@@ -124,7 +131,7 @@ setValue();
   justify-content: center;
   width: 60px;
   height: 60px;
-  border: 2px solid $c-deepblue;
+  border: 2px solid $c-form-assist;
   border-radius: 3px;
 
   & + & {
@@ -135,18 +142,18 @@ setValue();
     &--small {
       width: 30px;
       height: 30px;
-      border: 1px solid $c-deepblue;
+      border: 1px solid $c-form-assist;
     }
 
     &--large {
       width: 80px;
       height: 80px;
-      border: 3px solid $c-deepblue;
+      border: 3px solid $c-form-assist;
     }
   }
 
   &__field {
-    @include font-style($c-text1, 28px);
+    @include font-style($c-form-main, 28);
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -160,15 +167,16 @@ setValue();
 
     &--size {
       &--small {
+        @include font-size(16);
         width: 20px;
         height: 20px;
         font-size: 16px;
       }
 
       &--large {
+        @include font-size(40);
         width: 60px;
         height: 60px;
-        font-size: 40px;
       }
     }
   }

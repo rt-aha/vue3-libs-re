@@ -237,60 +237,51 @@ export const basicFormConfig = [
       hint: '(Switch)',
     },
   },
-  // {
-  //   compName: 'Checkbox',
-  //   compProps: {
-  //     label: '我同意',
-  //   },
-  //   formKey: 'agree',
-  //   formItem: {
-  //     label: '同意書',
-  //     hint: '(Checkbox)',
-  //   },
-  // },
-  // {
-  //   compName: 'CheckboxGroup',
-  //   compProps: {
-  //     options: occupationOptions,
-  //   },
-  //   formKey: 'occupation',
-  //   formItem: {
-  //     label: '職業',
-  //     hint: '(CheckboxGroup)',
-  //   },
-  // },
-  // {
-  //   compName: 'Switch',
-  //   formKey: 'enable',
-  //   formItem: {
-  //     label: '啟用',
-  //     hint: '(Switch)',
-  //   },
-  // },
-  // {
-  //   compName: 'Textarea',
-  //   formKey: 'remark',
-  //   formItem: {
-  //     label: '備註',
-  //     hint: '(Textarea)',
-  //   },
-  // },
-  // {
-  //   compName: 'TimePicker',
-  //   formKey: 'time',
-  //   formItem: {
-  //     label: '時間',
-  //     hint: '(TimePicker)',
-  //   },
-  // },
-  // {
-  //   compName: 'DatePicker',
-  //   formKey: 'date',
-  //   formItem: {
-  //     label: '日期選擇',
-  //     hint: '(DatePicker)',
-  //   },
-  // },
+  {
+    compName: 'Textarea',
+    formKey: 'textareaVal',
+    formItem: {
+      label: '備註',
+      hint: '(Textarea)',
+    },
+  },
+  {
+    compName: 'Textarea',
+    compProps: {
+      disabled: true,
+    },
+    formKey: 'textareaValDisabled',
+    formItem: {
+      label: '備註，禁用',
+      hint: '(Textarea)',
+    },
+  },
+  {
+    compName: 'TimePicker',
+    formKey: 'timePickerVal',
+    formItem: {
+      label: '時間選擇器',
+      hint: '(TimePicker)',
+    },
+  },
+  {
+    compName: 'DatePicker',
+    formKey: 'datePickerVal',
+    formItem: {
+      label: '日期選擇器',
+      hint: '(DatePicker)',
+    },
+  },
+
+  {
+    compName: 'InputList',
+    formKey: 'inputListVal',
+    formItem: {
+      label: '多輸入框',
+      hint: '(InputList)',
+    },
+  },
+
   // {
   //   compName: 'DateRangePicker',
   //   formKey: 'dateRange',
@@ -315,14 +306,7 @@ export const basicFormConfig = [
   //     hint: '(Upload)',
   //   },
   // },
-  // {
-  //   compName: 'InputList',
-  //   formKey: 'multipleInput',
-  //   formItem: {
-  //     label: '多輸入框',
-  //     hint: '(InputList)',
-  //   },
-  // },
+
   // {
   //   compName: 'Slider',
   //   formKey: 'slider',

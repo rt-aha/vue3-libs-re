@@ -89,6 +89,15 @@ const basicForm = ref({
   // switch
   switchVal: false,
   switchValDisabled: false,
+  // textarea
+  textareaVal: '',
+  textareaValDisabled: '',
+  // timePicker
+  timePickerVal: new Date(),
+  // datePicker
+  datePickerVal: new Date(),
+  // inputList
+  inputListVal: [],
   // city: '',
   // region: '',
   // slider: 32,
@@ -108,6 +117,9 @@ const dependencyForm = ref({
 });
 
 setTimeout(() => {
+  const d = new Date();
+  const testDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 2);
+
   basicForm.value.inputVal = 'after3000ms';
   basicForm.value.inputNumberVal = 30;
   basicForm.value.selectVal = 'female';
@@ -116,6 +128,19 @@ setTimeout(() => {
   basicForm.value.checkboxVal = true;
   basicForm.value.checkboxGroupVal = ['retire'];
   basicForm.value.switchVal = true;
+  basicForm.value.textareaVal = 'after3000ms';
+  basicForm.value.timePickerVal = new Date();
+  basicForm.value.datePickerVal = testDate;
+  basicForm.value.inputListVal = [
+    {
+      value: '11',
+      id: '11',
+    },
+    {
+      value: '22',
+      id: '22',
+    },
+  ];
 }, 3000);
 
 const basicFormSubmit = async () => {

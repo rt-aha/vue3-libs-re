@@ -45,6 +45,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReRadio" */ '@/views/dataInput/ReRadio.vue'),
     meta: {
       title: 'Radio 單選',
+      manualTesting: true,
     },
   },
   {
@@ -53,6 +54,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReCheckbox" */ '@/views/dataInput/ReCheckbox.vue'),
     meta: {
       title: 'Checkbox 單選框',
+      manualTesting: true,
     },
   },
   {
@@ -61,6 +63,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReCheckboxGroup" */ '@/views/dataInput/ReCheckboxGroup.vue'),
     meta: {
       title: 'Checkbox Group 多選框',
+      manualTesting: true,
     },
   },
   {
@@ -69,6 +72,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReSwitch" */ '@/views/dataInput/ReSwitch.vue'),
     meta: {
       title: 'Switch 開關',
+      manualTesting: true,
     },
   },
   {
@@ -77,6 +81,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReTextarea" */ '@/views/dataInput/ReTextarea.vue'),
     meta: {
       title: 'Textarea 文本',
+      manualTesting: true,
     },
   },
   {
@@ -93,6 +98,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReDatePicker" */ '@/views/dataInput/ReDatePicker.vue'),
     meta: {
       title: 'Date Picker 日期選擇器',
+      manualTesting: true,
     },
   },
   {
@@ -101,6 +107,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReDateRangePicker" */ '@/views/dataInput/ReDateRangePicker.vue'),
     meta: {
       title: 'Date Range Picker 日期區間選擇器',
+
     },
   },
   {
@@ -109,6 +116,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReInputList" */ '@/views/dataInput/ReInputList.vue'),
     meta: {
       title: 'Input List 多輸入框',
+      manualTesting: true,
     },
   },
   {
@@ -125,6 +133,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReAutoInput" */ '@/views/dataInput/ReAutoInput.vue'),
     meta: {
       title: 'AutoInput 自動填入',
+      manualTesting: true,
     },
   },
   {

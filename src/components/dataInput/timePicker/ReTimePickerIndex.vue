@@ -1,11 +1,13 @@
 <template>
   <div class="re-time-picker">
     <ReInput v-model="timeString" placeholder="請選擇時間" readonly @click.stop="openTimeList" />
-    <ReCollapseTransition :show="visible">
-      <div v-click-away="closeTimeList">
-        <ReTimeList ref="timelistRef" :value="innerValue" @updateTime="handleInput" />
-      </div>
-    </ReCollapseTransition>
+    <div class="time-list-wrapper">
+      <ReCollapseTransition :show="visible">
+        <div v-click-away="closeTimeList">
+          <ReTimeList ref="timelistRef" :value="innerValue" @updateTime="handleInput" />
+        </div>
+      </ReCollapseTransition>
+    </div>
   </div>
 </template>
 
@@ -64,7 +66,10 @@ watch(
 }
 
 .time-list-wrapper {
-  @include position(tl, 0, 30px);
+  @include position(tl, calc(100% + 5px), 0);
   z-index: 100;
+  width: 100%;
+  background-color: $c-white;
+  border-radius: 5px;
 }
 </style>

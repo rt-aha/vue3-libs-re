@@ -1,7 +1,7 @@
 <template>
   <div class="v-input-list">
     <dev-section title="基本使用">
-      <ReInputList v-model="value" />
+      <ReInputList v-model="value" placeholder="請輸入" />
     </dev-section>
   </div>
 </template>

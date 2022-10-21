@@ -156,7 +156,7 @@ $item-height: 30px;
     width: 100%;
     height: 1px;
     content: "";
-    background-color: #ccc;
+    background-color: $c-form-assist;
     transform: translateX(-50%);
   }
 
@@ -167,7 +167,7 @@ $item-height: 30px;
     width: 100%;
     height: 1px;
     content: "";
-    background-color: #ccc;
+    background-color: $c-form-assist;
     transform: translateX(-50%);
   }
 
@@ -180,7 +180,7 @@ $item-height: 30px;
     vertical-align: top;
 
     &__item {
-      @include font-style($c-deepblue, 14);
+      @include font-style($c-form-main, 14);
       box-sizing: border-box;
       display: inline-flex;
       align-items: center;
@@ -194,8 +194,8 @@ $item-height: 30px;
   &__minute {
     box-sizing: border-box;
     width: $item-height * 2;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
+    border-right: 1px solid $c-form-assist;
+    border-left: 1px solid $c-form-assist;
   }
 }
 </style>

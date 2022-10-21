@@ -5,21 +5,25 @@
       <img class="re-input-list__add__icon" src="@/assets/icon/add.svg" @click="addNew">
     </div>
 
-    <div v-for="v of innerValue" :key="v.id" class="re-input" :class="{ 're-input--disabled': disabled }">
-      <div class="re-input__center">
-        <div class="re-input__center__main">
-          <input
-            ref="inputField"
-            class="re-input-native-field"
-            :value="v.value"
-            :disabled="v.disabled"
-            @input="(e) => updateValue(e, v, 'input')"
-            @change="(e) => updateValue(e, v, 'change')"
-            @blur="(e) => updateValue(e, v, 'blur')"
-          >
-        </div>
-        <div class="re-input__center__remove" @click="removeItem(v)">
-          <img class="re-input__center__remove__icon" src="@/assets/icon/close.svg">
+    <div class="re-input-wrap">
+      <div v-for="v of innerValue" :key="v.id" class="re-input" :class="{ 're-input--disabled': disabled }">
+        <div class="re-input__center">
+          <div class="re-input__center__main">
+            <input
+              ref="inputField"
+              class="re-input-native-field"
+              :value="v.value"
+              :disabled="v.disabled"
+              v-bind="$attrs"
+              @input="(e) => updateValue(e, v, 'input')"
+              @change="(e) => updateValue(e, v, 'change')"
+              @blur="(e) => updateValue(e, v, 'blur')"
+              @keydown.enter="addNewItem"
+            >
+          </div>
+          <div class="re-input__center__remove" @click="removeItem(v)">
+            <img class="re-input__center__remove__icon" src="@/assets/icon/close.svg">
+          </div>
         </div>
       </div>
     </div>
@@ -27,6 +31,7 @@
 </template>
 
 <script setup>
+import { nextTick } from 'vue';
 import useValidate from '@/hooks/useValidate';
 
 const props = defineProps({
@@ -62,11 +67,8 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const { validFn } = useValidate();
-const inputType = ref('');
 const innerValue = ref([]);
-// const validFn = getCurrentInstance().parent.ctx.validateFields;
 const inputField = ref(null);
-// const formRules = inject('formRules', {});
 
 const updateValue = (e, v, event) => {
   if (v.disabled) { return; }
@@ -82,17 +84,26 @@ const updateValue = (e, v, event) => {
   validFn(event);
 };
 
-const addNewItem = () => {
+const autoFocusNext = () => {
+  const lastIndex = inputField.value.length - 1;
+  inputField.value[lastIndex].focus();
+};
+
+const addNewItem = async () => {
+  const hasEmptyInput = innerValue.value.find(item => item.value === '');
+  if (hasEmptyInput) { return; }
+
   innerValue.value.push({
     value: '',
     id: nanoid(),
   });
   emit('update:modelValue', innerValue.value);
+
+  await nextTick();
+  autoFocusNext();
 };
 
 const removeItem = (v) => {
-  console.log('removeItem', v);
-
   innerValue.value = innerValue.value.filter((item) => {
     console.log('...', item.id, v.id);
     return item.id !== v.id;
@@ -106,6 +117,10 @@ const init = () => {
 };
 
 init();
+
+watch(() => props.modelValue, () => {
+  init();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -113,19 +128,25 @@ init();
   width: 100%;
 
   &__add {
-    @include flex();
-    height: 40px;
+    @include inline-flex();
+    @include padding(5px 10px);
     cursor: pointer;
+    background-color: $c-form-assist;
+    border-radius: 4px;
 
     &__icon {
       width: 16px;
     }
 
     &__text {
-      @include font-style($c-deepblue, 14);
+      @include font-style($c-form-main, 14);
       margin-left: 5px;
     }
   }
+}
+
+.re-input-wrap {
+  margin-top: 10px;
 }
 
 .re-input {
@@ -156,49 +177,9 @@ init();
     position: relative;
     width: 100%;
 
-    &__prefix {
-      @include padding(0 0 0 8px);
-      @include form-font();
-      @include flex(center);
-      flex: none;
-      width: auto;
-      color: $c-grey;
-    }
-
     &__main {
       @include padding(0 8px);
       flex: 1;
-    }
-
-    &__suffix {
-      @include padding(0 8px 0 0);
-      @include form-font();
-      @include flex(center);
-      flex: none;
-      width: auto;
-    }
-
-    &__control {
-      @include padding(0 8px);
-      @include form-font();
-      @include flex(center);
-      position: relative;
-      flex: none;
-      width: auto;
-
-      &::before {
-        @include position(tl, 50%, 0);
-        display: inline-block;
-        width: 1px;
-        height: 14px;
-        content: "";
-        transform: translateY(-50%);
-      }
-
-      &__icon {
-        width: 20px;
-        cursor: pointer;
-      }
     }
 
     &__remove {
