@@ -1,15 +1,15 @@
 <template>
   <div class="re-email-auto-complete">
-    <div v-click-away="closeOptions" class="re-email-auto-complete__input">
-      <ReInput
+    <div v-click-away="closeExpand" class="re-email-auto-complete__input">
+      <input
         v-model="emailValue"
-        :value="modelValue"
+        class="re-email-auto-complete__input__field"
         :placeholder="$attrs.placeholder"
         @click.stop
         @input="(e) => updateValue(e, 'input')"
         @change="(e) => updateValue(e, 'change')"
         @keydown="handleKeydown"
-      />
+      >
       <!-- @focus="expandOptions" -->
     </div>
     <div class="re-email-auto-complete-expand">
@@ -17,7 +17,7 @@
         <div class="re-email-auto-complete__option__content">
           <ul class="re-email-auto-complete__option__content__list">
             <li
-              v-for="(opt, idx) of extraOptions"
+              v-for="(opt, idx) of filterOptions"
               :key="opt.value"
               class="re-email-auto-complete-option"
               :class="[
@@ -31,12 +31,12 @@
             >
               <component :is="render()" v-if="opt.render" v-bind="opt.optionConfig" />
               <span v-else class="re-email-auto-complete-option__item">{{ opt.label }}</span>
-              <span
+              <!-- <span
                 v-show="opt.allowedDelete"
                 class="re-email-auto-complete-option__remove"
                 :allowedDelete="opt.allowedDelete"
                 @click.stop="removeOption(opt.value)"
-              >刪除</span>
+              >刪除</span> -->
             </li>
           </ul>
         </div>
@@ -46,6 +46,7 @@
 </template>
 
 <script setup>
+import { watch } from 'vue';
 import ReInput from '@/components/dataInput/ReInput.vue';
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import ReCategoryTitle from '@/components/dataInput/ReCategoryTitle.vue';
@@ -89,19 +90,43 @@ const { validFn } = useValidate();
 const isExpand = ref(false);
 const visible = ref(false);
 const emailValue = ref('');
-const extraOptions = ref([]);
+const filterOptions = ref([]);
 const emailDomains = ref([]);
 const isBlur = ref(false);
 const isFocus = ref(true);
-const keyboardIndex = ref(0);
+const keyboardIndex = ref(-1);
 
-const setValue = () => {
+const init = () => {
   emailValue.value = props.modelValue;
+  emailDomains.value = props.options;
 };
-const closeOptions = () => {
+const closeExpand = () => {
   isExpand.value = false;
 };
+
+const openExpand = () => {
+  isExpand.value = true;
+};
+
+const setOptions = () => {
+  const [account, domain] = emailValue.value.split('@');
+
+  filterOptions.value = emailDomains.value.map((item) => {
+    item.label = `${account}@${item.value}`;
+    return item;
+  });
+
+  if (domain) {
+    const isMatchDomain = emailDomains.value.some(item => item.value.includes(domain));
+
+    if (isMatchDomain) {
+      filterOptions.value = filterOptions.value.filter(item => item.value.includes(domain));
+    }
+  }
+};
+
 const handleSelect = (selectedValue) => {
+  console.log('!?!!?');
   let fullEmail = '';
 
   if (emailValue.value.includes('@')) {
@@ -114,148 +139,71 @@ const handleSelect = (selectedValue) => {
 
   emailValue.value = fullEmail;
   emit('update:modelValue', emailValue.value);
-  // this.triggerValidate('change', emailValue.value);
-  setOptions();
-  closeOptions();
+
+  closeExpand();
 };
-const removeOption = (val) => {
-  const storageOptions = localStorage.getItem(props.storageKey);
-  if (!storageOptions) { return; }
 
-  const emailOptions = JSON.parse(storageOptions);
-
-  // 要移除的 domain
-  const filterOptions = emailOptions.filter(item => item.value !== val);
-
-  if (filterOptions.length === 0) {
-    localStorage.removeItem(props.storageKey);
-  }
-  else {
-    localStorage.setItem(props.storageKey, JSON.stringify(filterOptions));
-  }
-
-  combineEmailDomains();
-};
-const expandOptions = () => {
-  if (!emailValue.value || emailValue.value.split('@').length !== 2) {
-    isExpand.value = false;
-    return;
-  }
-
-  isExpand.value = true;
-};
 const handleKeydown = (e) => {
+  console.log('e...', e, e.keyCode);
+  // 下按鍵
   if (e.keyCode === 40) {
     keyboardIndex.value += 1;
-    if (keyboardIndex.value >= extraOptions.value.length) {
+    if (keyboardIndex.value >= filterOptions.value.length) {
       keyboardIndex.value = 0;
     }
   }
 
+  // 上按鍵
   if (e.keyCode === 38) {
-    keyboardIndex.value -= 1;
+    keyboardIndex.value = 1;
     if (keyboardIndex.value === -1) {
-      keyboardIndex.value = extraOptions.value.length - 1;
+      keyboardIndex.value = filterOptions.value.length - 1;
     }
   }
 
   if (e.keyCode === 13 && isExpand.value) {
-    handleSelect(extraOptions.value[keyboardIndex.value].value);
+    if (keyboardIndex.value === -1) {
+      return;
+    }
+
+    handleSelect(filterOptions.value[keyboardIndex.value].value);
   }
 };
 
 const updateValue = (e, event) => {
+  console.log('updata value');
   const val = e.target.value;
   emit('update:modelValue', val);
   validFn(event);
   // this.triggerValidate('input', value);
 
   if (props.disabled) { return; }
-
-  // 沒有值或是沒有小老鼠分割沒有兩個值，不開啟
-  if (!val || emailValue.value.split('@').length !== 2) {
+  if (val === '') {
     isExpand.value = false;
     return;
-  }
-
-  const mappingObj = extraOptions.value.find(item => item.label.includes(val));
-
-  // 若有 mapping 到 部分相同的字段
-  if (mappingObj) {
-    // 但 長度不同，則顯示
-    const isMoreLength = val > mappingObj.label;
-
-    if (mappingObj && isMoreLength) {
-      isExpand.value = false;
-      return;
-    }
-  }
-  else {
-    // 若 mapping 不到部分相同的字段
-    isExpand.value = false;
-    return;
-  }
-
-  isExpand.value = true;
-};
-const combineEmailDomains = () => {
-  emailDomains.value = props.options;
-
-  const storageOptions = localStorage.getItem(props.storageKey);
-
-  if (storageOptions) {
-    let emailOptions = JSON.parse(storageOptions);
-    emailOptions = emailOptions.map((item) => {
-      item.allowedDelete = true;
-      return item;
-    });
-
-    const frequentTitle = {
-      render: () => ReCategoryTitle,
-      label: 'frequentTitle',
-      value: '111', // 只是一個隨機 id，渲染用
-      title: '常用 Email',
-      disabled: true,
-    };
-
-    const historyTitle = {
-      render: () => ReCategoryTitle,
-      label: 'historyTitle',
-      value: '222', // 只是一個隨機 id，渲染用
-      title: '曾使用 Email',
-      disabled: true,
-    };
-
-    emailDomains.value = [frequentTitle, ...this.options, historyTitle, ...emailOptions];
   }
 
   setOptions();
-};
-const setOptions = () => {
-  const [account, domain] = emailValue.value.split('@');
 
-  extraOptions.value = emailDomains.value.map((item) => {
-    item.label = `${account}@${item.value}`;
-    return item;
+  const matchValue = filterOptions.value.some((item) => {
+    return item.label === emailValue.value;
   });
 
-  if (domain) {
-    const isMatchDomain = emailDomains.value.some(item => item.value.includes(domain));
-
-    if (isMatchDomain) {
-      extraOptions.value = extraOptions.value.filter(item => item.value.includes(domain));
-    }
+  if (matchValue) {
+    closeExpand();
+    return;
   }
+
+  openExpand();
 };
 
-setValue();
-combineEmailDomains();
+init();
 
-watch(emailValue, (newVal, oldVal) => {
-  if (newVal.length !== oldVal.length) {
-    setOptions();
-  }
-});
+// watch(() => emailValue.value, (newVal, oldVal) => {
+//   if (newVal.length !== oldVal.length) {
+//     setOptions();
+//   }
+// });
 </script>
 
 <style lang="scss" scoped>
@@ -264,15 +212,20 @@ watch(emailValue, (newVal, oldVal) => {
   width: 100%;
 
   &__input {
+    @include padding(5px 8px);
+    @include flex();
     width: 100%;
+    height: 36px;
     cursor: pointer;
+    background: $c-white;
+    border: 1px solid $c-form-assist;
+    border-radius: 4px;
 
     &__field {
-      @include padding(10px);
       width: 100%;
-      background: $c-white;
-      border: 2px solid $c-deepblue;
-      border-radius: 10px;
+      background-color: transparent;
+      border: 0;
+      outline: 0;
     }
   }
 
@@ -282,7 +235,7 @@ watch(emailValue, (newVal, oldVal) => {
     margin-top: 5px;
     overflow: hidden;
     background-color: $c-white;
-    border: 1px solid $c-deepblue;
+    border: 1px solid $c-form-assist;
     border-radius: 4px;
 
     &__content {

@@ -68,10 +68,6 @@ export default defineComponent({
       const routeNames = window.location.pathname.split('/').filter(item => item);
 
       console.log('routeNames', routeNames);
-
-      // breadcrumbConfig.value = [{
-
-      // }];
     };
 
     const routeName = computed(() => route.name);

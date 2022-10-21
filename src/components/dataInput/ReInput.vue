@@ -19,8 +19,8 @@
           @input="(e) => updateValue(e, 'input')"
           @change="(e) => updateValue(e, 'change')"
           @blur="(e) => updateValue(e, 'blur')"
-          @keydown.enter="(e) => updateValue(e, 'keydown.enter')"
         >
+        <!-- @keydown.enter="(e) => updateValue(e, 'keydown.enter')" -->
       </div>
       <div v-if="type === 'password'" class="re-input__center__eye" @click="toggleEyeStatus">
         <img
@@ -69,6 +69,8 @@ const inputType = ref('');
 const inputRef = ref(null);
 
 const updateValue = (e, event) => {
+  console.log('event', event);
+
   if (props.disabled) { return; }
   emit('update:modelValue', e.target.value);
   emit('onChange', e.target.value, event);
