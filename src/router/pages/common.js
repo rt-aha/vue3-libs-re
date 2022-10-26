@@ -15,6 +15,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReDivider" */ '@/views/common/ReDivider.vue'),
     meta: {
       title: 'Divider 分隔線',
+      manualTesting: true,
     },
   },
   {
@@ -23,6 +24,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReDropdown" */ '@/views/common/ReDropdown.vue'),
     meta: {
       title: 'Dropdown 下拉選單',
+      manualTesting: true,
     },
   },
 ];

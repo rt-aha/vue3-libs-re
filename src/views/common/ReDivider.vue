@@ -6,7 +6,7 @@
         <ReDivider />
         <p>下面水平線向上推開 50px</p>
         <ReDivider :margin="{ top: '50px', bottom: '100px' }" />
-        <p>上面水平線向上推開 100px</p>
+        <p>上面水平線向下推開 100px</p>
       </div>
     </dev-section>
 

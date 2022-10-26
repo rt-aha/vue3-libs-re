@@ -1,8 +1,8 @@
 <template>
   <div class="re-dropdown">
-    <div v-click-away="closeSelect" class="dropdown" @click.stop="toggleExpand">
+    <div v-click-away="closeSelect" class="dropdown" @click="toggleExpand">
       <div class="dropdown__active-wrap">
-        <p class="dropdown__feild">
+        <p class="dropdown__field">
           {{ innerSingle }}
         </p>
       </div>
@@ -130,7 +130,7 @@ watch(
   /* background-color: #eee; */
   // display: inline-block;
   min-height: 36px;
-  border: 1px solid $c-form-border;
+  border: 1px solid $c-dropdown-asssit;
   border-radius: 4px;
 
   &__active-wrap {
@@ -138,7 +138,7 @@ watch(
   }
 
   &__field {
-    @include font-style($c-black, 14, 400, 1px, 14px);
+    @include font-style($c-dropdown-main, 14, 400, 1px, 14px);
     cursor: pointer;
     background-color: transparent;
     border: 0;
@@ -199,7 +199,7 @@ watch(
 
     &--active {
       .dropdown-option-list__item__label {
-        @include font-style($c-deepblue--active, 14, 400, 1px, 14px);
+        @include font-style($c-dropdown-active, 14, 400, 1px, 14px);
       }
 
       .dropdown-option-list__item__check-icon {
@@ -214,11 +214,15 @@ watch(
     }
 
     &:hover {
-      background-color: rgba($c-deepblue, 0.2);
+      .dropdown-option-list__item__label {
+        color: $c-dropdown-hover;
+      }
+
+      background-color: rgba($c-dropdown-hover-bg, 0.2);
     }
 
     &__label {
-      @include font-style($c-black, 14, 400, 1px, 14px);
+      @include font-style($c-dropdown-main, 14, 400, 1px, 14px);
     }
 
     &__check-icon {

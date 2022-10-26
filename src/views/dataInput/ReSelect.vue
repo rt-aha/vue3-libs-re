@@ -14,7 +14,7 @@
     </dev-section>
     <dev-section title="禁用選項">
       <div class="wrap">
-        <dev-props type="Boolean" prop-name="disabled" text="禁用選項" />
+        <dev-props type="{...args, disabled: true}[]" prop-name="options" text="禁用選項" />
         <ReSelect v-model="value2" :options="basicWithDisabledOptions" />
       </div>
     </dev-section>
