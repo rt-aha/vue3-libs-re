@@ -125,6 +125,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReEmailAutoComplete" */ '@/views/dataInput/ReEmailAutoComplete.vue'),
     meta: {
       title: 'Email Auto Complete Email自動補全',
+      manualTesting: true,
     },
   },
   {
