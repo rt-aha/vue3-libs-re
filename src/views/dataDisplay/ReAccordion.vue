@@ -6,7 +6,7 @@
       </div>
     </dev-section>
 
-    <dev-section title="可放入組件：待處理">
+    <dev-section title="可放入組件">
       <div class="wrap">
         <ReAccordion :data="workReportBudget" />
       </div>

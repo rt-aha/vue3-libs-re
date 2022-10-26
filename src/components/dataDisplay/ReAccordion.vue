@@ -13,7 +13,7 @@
           >
         </div>
       </div>
-      <ReCollapseTransition :show="expandStatus[d.key]">
+      <ReCollapseTransition :show="expandStatus[d.key]" :border="false" :white-bg="false">
         <div class="desc">
           <template v-if="d.renderContent">
             <component :is="d.renderContent" />

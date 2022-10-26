@@ -5,6 +5,7 @@
       v-show="show" class="re-collapse-transition"
       :class="{
         're-collapse-transition--border': border,
+        're-collapse-transition--white-bg': whiteBg,
       }"
     >
       <slot />
@@ -16,6 +17,10 @@
 defineProps({
   show: Boolean,
   border: {
+    type: Boolean,
+    default: true,
+  },
+  whiteBg: {
     type: Boolean,
     default: true,
   },
@@ -47,12 +52,16 @@ const listeners = {
 <style lang="scss">
 .re-collapse-transition {
   overflow: hidden;
-  background-color: $c-white;
+
   border-radius: 4px;
   transition: height 0.22s ease-in-out;
 
   &--border {
     border: 1px solid $c-grey;
+  }
+
+  &--white-bg {
+    background-color: $c-white;
   }
 }
 </style>
