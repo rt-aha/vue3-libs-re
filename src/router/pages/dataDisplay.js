@@ -7,6 +7,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReTimeline" */ '@/views/dataDisplay/ReTimeline.vue'),
     meta: {
       title: 'Timeline 時間軸',
+      manualTesting: true,
     },
   },
   {
@@ -23,6 +24,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReCountTo" */ '@/views/dataDisplay/ReCountTo.vue'),
     meta: {
       title: 'CountTo 數字動畫',
+      manualTesting: true,
     },
   },
   {

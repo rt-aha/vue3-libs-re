@@ -47,6 +47,9 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  scrollContainer: {
+
+  },
 });
 
 const numberRef = ref(null);
@@ -76,7 +79,7 @@ const handleScroll = () => {
 
   if (threshold > windowTopOffset) {
     countStart();
-    document.querySelector('#app').removeEventListener('scroll', handleScroll);
+    document.querySelector('.ly-base-layout__body__container').removeEventListener('scroll', handleScroll);
   }
 };
 
@@ -86,6 +89,6 @@ watch(() => props.endVal, (newVal) => {
 
 onMounted(() => {
   handleScroll();
-  document.querySelector('#app').addEventListener('scroll', handleScroll);
+  document.querySelector('.ly-base-layout__body__container').addEventListener('scroll', handleScroll);
 });
 </script>

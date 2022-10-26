@@ -144,7 +144,6 @@ const handleSelect = (selectedValue) => {
 };
 
 const handleKeydown = (e) => {
-  console.log('e...', e, e.keyCode);
   // 下按鍵
   if (e.keyCode === 40) {
     keyboardIndex.value += 1;

@@ -20,15 +20,15 @@
 - [-] Table
 - [x] SimpleTable
 - [x] Countdown
-- [-] TimeLine
-  - 先做了個基本的
-  - [ ] 要能放 render comp 進去
+- [x] TimeLine
+  - [x] 要能放 render comp 進去
 - [x] Tree
   - [ ] 可點擊
   - [ ] 可禁用
   - [ ] render
-- [-] CountTo 
-  - 只是多包一層 countup，多了一個接近顯示才開始轉動的判斷，但可再優化
+- [x] CountTo 
+  -  在 countup 之上多包一層，
+  -  [ ] 進入畫面時才開始跑
 - [-] swiper
   - 先輕封裝一層，config 那些還沒寫進去
 ### dataInput
