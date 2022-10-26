@@ -50,6 +50,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReBadge" */ '@/views/dataDisplay/ReBadge.vue'),
     meta: {
       title: 'Badge 標記',
+      manualTesting: true,
     },
   },
   {
@@ -58,6 +59,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReEmpty" */ '@/views/dataDisplay/ReEmpty.vue'),
     meta: {
       title: 'Empty 無資料',
+      manualTesting: true,
     },
   },
   {
