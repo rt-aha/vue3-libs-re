@@ -8,7 +8,7 @@
 ### dataDisplay
 - [x] Accordion
 - [x] Avatar
-  - [ ] 應改為背景圖
+  - [x] 應改為背景圖
 - [x] Badge
   - [ ] 新增一個可以插入文字或圖的功能
 - [x] Empty

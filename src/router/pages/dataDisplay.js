@@ -41,6 +41,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReAvatar" */ '@/views/dataDisplay/ReAvatar.vue'),
     meta: {
       title: 'Avatar 大頭',
+      manualTesting: true,
     },
   },
   {

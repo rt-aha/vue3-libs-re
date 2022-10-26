@@ -67,7 +67,7 @@ const props = defineProps({
   },
   avatarListLimit: {
     type: [String, Number],
-    default: 2,
+    default: 3,
   },
 });
 
@@ -99,10 +99,12 @@ const isGroup = computed(() => {
 const avatarData = computed(() => {
   if (isGroup.value) {
     const remaining = props.avatarList.length - Number(props.avatarListLimit);
+    const visibleAvatar = props.avatarList.filter((item, idx) => idx < Number(props.avatarListLimit));
 
     if (remaining > 0) {
       return [
-        ...props.avatarList,
+        // ...props.avatarList,
+        ...visibleAvatar,
         {
           type: 'remaining',
           remaining,
