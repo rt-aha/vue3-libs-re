@@ -43,7 +43,7 @@ const props = defineProps({
   },
   showZero: {
     type: Boolean,
-    default: true,
+    default: false,
   },
 });
 

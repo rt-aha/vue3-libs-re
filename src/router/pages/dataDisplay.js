@@ -40,7 +40,7 @@ const children = [
     name: 'avatar',
     component: () => import(/* webpackChunkName: "ReAvatar" */ '@/views/dataDisplay/ReAvatar.vue'),
     meta: {
-      title: 'Avatar 大頭',
+      title: 'Avatar 大頭照',
       manualTesting: true,
     },
   },
