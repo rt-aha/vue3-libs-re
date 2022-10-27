@@ -3,6 +3,9 @@ $c-main-pink: #ff3cac;
 $c-main-purple: #784ba0;  
 $c-main-blue: #2b86c5;
 
+$c-assist: #999;
+
+
 // basic
 $c-deepblue: #032f60;
 $c-deepblue--active: #FFA500;
@@ -33,6 +36,13 @@ $c-badge--default: $c-deepblue;
 $c-badge--brown: $c-brown;
 $c-badge--green: $c-green;
 $c-badge--red: $c-red;
+
+// paragraph
+$c-paragraph-main: #032f60;
+$c-paragraph-assist: #aaa;
+$c-paragraph-title: $c-paragraph-main;
+$c-paragraph-normal: #333;
+
 
 // dropdown
 $c-dropdown-main: #333;

@@ -68,6 +68,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReImage" */ '@/views/dataDisplay/ReImage.vue'),
     meta: {
       title: 'Image 圖片',
+      manualTesting: true,
     },
   },
   {
@@ -75,7 +76,7 @@ const children = [
     name: 'paragraph',
     component: () => import(/* webpackChunkName: "Paragraph" */ '@/views/dataDisplay/ReParagraph.vue'),
     meta: {
-      title: 'Paragraph 文章段落',
+      title: 'Paragraph 敘述段落',
     },
   },
   {
