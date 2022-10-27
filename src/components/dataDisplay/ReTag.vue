@@ -69,7 +69,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['update:modelValue', 'onClickItem', 'onRemoveItem', 'onAddTagWarning']);
+const emit = defineEmits(['update:modelValue', 'onClickTag', 'onRemoveItem', 'onAddTagWarning']);
 
 const labelItemRef = ref(null);
 const inputRef = ref(null);
@@ -78,7 +78,7 @@ const addValue = ref();
 const isAddStatus = ref(false);
 const innerValue = ref([]);
 const handleClickItem = (tag) => {
-  emit('onClickItem', tag);
+  emit('onClickTag', tag);
 };
 
 const handleRemoveItem = (tag) => {
@@ -206,12 +206,9 @@ onMounted(() => {
     }
 
     &__add {
-      /* @include position(tr, 50%, 5px);
-      transform: translateY(-50%); */
-      @include flex();
-
       &__icon {
         width: 16px;
+        vertical-align: middle;
       }
     }
 

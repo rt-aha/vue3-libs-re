@@ -1,47 +1,37 @@
 <template>
   <div class="v-tag">
-    <DevSection title="基本使用，純顯示">
+    <DevSection title="基本使用">
       <div class="wrap">
+        <dev-desc text="純顯示" />
         <ReTag v-model="tagValue1" />
       </div>
     </DevSection>
     <DevSection title="tag被點擊時">
       <div class="wrap">
-        <dev-desc api="event">
-          onClickItem 事件：點擊時觸發
-        </dev-desc>
-        <ReTag v-model="tagValue1" @onClickItem="onClickItem" />
+        <dev-events event-name="onClickTag" text="點擊時觸發" />
+        <ReTag v-model="tagValue1" @onClickTag="onClickTag" />
       </div>
     </DevSection>
     <DevSection title="可新增/刪除">
       <div class="wrap">
-        <dev-desc type="Boolean">
-          editable: 新增/刪除功能
-        </dev-desc>
-        <dev-desc api="event">
-          onRemoveItem: 移除時觸發
-        </dev-desc>
-        <dev-desc api="event">
-          onAddTagWarning: 新增錯誤時觸發，e.g. 輸入重複 label 時
-        </dev-desc>
+        <dev-events event-name="editable" text="新增/刪除功能" />
+        <dev-events event-name="onRemoveItem" text="移除時觸發" />
+        <dev-events event-name="onAddTagWarning" text="新增重複時觸發，type 為 repeat" />
         <ReTag
           v-model="tagValue2"
           editable
-          @onClickItem="onClickItem"
+          @onClickTag="onClickTag"
           @onRemoveItem="onRemoveItem"
           @onAddTagWarning="onAddTagWarning"
         />
       </div>
     </DevSection>
 
-    <DevSection title="設定可新增上限，假設 8 個">
+    <DevSection title="設定可新增上限">
       <div class="wrap">
-        <dev-desc type="Number, String">
-          limit: 新增錯誤時觸發，e.g. 達上限時
-        </dev-desc>
-        <dev-desc api="event">
-          onAddTagWarning: 新增錯誤時觸發，e.g. 達上限時
-        </dev-desc>
+        <dev-props type="String|Number" prop-name="limit" text="標籤上限，預設沒上限" />
+        <dev-events event-name="onAddTagWarning" text="新增達上限時，type 為 limit" />
+        <dev-desc text="limit=8" />
         <ReTag
           v-model="tagValue3"
           editable
@@ -71,8 +61,8 @@ export default defineComponent({
     const tagValue2 = ref(mockTagData2);
     const tagValue3 = ref(mockTagData3);
 
-    const onClickItem = (tag) => {
-      console.log('onClickItem ...', tag);
+    const onClickTag = (tag) => {
+      console.log('onClickTag ...', tag);
     };
 
     const onRemoveItem = (tag) => {
@@ -87,7 +77,7 @@ export default defineComponent({
       tagValue1,
       tagValue2,
       tagValue3,
-      onClickItem,
+      onClickTag,
       onRemoveItem,
       onAddTagWarning,
     };

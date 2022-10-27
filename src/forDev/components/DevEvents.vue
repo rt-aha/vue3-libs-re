@@ -24,7 +24,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      default: '',
+      default: 'Function',
     },
     mt: {
       type: Boolean,

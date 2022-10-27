@@ -77,6 +77,7 @@ const children = [
     component: () => import(/* webpackChunkName: "Paragraph" */ '@/views/dataDisplay/ReParagraph.vue'),
     meta: {
       title: 'Paragraph 敘述段落',
+      manualTesting: true,
     },
   },
   {
@@ -93,6 +94,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReTag" */ '@/views/dataDisplay/ReTag.vue'),
     meta: {
       title: 'Tag 標籤',
+      manualTesting: true,
     },
   },
   {
