@@ -157,23 +157,23 @@ export const phoneOptions3 = [
 
 export const basicOptions = [
   {
-    label: 'option1',
+    label: 'label1',
     value: 'option1',
   },
   {
-    label: 'option2',
+    label: 'label2',
     value: 'option2',
   },
   {
-    label: 'option3',
+    label: 'label3',
     value: 'option3',
   },
   {
-    label: 'option4',
+    label: 'label4',
     value: 'option4',
   },
   {
-    label: 'option5',
+    label: 'label5',
     value: 'option5',
   },
 ];

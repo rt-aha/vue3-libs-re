@@ -54,7 +54,7 @@ export default defineComponent({
     ReSelect,
   },
   setup() {
-    const value1 = ref('');
+    const value1 = ref('option1');
     const value2 = ref('');
     const value3 = ref('');
     const value4 = ref([]);

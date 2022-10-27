@@ -92,7 +92,10 @@ const setInitValue = () => {
     innerMulti.value = props.options.filter(item => props.modelValue.includes(item.value));
   }
   else {
-    innerSingle.value = props.modelValue;
+    const matchOpt = props.options.find(item => props.modelValue === item.value);
+    if (matchOpt) {
+      innerSingle.value = matchOpt.label;
+    }
   }
 };
 
