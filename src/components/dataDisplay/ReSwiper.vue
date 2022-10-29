@@ -1,22 +1,18 @@
 <template>
-  <div class="c-swiper">
+  <div class="re-swiper">
+    <!-- <div class="re-swiper__content"> -->
     <Swiper
-      :slides-per-view="swiperConfig.slidesPerView"
-      :space-between="swiperConfig.gap"
-      :initial-slide="swiperConfig.initialSlide || 0"
-      :centered-slides="swiperConfig.centeredSlides || false"
-      loop
-      :autoplay="{ autoplay: true }"
       :pagination="false"
-      :navigation="{ prevEl: `.${swiperConfig.prevEl}`, nextEl: `.${swiperConfig.nextEl}` }"
+      v-bind="formatSwiperConfig"
       @swiper="onSwiper"
       @slideChange="onSlideChange"
     >
-      <SwiperSlide v-for="(d, idx) of data" :key="idx" :class="`extra-class__${extraClassName}`">
-        <slot :data="{ d, idx }" />
+      <SwiperSlide v-for="(d, index) of data" :key="index" :class="`extra-class__${extraClassName}`">
+        <slot :data="d" :index="index" />
       </SwiperSlide>
     </Swiper>
-    <slot name="prevNext" />
+    <slot name="extra" />
+    <!-- </div> -->
   </div>
 </template>
 
@@ -26,7 +22,6 @@ import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
 const props = defineProps({
   data: {
     type: Array,
@@ -42,11 +37,27 @@ const props = defineProps({
     type: String,
     default: '',
   },
+
 });
 
 const emit = defineEmits(['onSwiper', 'onSlideChange']);
 
 SwiperCore.use([Pagination, Autoplay, Navigation]);
+
+const formatSwiperConfig = computed(() => {
+  const defualtSetting = {
+    loop: true,
+    autoplay: {
+      autoplay: true,
+    },
+  };
+
+  return {
+    ...defualtSetting,
+    ...props.swiperConfig,
+  };
+});
+
 const onSwiper = (swiper) => {
   emit('onSwiper', swiper);
 };
@@ -56,22 +67,16 @@ const onSlideChange = (val) => {
 </script>
 
 <style lang="scss" scoped>
-.c-swiper {
+.re-swiper {
   position: relative;
+  height: 100%;
+
+  .swiper {
+    height: 100%;
+  }
 }
 
 .extra-class {
   position: relative;
-  // &__history {
-  //   position: relative;
-
-  //   &::after {
-  //     content: '';
-  //     width: 1px;
-  //     height: 100%;
-  //     background-color: $c-grey5;
-  //     @include position(tl, 0, -1px);
-  //   }
-  // }
 }
 </style>
