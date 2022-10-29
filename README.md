@@ -29,7 +29,7 @@
 - [x] CountTo 
   -  在 countup 之上多包一層，
   -  [ ] 進入畫面時才開始跑
-- [-] swiper
+- [x] swiper
   - 先輕封裝一層，config 那些還沒寫進去
 ### dataInput
 - [x] Form//

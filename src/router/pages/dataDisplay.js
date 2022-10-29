@@ -16,6 +16,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReSwiper" */ '@/views/dataDisplay/ReSwiper.vue'),
     meta: {
       title: 'Swiper 輪播',
+      manualTesting: true,
     },
   },
   {
