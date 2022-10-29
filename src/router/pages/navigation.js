@@ -7,6 +7,7 @@ const children = [
     component: () => import(/* webpackChunkName: "RePagination" */ '@/views/navigation/Pagination.vue'),
     meta: {
       title: 'RePagination 頁數',
+      manualTesting: true,
     },
   },
   {

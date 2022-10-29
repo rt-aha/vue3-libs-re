@@ -19,8 +19,8 @@
           @input="(e) => updateValue(e, 'input')"
           @change="(e) => updateValue(e, 'change')"
           @blur="(e) => updateValue(e, 'blur')"
+          @keydown.enter="(e) => updateValue(e, 'keydown.enter')"
         >
-        <!-- @keydown.enter="(e) => updateValue(e, 'keydown.enter')" -->
       </div>
       <div v-if="type === 'password'" class="re-input__center__eye" @click="toggleEyeStatus">
         <img

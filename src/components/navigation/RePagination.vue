@@ -199,7 +199,7 @@ const handlePageJump = (val, event) => {
     }
 
     pageJump.value = String(target);
-    emit('handlePageJump', target);
+    emit('handlePageJump', pageJump.value);
   }
 };
 
