@@ -104,6 +104,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReSimpleTable" */ '@/views/dataDisplay/ReSimpleTable.vue'),
     meta: {
       title: 'SimpleTable 只讀表格',
+      manualTesting: true,
     },
   },
   {

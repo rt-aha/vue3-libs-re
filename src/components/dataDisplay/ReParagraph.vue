@@ -78,6 +78,10 @@ const props = defineProps({
       margin-top: 0;
     }
 
+    &--note {
+      @include font-style($c-note, 16, 400, 0.8px, 26px);
+    }
+
     &--normal {
       @include font-style($c-paragraph-normal, 16, 400, 0.8px, 26px);
       // margin-top: 15px;

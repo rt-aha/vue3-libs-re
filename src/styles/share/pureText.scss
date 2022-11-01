@@ -1,5 +1,5 @@
 .normal-text {
-  @include font-normal();
+  @include font-style($c-black, 16, 400, 1.6px, 28px);
   text-align: justify;
   text-align-last: left;
   word-break: break-all;

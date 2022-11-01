@@ -1,155 +1,49 @@
 <template>
   <div class="v-simple-table">
-    SimpleTable 施工中 ...
+    <dev-section title="基本使用">
+      <div class="wrap">
+        <dev-desc text="使用方式參考 @/config/simpleTableConfig" />
+        <SimpleTable :content="HighRiskGroupsContent1" />
+      </div>
+    </dev-section>
 
-    <SimpleTable :content="HighRiskUnderStandingContent" />
+    <dev-section title="基本使用：對齊與底色">
+      <div class="wrap">
+        <dev-desc text="設定檔中使用 trStyle，調整 row 樣式，e.g. 背景色 backgroundColor: 'rgba(255, 195, 180, 0.2)'" />
+        <dev-desc text="設定檔中使用 tdStyle，調整 td 樣式，e.g. 垂直置中 { verticalAlign: 'center' }" />
+        <dev-desc text="設定檔中使用 style，調整文字樣式，e.g. 水平置中 { textAlign: 'center' }" />
+        <SimpleTable :content="HighRiskGroupsContent2" />
+      </div>
+    </dev-section>
+
+    <dev-section title="基本使用：合併欄位">
+      <div class="wrap">
+        <dev-desc text="設定檔中使用 rowspan，合併多個 rows" />
+        <dev-desc text="設定檔中使用 colspan，合併多個 columns" />
+        <SimpleTable :content="HighRiskUnderStandingContent1" />
+      </div>
+    </dev-section>
+
+    <dev-section title="進階使用">
+      <div class="wrap">
+        <dev-desc text="在文字中穿插一些小工具（參考灰字），參考 @/utils/simpleTableText，不足可自行新增" />
+        <dev-props type="h Function" prop-name="render" text="若小工具無法滿足需求，可使用自由度最大的 render 自定義組件" />
+        <SimpleTable :content="HighRiskUnderStandingContent2" />
+      </div>
+    </dev-section>
   </div>
 </template>
 
-<script>
-import { defineComponent, h } from 'vue';
-
+<script setup>
 import SimpleTable from '@/components/dataDisplay/simpleTable/SimpleTableIndex.vue';
-import Paragraph from '@/components/dataDisplay/ReParagraph.vue';
 
-export default defineComponent({
-  name: 'ViewSimpleTable',
-  components: {
-    SimpleTable,
-  },
-  setup() {
-    const HighRiskUnderStandingContent = {
-      colGroup: [
-        {
-          id: nanoid(),
-          width: 200,
-        },
-        {
-          id: nanoid(),
-          width: 200,
-        },
-
-        {
-          id: nanoid(),
-          width: 200,
-        },
-      ],
-      head: [],
-      body: [
-        {
-          id: nanoid(),
-          texts: [
-            {
-              t: '母親',
-              colspan: 2,
-            },
-            {
-              t: '胎兒、胎盤羊水',
-            },
-          ],
-        },
-        {
-          id: nanoid(),
-          texts: [
-            {
-              t: '孕前',
-            },
-            {
-              t: '孕期',
-            },
-            {
-              render: h(Paragraph, {
-                wording: [
-                  {
-                    render: h('div', {}, [h('p', '1.胎兒生長遲滯')]),
-                  },
-
-                  {
-                    type: 'normal',
-                    text: ['2.胎兒窘迫'],
-                    style: {
-                      marginTop: 0,
-                    },
-                  },
-                  {
-                    render: h('div', {}, [h('p', '3.早產'), h('p', '4.多胞胎妊娠')]),
-                  },
-                  {
-                    type: 'normal',
-                    text: ['5.巨嬰', '6.過期妊娠', '7.產程遲滯', '8.羊水過多、過少'],
-                    style: {
-                      marginTop: 0,
-                    },
-                  },
-                  {
-                    render: h('div', {}, [h('p', '9.早產早期破水'), h('p', '10.前置胎盤'), h('p', '11.胎盤早期剝離')]),
-                  },
-                ],
-              }),
-              rowspan: 2,
-            },
-          ],
-        },
-        {
-          id: nanoid(),
-          texts: [
-            {
-              render: h(Paragraph, {
-                wording: [
-                  {
-                    type: 'normal',
-                    text: [
-                      '1.腦血管疾病',
-                      '2.心臟疾病',
-                      '3.慢性高血壓',
-                      '4.氣喘',
-                      '5.肝病',
-                      '6.腎臟病',
-                      '7.糖尿病',
-                      '8.癲癇',
-                    ],
-                    style: {
-                      marginTop: 0,
-                    },
-                  },
-                  {
-                    render: h('div', {}, [h('p', '9.貧血'), h('p', '10.傳染性疾病'), h('p', '11.青少女及高齡者')]),
-                  },
-                  {
-                    type: 'normal',
-                    text: ['12.體重過重或過輕者'],
-                    style: {
-                      marginTop: 0,
-                    },
-                  },
-                ],
-              }),
-            },
-            {
-              render: h(Paragraph, {
-                wording: [
-                  {
-                    render: h('div', {}, [
-                      h('p', '1.妊娠高血壓'),
-                      h('p', '2.子癲症、子癲前症'),
-                      h('p', '3.甲狀腺機能亢進'),
-                      h('p', '4.妊娠糖尿病'),
-                      h('p', '5.全身性紅斑狼瘡'),
-                    ]),
-                  },
-                ],
-              }),
-            },
-          ],
-        },
-      ],
-    };
-
-    return {
-      HighRiskUnderStandingContent,
-    };
-  },
-});
+import {
+  HighRiskGroupsContent1,
+  HighRiskGroupsContent2,
+  HighRiskUnderStandingContent1,
+  HighRiskUnderStandingContent2,
+} from '@/config/simpleTableConfig';
 </script>
 
 <style lang="scss" scoped></style>
+

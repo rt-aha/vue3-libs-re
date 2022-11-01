@@ -11,7 +11,7 @@
       <table class="table">
         <TableColGroup :columns-config="content.colGroup" />
         <thead v-if="content.head.length" class="table__thead">
-          <tr v-for="r of content.head" :key="r.id" :style="r.style || {}">
+          <tr v-for="r of content.head" :key="r.id" :style="r.trStyle || {}">
             <td
               v-for="d of r.texts"
               :key="d.t"
@@ -22,26 +22,26 @@
               }"
             >
               <component :is="d.render" v-if="d.render" />
-              <template v-else-if="Array.isArray(d.t)">
-                <div class="td-cell">
-                  <template v-for="text of d.t" :key="text.t ? text.t : text">
-                    <p v-if="typeof text === 'string'" :style="text.style">
-                      {{ text }}
-                    </p>
-                    <p v-else :style="text.style">
-                      {{ text.t }}
-                    </p>
-                  </template>
-                </div>
-              </template>
-              <p v-else :style="d.style">
-                {{ d.t }}
-              </p>
+
+              <div v-else class="td-cell">
+                <template v-for="text of d.t" :key="text.t ? text.t : text">
+                  <!-- 純文字 -->
+                  <p v-if="typeof text === 'string'">
+                    {{ text }}
+                  </p>
+                  <!-- 渲染函式 -->
+                  <component :is="text.renderText" v-else-if="text.renderText" />
+                  <!-- 文字帶樣式 {t: 'xxx' , style: {...}} -->
+                  <p v-else :style="text.style">
+                    {{ text.t }}
+                  </p>
+                </template>
+              </div>
             </td>
           </tr>
         </thead>
         <tbody class="table__tbody">
-          <tr v-for="r of content.body" :key="r.id" :style="r.style || {}">
+          <tr v-for="r of content.body" :key="r.id" :style="r.trStyle || {}">
             <td
               v-for="d of r.texts"
               :key="d.t"
@@ -53,22 +53,21 @@
               :style="d.tdStyle"
             >
               <component :is="d.render" v-if="d.render" />
-              <template v-else-if="Array.isArray(d.t)">
-                <div class="td-cell">
-                  <template v-for="text of d.t" :key="text.t ? text.t : text">
-                    <p v-if="typeof text === 'string'" :style="text.style">
-                      {{ text }}
-                    </p>
-                    <component :is="text.renderText" v-else-if="text.renderText" />
-                    <p v-else :style="text.style">
-                      {{ text.t }}
-                    </p>
-                  </template>
-                </div>
-              </template>
-              <p v-else :style="d.style">
-                {{ d.t }}
-              </p>
+
+              <div v-else class="td-cell">
+                <template v-for="text of d.t" :key="text.t ? text.t : text">
+                  <!-- 純文字 -->
+                  <p v-if="typeof text === 'string'" :style="d.style">
+                    {{ text }}
+                  </p>
+                  <!-- 渲染函式 -->
+                  <component :is="text.renderText" v-else-if="text.renderText" />
+                  <!-- 文字帶樣式 {t: 'xxx' , style: {...}} -->
+                  <p v-else :style="text.style">
+                    {{ text.t }}
+                  </p>
+                </template>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -95,11 +94,11 @@ const props = defineProps({
   },
   mt: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   mb: {
     type: Boolean,
-    default: true,
+    default: false,
   },
 },
 );
@@ -137,7 +136,7 @@ const props = defineProps({
       td {
         @include padding(10px);
         @include font-normal();
-        border: 1px solid rgba($c-deepblue, 0.5);
+        border: 1px solid rgba($c-black, 0.5);
         border-top: transparent;
         border-bottom: transparent;
 
@@ -171,7 +170,7 @@ const props = defineProps({
         @include padding(10px);
         @include font-normal();
         vertical-align: top;
-        border: 1px solid rgba($c-deepblue, 0.5);
+        border: 1px solid rgba($c-black, 0.5);
         border-bottom: transparent;
 
         p {
