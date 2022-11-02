@@ -2,6 +2,7 @@
   <div class="v-accordion">
     <dev-section title="基本使用">
       <div class="wrap">
+        <dev-desc text="使用方式參考 @/config/mockAccordion" />
         <ReAccordion :data="aboutUsServices" />
       </div>
     </dev-section>
@@ -14,23 +15,7 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup>
 import ReAccordion from '@/components/dataDisplay/ReAccordion.vue';
-import { aboutUsServices, workReportBudget } from '@/config/mockAccordionConfig';
-
-export default defineComponent({
-  name: 'ViewAccordion',
-  components: {
-    ReAccordion,
-  },
-  setup() {
-    return {
-      aboutUsServices,
-      workReportBudget,
-    };
-  },
-});
+import { aboutUsServices, workReportBudget } from '@/config/mockAccordion';
 </script>
-
-<style lang="scss" scoped></style>

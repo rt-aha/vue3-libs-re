@@ -87,6 +87,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReList" */ '@/views/dataDisplay/ReAccordion.vue'),
     meta: {
       title: 'ReAccordion 手風琴',
+      manualTesting: true,
     },
   },
   {
