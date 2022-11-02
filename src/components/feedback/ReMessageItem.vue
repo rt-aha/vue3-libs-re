@@ -40,6 +40,15 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
 @keyframes slideOut {
   from {
     transform: translateY(0);
@@ -56,6 +65,7 @@ onUnmounted(() => {
   background-color: $c-white;
   border-radius: 4px;
   box-shadow: 3px 3px 6px rgba($c-black, 0.2);
+  animation: slideIn 0.2s linear;
 
   &--slide-out {
     animation: slideOut 0.2s linear;

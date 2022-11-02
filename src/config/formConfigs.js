@@ -202,7 +202,7 @@ export const basicFormConfig = [
     },
     formKey: 'checkboxGroupVal',
     formItem: {
-      label: '職業',
+      label: '多選取器',
       hint: '(CheckboxGroup)',
     },
   },
@@ -214,7 +214,7 @@ export const basicFormConfig = [
     },
     formKey: 'checkboxGroupValDisabled',
     formItem: {
-      label: '職業，禁用',
+      label: '多選取器，禁用',
       hint: '(CheckboxGroup)',
     },
   },
@@ -222,7 +222,7 @@ export const basicFormConfig = [
     compName: 'Switch',
     formKey: 'switchVal',
     formItem: {
-      label: '啟用',
+      label: '開關',
       hint: '(Switch)',
     },
   },
@@ -233,7 +233,7 @@ export const basicFormConfig = [
     },
     formKey: 'switchValueDisabled',
     formItem: {
-      label: '啟用，禁用',
+      label: '開關，禁用',
       hint: '(Switch)',
     },
   },
@@ -241,7 +241,7 @@ export const basicFormConfig = [
     compName: 'Textarea',
     formKey: 'textareaVal',
     formItem: {
-      label: '備註',
+      label: '文字框',
       hint: '(Textarea)',
     },
   },
@@ -252,7 +252,7 @@ export const basicFormConfig = [
     },
     formKey: 'textareaValDisabled',
     formItem: {
-      label: '備註，禁用',
+      label: '文字框，禁用',
       hint: '(Textarea)',
     },
   },
