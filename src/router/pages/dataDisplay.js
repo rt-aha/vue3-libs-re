@@ -121,6 +121,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReList" */ '@/views/dataDisplay/List.vue'),
     meta: {
       title: 'List 列表',
+      manualTesting: true,
     },
   },
 ];

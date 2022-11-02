@@ -7,6 +7,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReSteps" */ '@/views/feedback/ReSteps.vue'),
     meta: {
       title: 'ReSteps 步驟',
+      manualTesting: true,
     },
   },
   {
@@ -15,6 +16,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReCountdown" */ '@/views/feedback/ReCountdown.vue'),
     meta: {
       title: 'ReCountdown 倒數',
+      manualTesting: true,
     },
   },
   {
@@ -39,6 +41,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReSkeleton" */ '@/views/feedback/ReSkeleton.vue'),
     meta: {
       title: 'Skeleton 骨架',
+      manualTesting: true,
     },
   },
   {
@@ -47,6 +50,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReMessage" */ '@/views/feedback/ReMessage.vue'),
     meta: {
       title: 'ReMessage 訊息',
+
     },
   },
   {
@@ -55,6 +59,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReTooltip" */ '@/views/feedback/ReTooltip.vue'),
     meta: {
       title: 'ReTooltip 彈出訊息',
+      manualTesting: true,
     },
   },
   {
@@ -63,6 +68,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReLoading" */ '@/views/feedback/Loading.vue'),
     meta: {
       title: 'Loading 載入小動畫',
+      manualTesting: true,
     },
   },
 ];

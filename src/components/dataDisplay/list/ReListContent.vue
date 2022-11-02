@@ -67,16 +67,10 @@ const props = defineProps({
 
 .content-list {
   &__item {
-    // border-radius: 5px;
-
-    /* border-bottom: 1px solid $c-grey; */
-    height: 70px;
-    // background-color: $c-white;
-    box-shadow: 3px 3px 6px rgba($c-black, 0.1);
-
-    & + & {
-      margin-top: 10px;
-    }
+    height: 60px;
+    margin-top: 10px;
+    background-color: rgba($c-black, 0.03);
+    border-radius: 5px;
   }
 }
 </style>

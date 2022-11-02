@@ -1,45 +1,42 @@
 <template>
-  <div class="c-survey-status" :class="[`c-survey-status--type--${calcType}`]">
+  <div class="c-survey-status" :class="[`c-survey-status--type--${calcType}`]" @click="onClick">
     <p class="c-survey-status__text">
       {{ convertStatusToString }}
     </p>
   </div>
 </template>
 
-<script>
-import { computed, defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'SurveyStatus',
-  props: {
-    data: {
-      type: Object,
-      default: () => ({}),
-    },
+<script setup>
+const props = defineProps({
+  data: {
+    type: Object,
+    default: () => ({}),
   },
-  setup(props) {
-    const calcType = computed(() => {
-      if (props.data.surveyStatus > 4) {
-        return 'green';
-      }
-
-      return 'red';
-    });
-
-    const convertStatusToString = computed(() => {
-      if (props.data.surveyStatus > 4) {
-        return '已完成';
-      }
-
-      return '未完成';
-    });
-
-    return {
-      calcType,
-      convertStatusToString,
-    };
+  externalFn: {
+    type: Function,
+    default: () => ({}),
   },
 });
+
+const calcType = computed(() => {
+  if (props.data.surveyStatus > 4) {
+    return 'green';
+  }
+
+  return 'red';
+});
+
+const convertStatusToString = computed(() => {
+  if (props.data.surveyStatus > 4) {
+    return '已完成';
+  }
+
+  return '未完成';
+});
+
+const onClick = () => {
+  props.externalFn(props.data);
+};
 </script>
 
 <style lang="scss" scoped>

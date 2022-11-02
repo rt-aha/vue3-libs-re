@@ -7,7 +7,7 @@
           :key="col.id || col.key"
           class="header-list__item"
           :class="`header-list__item--${col.type}`"
-          :style="{ flex: col.width ? 'none' : '1', width: `${col.width}px` }"
+          :style="{ 'flex': col.width ? 'none' : '1', 'width': `${col.width}px`, 'text-align': col.headerAlign || col.align }"
         >
           <template v-if="col.renderHeader">
             <component :is="col.renderHeader" v-bind="{ data, column: col, idx: idx1 }" />
@@ -51,12 +51,12 @@ const props = defineProps({
   // width: 100%;
   @include flex(flex-start);
   @include padding(0 10px);
-  background-color: rgba($c-deepblue, 0.5);
+  background-color: rgba($c-black, 0.2);
   border-radius: 5px;
-  box-shadow: 3px 3px 6px rgba($c-black, 0.1);
+  // box-shadow: 3px 3px 6px rgba($c-black, 0.1);
 
   &__item {
-    @include font-style($c-black, 16, 400, 0.18px, 24px);
+    @include font-style($c-black, 14, 400, 1px, 24px);
     @include padding(7px 10px);
   }
 }

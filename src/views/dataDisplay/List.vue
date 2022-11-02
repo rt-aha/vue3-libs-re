@@ -1,40 +1,49 @@
 <template>
   <div class="v-list">
     <dev-section title="基本使用">
-      <ReListIndex :config="customerManagementConfig" :content-data="mockData" />
+      <div class="wrap">
+        <dev-desc text="使用方式參考 @/config/mockList" />
+        <dev-desc text="label: 欄位名稱" />
+        <dev-desc text="width: 欄位寬度，若不寫，會自動分配(欄位是以 flex 處理)" />
+        <dev-desc text="align: 對齊方式，預設同時對欄位與欄位名稱生效(欄位是以 text-align 處理)" />
+        <dev-desc text="headerAlign: 欄位名稱對齊方式，若填寫會覆蓋欄位名稱 align 的對齊效果，e.g. 金額欄位" />
+        <dev-desc text="render: 可自訂組件插入，預設組件內會接收到該欄位的設定、該行資料、index，(參考「編輯」欄位，可點擊 icon 查看 console)" />
+        <dev-desc text="若要從使用此組件的頁面將 function 丟進去，參考「狀態」欄位" />
+        <ReListIndex :columns="formatCustomerManagementConfig1" :content-data="mockData" />
+      </div>
+    </dev-section>
+    <dev-section title="基本使用">
+      <div class="wrap">
+        <dev-desc text="width: 欄位寬度若全部都有數字，超過 table 時可以滾動" />
+        <ReListIndex :columns="customerManagementConfig2" :content-data="mockData" />
+      </div>
     </dev-section>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup>
 import ReListIndex from '@/components/dataDisplay/list/ReListIndex.vue';
-import { customerManagementConfig } from '@/config/listMockConfig.js';
+import { customerManagementConfig1, customerManagementConfig2 } from '@/config/mockList';
 
-export default defineComponent({
-  name: 'ViewList',
-  components: { ReListIndex },
-  setup() {
-    const mockData = Array.from({ length: 20 }).map((_, index) => ({
-      key: index,
-      name: `name${index}`,
-      salesName: `sales${index}`,
-      customerName: `customer${index}`,
-      phone: '0987654321',
-      email: 'abc@aa.bb',
-      status: Math.random() > 0.5 ? 'Yes' : 'No',
-      record: '',
-      edit: '',
-      surveyStatus: Math.floor(Math.random() * 10),
-      updateTime: '2022-05-08 14:05',
-    }));
+const mockData = Array.from({ length: 5 }).map((_, index) => ({
+  name: `name${index}`,
+  salesName: `sales${index}`,
+  customerName: `customer${index}`,
+  phone: '0987654321',
+  email: 'abc@aa.bb',
+  status: Math.random() > 0.5 ? 'Yes' : 'No',
+  record: '',
+  edit: '',
+  surveyStatus: Math.floor(Math.random() * 10),
+  updateTime: '2022-05-08 14:05',
+  price: 173,
+}));
+const externalFn = (data) => {
+  console.log('我是外部 function', data);
+};
 
-    return {
-      mockData,
-      customerManagementConfig,
-    };
-  },
+const formatCustomerManagementConfig1 = computed(() => {
+  return customerManagementConfig1(externalFn);
 });
 </script>
 
-<style lang="scss"></style>

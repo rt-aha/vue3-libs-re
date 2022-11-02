@@ -8,8 +8,8 @@
           width: listContentWidth,
         }"
       >
-        <ListHeader :columns="config.columns" />
-        <ListContent :columns="config.columns" :content-data="contentData" />
+        <ListHeader :columns="columns" />
+        <ListContent :columns="columns" :content-data="contentData" />
       </div>
     </div>
   </div>
@@ -20,9 +20,9 @@ import ListHeader from '@/components/dataDisplay/list/ReListHeader.vue';
 import ListContent from '@/components/dataDisplay/list/ReListContent.vue';
 
 const props = defineProps({
-  config: {
-    type: Object,
-    default: () => ({}),
+  columns: {
+    type: Array,
+    default: () => [],
   },
   contentData: {
     type: Array,
@@ -55,14 +55,12 @@ const reListRef = ref(null);
 const calcListWidth = () => {
   const wrapWidth = reListRef.value.clientWidth;
 
-  const colFullWidth = props.config.columns
+  const colFullWidth = props.columns
     .map(ele => ele.width || '100')
     .reduce((acc, ele) => {
       acc += Number(ele);
       return acc;
     }, 0);
-
-  console.log('colFullWidth', colFullWidth);
 
   if (colFullWidth > wrapWidth) {
     listContentWidth.value = `${colFullWidth}px`;
@@ -75,6 +73,13 @@ const calcListWidth = () => {
 
 onMounted(() => {
   calcListWidth();
+});
+
+// 更換 columns，可能會有不同欄位，需要重新計算寬度
+watch(() => props.columns, () => {
+  calcListWidth();
+}, {
+  deep: true,
 });
 </script>
 

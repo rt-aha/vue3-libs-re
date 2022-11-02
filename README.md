@@ -16,7 +16,7 @@
 - [x] Tags/DynamicTags
   - [ ] extra 編輯功能
 - [x] Paragraph
-- [-] List
+- [x] List
 - [-] Table
 - [x] SimpleTable
 - [x] Countdown
