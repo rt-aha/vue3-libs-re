@@ -46,7 +46,7 @@ const showNotification = () => {
   visible.value = true;
 };
 
-createAppendDom('message-target');
+createAppendDom('notification-target');
 </script>
 
 <style lang="scss" scoped>
