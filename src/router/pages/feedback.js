@@ -59,6 +59,7 @@ const children = [
   {
     path: 'notification',
     name: 'notification',
+    manualTesting: true,
     component: () => import(/* webpackChunkName: "ReNotification" */ '@/views/feedback/ReNotification.vue'),
     meta: {
       title: 'ReNotification 通知',
