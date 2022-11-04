@@ -35,6 +35,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReDrawer" */ '@/views/feedback/ReDrawer.vue'),
     meta: {
       title: 'ReDrawer 抽屜',
+      manualTesting: true,
     },
   },
   {

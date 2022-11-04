@@ -64,20 +64,26 @@ export default {
     const formValueConfig = [
       {
         compName: 'Input',
+        formItem: {
+          label: '輸入1',
+        },
         formKey: 'input1',
-        formItemLabel: '輸入1',
         value: formValue.value.newPassword,
       },
       {
         compName: 'Input',
+        formItem: {
+          label: '輸入2',
+        },
         formKey: 'input2',
-        formItemLabel: '輸入2',
         value: formValue.value.newPassword,
       },
       {
         compName: 'Input',
         formKey: 'input3',
-        formItemLabel: '輸入3',
+        formItem: {
+          label: '輸入3',
+        },
         value: formValue.value.newPassword,
       },
     ];

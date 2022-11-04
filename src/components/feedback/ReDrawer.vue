@@ -1,10 +1,11 @@
 <template>
   <div
+    v-if="visible"
     class="re-drawer"
     :class="[
       {
-        're-drawer--animate-in': drawerActive,
-        're-drawer--animate-out': !drawerActive,
+        're-drawer--animate-in': animateActive,
+        're-drawer--animate-out': !animateActive,
       },
     ]"
     @animationend="handleAniamtionEnd"
@@ -67,23 +68,24 @@ const props = defineProps({
     default: '220px',
   },
 });
-const emit = defineEmits(['closeModal']);
+const emit = defineEmits(['close']);
 
 // const internalInstance = getCurrentInstance();
-const drawerActive = ref(true);
+const animateActive = ref(true);
 // 傳給外層使用這個 hook 的內容;
 const fulfillContent = ref(null);
 
 const handleAniamtionEnd = (e) => {
   if (e.animationName.includes('fadeOut')) {
-    emit('closeModal', fulfillContent.value);
+    animateActive.value = true;
+    emit('close', fulfillContent.value);
   }
 };
 
 const close = (content) => {
   fulfillContent.value = content;
   // 觸發動畫
-  drawerActive.value = false;
+  animateActive.value = false;
 };
 
 const handleBtn = async (cb) => {
