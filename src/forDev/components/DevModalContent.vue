@@ -36,14 +36,18 @@ export default {
     const formValueConfig = [
       {
         compName: 'Input',
+        formItem: {
+          label: '新密碼',
+        },
         formKey: 'newPassword',
-        formItemLabel: '新密碼',
         value: formValue.value.newPassword,
       },
       {
         compName: 'Input',
+        formItem: {
+          label: '確認新密碼',
+        },
         formKey: 'confirmPassword',
-        formItemLabel: '確認新密碼',
         value: formValue.value.confirmPassword,
       },
     ];

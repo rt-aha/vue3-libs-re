@@ -37,8 +37,10 @@ export default {
     const formValueConfig = [
       {
         compName: 'Input',
+        formItem: {
+          label: '備註',
+        },
         formKey: 'remark',
-        formItemLabel: '備註',
         value: formValue.value.newPassword,
       },
     ];
@@ -72,13 +74,13 @@ export default {
 
     const handleForm = async () => {
       await modal({
-        content: '確定刪除',
+        content: 'inner 確定刪除',
         btns: [
           {
             label: '確認',
             cb: () => {
               submit();
-              emit('close');
+              // emit('close');
             },
           },
         ],

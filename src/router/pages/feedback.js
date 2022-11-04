@@ -19,20 +19,22 @@ const children = [
       manualTesting: true,
     },
   },
-  {
-    path: 'drawer',
-    name: 'drawer',
-    component: () => import(/* webpackChunkName: "ReDrawer" */ '@/views/feedback/ReDrawer.vue'),
-    meta: {
-      title: 'ReDrawer 抽屜',
-    },
-  },
+
   {
     path: 'modal',
     name: 'modal',
     component: () => import(/* webpackChunkName: "ReModal" */ '@/views/feedback/ReModal.vue'),
     meta: {
       title: 'ReModal 彈窗',
+      manualTesting: true,
+    },
+  },
+  {
+    path: 'drawer',
+    name: 'drawer',
+    component: () => import(/* webpackChunkName: "ReDrawer" */ '@/views/feedback/ReDrawer.vue'),
+    meta: {
+      title: 'ReDrawer 抽屜',
     },
   },
   {
@@ -50,7 +52,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReMessage" */ '@/views/feedback/ReMessage.vue'),
     meta: {
       title: 'ReMessage 訊息',
-
+      manualTesting: true,
     },
   },
   {

@@ -1,6 +1,12 @@
 <template>
   <div class="v-modal">
-    <dev-section title="基本使用">
+    <dev-section title="基本使用：寫在 template 上">
+      <ReButton @click="switchTemplateModal">
+        Open Modal
+      </ReButton>
+    </dev-section>
+
+    <dev-section title="基本使用：用 function call">
       <ReButton @click="openModal">
         Open Modal
       </ReButton>
@@ -23,105 +29,114 @@
         Inner modal
       </ReButton>
     </dev-section>
+
+    <Teleport to="#modal-target">
+      <ReModal :visible="visible" content="inTemplate" @close="switchTemplateModal" />
+    </Teleport>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-// import ReModal from '@/components/common/ReModal.vue';
+<script setup>
+import { ref } from 'vue';
+import ReModal from '@/components/feedback/ReModal.vue';
 import ReButton from '@/components/common/ReButton.vue';
 import useModal from '@/hooks/useModal';
 import DevModalContent from '@/forDev/components/DevModalContent.vue';
 import DevModalInnerModal from '@/forDev/components/DevModalInnerModal.vue';
 
-export default defineComponent({
-  name: 'ViewModal',
-  components: {
-    ReButton,
-  },
-  setup() {
-    const { modal } = useModal();
+const { modal } = useModal();
 
-    const openModal = async () => {
-      const modal1 = await modal({
-        content: '這裡可以寫一些訊息 default ',
-        data: {
-          a: 1,
-          b: 'str',
-          c: true,
+const visible = ref(false);
+
+const switchTemplateModal = () => {
+  visible.value = !visible.value;
+};
+
+const openModal = async () => {
+  const modal1 = await modal({
+    content: '這裡可以寫一些訊息 default ',
+    data: {
+      a: 1,
+      b: 'str',
+      c: true,
+    },
+  });
+
+  console.log('modal1', modal1);
+};
+
+const openModalWithDefaultBtns = async () => {
+  const modal2 = await modal({
+    content: '這裡可以寫一些訊息 with btns',
+    data: {
+      a: 2,
+      b: 'str',
+      c: true,
+    },
+    btns: [
+      {
+        label: '確認',
+        cb: () => {
+          console.log('success');
         },
-      });
-
-      console.log('modal1', modal1);
-    };
-
-    const openModalWithDefaultBtns = async () => {
-      const modal2 = await modal({
-        content: '這裡可以寫一些訊息 with btns',
-        data: {
-          a: 2,
-          b: 'str',
-          c: true,
+      },
+      {
+        label: '取消',
+        cb: () => {
+          console.log('cancel');
         },
-        btns: [
-          {
-            label: '確認',
-            cb: () => {
-              console.log('success');
-            },
-          },
-          {
-            label: '取消',
-            cb: () => {
-              console.log('cancel');
-            },
-          },
-          {
-            label: '測試',
-            cb: () => {
-              console.log('test');
-            },
-          },
-        ],
-      });
-
-      console.log('modal2', modal2);
-    };
-
-    const openModalWithComponent = async () => {
-      const modal3 = await modal({
-        data: {
-          a: 3,
-          b: 'str',
-          c: true,
+      },
+      {
+        label: '測試',
+        cb: () => {
+          console.log('test');
         },
-        render: DevModalContent,
-      });
+      },
+    ],
+  });
 
-      console.log('modal3', modal3);
-    };
+  console.log('modal2', modal2);
+};
 
-    const openModalWithInnerModal = async () => {
-      const modal4 = await modal({
-        data: {
-          a: 4,
-          b: 'str',
-          c: true,
-        },
-        render: DevModalInnerModal,
-      });
+const openModalWithComponent = async () => {
+  const modal3 = await modal({
+    data: {
+      a: 3,
+      b: 'str',
+      c: true,
+    },
+    render: DevModalContent,
+  });
 
-      console.log('modal4', modal4);
-    };
+  console.log('modal3', modal3);
+};
 
-    return {
-      openModal,
-      openModalWithDefaultBtns,
-      openModalWithComponent,
-      openModalWithInnerModal,
-    };
-  },
-});
+const openModalWithInnerModal = async () => {
+  const modal4 = await modal({
+    data: {
+      a: 4,
+      b: 'str',
+      c: true,
+    },
+    render: DevModalInnerModal,
+  });
+
+  console.log('modal4', modal4);
+};
+
+const createAppendDom = (target) => {
+  const targetEle = document.querySelector(`#${target}`);
+
+  if (targetEle) {
+    return;
+  }
+
+  const ele = document.createElement('div');
+  ele.id = target;
+  document.body.appendChild(ele);
+};
+
+createAppendDom('modal-target');
 </script>
 
 <style lang="scss" scoped>
