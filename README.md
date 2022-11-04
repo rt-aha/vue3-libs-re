@@ -85,7 +85,7 @@
 - [x] Message
   - [ ] 待優化：目前用 watch 判斷新推入字串，若有一樣字串，會失效
   - [ ] 可用 render
-- [ ] Notification
+- [x] Notification
 - [x] Steps
   - [ ] 有空補個直的
 ### navigation
