@@ -1,15 +1,22 @@
 import { createApp, h, ref } from 'vue';
 import ReModal from '@/components/feedback/ReModal.vue';
+import TableColGroupVue from '@/components/dataDisplay/simpleTable/TableColGroup.vue';
 
 export default () => {
   const modal = ({ content = '', render, btns, data }) => {
     const getAppendDom = (target) => {
-      const targetEle = document.querySelector(`#${target}`);
+      const targetEle = document.getElementById(`${target}`);
 
       if (targetEle) {
         if (targetEle.hasChildNodes()) {
-          const ele = getAppendDom('modal-inner-target');
-          return ele;
+          const hasElementNode = Array(targetEle.childNodes).find((item) => {
+            return item.nodeType === 1;
+          });
+
+          if (hasElementNode) {
+            const ele = getAppendDom('inner-modal-target');
+            return ele;
+          }
         }
         else {
           return targetEle;
@@ -17,7 +24,7 @@ export default () => {
       }
 
       const modalRoot = document.createElement('div');
-      modalRoot.className = target;
+      modalRoot.id = target;
       document.body.appendChild(modalRoot);
 
       return modalRoot;

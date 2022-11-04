@@ -32,7 +32,7 @@
       </ReButton>
     </dev-section>
 
-    <Teleport to="#drawer-target">
+    <Teleport to="#drawer-teleport">
       <ReDrawer :visible="visible" content="inTemplate" @close="switchTemplateDrawer" />
     </Teleport>
   </div>
@@ -153,7 +153,7 @@ const createAppendDom = (target) => {
   document.body.appendChild(ele);
 };
 
-createAppendDom('drawer-target');
+createAppendDom('drawer-teleport');
 </script>
 
 <style lang="scss" scoped></style>

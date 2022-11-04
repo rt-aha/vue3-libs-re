@@ -57,6 +57,15 @@ const children = [
     },
   },
   {
+    path: 'notification',
+    name: 'notification',
+    component: () => import(/* webpackChunkName: "ReNotification" */ '@/views/feedback/ReNotification.vue'),
+    meta: {
+      title: 'ReNotification 通知',
+
+    },
+  },
+  {
     path: 'tooltip',
     name: 'tooltip',
     component: () => import(/* webpackChunkName: "ReTooltip" */ '@/views/feedback/ReTooltip.vue'),

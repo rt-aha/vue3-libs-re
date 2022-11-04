@@ -30,7 +30,7 @@
       </ReButton>
     </dev-section>
 
-    <Teleport to="#modal-target">
+    <Teleport to="#modal-teleport">
       <ReModal :visible="visible" content="inTemplate" @close="switchTemplateModal" />
     </Teleport>
   </div>
@@ -136,7 +136,7 @@ const createAppendDom = (target) => {
   document.body.appendChild(ele);
 };
 
-createAppendDom('modal-target');
+createAppendDom('modal-teleport');
 </script>
 
 <style lang="scss" scoped>

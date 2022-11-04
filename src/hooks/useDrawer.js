@@ -8,8 +8,16 @@ export default () => {
 
       if (targetEle) {
         if (targetEle.hasChildNodes()) {
-          const ele = getAppendDom('drawer-inner-target');
-          return ele;
+          const hasElementNode = Array(targetEle.childNodes).find((item) => {
+            return item.nodeType === 1;
+          });
+
+          if (hasElementNode) {
+            // console.log('hasElementNode...', hasElementNode);
+
+            const ele = getAppendDom('inner-drawer-target');
+            return ele;
+          }
         }
         else {
           return targetEle;
@@ -17,7 +25,7 @@ export default () => {
       }
 
       const drawerRoot = document.createElement('div');
-      drawerRoot.className = target;
+      drawerRoot.id = target;
       document.body.appendChild(drawerRoot);
 
       return drawerRoot;
