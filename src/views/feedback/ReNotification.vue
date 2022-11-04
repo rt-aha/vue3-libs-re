@@ -6,7 +6,7 @@
       </ReButton>
     </dev-section>
 
-    <Teleport to="#message-target">
+    <Teleport to="#notification-target">
       <ReNotification v-if="visible" :content="content" @close="close" />
       <!-- <ReMessage v-if="visible" :content="content" @close="close" /> -->
     </Teleport>
