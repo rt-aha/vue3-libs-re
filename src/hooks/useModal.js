@@ -4,11 +4,11 @@ import ReModal from '@/components/feedback/ReModal.vue';
 export default () => {
   const modal = ({ content = '', render, btns, data }) => {
     const getAppendDom = (target) => {
-      const targetEle = document.querySelector(`.${target}`);
+      const targetEle = document.querySelector(`#${target}`);
 
       if (targetEle) {
         if (targetEle.hasChildNodes()) {
-          const ele = getAppendDom('modal-inner-wrap');
+          const ele = getAppendDom('modal-inner-target');
           return ele;
         }
         else {
@@ -17,14 +17,14 @@ export default () => {
       }
 
       const modalRoot = document.createElement('div');
-      modalRoot.className = target;
+      modalRoot.id = target;
       document.body.appendChild(modalRoot);
 
       return modalRoot;
     };
 
     return new Promise((resolve) => {
-      const modalRoot = getAppendDom('modal-wrap');
+      const modalRoot = getAppendDom('modal-target');
 
       const app = createApp({
         setup() {
@@ -36,10 +36,11 @@ export default () => {
           };
           return () =>
             h(ReModal, {
-              onCloseModal: closeModal,
+              onClose: closeModal,
               data,
               btns,
               content,
+              visible,
               render: render
                 ? h(render, {
                   close: closeModal,

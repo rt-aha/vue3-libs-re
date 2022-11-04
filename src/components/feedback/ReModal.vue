@@ -1,10 +1,12 @@
 <template>
   <div
+    v-if="visible"
+
     class="re-modal"
     :class="[
       {
-        're-modal--animate-in': modalActive,
-        're-modal--animate-out': !modalActive,
+        're-modal--animate-in': animateActive,
+        're-modal--animate-out': !animateActive,
       },
     ]"
     @animationend="handleAniamtionEnd"
@@ -59,22 +61,23 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['closeModal']);
+const emit = defineEmits(['close']);
 
-const modalActive = ref(true);
+const animateActive = ref(true);
 // 傳給外層使用這個 hook 的內容;
 const fulfillContent = ref(null);
 
 const handleAniamtionEnd = (e) => {
   if (e.animationName.includes('fadeOut')) {
-    emit('closeModal', fulfillContent.value);
+    animateActive.value = true;
+    emit('close', fulfillContent.value);
   }
 };
 
 const close = (content) => {
   fulfillContent.value = content;
   // 觸發動畫
-  modalActive.value = false;
+  animateActive.value = false;
 };
 
 const handleBtn = async (cb) => {
