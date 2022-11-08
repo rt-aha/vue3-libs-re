@@ -1,7 +1,12 @@
 <template>
   <div class="re-tabs">
     <div class="re-tabs__select">
-      <ul ref="ul" class="re-tabs__select__list">
+      <ul
+        ref="ul" class="re-tabs__select__list"
+        :class="{
+          're-tabs__select__list--without-bottom-line': withoutBottomLine,
+        }"
+      >
         <li
           v-for="(tab, index) of tabsConfig"
           :key="tab.name"
@@ -11,11 +16,13 @@
             {
               're-tabs__select__list__item--disabled': tab.disabled,
               're-tabs__select__list__item--active': modelValue === tab.name,
+              're-tabs__select__list__item--full-width': fullWidth,
             },
           ]"
           :data-tab-name="tab.name"
           :data-tab-label="tab.label"
-          @click="handleClick({ index, ...tab })"
+          @click="handleActive({ index, ...tab }, 'click')"
+          @mouseenter="handleActive({ index, ...tab }, 'hover')"
         >
           <span>{{ tab.label }}</span>
         </li>
@@ -44,13 +51,30 @@ const props = defineProps({
   currTab: {
     default: '',
   },
+  fullWidth: {
+    type: Boolean,
+    default: false,
+  },
+  withoutBottomLine: {
+    type: Boolean,
+    default: false,
+  },
+  trigger: {
+    type: String,
+    default: 'click',
+  },
 });
+
+const emit = defineEmits('change');
 
 const tabWidth = ref({});
 
-const handleClick = (tab) => {
-  if (tab.disabled) { return; }
-  emit('change', tab);
+const handleActive = (tab, triggerEvent) => {
+  console.log('triggerEvent', triggerEvent);
+  if (props.trigger === triggerEvent) {
+    if (tab.disabled) { return; }
+    emit('change', tab);
+  }
 };
 </script>
 
@@ -70,7 +94,6 @@ const handleClick = (tab) => {
       width: 10px;
       height: calc(100% - 1px);
       content: "";
-      background: linear-gradient(90deg, $c-white 0%, transparent 90%, transparent 100%);
     }
 
     &::after {
@@ -80,7 +103,6 @@ const handleClick = (tab) => {
       width: 10px;
       height: calc(100% - 1px);
       content: "";
-      background: linear-gradient(270deg, $c-white 0%, transparent 90%, transparent 100%);
     }
 
     &__list {
@@ -100,25 +122,34 @@ const handleClick = (tab) => {
         width: 100%;
         height: 1px;
         content: "";
-        background: $c-grey;
+        background-color: $c-grey;
+      }
+
+      &--without-bottom-line {
+        &::after {
+          height: 0;
+          background-color: 0;
+        }
+
+        .re-tabs__select__list__item {
+          @include padding(10px 0);
+        }
+
+        .re-tabs__select__list__item + .re-tabs__select__list__item {
+          margin-left: 20px;
+        }
       }
 
       &__item {
-        @include padding(10px 0 20px);
+        @include padding(10px);
         @include flex(center);
-        @include font-style($c-grey, 18);
+        @include font-style($c-grey, 16);
         position: relative;
-        display: inline-block;
-        flex: 1;
+        // flex: 1;
         cursor: pointer;
 
-        &::after {
-          @include position(tl, calc(100% - 2px), 0);
-          display: inline-block;
-          width: 100%;
-          height: 2px;
-          content: "";
-          background-color: $c-grey;
+        &--full-width {
+          flex: 1;
         }
 
         &--active {
@@ -126,8 +157,12 @@ const handleClick = (tab) => {
           color: $c-deepblue;
 
           &::after {
-            z-index: 300;
+            @include position(tl, calc(100% - 1px), 0);
+            z-index: 500;
             display: inline-block;
+            width: 100%;
+            height: 1px;
+            content: "";
             background-color: $c-deepblue;
           }
         }

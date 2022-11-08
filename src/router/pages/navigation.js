@@ -16,6 +16,7 @@ const children = [
     component: () => import(/* webpackChunkName: "ReTabs" */ '@/views/navigation/ReTabs.vue'),
     meta: {
       title: 'ReTabs 標籤頁',
+      manualTesting: true,
     },
   },
   {

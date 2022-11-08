@@ -7,9 +7,9 @@
           width: tableContentWidth,
         }"
       >
-        <ReTableColGroup :columns="config.columns" />
-        <ReTableHeader :columns="config.columns" />
-        <ReTableBody :columns="config.columns" :content-data="contentData" />
+        <ReTableColGroup :columns="columns" />
+        <ReTableHeader :columns="columns" />
+        <ReTableBody :columns="columns" :content-data="contentData" />
       </table>
     </div>
   </div>
@@ -21,9 +21,9 @@ import ReTableHeader from '@/components/dataDisplay/table/ReTableHeader.vue';
 import ReTableBody from '@/components/dataDisplay/table/ReTableBody.vue';
 
 const props = defineProps({
-  config: {
-    type: Object,
-    default: () => ({}),
+  columns: {
+    type: Array,
+    default: () => [],
   },
   contentData: {
     type: Array,
@@ -56,7 +56,7 @@ const reTableRef = ref(null);
 const calcTableWidth = () => {
   const wrapWidth = reTableRef.value.clientWidth;
 
-  const colFullWidth = props.config.columns
+  const colFullWidth = props.columns
     .map(ele => ele.width || '150')
     .reduce((acc, ele) => {
       acc += Number(ele);

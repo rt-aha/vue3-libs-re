@@ -1,6 +1,6 @@
 import { h } from 'vue';
-import EditSurvey from '@/components/dataDisplay/list/fragment/EditSurvey.vue';
-import SurveyStatus from '@/components/dataDisplay/list/fragment/SurveyStatus.vue';
+import EditSurvey from '@/components/dataDisplay/table/fragment/EditSurvey.vue';
+import SurveyStatus from '@/components/dataDisplay/table/fragment/SurveyStatus.vue';
 
 export const customerManagementConfig1 = externalFn => ([
   {
@@ -45,7 +45,7 @@ export const customerManagementConfig1 = externalFn => ([
     key: 'updateTime',
   },
   {
-    width: '50',
+    width: '100',
     label: '編輯',
     align: 'center',
     key: 'editSurvey',

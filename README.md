@@ -17,7 +17,8 @@
   - [ ] extra 編輯功能
 - [x] Paragraph
 - [x] List
-- [-] Table
+- [x] Table
+  - 只先做基本功能
 - [x] SimpleTable
 - [x] Countdown
 - [x] TimeLine
@@ -90,8 +91,9 @@
   - [ ] 有空補個直的
 ### navigation
 - [x] Breadcrumb
-- [-] Tabs
-  - [ ] 先只做最基本的
+- [x] Tabs
+  - 先只做最基本的
+  - [ ] 動畫計算槓槓跑來跑去
 - [x] Pagination
 
 

@@ -6,7 +6,6 @@
           v-for="col of columns"
           :key="col.id || col.key"
           class="header-list__item"
-          :class="`header-list__item--${col.type}`"
           :style="{ 'flex': col.width ? 'none' : '1', 'width': `${col.width}px`, 'text-align': col.headerAlign || col.align }"
         >
           <template v-if="col.renderHeader">

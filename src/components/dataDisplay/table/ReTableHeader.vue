@@ -1,7 +1,11 @@
 <template>
   <thead class="re-table-header">
     <tr class="header-tr">
-      <td v-for="col of columns" :key="col.id || col.key" class="header-tr__td" :class="`header-tr__td--${col.type}`">
+      <td
+        v-for="col of columns"
+        :key="col.id || col.key"
+        class="header-tr__td"
+      >
         <template v-if="col.renderHeader">
           <component :is="col.renderHeader" v-bind="{ data, column: col, idx: idx1 }" />
         </template>
@@ -23,25 +27,18 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-// .re-table-header {
-//   &__content {
-//     // width: 100%;
-//     // border-top: 1px solid $c-assist2;
-//   }
-// }
-
 .re-table-header {
-  overflow: auto;
+  // overflow: auto;
   border-radius: 4px;
 }
 
 .header-tr {
-  // border-radius: 5px;
-  background-color: $c-deepblue;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
 
   &__td {
     @include padding(10px);
-    @include font-style($c-white, 16, 400, 0.18px, 24px);
+    @include font-style($c-black, 14, 400, 1px, 24px);
   }
 }
 </style>

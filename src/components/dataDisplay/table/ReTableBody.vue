@@ -6,7 +6,7 @@
 
         <div class="cell">
           <template v-if="col.render">
-            <component :is="col.render" v-bind="{ data, column: col, idx: idx1 }" />
+            <component :is="col.render()" v-bind="{ data, column: col, idx: idx1 }" />
           </template>
           <template v-else>
             <span class="cell__text">{{ data[col.key] || '' }}</span>
@@ -26,17 +26,6 @@ const props = defineProps({
   contentData: {
     type: Array,
     default: () => [],
-  },
-  onExpand: {},
-
-  // albumsInfo, playlistsInfo 使用
-  padding: {
-    type: Boolean,
-    default: true,
-  },
-  max100: {
-    type: Boolean,
-    default: false,
   },
 });
 </script>
@@ -62,6 +51,7 @@ const props = defineProps({
   height: 100%;
   // @include flex(fle);
   &__text {
+    @include font-style($c-black, 14, normal, 0.7px, 20px);
   }
 }
 </style>

@@ -77,7 +77,7 @@
 </template>
 
 <script setup>
-import TableColGroup from '@/components/dataDisplay/simpleTable/TableColGroup.vue';
+import TableColGroup from '@/components/dataDisplay/simpleTable/ReSimpleTableColGroup.vue';
 
 const props = defineProps({
   content: {

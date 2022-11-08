@@ -1,6 +1,5 @@
 import { createApp, h, ref } from 'vue';
 import ReModal from '@/components/feedback/ReModal.vue';
-import TableColGroupVue from '@/components/dataDisplay/simpleTable/TableColGroup.vue';
 
 export default () => {
   const modal = ({ content = '', render, btns, data }) => {

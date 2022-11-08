@@ -2,6 +2,7 @@
   <div class="v-list">
     <dev-section title="基本使用">
       <div class="wrap">
+        <dev-desc text="此組件使用用基本與 ReTable 一致" />
         <dev-desc text="使用方式參考 @/config/mockList" />
         <dev-desc text="label: 欄位名稱" />
         <dev-desc text="width: 欄位寬度，若不寫，會自動分配(欄位是以 flex 處理)" />

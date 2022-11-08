@@ -5,12 +5,11 @@
         v-for="(col, idx2) of columns"
         :key="col.id || col.key"
         class="content-row__item"
-        :class="[`content-row__item--${col.type}`]"
         :style="{ 'flex': col.width ? 'none' : '1', 'width': `${col.width}px`, 'text-align': col.align }"
       >
         <div class="content-row__item__cell" :class="[{ 'content-row__item__cell--padding-left': idx2 === 0 }]">
           <template v-if="col.render">
-            <component :is="col.render" v-bind="{ data, column: col, idx: idx1 }" />
+            <component :is="col.render()" v-bind="{ data, column: col, idx: idx1 }" />
             <!-- :key="nanoid()" -->
           </template>
           <template v-else>

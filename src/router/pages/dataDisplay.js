@@ -111,15 +111,16 @@ const children = [
   {
     path: 'table',
     name: 'table',
-    component: () => import(/* webpackChunkName: "ReTable" */ '@/views/dataDisplay/Table.vue'),
+    component: () => import(/* webpackChunkName: "ReTable" */ '@/views/dataDisplay/ReTable.vue'),
     meta: {
       title: 'Table 表格',
+      manualTesting: true,
     },
   },
   {
     path: 'list',
     name: 'list',
-    component: () => import(/* webpackChunkName: "ReList" */ '@/views/dataDisplay/List.vue'),
+    component: () => import(/* webpackChunkName: "ReList" */ '@/views/dataDisplay/ReList.vue'),
     meta: {
       title: 'List 列表',
       manualTesting: true,
