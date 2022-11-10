@@ -17,6 +17,9 @@ const routes = [
     name: 'test',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
     children: addMeta(children, 'category', 'test'),
+    meta: {
+      title: '測試組件',
+    },
   },
 ];
 

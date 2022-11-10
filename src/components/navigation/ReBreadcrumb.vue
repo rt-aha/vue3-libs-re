@@ -1,7 +1,8 @@
 <template>
   <div class="c-breadcrumb">
+    <!-- {{ formatConfig }} -->
     <ul class="breadcrumb-list">
-      <li v-for="(item, idx) of config" :key="item.name" class="breadcrumb-list__item" @click="() => handleClick(item)">
+      <li v-for="(item, idx) of formatConfig" :key="item.key" class="breadcrumb-list__item" @click="() => handleClick(item)">
         <template v-if="item.render">
           <component :is="item.render" v-bind="item" />
         </template>
@@ -16,7 +17,7 @@
         </span>
 
         <img
-          v-show="config.length - 1 !== idx"
+          v-show="formatConfig.length - 1 !== idx"
           class="breadcrumb-list__item__arrow"
           src="@/assets/icon/arrow_right.svg"
         >
@@ -35,8 +36,17 @@ const props = defineProps({
     type: Boolean,
     dafault: false,
   },
+  formatConfig: {
+    type: Function,
+    default: args => args,
+  },
 });
 const emit = defineEmits(['onClick']);
+
+const formatConfig = computed(() => {
+  const newConfig = [...props.config];
+  return props.formatConfig(newConfig);
+});
 
 const handleClick = (item) => {
   emit('onClick', item);

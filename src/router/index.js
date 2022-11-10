@@ -15,6 +15,9 @@ const router = createRouter({
       path: '',
       name: 'home',
       component: () => import(/* webpackChunkName: "Home" */ '@/views/Home.vue'),
+      meta: {
+        title: '首頁',
+      },
     },
     ...common,
     ...dataDisplay,
@@ -22,11 +25,20 @@ const router = createRouter({
     ...dataInput,
     ...feedback,
     ...testPage,
-    // ...widgets,
-    // ...hooks,
-    // ...compForm,
   ],
 });
+
+export const routeNameMapping = (() => {
+  const allRoutes = router.getRoutes();
+
+  const mapping = allRoutes.reduce((obj, item) => {
+    obj[item.name] = item.meta.title;
+
+    return obj;
+  }, {});
+
+  return mapping;
+})();
 
 router.beforeEach((to, from, next) => {
   const scrollEle = document.querySelector('#app');

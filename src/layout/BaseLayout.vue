@@ -12,6 +12,9 @@
         <p class="page-title">
           {{ $route.meta.title }}
         </p>
+        <div>
+          <ReBreadcrumb :config="breadcrumbConfig" />
+        </div>
         <div class="router-view-wrap">
           <div class="router-view-wrap__view">
             <router-view />
@@ -28,63 +31,62 @@
   </div>
 </template>
 
-<script>
-import { computed, defineComponent } from 'vue';
+<script setup>
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import LyHeader from '@/layout/LyHeader.vue';
 import LySidebar from '@/layout/LySidebar.vue';
 import EasyForm from '@/views/dataInput/EasyForm.vue';
 import ReBreadcrumb from '@/components/navigation/ReBreadcrumb.vue';
+import { routeNameMapping } from '@/router';
 // import fds from '@/router/index'
 
-export default defineComponent({
-  components: {
-    LyHeader,
-    LySidebar,
-    EasyForm,
-  },
-  setup() {
-    const route = useRoute();
-    const breadcrumbConfig = ref();
+const route = useRoute();
 
-    // const routeMatchedLasteIndex = route.matched.length - 1;
-    const isFormViewExist = computed(() => {
-      // if (route.matched?.[routeMatchedLasteIndex]?.components?.form) {
-      //   return true;
-      // }
+// const routeMatchedLasteIndex = route.matched.length - 1;
+const isFormViewExist = computed(() => {
+  // if (route.matched?.[routeMatchedLasteIndex]?.components?.form) {
+  //   return true;
+  // }
 
-      console.log('route', route.meta);
+  console.log('route', route.meta);
 
-      if (route.meta.category === 'dataInput') {
-        if (route.name !== 'easy-form') {
-          return true;
-        }
-      }
+  if (route.meta.category === 'dataInput') {
+    if (route.name !== 'easy-form') {
+      return true;
+    }
+  }
 
-      return false;
-    });
-
-    const setNewBreadcrumb = () => {
-      const routeNames = window.location.pathname.split('/').filter(item => item);
-
-      console.log('routeNames', routeNames);
-    };
-
-    const routeName = computed(() => route.name);
-
-    watch(() => routeName.value, () => {
-      setNewBreadcrumb();
-    }, { immediate: true });
-
-    // const showForm = ['group'].includes(route.meta.extraView);
-
-    return {
-      route,
-      isFormViewExist,
-      // showForm,
-    };
-  },
+  return false;
 });
+
+// const setNewBreadcrumb = () => {
+//   const routeNames = window.location.pathname.split('/').filter(item => item);
+// };
+
+const breadcrumbConfig = computed(() => {
+  const splitName = route.fullPath.split('/').filter(r => r);
+
+  const breadcrumbList = splitName.reduce((list, name) => {
+    const genItem = {
+      label: routeNameMapping[name],
+      key: name,
+    };
+
+    list.push(genItem);
+
+    return list;
+  }, []);
+  // routeNameMapping
+
+  return breadcrumbList;
+});
+
+// const routeName = computed(() => route.name);
+
+// watch(() => routeName.value, () => {
+//   setNewBreadcrumb();
+// }, { immediate: true });
 </script>
 
 <style lang="scss" scoped>

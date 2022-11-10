@@ -35,6 +35,9 @@ const routes = [
     name: 'common',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
     children: addMeta(children, 'category', 'common'),
+    meta: {
+      title: '一般性組件',
+    },
   },
 ];
 

@@ -65,12 +65,11 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits('change');
+const emit = defineEmits(['change']);
 
 const tabWidth = ref({});
 
 const handleActive = (tab, triggerEvent) => {
-  console.log('triggerEvent', triggerEvent);
   if (props.trigger === triggerEvent) {
     if (tab.disabled) { return; }
     emit('change', tab);

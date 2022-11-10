@@ -25,8 +25,10 @@ const children = [
     component: () => import(/* webpackChunkName: "ReBreadcrumb" */ '@/views/navigation/ReBreadcrumb.vue'),
     meta: {
       title: 'ReBreadcrumb 麵包屑',
+      manualTesting: true,
     },
   },
+
 ];
 
 const routes = [
@@ -35,6 +37,9 @@ const routes = [
     name: 'navigation',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
     children: addMeta(children, 'category', 'navigation'),
+    meta: {
+      title: '導航組件',
+    },
   },
 ];
 

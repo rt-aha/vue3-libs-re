@@ -170,6 +170,9 @@ const routes = [
     name: 'data-input',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
     children: addMeta(children, 'category', 'dataInput'),
+    meta: {
+      title: '資料輸出組件',
+    },
   },
 ];
 

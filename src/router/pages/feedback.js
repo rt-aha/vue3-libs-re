@@ -92,6 +92,9 @@ const routes = [
     name: 'feedback',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
     children: addMeta(children, 'category', 'feedback'),
+    meta: {
+      title: '回饋組件',
+    },
   },
 ];
 

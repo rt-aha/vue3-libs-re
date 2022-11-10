@@ -134,6 +134,9 @@ const routes = [
     name: 'data-display',
     component: () => import(/* webpackChunkName: "Baselayout" */ '@/layout/BaseLayout.vue'),
     children: addMeta(children, 'category', 'data-display'),
+    meta: {
+      title: '資料顯示組件',
+    },
   },
 ];
 
