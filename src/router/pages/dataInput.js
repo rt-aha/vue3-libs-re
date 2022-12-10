@@ -40,6 +40,18 @@ const children = [
     },
   },
   {
+    path: 'multi-select',
+    name: 'multi-select',
+    components: {
+      default: () => import(/* webpackChunkName: "ReMultiSelect" */ '@/views/dataInput/ReMultiSelect.vue'),
+      form: () => import(/* webpackChunkName: "ViewReForm" */ '@/views/dataInput/ReMultiSelect.vue'),
+    },
+    meta: {
+      title: 'ReMultiSelect 多選選擇器',
+      manualTesting: true,
+    },
+  },
+  {
     path: 'radio',
     name: 'radio',
     component: () => import(/* webpackChunkName: "ReRadio" */ '@/views/dataInput/ReRadio.vue'),

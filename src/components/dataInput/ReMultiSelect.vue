@@ -9,7 +9,8 @@
       <div
         class="select__active-wrap"
       >
-        <input v-model="innerSingle" class="select__field" readonly placeholder="請選擇">
+        <input v-show="innerMulti.length === 0" class="select__field" readonly placeholder="請選擇">
+        <ReSelectMultiTag v-show="innerMulti.length > 0" v-model="innerMulti" @onRemoveItem="onRemoveItem" />
       </div>
       <img
         class="select__drop-icon"
@@ -20,7 +21,7 @@
       >
     </div>
     <!-- @click="toggleExpand" -->
-    <div class="select-options-wrap">
+    <div class="select-options-wrap" @click.stop>
       <ReCollapseTransition :show="isExpand">
         <div class="select-options">
           <div v-if="options.length === 0">
@@ -55,10 +56,11 @@
 <script setup>
 import ReCollapseTransition from '@/components/utility/ReCollapseTransition.vue';
 import useValidate from '@/hooks/useValidate';
+import ReSelectMultiTag from '@/components/dataInput/ReSelectMultiTag.vue';
 
 const props = defineProps({
   modelValue: {
-    default: '',
+    default: [],
   },
   options: {
     type: Array,
@@ -72,14 +74,11 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'onChange']);
 
 const { validFn } = useValidate();
-const innerSingle = ref('');
+const innerMulti = ref([]);
 const isExpand = ref(false);
 
 const setInitValue = () => {
-  const matchOpt = props.options.find(item => props.modelValue === item.value);
-  if (matchOpt) {
-    innerSingle.value = matchOpt.label;
-  }
+  innerMulti.value = props.options.filter(item => props.modelValue.includes(item.value));
 };
 
 const toggleExpand = () => {
@@ -96,28 +95,41 @@ const closeSelect = () => {
   isExpand.value = false;
 };
 
-const setInnerSingle = () => {
-  const valueObj = props.options.find((item) => {
-    return item.value === props.modelValue;
-  });
+const setInnerMulti = () => {
+  const tempValue = props.options.filter(item => props.modelValue.includes(item.value));
 
-  innerSingle.value = valueObj?.label || '';
+  innerMulti.value = tempValue;
 };
 
 const handleOption = async (opt) => {
   if (opt.disabled) { return; }
 
-  emit('update:modelValue', opt.value);
+  let newValue = [];
+  let actionType = '';
+
+  if (props.modelValue.includes(opt.value)) {
+    newValue = props.modelValue.filter(item => item !== opt.value);
+    actionType = 'remove';
+  }
+  else {
+    newValue = [...props.modelValue, opt.value];
+    actionType = 'add';
+  }
+
+  emit('update:modelValue', newValue);
   await nextTick();
-  setInnerSingle();
-  emit('onChange', opt);
+  setInnerMulti();
+  emit('onChange', actionType, opt, newValue);
   validFn('change');
-  isExpand.value = false;
 };
 
 const isActive = (opt) => {
-  const isMatch = opt.value === props.modelValue;
+  const isMatch = props.modelValue.includes(opt.value);
   return isMatch;
+};
+
+const onRemoveItem = (opt) => {
+  handleOption(opt);
 };
 
 watch(

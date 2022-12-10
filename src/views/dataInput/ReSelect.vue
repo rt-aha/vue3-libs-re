@@ -24,17 +24,6 @@
         <ReSelect v-model="value3" :options="renderOptions" />
       </div>
     </dev-section>
-    <dev-section title="多選">
-      <div class="wrap">
-        <dev-props type="Boolean" prop-name="multiple" text="可多選" />
-        <ReSelect v-model="value4" :options="basicOptions" multiple />
-      </div>
-    </dev-section>
-    <dev-section title="多選且自定義">
-      <div class="wrap">
-        <ReSelect v-model="value5" :options="renderWithDisabledOptions" multiple />
-      </div>
-    </dev-section>
   </div>
 </template>
 
