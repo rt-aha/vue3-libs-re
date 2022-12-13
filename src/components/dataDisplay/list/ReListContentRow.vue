@@ -9,7 +9,7 @@
       >
         <div class="content-row__item__cell" :class="[{ 'content-row__item__cell--padding-left': idx2 === 0 }]">
           <template v-if="col.render">
-            <component :is="col.render()" v-bind="{ data, column: col, idx: idx1 }" />
+            <component :is="col.render" v-bind="{ data, column: col, idx: idx1 }" />
             <!-- :key="nanoid()" -->
           </template>
           <template v-else>

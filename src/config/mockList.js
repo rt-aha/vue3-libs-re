@@ -34,7 +34,7 @@ export const customerManagementConfig1 = externalFn => ([
     label: '狀態',
     align: 'left',
     key: 'surveyStatus',
-    render: () => h(SurveyStatus, {
+    render: h(SurveyStatus, {
       externalFn,
     }),
   },
@@ -49,7 +49,7 @@ export const customerManagementConfig1 = externalFn => ([
     label: '編輯',
     align: 'center',
     key: 'editSurvey',
-    render: () => h(EditSurvey),
+    render: EditSurvey,
   },
 ]);
 
@@ -84,14 +84,14 @@ export const customerManagementConfig2 = [
     label: '編輯',
     align: 'left',
     key: 'editSurvey',
-    render: () => h(EditSurvey),
+    render: EditSurvey,
   },
   {
     width: '100',
     label: '狀態',
     align: 'left',
     key: 'surveyStatus',
-    render: () => h(SurveyStatus),
+    render: SurveyStatus,
   },
   {
     width: '500',

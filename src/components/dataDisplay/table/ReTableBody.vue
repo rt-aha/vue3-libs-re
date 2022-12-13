@@ -6,7 +6,7 @@
 
         <div class="cell">
           <template v-if="col.render">
-            <component :is="col.render()" v-bind="{ data, column: col, idx: idx1 }" />
+            <component :is="col.render" v-bind="{ data, column: col, idx: idx1 }" />
           </template>
           <template v-else>
             <span class="cell__text">{{ data[col.key] || '' }}</span>
